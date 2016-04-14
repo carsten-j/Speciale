@@ -1,0 +1,87 @@
+\section{Eksistens og entydigheds sætninger}
+\begin{theorem}[Lax-Milgrams lemma]
+Lad $\X$ være et Hilbert rum,
+$B(\cdot,\cdot):\X\!\times\!\X\rightarrow\R$ en begrænset $\X$-elliptisk
+bilinear form og lad $F:\X\rightarrow\R$ være en begrænset lineær
+afbildning. Da har variations problemet: Bestem et element $u\in\X$ så
+\begin{equation} \label{app:var-prob}
+B(u,v)=F(v) \qquad \text{for alle $v\in\X$},
+\end{equation} 
+\'{e}n og kun \'{e}n løsning.
+\end{theorem}
+\begin{proof}
+Da $B$ er begrænset findes en konstant $M$ så
+\begin{equation} \label{app:lax-a-kont}
+|B(u,v)|\leq M\|u\|\|v\| \qquad \text{for alle $u,v\in V$.}
+\end{equation}
+For ethvert $u\in\X$ er funktionalen $L:\X\rightarrow\R$ givet ved
+$L(v)=B(u,v)$ kontinuert og lineær. Altså findes et entydigt bestemt
+element $x_u\in\X$, se fx \cite[s. 79]{rudin} så
+\begin{equation}
+L(v)=\inner{v}{x_u},
+\end{equation}
+hvor $\inner{\cdot}{\cdot}$ er det indre produkt i $\X$. Et indre
+produkt er specielt en lineær funktional, hvorfor der findes et
+entydig bestemt element $f_{x_u}\in \dual{\X}$ så
+$\inner{v}{x_u}=f_{x_u}(v)$,  hvor $\dual{\X}$ er det duale rum til $\X$.
+Defineres nu $Au=f_{x_u}\in\dual{\X}$ haves
+\begin{equation} \label{app:lax-Au-kont}
+B(u,v)=L(v)=\inner{v}{x_u}=f_{x_u}(v)=Au(v).
+\end{equation} 
+Med $\|\cdot \|^{\ast}$ betegnes normen i $\dual{\X}$. Vi har nu fra
+\eqref{app:lax-a-kont} og \eqref{app:lax-Au-kont}
+\begin{equation}
+\|Au\|^{\ast}=\sup_{v\in V\setminus\{ 0\}} 
+\frac{|Au(v)|}{\|v\|}\leq M\|u\|,
+\end{equation} 
+hvilket viser at afbildningen $A:\X\rightarrow \dual{\X}$ er kontinuert
+med $\|A\| \leq M$.
+
+I følge Riesz' repræsentations sætning findes en afbildning 
+$\tau : \dual{\X} \rightarrow \X$ så
+\begin{equation}
+F(v) = \inner{\tau F}{v} \qquad 
+\text{for alle $F \in \dual{\X}$ og alle $v \in\X$.}
+\end{equation} 
+Vi har nu for $u \in\X$ og for alle $v \in\X$
+\begin{equation}
+B(u,v) = F(v) \Leftrightarrow
+Au(v) = F(v) \Leftrightarrow
+\inner{\tau Au}{v} = \inner{\tau F}{v} \Leftrightarrow
+\tau Au - \tau F = 0
+\end{equation}
+At løse variations problemet \eqref{app:var-prob} er derfor ækvivalent
+ved at løse ligningen $\tau Au = \tau F$.
+
+For at vise at denne ligning har en og kun en løsning, skal vi se at
+afbildningen 
+\begin{equation} \label{app:kontraktion}
+v \rightarrow v - \rho (\tau Av- \tau F)
+\end{equation}
+er en kontraktion for passende valgt $\rho$. Da $\X$ er et Hilbert rum,
+er $\X$ specielt et fuldstændigt metrisk rum, og som bekendt har en
+kontraktion defineret på et fuldstændigt metrisk rum netop et
+fixpunkt.
+
+Bemærkes nu at
+\begin{gather}
+\inner{\tau Av}{v} = Av(v) = B(v,v) \geq \alpha \|v\|^2 \\
+\|\tau Av\| = \|Av\|^{\ast} \leq \|A\|\|v\| \leq M\|v\|
+\end{gather}
+hvor $\alpha$ skyldes $\X$-ellipticitet, følger kontraktionen let thi
+\begin{align}
+\|v-\rho \tau Av\|^2 & = \|v\|^2 - 2\rho \inner{\tau Av}{v}
+                         + {\rho}^2 \|\tau Av\|^2 \\
+                     & \leq (1-2\rho \alpha + {\rho}^2 M^2) \|v\|^2.
+\end{align}
+Afbildningen defineret ved \eqref{app:kontraktion} er derfor en
+kontraktion for $\rho \in ]0,2\alpha /M^2[$. Altså findes et
+element $v \in V$ så $v-\rho(\tau Av - \tau F)=v$, dvs $\tau Av = \tau
+F$ som ønsket.  
+\end{proof}
+
+
+
+
+
+

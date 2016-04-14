@@ -1,0 +1,153 @@
+\documentstyle[latin1]{report}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Sætning}
+\newtheorem{proof}{Bevis}
+\newtheorem{remark}{Bemærkning}
+% \newenvironment{note}{\begin{remark}}{\hfill a \end{remark}}
+\newcommand{\Th}{{\cal{T}}_h}
+\newcommand{\Nh}{{\cal{N}}_h}
+\newcommand{\NK}{{\cal{N}}_K}
+\newcommand{\Het}{H^1(\Omega)}
+\newcommand{\Hto}{H^2(\Omega)}
+\newcommand{\Lto}{L^2(\Omega)}
+\newcommand{\R}{{\bf R}}
+\newcommand{\fe}{(K,P,\Sigma)}
+\newcommand{\hatfe}{(\hat{K},\hat{P},\hat{\Sigma})}
+\newcommand{\familyfe}{(K,P_K,\Sigma_K)}
+\newcommand{\afl}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\domain}{\overline{\Omega}}
+\newenvironment{Thenumerate}{%
+  \renewcommand{\labelenumi}{${\cal T}_{h}$\theenumi.}%
+  \begin{enumerate}}{\end{enumerate}}
+\begin{document}
+Lad os et kort øjeblik se bort fra randbetingelser. Det checkes da
+let aten løsning til [] også er en løsning til variations problemet
+\begin{equation}
+  \int_{\Omega} (\nabla u \cdot \nabla v + uv)dxdy =
+  \int_{\Omega} fvdxdy
+\end{equation}
+og omvendt.
+
+Randbetingelsen $u=g_2$ på $\Gamma_2$ er en stærk randbetingelse, idet
+den kan indpasses i løsningsrummet $\Het$ via restriktionen 
+$u|_{\Gamma_2}=g_2$. Randbetingelsen $\afl{u}{n}=g_1$ på $\Gamma_1$ er
+derimod en svag randbetingelse (idet u ikke er differentiabel), så den
+må indpasses i selve variationsformen via leddet 
+\begin{equation}
+  \int_{\partial \Omega} \afl{u}{n}vds
+\end{equation}
+tilføjet til højresiden af 
+
+Vi kunne nu vælge at bruge samme test- og løsningsrum, men betingelsen
+$v|_{\Gamma_2}=g_2$ på testrummet er upraktisk, thi den giver 
+``komplicerede'' basisfunktioner. Som testfunktioner vil vi derfor vælge
+de $v\in \Het$, hvor $u|_{\Gamma_2}=0$, hvilket giver os følgende 
+variationsformulering af []: Find $u\in \Het, \ u|_{\Gamma_2}=g_2$ så
+\begin{equation}
+  \int_{\Omega} (\nabla u \cdot \nabla v + uv)dxdy =
+  \int_{\Omega} fvdxdy +
+  \int_{\Gamma_1} \afl{u}{n}vds
+\end{equation}
+for alle $v\in \Het, \ u|_{\Gamma_2}=0$
+
+Af hensyn til praktiske situationer vælger man ofte samme test- og 
+løsningsrum. Vi skal nu se, hvorledes dette kan opnås for ovenstående
+eksempel. Sæt $u_0=u-w$, hvor $w\in{\cal C}^2(\overline{\Omega})$ er 
+valgt således at $w|_{\Gamma_2}=g_2$. Da vil $u_0|_{\Gamma_2}=0$ og
+\begin{equation}
+  -\Delta u_0 + u_0 = -\Delta (u-w) + (u-w) = 
+  -\Delta u + u + \Delta w - w = 
+  f - (-\Delta w + w)
+\end{equation}
+Vi kan nu formulere variationsproblemet som: Find 
+$u_0\in \Het, \ u_0|_{\Gamma_2}=0$ så
+\begin{equation}
+  \int_{\Omega} (\nabla u_0 \cdot \nabla v + u_0v)dxdy =
+  \int_{\Omega} f_0vdxdy +
+  \int_{\Gamma_1} \afl{u}{n}vds
+\end{equation}
+for alle $v\in \Het, \ u|_{\Gamma_2}=0$
+Her er $f_0 = f + \Delta w -w$
+
+\section{Eksistens og entydighed for det diskrete problem}
+Den diskret version af problemet (V) lyder: Find $u\in U_h$ så
+\begin{equation}
+  \tilde{B}(u,v) = \tilde{F}(v), \ for alle v\in V_h
+\end{equation}
+Her er $\tilde{B}$ og $\tilde{F}$ den diskrete version af $B$ hhv. 
+$F$. Hvis $\{psi\}_{i=1}^{n}$ og $\{phi\}_{j=1}^{m}$ betegner baser
+for $U_h$ hhv. $V_h$ er det kendt fra den lineære algebra, at 
+$\tilde{B}$ og $\tilde{F}$ kan skrives på formen
+\begin{equation}
+   \tilde{B}(u,v) = b^t Ka, \ \ \ \tilde{F}(v)b^t q
+\end{equation}
+hvor $u=\sum_{i=1}^{n} a_i \psi_i$, 
+$v=\sum_{j=1}^{m} b_j \phi_j$, $K_{ij}=k(\psi_i,\phi_j)$. 
+
+Vi skal kun betragte tilfældet, hvor $\dim U = \dim V$, dvs. $K$ er
+kvadratisk.
+\begin{theorem}
+Lad $K$ være som i []. Følgende betingelser er da ækvivalente
+\begin{enumerate}
+  \item Det diskrete problem $\tilde{B}(u,v) = \tilde{F}(v)$ har
+        en og kun en løsning.
+  \item $K$ er invertibel.
+  \item $\inf_{\|u\|_U=1} \sup_{\|v\|_V=1} |\tilde{B}(u,v)| \geq C >0$.
+\end{enumerate}
+\end{theorem} 
+\begin{proof}
+Det er klart at vi har $1. \Leftrightarrow 2.$. Lad os vise 
+\vspace{2mm}
+$2. \Leftrightarrow 3.$. Vi har:
+
+$\inf_{\|u\|_U=1} \sup_{\|v\|_V=1} |\tilde{B}(u,v)|\geq C >0$.
+
+$\Updownarrow$
+
+$\forall u\in U\setminus\{0\} \exists v_u\in V\setminus\{0\}
+ \ : \ |\tilde{B}(u,v)| \geq C \|u\|_U \|v_u\|_V$
+
+$\Updownarrow$
+
+$\forall \xi \in \R^n\setminus\{0\} \ : \ K\xi \not=0$
+
+$\Updownarrow$
+
+$K$ er invertibel.
+\end{proof}
+\begin{remark}
+Man kan vise at betingelsen
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  \item $\inf_{\|v\|_V=1} \sup_{\|u\|_U=1} |\tilde{B}(u,v)|>0$.
+\end{enumerate}
+er ækvivalent med betingelserne 1-3 fra sætning []
+\end{remark}
+
+\section{Valg af {\cal U} og {\cal V}} 
+
+\section{Konstruktionsregler}
+Man kan ikke give præcise retningslinier for, hvordan man udleder
+(V) fra (D). Vi skal dog forsøge at angive nogle generelle 
+konstruktionsregler for, hvordan $B$, $F$, $\cal U$ og $\cal V$ kan
+udledes, således at man får en generaliseret formulering (V) af (D).
+\begin{enumerate}
+  \item Udled $B$ og $F$ fra (D) udelukkende ved at bruge operationer
+        som er ``i orden'' for den klassiske løsning til (D). Typiske
+        eksempler er multiplikation med en testfunktioner og integration
+        over det betragtede domæne.
+  \item Check at  $B$ og $F$ er lineære og begrænsede.
+  \item Overvej $H^p_k(\Omega)$ som løsnings- og testrum.
+  \item Check at betingelse 3 og 4 fra afsnit [] er opfyldt.
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+\documentstyle[latin1]{article}
+\newcommand{\dom}{\Omega}
+\newcommand{\mathcal}{\cal}
+\newcommand{\eqref}[1]{(\ref{#1})}
+\newcommand{\I}{{\mathcal I}}
+\newcommand{\T}{{\mathcal T}}
+\newcommand{\D}{{\mathcal D}}
+\begin{document}
+Målet med dette kapitel er at præsentere en netinddelings 
+metode, der giver asymptotiske optimale netinddelinger 
+(indenfor klassen af netinddelinger med rektangulære 
+elementer). Metoden bygger på begrebet net tætheds funktion 
+og blev indført af Babu\v{s}ka og Gui i~\cite{}. Metoden er 
+senere videreudviklet af Hugger i artiklerne~\cite{}, 
+\cite{}, \cite{}, \cite{}, \cite{} og \cite{}. Med net 
+tætheds funktioner kan man beskrive følger af netinddelinger
+ved hjælp af simple midler, og man undgår dermed de 
+komplicerede datastrukturer, der ofte karakteriserer 
+netinddelings algoritmer. Ønsket om simple metoder til at 
+beskrive netinddelinger på udspringer fra parametriserede
+problemer, hvor man med fordel ofte kan genanvende tidligere
+netinddelinger. Det vil fremgå af teorien nedenfor, at 
+metoden med fordel også kan anvendes, selvom man kun skal 
+løse et enkelt problem. Netinddelings algoritmen er ment som 
+en ``one shot'' metode, der på baggrund af informationer fra 
+net tætheds funktionen og den bruger bestemte fejltolerance 
+forsøger at konstruere en netinddeling, hvor fejlen i den
+tilhørende endelige element løsning efter første gennemløb af 
+algoritmen er mindre end den givne fejltolerance. Mislykkes 
+dette, vil metoden iterere.
+ 
+% \begin{defintion}
+Lad $\T=\{\Box_j\}_{j=1}^m$ være et endeligt element net. Vi
+siger da, at $\T$ er en optimal endelig element netinddeling
+indenfor en given klasse af netinddelinger, såfremt at fejlen
+i den tilhørende endelige element løsning er mindre end en 
+given fejltolerance, og såfremt de beregningsmæssige 
+omkostninger ved at finde denne løsning er minimale. Minumum er 
+her taget over alle netinddelinger indenfor den givne klasse.
+% \end{defintion}
+
+% \begin{remark}
+I algoritme~\ref{} udføres forgrovning og forfining kun en 
+enkelt gang. Dette er valgt for at undgå muligheder for 
+uendelige løkker. Forgrovning udføres før forfining for at sikre
+en mere effektiv udnyttelse af computer lagerplads. Ved at udføre
+forgrovning og forfining i nævnte rækkefølge kan man nemlig 
+udnytte den lagerplads, der er blevet frigjort i forbindelse med
+forgrovning til at gemme informationer om forfining i. For flere 
+detaljer om algoritmen henvises til afsnit~\ref{}, hvor vi 
+konstruerer en mere generel algoritme. Den initiale netinddelingen
+$\hat{\T}$ er bruger bestemt og kan eventuelt vælges som $\T^{\ast}$.
+% \end{remark}
+
+% \begin{proof}
+Det er klart, at $A_n^{\ast}(\D)$ er en tilladt ikke-aftagende
+netinddeling af $\dom$ for enhver net tætheds funktion $\D$. Dette
+følger af den måde, hvorpå netinddelinger i $A_n^{\ast}(\D)$ er 
+sorteret samt af, at algoritmen~\ref{} er konstueret således, at 
+ethvert element på et eller andet tidspunkt bliver inddelt i mindre
+elementer når intensiteten aftager. Altså vil det samlede antal 
+elementer gå mod uendelig, når intensiteten går mod nul. For at vise 
+at det resterende udsagn i sætningen er korrekt, skal vi vise, at 
+$\D$ defineret ved~\eqref{} og \eqref{} opfylder 
+$A_n^{\ast}(\D) = \{\T_m\}_{m=1}^\infty$, hvor $\T_m$ er netinddelingen
+givet ved algoritme~\ref{}. Da $\{\T_m\}_{m=1}^\infty$ antages at 
+tilhøre billedet af $A_n^{\ast}$, findes der en net tætheds funktion
+$\tilde{\D}$ så $A_n^{\ast}(\tilde{\D})=\{\T_m\}_{m=1}^\infty$. Lad
+$S_0$ betegne den mængde, hvor $\tilde{\D}$ er diskontinuert eller 
+har singulariteter. Mængden $S_0$ har mål $0$. Bemærk at mængden 
+$S\equiv S_0 \cup ( \cup_{m=1}^\infty \cup_{j=1}^{N_{a,m}} \partial
+\Box_{j,m})$ ligeledes har mål $0$. Sæt nu
+$a_m=\int_{\Box_m(x)} \tilde{\D}\, dx$ og lad $\I_m$ være et 
+vilkårligt tal. Ved at indsætte $\I_m$ for $\I$ i algoritmen~\ref{}
+fås en netinddeling $\{\T_m\}_{m=1}^\infty$. Ifølge algorimen vil en
+forfining af $\Box_m(x)$ kun ske såfremt $a_m(x)/\I_m > \alpha$
+Omvendt følger det af konstruktionen af algoritmen, at 
+$a_m(x)/\I_m \leq \alpha$. Fra defintionen af indeks delfølgen
+$\{ m_k \}_{k=1}^\infty$ følger det af $a_{m_k}/\underline{\I}_{m_k}
+= \alpha$ for alle positive heltal $k$. Vi har nu
+\begin{equation}
+  \tilde{\D}(x) = \lim_{m\rightarrow\infty}
+    \frac{a_{m_k}(x)}{V_n(\Box_{m_k}(x))}
+\end{equation}
+\begin{equation}
+  = \frac{a_{m_k}(x)}{\underline{\I}_m} 
+    \lim_{m\rightarrow\infty} 
+    \frac{\underline{\I}_m}{V_n(\Box_{m_k}(x))}
+\end{equation}
+\begin{equation}
+  = \alpha \frac{\underline{\I}_m}{V_n(\Box_{m_k}(x))}
+\end{equation}
+Da $S$ har mål $0$ følger det af~\eqref{}, at $\D$ givet ved~\eqref{} 
+er den rigtige net tætheds funktion, da den er identiske med $\tilde{\D}$
+næsten overalt.
+% \end{proof}
+\setlength{\unitlength}{1mm}
+\begin{figure}[htb]
+\begin{center}
+\begin{picture}(100,40)(0,0)
+\put(0,2.5){\begin{picture}(40,35)(0,0)
+\put(0,0){\line(1,0){40}}
+\put(0,0){\line(3,5){20}}
+\put(40,0){\line(-3,5){20}}
+% \dashline{2}(20,12.5)(10,16.67)
+% \dashline{2}(20,12.5)(30,16.67)
+% \dashline{2}(20,12.5)(20,0)
+\end{picture}
+}
+\put(60,0){\begin{picture}(40,40)(0,0)
+\put(0,0){\line(1,0){40}}
+\put(0,0){\line(0,1){40}}
+\put(0,40){\line(1,0){40}}
+\put(40,0){\line(0,1){15}}
+\put(40,40){\line(0,-1){15}}
+\put(20,20){\line(4,1){20}}
+\put(20,20){\line(4,-1){20}}
+% \dashline{2}(20,20)(0,20)
+% \dashline{2}(20,20)(20,0)
+%\dashline{2}(20,20)(20,40)
+\end{picture}
+}
+\end{picture}
+\end{center}
+\caption{Eksempler på $\beta$-domæner}
+\end{figure}
+\end{document}
+
+
+
+
+
+

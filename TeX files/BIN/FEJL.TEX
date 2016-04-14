@@ -1,0 +1,220 @@
+
+\chapter{Fejlestimation}
+\section{}
+Et væsentligt element i enhver numerisk metode er fejlestimation. 
+Vi skal i forbindelse med den endelige element metode skelne mellem
+tre typer af fejlkilder
+\begin{itemize}
+  \item beregningsmæssige fejl
+  \item usikkerhed i data
+  \item modelleringsfejl
+\end{itemize}
+De beregningsmæssige fejl kan igen opdeles i tre fejltyper hidrørende
+\begin{itemize}
+  \item diskretisering.
+  \item kvadratur fejl.
+  \item løsning af diskrete problem.
+\end{itemize}
+Vi skal hovedsageligt beskæftige os med den fejl, der opstår når man
+går fra det kontinuerte problem til det diskrete problem, men vil for
+fuldstændighedens skyld også kommentere de andre fejlkilder.
+
+\section{Diskretisering fejl} 
+Man skelner normalt mellem to typer af fejlestimatorer. Man taler om
+\begin{itemize}
+  \item udglatnings metoder.
+  \item residuum metoder.
+\end{itemize}
+Dette afsnit inddeles med en kort præsentation af begge disse 
+metoder. Herefter vil vi koncentrere os om at opstille en konkret 
+ramme (byggende på residuum metoden) til at analysere fejlen i den
+endelige element metode. Endelig vil vi give en række eksempler, 
+hvori vi ser den opstillede ramme anvendt på konkrete 
+problemstillinger.
+\subsection{Udglatnings metoder}
+Ideen bag udglatnings metoder er at erstatte den endelige element 
+løsning $u_{fe}$ til en given differentialligning med en glat løsning
+$u_{spline}$ Tankegangen bag denne metode er, at den eksakte løsning
+til problemet ofte er glat (klassiske løsninger søges i $\Lto$), 
+hvorfor en glat approxsimation må være at foretrække.
+
+Vi har $e=u_{ex}-u_{fe}$ og da $u_{spline} \approx u_{fe}$ vil
+$e \approx u_{ex}-u_{spline}$
+
+\subsection{Residuum metoder}
+For at illustrere ideen bag residuum metoder vil vi betragte et 
+een dimensionalt differentiallignings problem som er omformuleret
+til et variationsproblem og derefter løst med cG(1) metoden, dvs
+vi har approksimeret den eksakte løsning med lineære funktioner.
+For at kunne anvende residuum metoden er vi nød til at antage at 
+den eksakte løsning lokalt er 2 gange differentiabel. Generelt har
+vi brug for, at den eksakte løsning lokalt er $n+1$ gange 
+differentiabel, hvor $n$ er graden af det polynomium, vi approksimerer
+med. Diskontinuiteter i den eksakte løsning vil i praktiske 
+problemstillinger ofte begrænse sig til enkelte isolerede punkter 
+eller evt på dele af randen af det betragtede domæne. Som regel er 
+der derfor ingen problemer, med denne antagelse.
+
+Vi ønsker altså at vurdere fejlen $e=u_{ex}-u_{fe}$.
+
+Da vi har forudsat at $u_{ex}$ er to gange differentiabel, kan vi 
+Taylor udvikle $u_{ex}$ i $x_0$ og får
+\begin{equation}
+u_{ex}(x) = u_{ex}(x_0) + (x-x_0)u'_{ex}(x_0) + 
+            \frac{(x-x_0)^2}{2}u''_{ex}(x_0) + \cdots
+\end{equation} 
+Under passende forudsætninger kan man vise at
+\begin{equation}
+u_{fe}(x) = u_{ex}(x_0) + (x-x_0)u'_{ex}(x_0)
+\end{equation}
+hvorfor
+\begin{equation}
+e(x) = (u_{ex}-u{fe})(x) \approx 
+\frac{(x-x_0)^2}{2}u''_{ex}(x_0) + \cdots \approx c(x-x_0)^2
+\end{equation}
+Vi ønsker nu at vurdere konstanten $c$. Vi har
+\begin{equation} \label{sec:fejl-residuum}
+B(e,v) = B(u_{ex},v) - B(u_{fe},v) = 
+         F(v) - B(u_{fe},v) = R(u_{fe}) \ for alle v\in V
+\end{equation}
+og da $e(x) \approx c(x-x_0)^2$ fås
+\begin{equation}
+c \approx \frac{F(v) - B(u_{fe},v)}{B((x-x_0)^2,v)} =
+\frac{R(u_{fe})}{B((x-x_0)^2,v)} \ for alle v\in V 
+\end{equation}
+Hvis vi nu vælger en simpel funktion $v \in V$, fx $(x-x_0)^2$
+kan vi udfra ovenstående relation vurdere konstanten $c$. 
+\begin{remark}
+Metoden har sit navn efter ligning \ref{sec:fejl-residuum}, 
+der også kaldes residualligningen.
+\end{remark}
+Vi ser at den grundlæggende ide bag metoder er .....
+
+\section{}
+\begin{itemize}
+  \item a priori fejl estimater
+  \item a posteriori fejl estimater
+\end{itemize}
+En a priori fejl estimator vurderer fejlen mellem den eksakte og den
+approksimerende løsning baseret på grundlag af både den eksakte
+(ukendte) løsning og den beregnede approksimerede løsning. En a 
+posteriori fejl estimator vurderer derimod fejlen alene baseret på
+den beregnede approksimerede løsning. Vi skal senere vende tilbage
+til fordelene ved an anvende to typer af fejlestimatorer.
+
+\subsection{A posteriori fejlestimater}
+Beviser for a posteriori fejlestimater bygger grundlæggende på følgende:
+\begin{nolist}
+  \item En repræsentation af fejlen udtrykt vha residualet fra den
+        beregnede løsning samt løsningen til det kontinuerte duale
+        problem.
+  \item Galerkin ortogonalitet.
+  \item Estimering af interpolationsfejlen for løsningen til det
+        kontinuerte duale problem.
+  \item Estimering af stærk stabilitetsfaktor for det kontinuerte
+        duale problem.
+\end{nolist}
+For bedre at illustrere (1)-(4) vil vi gennengå et abstrakt eksempel.
+Vi betragter problemet
+\begin{equation}
+  {\cal{D}}u = f
+\end{equation}
+hvor $f \in V$ er en given funktion, $\cal{D}$ en lineær operator på
+Hilbert rummet $V$ med indre produkt $(\cdot,\cdot)$
+og tilhørende norm $\norm{\cdot}$. Det tilhørende diskrete problem
+lyder: Find $U \in V_h$ så
+\begin{equation}
+  ({\cal{D}}U,v) = (f,v) \ for alle v \in V_h
+\end{equation}
+hvor $V_h$ er et endelig dimensionalt underrum af $V$.
+\begin{nolist}
+  \item fejlrepræsentation udtrykt ved residualet til den 
+        approksimerede løsning og det duale problem
+        $\norm{e}^2 = (e,e) = (e,\D^{\ast}\phi) = (\D e,\phi) =
+        (\D (u-U),\phi) = (f-\D U,\phi)= -(R(U),\phi)$, hvor
+        $\D^{\ast}$ er $\D$ duale operator, $R(U)$ residualet
+        givet ved $R(U) = \D U - f$ og $\phi$ er løsningen til
+        det kontinuerte duale problem $\D^{ast}\phi = e$
+  \item Galerkin ortogonalitet. 
+        Da $(\D e,v) = - (R(U),v) = 0$ for alle $v\in V_h$ vil
+        $\norm{e}^2 = - (R(U),\phi - \pi_h \phi)$ hvor 
+        $\pi_h \phi \in V_h$ interpolerer $\phi$
+  \item interpolations fejlestimat
+        \begin{equation}
+          \norm{h^{-\beta}(\phi -\pi_h \phi)} 
+          \leq C_i \norm{\D^{\beta} \phi}
+        \end{equation}
+        hvor $C_i$ er en interpolations konstant, $h$ et mål for
+        elementernes størrelse, og $\D^{\beta}$ den $\beta$'te
+        afledede. Sådanne fejlestimater kendes fra grundkurset 
+        i numerisk analyse.
+  \item Stærk stabilitetsfaktor for det kontinuerte duale problem.
+        \begin{equation}
+          \norm{\D^{\beta} \phi} \leq S_c \norm{e}
+        \end{equation}
+        hvor $S_c$ er en stærk stabilitetfaktor
+\end{nolist} 
+Ved nu at kombinere (1)-(4) fås
+\begin{equation}
+\norm{e}^2 = -(R(U),\pi_h \phi - \phi) 
+  \leq S_c C_i \norm{h^{\beta}R(U)}\norm{e}
+\end{equation}
+som giver os følgende a posteriori fejlestimator
+\begin{equation}
+\norm{u-U} = \leq S_c C_i \norm{h^{\beta}R(U)}
+\end{equation}
+\section{A priori fejlestimator}
+Vi skal nu beskrive en tilsvarende ramme for a priori fejlestimater.
+Disse bygger på nogenlunde det samme fundament
+\begin{nolist}
+  \item En repræsentation af fejlen udtrykt via det diskrete duale
+        problem.
+  \item Galerkin ortogonalitet.
+  \item Estimering af interpolationsfejlen for løsningen til det
+        diskrete duale problem.
+  \item Estimering af stærk stabilitetsfaktor for det diskrete
+        duale problem.
+\end{nolist}
+Vi vil bruge samme abstrakte problem som før til at illustrere 
+ovennævnte.
+\begin{nolist}
+  \item Fejlrepræsentation via det diskrete dual problem.
+        \begin{equation}
+          \norm{e_h}^2=(e_h,e_h)=(e_h,\dual{\D} \phi_h)=
+          (\D e_h,\phi_h)
+        \end{equation}
+        hvor $e_h=\pi_h u-U$ og $\pi_h u$ er $u$'s interpolant i
+        $V_h$. Det diskrete problem med løsning $\phi_h \in V_h$
+        er givet ved
+        \begin{equation}
+          (v,\dual{\D} \phi_h)=(v,e_h), \ \forall v \in V_h
+        \end{equation}
+  \item Vi benytter $(\D e,v)=0, \ \forall v \in V_h$ til at få
+        \begin{equation}
+          \norm{e_h}^2=(\D(\pi_h u-U),\phi_h)=
+          (\pi_h u -u,\dual{\D} \phi_h)
+        \end{equation}
+  \item interpolationsestimat
+        \begin{equation}
+          \norm{u-\pi_h u} \leq C_i \norm{h^{\alpha}\D^{\alpha}u}
+        \end{equation}
+        hvor $C_i$ er en interpolations konstant
+  \item Stærk stabilitets faktor for det diskrete duale problem
+        \begin{equation}
+          \norm{\dual{\D} \phi_h} \leq S_{c,h}\norm{e_h}
+        \end{equation}
+        hvor $S_{c,h}$ er den diskrete stærke stabilitets faktor
+\end{nolist}
+Kombineres (1)-(4) fås 
+\begin{equation}
+  \norm{e_h}^2 \leq S_{c,h}C_i \norm{h^{\alpha}\D^{\alpha}u}\norm{e_h}
+\end{equation}
+hvoraf vi får følgende a priori fejlestimator
+\begin{equation}
+  \norm{e} = \norm{u-U} \leq \norm{u-\pi_h u} + \norm{\pi_h u -U}
+  \leq (S_{c,h}+1)C_i \norm{h^{\alpha}\D^{\alpha}u}
+\end{equation}
+\section{$S_c$}
+\section{nøjagtighed og stabilitet}
+\subsection{sammenhæng med a priori og a posteriori fejlestimater} 
+\section{stærke/svage normer}

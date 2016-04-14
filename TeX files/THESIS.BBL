@@ -1,0 +1,291 @@
+\begin{thebibliography}{10}
+
+\bibitem{zz2}
+{J. Z. Zhu, A. W. Craig, O. C. Zienkiewicz og}~M. Ainsworth.
+\newblock Analysis of the {Z}ienkiewicz--{Z}hu {A}--{P}osteriori {E}rror
+  {E}stimator in the {F}inite {E}lement {M}ethod.
+\newblock {\em Int. J. Numer. Methods in Engineering}, 28:2161--2174, 1989.
+
+\bibitem{ainsworth-oden1}
+{J.T. Oden og}~M. Ainsworth.
+\newblock A {P}rocedure for {A} {P}osteriori {E}rror {E}stimation for $h$-$p$
+  {F}inite {E}lement {M}ethods.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering,
+  North-Holland}, 101:73--96, 1992.
+
+\bibitem{ainsworth-oden3}
+{J.T. Oden og}~M. Ainsworth.
+\newblock A {P}osteriori {E}rror {E}stimators for {S}econd {O}rder {E}lliptic
+  {S}ystems: {P}art 1. {T}heoretical {F}oundations and {A} {P}osteriori {E}rror
+  {A}nalysis.
+\newblock {\em Computers Math. Applic.}, Vol. 25(No. 2):101--113, 1993.
+
+\bibitem{ainsworth-oden4}
+{J.T. Oden og}~M. Ainsworth.
+\newblock A {P}osteriori {E}rror {E}stimators for {S}econd {O}rder {E}lliptic
+  {S}ystems: {P}art 2. {A}n {O}ptimal {O}rder {P}rocess for {C}alculating
+  {S}elf-{E}quilibrating {F}luxes.
+\newblock {\em Computers Math. Applic.}, Vol. 26(No. 9):75--87, 1993.
+
+\bibitem{ainsworth-oden2}
+{J.T. Oden og}~M. Ainsworth.
+\newblock A {U}nified {A}pproach to {A} {P}osteriori {E}rror {E}stimation using
+  {E}lement {R}esidual {M}ethods.
+\newblock {\em Numerische Mathematik, Springer-Verlag}, 65:23--50, 1993.
+
+\bibitem{ba-mil}
+{A. Miller og}~I. Babu\v{s}ka.
+\newblock A {F}eedback {F}inite {E}lement {M}ethode with {A} {P}osteriori
+  {E}rror {E}stimation: {P}art {I}. {T}he {F}inite {E}lement {M}ethode and some
+  {B}asic {P}roperties of the {A} {P}osteriori {E}rror {E}stimator.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  61:1--40, 1987.
+
+\bibitem{babuska}
+Ivo Babu\v{s}ka.
+\newblock Courant {E}lement: {B}efore and {A}fter.
+
+\bibitem{hugger-net}
+{J. Hugger, T. Strouboulis, K. Copps, S. K. Gangaraj og}~I. Babu\v{s}ka.
+\newblock The {A}symptotically {O}ptimal {M}eshsize {F}unction for $bi$-$p$
+  {D}egree {I}nterpolation over {R}ectangular {E}lement {S}ubdivisions in {T}wo
+  {D}imensions.
+\newblock Ikke--publiceret artikel, september 1994.
+
+\bibitem{babuska1}
+{T. Strouboulis, C.S. Upadhyay og}~I. Babu\v{s}ka.
+\newblock A {M}odel {S}tudy of the {Q}uality of {A--P}osteriori {E}stimators
+  for {L}inear {E}lliptic {P}roblems. {P}art 1a: {E}rror {E}stimation in the
+  {I}nterior of {P}atchwise {U}niform {G}rids of {T}riangles.
+\newblock  Technical Note BN-1147, Institute for Physical Science and
+  Technology, University of Maryland, College Park , MD 20742, U.S.A, 1993.
+
+\bibitem{babuska2}
+{T. Strouboulis, C.S. Upadhyay, S.K. Gangaraj, K. Copps og}~I. Babu\v{s}ka.
+\newblock Validation of {A--P}osteriori {E}rror {E}stimators by {N}umerical
+  {A}pproach.
+\newblock  Technical Note BN-1151, Institute for Physical Science and
+  Technology, University of Maryland, College Park , MD 20742, U.S.A, 1993.
+
+\bibitem{babuska3}
+{T. Strouboulis, C.S. Upadhyay, S.K. Gangaraj og}~I. Babu\v{s}ka.
+\newblock A {M}odel {S}tudy of {E}lement {R}esidual {E}stimators for {L}inear
+  {E}lliptic {P}roblems: {T}he {Q}uality of the {E}stimators in the {I}nterior
+  of {M}eshes of {T}riangles and {Q}uadrilaterals.
+\newblock  Technical Note BN-1171, Institute for Physical Science and
+  Technology, University of Maryland, College Park , MD 20742, U.S.A, 1993.
+
+\bibitem{ba-gui}
+{W. Gui og}~I. Babu\v{s}ka.
+\newblock {B}asic {P}rinciples of {F}eedback and {A}daptive {A}pproaches in the
+  {F}inite {E}lement {M}ethod.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  55:27--42, 1986.
+
+\bibitem{bank-weiser85}
+{A. Weiser og}~R.E. Bank.
+\newblock Some {A} {P}osteriori {E}rror {E}stimators for {E}lliptic {P}artial
+  {D}ifferential {E}quations.
+\newblock {\em Mathematics of Computations}, Vol. 44(Number 170):283--301,
+  1985.
+
+\bibitem{pltmg}
+R.~E. Bank.
+\newblock {\em {PLTMG : A} {S}oftware {P}ackage for {S}olving {E}lliptic
+  {P}artial {D}ifferential {E}quations. {U}sers' {G}uide $7.0$}.
+\newblock Nummer~15 i Frontiers in {A}pplied {M}athematics. SIAM, 1994.
+
+\bibitem{bank-86}
+R.E. Bank.
+\newblock Analysis of a {L}ocal {A} {P}osteriori {E}rror {E}stimate for
+  {E}lliptic {E}quations.
+\newblock I I.~Babu\v{s}ka et. al., editor, {\em Accuracy Estimates and
+  Adaptive Refinements in Finite Element Computations}, kapitel~7. Wiley, 1986.
+
+\bibitem{berger}
+Melvyn~S. Berger.
+\newblock {\em Nonlinearity and Functional Analysis}.
+\newblock Academic Press, 1977.
+
+\bibitem{chen1}
+{Ivo Babu\v{s}ka og}~Qi Chen.
+\newblock Polynomial {I}nterpolation of {R}eal {F}unctions. {I}nterpolation in
+  an {I}nterval.
+\newblock  Technical Note BN-1153, IPST, Inst. for Phys. Sci. and Tech.,
+  University of Maryland, College Park , MD 20742, U.S.A, 1993.
+
+\bibitem{chen2}
+{Ivo Babu\v{s}ka og}~Qi Chen.
+\newblock Polynomial {I}nterpolation of {R}eal {F}unctions. {S}ymmetrical
+  {I}nterpolation for the {T}riangle.
+\newblock  Technical Note BN-1153, IPST, Inst. for Phys. Sci. and Tech.,
+  University of Maryland, College Park , MD 20742, U.S.A, 1993.
+
+\bibitem{ciarlet78}
+Philippe~G. Ciarlet.
+\newblock {\em The Finite Element Method for Elliptic Problems}.
+\newblock North-Holland Publishing Company, 1978.
+
+\bibitem{femlab-ode}
+{R. Williams og}~D. Estep.
+\newblock {\em {FEMLAB-ODE}}, august 1994.
+\newblock {README} fil som f\o lger med den elektroniske distribution af
+  {FEMLAB-ODE}, version $3.2$.
+
+\bibitem{hugger-1}
+Jens Hugger.
+\newblock Adaptive {R}ecovery of {N}ear {O}ptimal {M}eshes in the {F}inite
+  {E}lement {M}ethod for {P}arameter {D}ependent {P}roblems.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  101:127--141, 1992.
+
+\bibitem{hugger-3}
+Jens Hugger.
+\newblock Recovery and {F}ew {P}arameter {R}epresentation of the {O}ptimal
+  {M}esh {D}ensity {F}unction for {N}ear {O}ptimal {F}inite {E}lement {M}eshes.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  109:41--71, 1993.
+
+\bibitem{hugger-2}
+Jens Hugger.
+\newblock The {T}heory of {D}ensity {R}epresentation of {F}inite {E}lement
+  {M}eshes. {E}xamples of {D}ensity {O}perators with {Q}uadrilateral {E}lements
+  in the {M}apped {D}omain.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  109:17--39, 1993.
+
+\bibitem{hugger94}
+Jens Hugger.
+\newblock An {A}symptotically {E}xact, {P}ointwise, {A} {P}osteriori {E}rror
+  {E}stimator for {L}inear, {E}lliptic, {O}ne--dimensional {P}roblems with
+  {P}ossible {S}ingularities in the {S}olution.
+\newblock {\em Journal of Computational and Applied Mathematics}, 54:185--220,
+  1994.
+
+\bibitem{hugger-4}
+Jens Hugger.
+\newblock Recovery of the {O}ptimal {M}esh {D}ensity {F}unction and {N}ear
+  {O}ptimal {M}eshed with {R}ectangular {E}lements in the {M}apped {D}omain.
+\newblock  Pubblicazioni N. 915, Istituto di Analisi Numerica, Italy, 1994.
+
+\bibitem{hugger95-2}
+Jens Hugger.
+\newblock An {A}symptotically {E}xact, {P}ointwise, {A} {P}osteriori {E}rror
+  {E}stimator for the {F}inite {E}lement {M}ethod with {S}uper {C}onvergence
+  {P}roperties.
+\newblock I {I. Babu\v{s}ka, W.D. Henshaw, J.E. Flaherty, J.E. Oliger, J.E.
+  Hopcroft} og~T.~Tezduyar, editor, {\em Modelling, {M}esh {G}eneration, and
+  {A}daptive {N}umerical {M}ethods for {P}artial {D}ifferential {E}quations},
+  volume~75 i {\em ``IMA Volumes in Mathematics and its Applications''}, side
+  277--307. Springer-Verlag, 1995.
+
+\bibitem{hugger95-3}
+Jens Hugger.
+\newblock The {E}lemental {E}quilibrium {M}ethod for {L}ocal, {A} {P}osteriori,
+  {P}ointwise {E}stimation of the {F}inite {E}lement {E}rror.
+\newblock Ikke--publiceret artikel. Matematisk Institut, K\o benhavns
+  Universitet, 1995.
+
+\bibitem{hugger95-1}
+Jens Hugger.
+\newblock The {E}quilibrium {M}ethod for {L}ocal, {A} {P}osteriori, {P}ointwise
+  {E}stimation of the {F}inite {E}lement {E}rror.
+\newblock  Preprint Series, Nr. 2, Matematisk Institut, K\o benhavns
+  Universitet, 1995.
+
+\bibitem{hugger-pol}
+Jens Hugger.
+\newblock {L}ocal {P}olynomial {I}nterpolation in a {R}ectangle.
+\newblock Ikke--publiceret artikel, marts 1995.
+
+\bibitem{hugger-noter}
+Jens Hugger.
+\newblock Numerisk {L}\o sning af {D}ifferentialligninger, For\aa rsemesteret
+  1995.
+\newblock Noter til kursus af samme navn udbudt ved K\o benhavns Universitet.
+
+\bibitem{johnson87}
+Claes Johnson.
+\newblock {\em Numerical {S}olutions of {P}artial {D}ifferential {E}quations by
+  the {F}inite {E}lement {M}ethod}.
+\newblock Cambridge University Press, 1987.
+
+\bibitem{johnson1}
+{Kenneth Erikson, Don Estep, Peter Hansbo og}~Claes Johnson.
+\newblock Introduction to {N}umerical {M}ethods for {D}ifferential {E}quations.
+\newblock Department of Mathematics, Chalmers University of Technology, 1994.
+
+\bibitem{kelly}
+D.W. Kelly.
+\newblock The {S}elf {E}quilibration of {R}esiduals and {C}omplementary {E}rror
+  {E}stimates in the {F}inite {E}lement {M}ethod.
+\newblock {\em International Journal of Methods in Engineering}, 20:1491--1506,
+  1984.
+
+\bibitem{ladeveze}
+{D. Leguillon og}~P. Ladeveze.
+\newblock Error {E}stimate {P}rocedure in the {F}inite {E}lement {M}ethod and
+  {A}pplications.
+\newblock {\em SIAM J. Numer. Anal.}, Vol. 20(No. 3):485--509, 1983.
+
+\bibitem{nfears}
+{W. C. Rheinboldt og} C.~K. Mesztenyi.
+\newblock {\em {NFEARS, A N}onlinear {A}daptive {F}inite {E}lement {S}olver}.
+\newblock College Park , MD 20742, U.S.A.
+
+\bibitem{nico}
+R.~A. Nicolaides.
+\newblock On a {C}lass of {F}inite {E}lements {G}enerated by {L}agrange
+  {I}nterpolation.
+\newblock {\em SIAM J: Numer. Anal.}, 9(3):127--141, 1972.
+
+\bibitem{oden90}
+J.~Tinsley Oden.
+\newblock Historical {C}omments on {F}inite {E}lements.
+\newblock I Stephen~G. Nash, editor, {\em A History of Scientific Computation}.
+  ACM press, 1990.
+\newblock Conference on the History of Scientific and Numeric Computations held
+  at Princeton University 1987.
+
+\bibitem{pedersen89}
+Gert~K. Pedersen.
+\newblock {\em Analysis Now}.
+\newblock Springer-Verlag, 1989.
+
+\bibitem{rudin}
+Walter Rudin.
+\newblock {\em Real and Complex Analysis}.
+\newblock McGraw-Hill Book Company, third edition, 1987.
+
+\bibitem{babuska82}
+{Ivo Babu\v{s}ka og}~Barna Szabo.
+\newblock Lecture {N}otes on {F}inite {E}lement {A}nalysis, 2. {B}asic
+  {M}athematical {C}oncepts, November 1982.
+
+\bibitem{zz1}
+{O. C. Zienkiewicz og} J.~Z. Zhu.
+\newblock {A} {S}imple {E}rror {E}stimator and {A}daptive {P}rocedure for
+  {P}ractical {E}ngineering {A}nalysis.
+\newblock {\em Int. J. Numer. Methods in Engineering}, 24:337--357, 1987.
+
+\bibitem{zz3}
+{O. C. Zienkiewicz og} J.~Z. Zhu.
+\newblock The {S}uperconvergent {P}atch {R}ecovery and {A} {P}osteriori {E}rror
+  {E}stimates. {P}art 1: {T}he {R}ecovery {T}echnique.
+\newblock {\em Int. J. Numer. Methods in Engineering}, 33:1331--1364, 1992.
+
+\bibitem{zz4}
+{O. C. Zienkiewicz og} J.~Z. Zhu.
+\newblock The {S}uperconvergent {P}atch {R}ecovery and {A} {P}osteriori {E}rror
+  {E}stimates. {P}art 2: {E}rror {E}stimates and {A}daptivity.
+\newblock {\em Int. J. Numer. Methods in Engineering}, 33:1365--1382, 1992.
+
+\bibitem{zienkiewicz72}
+O.~C. Zienkiewicz.
+\newblock Finite {E}lements - the {B}ackground {S}tory.
+\newblock I J.~R. Whiteman, editor, {\em The Mathematics of Finite Elements and
+  Applications}. Academic Press, 1972.
+\newblock Proceedings of the Brunel University Conference of the Institute of
+  Mathematics and Its Applications.
+
+\end{thebibliography}

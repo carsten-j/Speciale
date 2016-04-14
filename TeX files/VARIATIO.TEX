@@ -1,0 +1,616 @@
+\chapter{Variatiationsformer} \label{variation}
+Et karakteristikum ved den endelige element metode er, at man forsøger
+at omformulere et givet differentiallignings problem til et variations
+problem. Vi skal i dette kapitel blandt andet forklare, hvilke fordele der er ved
+at gå fra et differentiallignings problem til et variations problem.
+Da en sådan omformulering langt fra er entydig, skal vi desuden
+forsøge at opstille nogle ``rimelige'' krav til en sådan. De
+opstillede krav til variationsformuleringen skal blandt andet sikre,
+at der eksisterer en entydig løsning til problemet. I
+afsnit~\ref{eks-ent} findes beviser, der godtgør at de opstillede
+krav rent faktisk sikrer eksistens og entydighed. I~\cite{babuska82}
+kan man finde en række af eksempler, hvor differentiallignings
+problemer bliver omformuleret til variations problemer.
+
+\section{Problemstilling}
+Betragt problemet: Find $\ucl \in \Cto \cap \C$ så
+\begin{quote}
+(D) \hspace{.2cm} ${\mathcal{D}} \ucl=f$,
+\end{quote}
+hvor ${\mathcal{D}}$ er en anden ordens, lineær differentialoperator med rand- eller
+be\-gyn\-del\-ses\-vær\-di\-be\-tin\-gel\-ser og f en given funktion. Dette problem vil
+vi så gerne omformulere til: Find $\uex \in \Xdom=\X$ så
+\begin{quote}
+(V) \hspace{.2cm} $B(\uex,v)=F(v)$ for alle $v \in \Ydom=\Y$.
+\end{quote}
+Her er $\X$ og $\Y$ normerede lineære vektorrum, $B$ en passende bilinear form
+defineret på $\X \times \Y$, og $F$ en passende lineær afbildning defineret på $\Y$.
+I første omgang skal vi ikke præcisere, hvordan $\X$ og $\Y$ skal
+vælges. Vi skal dog forudsætte, at $\Cto \cap \C \subset \X$, således at
+der at muligt at tale om $B(\ucl,\cdot)$.
+
+\section{Fordele ved variationsformuleringen}
+Når man forsøger at omformulere et differentiallignings problem til
+et variations pro\-blem skyldes det naturligvis, at man opnår visse
+fordele derved som fx
+\begin{itemize}
+  \item Vi skal som hovedregel vælge $B$, $F$, $\X$ og $\Y$ på en sådan måde, at
+        problemet (V) er en generalisering af (D), dvs. (V) kan have
+        løsninger, selvom (D) ikke har det.
+  \item Når man søger løsninger til (D) i $\Cto \cap \C$ skyldes dette
+        tra\-di\-ti\-o\-nel\-le/klas\-sis\-ke løsningsmetoder. Fysiske
+        problemstillinger har dog ofte løsninger, der ikke tilhører 
+        $\Cto \cap \C$, men vi er alligevel interesseret i at løse
+        disse problemer. Dette er måske muligt i en mere generel formulering af
+        problemet. I \cite{babuska82} findes eksempler, hvor den
+        generaliserede løsning til (V) kan ses som grænseværdien for en følge af
+        klassiske løsninger til (mere komplicerede) versioner af (D).
+  \item Der er ofte lettere at påvise eksistens og entydighed af en
+        løsning for problemer givet ved (V) fremfor (D).
+  \item Fejlestimation er nemmere for problemer givet ved (V) end for (D). 
+\end{itemize}  
+
+\section{``Rimelige krav''} \label{rimeligekrav}
+Som tidligere nævnt kan en omformulering af problemet (D) til (V)
+konstrueres på forskellige måder. Vi skal i dette afsnit forsøge at
+opstille nogle ``rimelige'' krav til bilinear formen $B$, der vil
+sikre en fornuftig omformulering af problemet. Man bør skelne mellem
+to typer af krav til bilinear formen $B$
+\begin{enumerate}
+  \item ``Fornuftige'' krav.
+  \item Matematiske krav.
+\end{enumerate}
+
+\subsection{``Fornuftige'' krav}
+Følgende krav bør være opfyldt for at sikre, at vores fysiske og
+intuitive forestillinger om problemets opførsel holder stik
+\begin{enumerate}
+  \item Hvis $u \in \X$, og $B(u,v)=0$ for alle $v \in \Y$, da er
+        $u=0$.
+  \item Hvis der findes en løsning $\ucl$ til (D), da skal 
+        $\ucl \in \X (\Omega)$, og $B(\ucl,v)=F(v)$ for alle 
+        $v \in \Y$.    
+  \item For en vis klasse $\mathcal{F}$ af lineære afbildninger $F$
+        defineret på $\Y$, skal der for alle $F \in \mathcal{F}$,
+        findes et $\uex \in \X$, så $B(\uex,v)=F(v)$ for alle  $v \in \Y$.
+        Klassen $\mathcal{F}$ skal indeholde $F=0$ for at sikre, at
+        det homogene problem har en løsning.  
+  \item Hvis $\uex$ er en løsning til (V), gælder 
+        $\|\uex\| \leq \alpha \|F\|_{\dual{\Y}}$ for alle
+        $F\in\mathcal{F}$, hvor $\alpha$ er en positiv konstant uafhængig af
+        $F$, og $\dual{\Y}$ er $\Y$'s duale rum. 
+\end{enumerate}
+\begin{remark}
+Betingelse (1) følger af (4) ved at vælge $F=0$, men er nævnt som en 
+selv\-stæn\-dig betingelse, idet (1) og (4) har forskellige fysiske 
+fortolkninger.
+\end{remark}
+For at retfærdiggøre ovenstående krav skal vi nu forklare, hvilke
+praktiske konsekvenser kravene har:
+\begin{adenumerate}
+    \item Denne betingelse sikrer entydighed af den
+          generaliserede løsning. Antag at $B(u_1,v)=F(v)$, og
+          $B(u_2,v)=F(v)$ for alle $v \in \Y$, da vil $B(u_1-u_2,v)=0$
+          for alle $v \in \Y$. Altså må $u_1=u_2$.
+    \item Denne betingelse sikrer, at når der findes en løsning
+          $\ucl$ til (D), da er denne løsning også en generaliseret
+          løsning til (V).
+    \item Denne betingelse sikrer generaliseret eksistens og entydighed af
+          variations problemet. Dette skal forstås således, at hvis
+          der ændres lidt på $F$ (dvs. på data), skal der stadig
+          eksistere en løsning til problemet. Hvis denne betingelse
+          ikke er opfyldt, kan vi risikere, at der ikke findes en
+          løsning til det generali\-se\-re\-de problem, såfremt data (dvs.
+          $F$) er behæftet med en vis usikkerhed.
+    \item Denne betingelse sikrer, at løsningen afhænger kontinuert af
+	  data. Antag at $B(u_1,v)=F_1(v)$, og $B(u_2,v)=F_2(v)$ for
+          alle $v \in \Y$, da er $B(u_1-u_2,v)=(F_1-F_2)(v)$ for
+          alle $v \in \Y$, så 
+          $\|u_1-u_2\| \leq \alpha \|F_1-F_2\|_{\dual{\Y}}$. Altså
+          hvis $F$ ændres lidt, vil løsningen også kun ændres lidt. Hvis
+          denne betingelse ikke er opfyldt, kan vi risikere at få
+          ustabile numeriske løsninger, hvis $F$ fx kun er kendt
+          med usikkerhed.   
+\end{adenumerate}
+
+\subsection{Matematiske krav}
+For at sikre at omformuleringen fra (D) til (V) opfylder oven\-stå\-en\-de
+be\-tin\-gel\-ser 1.-4., må vi stille en række matematiske krav til
+bilinear formen $B$ og rummene $\X$ og $\Y$. Vi skal her præcisere
+disse krav samt se, at betingelserne 1.-4. så vil være opfyldt.
+
+Betingelsen (1) følger som nævnt tidligere af (4) ved at vælge $F=0$.
+
+Betingelsen (2) kan man ikke sikre ved matematiske krav. Vi må derfor
+være på\-pas\-se\-li\-ge, når vi udleder (V) fra (D) og holde øje med, at denne
+betingelse er opfyldt.
+
+Betingelsen (3) kan opfyldes på to forskellige måder. I begge
+situationer skal vi antage, at $B$ og $F$ er begrænsede.
+\begin{userenumerate}{3}
+     \item Er $\X=\Y$, $\X$ et Hilbert rum, og er $B$ 
+           $\X$-elliptisk, dvs. $B(u,u)\geq \alpha\norm{u}_{\X}^2$, $\forall u\in\X$, 
+           hvor $\alpha$ er en positiv konstant, følger eksistens og
+           entydighed af variations problemet af
+           Lax-Milgrams lemma, se afsnit~\ref{eks-ent}. \label{cond31}
+     \item Såfremt betingelserne 
+           \begin{itemize}
+             \begin{enumerate} 
+               \item $\X$ er et Banach rum og $\Y$ er et refleksivt
+                     Banach rum.
+               \item $\inf_{\normX{u}=1}\sup_{\normY{v}=1}|B(u,v)|\geq C>0$.
+               \item For alle $v\in \Y \setminus \{0\}$ findes et $u_v\in\X$ 
+                     så $|B(u_v,v)| >0$.
+             \end{enumerate}
+           \end{itemize}
+           er opfyldte vil eksistens og entydighed være sikret jvf.
+           sætning~\ref{refleksiv} i afsnit~\ref{eks-ent}. Betingelsen~(b)
+           kaldes også $\inf$-$\sup$ betingelsen eller Babu\v{s}ka-Brezzi 
+           be\-tin\-gel\-sen. \label{cond32}
+\end{userenumerate}
+At betingelse 3.2 rent faktisk er stærkere end betingelse 3.1 er
+indeholdt i følgende lemma.
+\begin{lemma}
+Betingelse 3.1 $\Rightarrow$ 3.2.
+\end{lemma}
+\begin{proof}
+Da $\X =\Y$ er et Hilbert rum, er det klart at, (a) i 3.2 er opfyldt.
+Da $B$ er $\X$-elliptisk vil (b) hhv. (c) i 3.2 være opfyldt ved at
+vælge $u=v$ hhv. $u_v=v$.
+\end{proof}
+\begin{remark}
+Det er klart, at 3.2 $\not\Rightarrow$ 3.1, idet der let kan gives
+eksempler på Banach rum, der ikke er Hilbert rum.
+\end{remark}
+
+Betingelsen (4) kan ligeledes opfyldes på to forskellige måder
+\begin{userenumerate}{4}
+  \item Hvis $\X = \Y$ og $B$ er $\X$-elliptisk, dvs.  
+        $B(u,u) \geq \alpha \|u\|^2_{\X}$, da vil 
+        $\|\uex\|^2_{\X} \leq \frac{1}{\alpha} B(\uex,\uex) = 
+        \frac{1}{\alpha} F(\uex) \leq \frac{1}{\alpha} \|F\|_{\dual{\Y}} 
+        \|\uex\|_{\X}$, så
+        $\|\uex\|_{\X} \leq \frac{1}{\alpha} \|F\|_{\dual{\Y}}$.
+  \item Hvis der for alle $u \in \X \setminus \{0\}$, findes et 
+        $v_u \in \Y \setminus \{0\}$, så en af følgende betingelser er
+        opfyldt 
+          \begin{enumerate}
+            \item $\|v_u\|_{\Y} \leq c_1 \|u\|_{\X}$ og
+                  $|B(u,v_u)| \geq c_2 \|u\|^2_{\X} \geq 
+                  {\scriptstyle{\frac{c_2}{c_1}}} 
+                  \|u\|_{\X} \|v_u\|_{\Y}$.
+            \item $|B(u,v_u)| \geq c_3 \|u\|_{\X} \|v_u\|_{\Y}$.
+          \end{enumerate}
+        Da gælder 
+        $\|\uex\|_{\X} \|v_u\|_{\Y} \leq \frac{1}{c} |B(\uex,v_u)| =
+        \frac{1}{c} F(v_u) \leq \frac{1}{c} \|F\|_{\dual{\Y}}
+        \|v_u\|_{\Y}$, dvs. \newline $\|\uex\|_{\X} \leq \frac{1}{c}
+        \|F\|_{\dual{\Y}}$, hvor $c\in\{{\scriptstyle{\frac{c_2}{c_1}}},c_3\}$.      
+\end{userenumerate}
+\begin{remark}
+Betingelse (b) i 3.2 er ækvivalent med betingelse (b) i 4.2.
+\end{remark}
+\begin{remark}
+Rummene $\H^{p}_{k}(I), \ p\not = 1,\infty$ er refleksive.
+\end{remark}
+
+\section{Randbetingelser}
+Vi skal nu se nærmere på, hvad randbetingelser betyder ved
+omformuleringen til variationsproblemet. Det er svært at sige noget
+om den generelle situation pga. de meget forskelligeartede
+randbetingelser. Vi vil derfor nøjes med et eksempel, der illustrerer
+de forhold, man skal tage højde for. Vi skal dog se, at man overordnet
+(i variationsformulering sammenhæng) kan skelne mellem to typer at
+randbetingelser.
+
+\subsection{Klassificering af randbetingelser}
+\begin{definition}
+Randbetingelser, der kan indpasses i variationsformuleringen via
+restriktioner på løsnings- og/eller testrummet, kaldes stærke (eng. essential)
+randbetingelser. Randbetingelser, der ikke kan indpasses via
+restriktioner, kaldes svage (eng. natural).
+\end{definition}
+\begin{remark}
+Stærke randbetingelser kaldes også for væ\-sent\-li\-ge rand\-be\-tin\-gel\-ser,
+ligesom man til tider kalder svage randbetingelser for naturlige
+randbetingelser. 
+\end{remark}
+\begin{example}
+Lad os som et eksempel betragte Poissons ligning
+\begin{equation} \label{poisson}
+  -\Delta u+u = f \quad \text{i $\Omega\subset\R^2$},
+\end{equation}
+i to dimensioner med randbetingelserne
+\begin{align}
+  \frac{\p u}{\p\n} &= g_1 \quad \text{på $\Gamma_1$}, \\
+                 u  &= g_2 \quad \text{på $\Gamma_2$},
+\end{align}
+hvor $\Gamma_1\cup\Gamma_2 = \p\Omega$.
+Lad os et kort øjeblik se bort fra randbetingelser. Det checkes da
+let, at en klassisk løsning til \eqref{poisson} også er en løsning til
+variations problemet:
+\begin{equation} \label{var-poisson}
+  \text{Find} \
+  u\in\H^1(\dom) \ : \
+  \iint_{\Omega} (\nabla u \cdot \nabla v + uv)\, dx\, dy =
+  \iint_{\Omega} fv\, dx\, dy,
+  \quad \forall v\in\H^1_0(\dom).
+\end{equation}
+
+Randbetingelsen $u=g_2$ på $\Gamma_2$ er en stærk randbetingelse, idet
+den kan indpasses i løsningsrummet $\Het$ via restriktionen 
+$u|_{\Gamma_2}=g_2$. Randbetingelsen $\afl{u}{\n}=g_1$ på $\Gamma_1$ er
+derimod en svag randbetingelse (idet $\afl{u}{\n}$ ikke er defineret
+på kurver i $\H^1$), så den må indpasses i selve variationsformen via leddet 
+\begin{equation}
+  \int_{\partial \Omega} \afl{u}{\n}v\, ds
+\end{equation}
+tilføjet til højresiden af~\eqref{var-poisson}. 
+
+Vi kunne vælge at bruge samme test- og løsningsrum, men betingelsen
+$v|_{\Gamma_2}=g_2$ på testrummet er upraktisk, idet det giver 
+``komplicerede'' basisfunktioner. Som testfunktioner vil vi derfor vælge
+de $v\in \Het$, hvor $v|_{\Gamma_2}=0$, hvilket giver os følgende 
+variationsformulering af~\eqref{poisson}: Find $u\in \Het$ med $u|_{\Gamma_2}=g_2$ så
+\begin{equation}
+  \iint_{\Omega} (\nabla u \cdot \nabla v + uv)\, dx\, dy =
+  \iint_{\Omega} fv\, dx\, dy +
+  \int_{\Gamma_1} \afl{u}{\n}v\, ds
+\end{equation}
+for alle $v\in \Het, \ v|_{\Gamma_2}=0$
+
+Af hensyn til teoretiske og praktiske situationer vælger man ofte samme test- og 
+løsningsrum. Vi skal nu se, hvorledes dette kan opnås for ovenstående
+eksempel. Sæt $u_0=u-w$, hvor $w\in{\cal C}^2(\overline{\Omega})$ er 
+valgt således, at $w|_{\Gamma_2}=g_2$. Da vil $u_0|_{\Gamma_2}=0$ og
+\begin{align}
+  -\Delta u_0 + u_0 &= -\Delta (u-w) + (u-w) \\ 
+  &=  -\Delta u + u + \Delta w - w \notag \\
+  &=  f - (-\Delta w + w). \notag
+\end{align}
+Vi kan nu formulere variationsproblemet som: Find 
+$u_0\in \Het$ med $u_0|_{\Gamma_2}=0$ så
+\begin{equation}
+  \iint_{\Omega} (\nabla u_0 \cdot \nabla v + u_0v)\, dx\, dy =
+  \iint_{\Omega} f_0v\, dx\, dy +
+  \int_{\Gamma_1} \afl{u}{\n}v\, ds
+\end{equation}
+for alle $v\in \Het$ med $v|_{\Gamma_2}=0$
+Her er $f_0 = f -(- \Delta w +w)$.
+\end{example}
+Som det fremgår af definitionen og eksemplet bør man i så høj grad som
+muligt ind\-passe randbetingelser som stærke randbetingelser, idet disse
+har den umiddelbare fordel, at de nedsætter dimensionen af løsnings-
+og/eller testrummene.
+
+\section{Konstruktionsregler}
+Man kan ikke give præcise retningslinier for, hvordan man udleder
+(V) fra (D). Vi skal dog forsøge at angive nogle generelle 
+konstruktionsregler for, hvordan $B$, $F$, $\X$ og $\Y$ kan
+udledes, således at man får en generaliseret formulering (V) af (D).
+\begin{enumerate}
+  \item Udled $B$ og $F$ fra (D) udelukkende ved at bruge operationer
+        som er ``i orden'' for den klassiske løsning til (D). Typiske
+        eksempler er multiplikation med en testfunktioner og integration
+        over det betragtede domæne.
+  \item Check at  $B$ og $F$ er lineære og begrænsede.
+  \item Overvej $\H^p(\Omega)$ hhv. $\H^q(\Omega)$  som løsnings- hhv.
+        testrum, hvor $p$ og $q$ er valgt så tæt på hinanden som
+        muligt. Derved minimeres $\max (p,q)$. Disse rum har
+        flere fordele. For det første er ${\mathcal C}^p\subset\H^p$, og for
+        det andet er disse rum Hilbert rum. Ved at vælge $p$ og $q$ så
+        små som muligt begrænses glathedskravet til løsnings- og
+        testfunktioner mest muligt. 
+  \item Har differentialligningen randbetingelser, forsøg da at
+        indpasse disse i form af restriktioner på løsnings- og/eller
+        testrummet jvf. diskussionen om stærke randbetingelser.
+  \item Check at betingelse 3 og 4 fra afsnit~\ref{rimeligekrav} er opfyldt.
+\end{enumerate}
+
+\section{Eksistens og entydigheds sætninger} \label{eks-ent}
+Lad os først vise, at betingelse 3.1 fra side~\pageref{cond31} sikrer
+eksistens og entydighed.
+\begin{theorem}[Lax-Milgrams lemma]
+Lad $\X$ være et Hilbert rum,
+$B:\X\!\times\!\X\rightarrow\R$ en begrænset $\X$-elliptisk
+bilinear form, og lad $F:\X\rightarrow\R$ være en begrænset lineær
+afbildning. Da har variations problemet: Bestem et element $u\in\X$ så
+\begin{equation} \label{app:var-prob}
+B(u,v)=F(v) \qquad \forall v\in\X,
+\end{equation} 
+\'{e}n og kun \'{e}n løsning.
+\end{theorem}
+\begin{proof}
+Da $B$ er begrænset findes en konstant $M$ så
+\begin{equation} \label{app:lax-a-kont}
+|B(u,v)|\leq M\|u\|\|v\| \qquad \text{for alle $u,v\in V$.}
+\end{equation}
+For ethvert $u\in\X$ er funktionalen $L:\X\rightarrow\R$ givet ved
+$L(v)=B(u,v)$ kontinuert og lineær. Altså findes et entydigt bestemt
+element $x_u\in\X$, se fx \cite[theorem 4.2]{rudin}, så
+\begin{equation}
+L(v)=\inner{v}{x_u},
+\end{equation}
+hvor $\inner{\cdot}{\cdot}$ er det indre produkt i $\X$. Et indre
+produkt er specielt en lineær funktional, hvorfor der findes et
+entydig bestemt element $f_{x_u}\in \dual{\X}$, så
+$\inner{v}{x_u}=f_{x_u}(v)$,  hvor $\dual{\X}$ er det duale rum til $\X$.
+Lad os for ethvert $u\in\X$ definere $Au=f_{x_u}\in\dual{\X}$, så vil
+\begin{equation} \label{app:lax-Au-kont}
+B(u,v)=L(v)=\inner{v}{x_u}=f_{x_u}(v)=Au(v).
+\end{equation} 
+Med $\|\cdot \|^{\ast}$ betegnes normen i $\dual{\X}$. Vi har nu fra
+\eqref{app:lax-a-kont} og \eqref{app:lax-Au-kont}
+\begin{equation}
+\|Au\|^{\ast}=\sup_{v\in V\setminus\{ 0\}} 
+\frac{|Au(v)|}{\|v\|}\leq M\|u\|,
+\end{equation} 
+hvilket viser at afbildningen $A:\X\rightarrow \dual{\X}$ er kontinuert
+med $\|A\| \leq M$.
+
+I følge Riesz' repræsentations sætning findes en afbildning 
+$\tau : \dual{\X} \rightarrow \X$ så
+\begin{equation}
+F(v) = \inner{\tau F}{v} \qquad 
+\text{for alle $F \in \dual{\X}$ og alle $v \in\X$.}
+\end{equation} 
+Vi har nu for $u \in\X$ og for alle $v \in\X$
+\begin{equation}
+B(u,v) = F(v) \Leftrightarrow
+Au(v) = F(v) \Leftrightarrow
+\inner{\tau Au}{v} = \inner{\tau F}{v} \Leftrightarrow
+\tau Au - \tau F = 0
+\end{equation}
+At løse variations problemet \eqref{app:var-prob} er derfor ækvivalent
+med at løse ligningen $\tau Au = \tau F$.
+
+For at vise at denne ligning har \'{e}n og kun \'{e}n løsning, skal vi se, at
+afbildningen 
+\begin{equation} \label{app:kontraktion}
+v\in\X \rightarrow v - \rho (\tau Av- \tau F)\in\X
+\end{equation}
+er en kontraktion for passende valgt $\rho$. Da $\X$ er et Hilbert rum,
+er $\X$ specielt et fuldstændigt metrisk rum, og som bekendt har en
+kontraktion defineret på et fuldstændigt metrisk rum netop et
+fixpunkt.
+
+Bemærkes nu at
+\begin{gather}
+\inner{\tau Av}{v} = Av(v) = B(v,v) \geq \alpha \|v\|^2, \\
+\|\tau Av\| = \|Av\|^{\ast} \leq \|A\|\|v\| \leq M\|v\|,
+\end{gather}
+hvor $\alpha$ skyldes $\X$-ellipticitet, følger kontraktionen let thi
+\begin{align}
+\|v-\rho \tau Av\|^2 & = \|v\|^2 - 2\rho \inner{\tau Av}{v}
+                         + {\rho}^2 \|\tau Av\|^2 \\
+                     & \leq (1-2\rho \alpha + {\rho}^2 M^2) \|v\|^2.
+\end{align}
+Afbildningen defineret ved \eqref{app:kontraktion} er derfor en
+kontraktion for $\rho \in ]0,2\alpha /M^2[$. Altså findes et
+element $v \in V$, så $v-\rho(\tau Av - \tau F)=v$, dvs $\tau Av = \tau
+F$ som ønsket.  
+\end{proof}
+
+Betingelse 3.2 fra side~\pageref{cond32} sikrer ligeledes eksistens og
+entydighed jvf. nedenstående sætning
+\begin{theorem} \label{refleksiv}
+Lad $B:\X\!\times\!\Y\rightarrow\R$ være en begrænset bilinear form,
+der opfylder betingelserne 3.2 (b) og (c) fra
+side~\pageref{cond32}, og
+$F:\Y\rightarrow\R$ er en begrænset lineær afbildning. Her er $\X$ et
+Banach rum, og $\Y$ er et refleksivt Banach rum. Da har
+variations problemet: Bestem et element $u\in\X$ så
+\begin{equation} 
+B(u,v)=F(v) \qquad \forall v\in\Y,
+\end{equation} 
+\'{e}n og kun \'{e}n løsning.
+\end{theorem}
+\begin{proof}
+Lad $R(u):v\in\Y \rightarrow R(u)v\in\R$ være en lineær begrænset
+funktional tilhørende $\dual{\Y}$ defineret ved
+\begin{equation}
+  R(u)v=B(u,v) \quad \forall v\in\Y.
+\end{equation}
+Lad tilsvarende $F\in\dual{\Y}$ være givet ved
+\begin{equation}
+  Fv=F(v) \quad \forall v\in\Y.
+\end{equation}
+Målet er at vise, at $R(\X)=\dual{\Y}$, idet vi så kan anvende
+Banachs sætning, se fx \cite[s. 34]{berger}, til at få det ønskede
+resultat. Lad os først vise, at $R(\X)$ er afsluttet i $\dual{\Y}$. Lad
+$\{R(u_n)\}$ være en Cauchy følge i $\dual{\Y}$. Da er $\{u_n\}$ en
+Cauchy følge i $\X$, thi
+\begin{equation}
+\begin{split}
+  \|R(u_n)-R(u_m)\|_{\dual{\Y}} &= \|R(u_n-u_m)\|_{\dual{\Y}} \\
+  &= \|R(\frac{u_n-u_m}{\|u_n-u_m\|_\X})\|_{\dual{\Y}}\|u_n-u_m\|_\X \\
+  &= \sup_{\|v\|_{\Y=1}}|R(\frac{u_n-u_m}{\|u_n-u_m\|_\X})v|\|u_n-u_m\|_\X \\
+  &\geq \inf_{\|u\|_{\X=1}}\sup_{\|v\|_{\Y=1}} |B(u,v)|\|u_n-u_m\|_\X \\
+  &\geq C\|u_n-u_m\|_\X . \\
+\end{split}
+\end{equation}
+Konstanten $C$ kommer fra $\inf$-$\sup$ betingelsen 3.2(b). Antag nu at
+$\lim_{n\rightarrow\infty} u_n = u$ i $\X$. Vi finder så
+\begin{equation}
+\begin{split}
+  \|R(u_n)-R(u)\|_{\dual{\Y}} &= \sup_{\|v\|_{\Y=1}} |B(u_n-u,v)| \\
+  &\leq M\|u_n-u\|_\X , \\
+\end{split}
+\end{equation}  
+da $B$ er begrænset. Altså vil $\lim_{n\rightarrow\infty} R(u_n) =
+R(u)$ i $\dual{\Y}$, hvorfor $R(\X)$ er afsluttet i $\dual{\Y}$. Da
+$R$ er lineær, vil $R(\X)$ være et afsluttet underrum af $\dual{\Y}$.
+
+Vi vil nu vise, at $R(\X)=\dual{\Y}$. Antag omvendt at
+$R(\X)\not=\dual{\Y}$. Da $R(\X)$ er et underrum af $\dual{\Y}$, vil 
+$\dual{\Y}\setminus R(\X)$ indeholde mindst et underrum af dimension
+1. Altså findes der et $g\in\Y^{\ast\ast}\setminus\{0\}$ så
+$g(R(u))=0$ for alle $u\in\X$.
+
+Da $\Y$ er refleksiv, er den kanoniske afbildning 
+$\iota:\Y\rightarrow\Y^{\ast\ast}$ defineret ved
+\begin{equation}
+  \iota v(v^{\ast}) = v^{\ast}(v), \quad 
+  \forall v^{\ast}\in\dual{\Y}, \ v\in\Y ,
+\end{equation}  
+surjektiv. Derfor findes for alle $h\in\Y^{\ast\ast}$, et $v_h\in\Y$ så
+$h=\iota v_h$, dvs.
+\begin{equation}
+  h(v^{\ast}) = \iota v_h(v^{\ast}) = v^{\ast}(v_h) 
+  \quad \forall v^{\ast}\in\dual{\Y}.
+\end{equation}
+Vi bemærker specielt, at 
+\begin{equation}
+  v_h=0\Rightarrow v^{\ast}(v_h)=0 \quad \forall v^{\ast}\in\dual{\Y}
+  \Rightarrow h(v^{\ast})=0 \quad \forall v^{\ast}\in\dual{\Y} \Rightarrow h=0.
+\end{equation}
+Da $g\in\Y^{\ast\ast}\setminus\{0\}$ findes et
+$v_g\in\Y\setminus\{0\}$ så $g(R(u))=\iota v_g(R(u))=R(u)v_g=0$
+$\forall u\in\X$. Med andre ord $B(u,v_g)=0$ $\forall u\in\X$ i
+modstrid med betingelse 3.2(c), hvorfor $R(\X)=\dual{\Y}$.
+
+Vi har nu vist, at $R:\X\rightarrow\dual{Y}$ er en lineær, begrænset
+og surjektiv operator, og det følger så af Banachs sætning, at $R$ har
+en lineær begrænset invers $R^{-1}:\dual{\Y}\rightarrow\X$. Vælges nu
+$u=R^{-1}(F)$ fås
+\begin{equation}
+  B(u,v)=R(R^{-1}(F))v=Fv=F(v) \quad \forall v\in\Y,
+\end{equation} 
+hvilket skulle vises.
+\end{proof}
+
+\section{Eksistens og entydighed for det diskrete pro\-blem}
+Ovenfor har vi kun beskæftiget os med eksistens og entydighed for det
+kontinuerte problem. Vi skal nu vise, at hvis man har eksistens og
+entydighed for det kontinuerte problem, da vil eksistens og entydighed
+af det diskrete problem følge automatisk.
+
+Den diskrete version af problemet (V) lyder: Find $u\in\Xfe(\dom)=\Xfe$ så
+\begin{equation}
+  \tilde{B}(u,v) = \tilde{F}(v), \ \text{for alle $v\in\Yfe(\dom)=\Yfe$.}
+\end{equation}
+Her er $\tilde{B}$ og $\tilde{F}$ diskrete versioner af $B$ hhv. 
+$F$, og $\Xfe$ hhv. $\Yfe$ er endelige element rum indeholdt i $\X$
+hhv. $\Y$. Vi skal i næste kapitel give en formel definition af
+endelige element rum. For tiden er det tilstrækkeligt at opfatte
+$\Xfe$ hhv. $\Yfe$ som endelig-dimensionale underrum af $\X$ hhv.
+$\Y$.  Hvis $\{\psi\}_{i=1}^{n}$ og $\{\phi\}_{j=1}^{m}$ betegner baser
+for $\Xfe$ hhv. $\Yfe$, er det kendt fra den lineære algebra, at 
+$\tilde{B}$ og $\tilde{F}$ kan skrives på formen
+\begin{equation}
+   \tilde{B}(u,v) = b^t Ka \quad \text{og} \quad \tilde{F}(v)=b^t q,
+\end{equation}
+hvor $u=\sum_{i=1}^{n} a_i \psi_i$, 
+$v=\sum_{j=1}^{m} b_j \phi_j$, $K_{ij}=\tilde{B}(\psi_i,\phi_j)$. Vi skal
+betragte tilfældet, hvor $\dim \X = \dim \Y$, dvs. $K$ er kvadratisk.
+\begin{theorem} \label{eks-ent-dis}
+Lad $K$ være som ovenfor. Følgende betingelser er da ækvivalente
+\begin{enumerate}
+  \item Det diskrete problem $\tilde{B}(u,v) = \tilde{F}(v)$ har
+        \'{e}n og kun \'{e}n løsning.
+  \item $K$ er invertibel.
+  \item $\inf_{\|u\|_{\Xfe}=1} \sup_{\|v\|_{\Yfe}=1} |\tilde{B}(u,v)| \geq C >0$.
+\end{enumerate}
+\end{theorem} 
+\begin{proof}
+Det er klart at vi har $1. \Leftrightarrow 2.$. Lad os vise $2.
+\Leftrightarrow 3.$. Vi har:
+\begin{align}
+ &\phantom{\Updownarrow} \inf_{\|u\|_{\Xfe}=1} \sup_{\|v\|_{\Yfe}=1} 
+   |\tilde{B}(u,v)|\geq C >0 \notag \\
+ &\Updownarrow \notag \\
+ &\phantom{\Updownarrow} \forall u\in \Xfe\setminus\{0\} \ \exists
+   v_u\in \Yfe\setminus\{0\} \ : \ |\tilde{B}(u,v_u)| \geq C
+   \|u\|_{\Xfe} \|v_u\|_{\Yfe} \notag \\
+ &\Updownarrow \notag \\
+ &\phantom{\Updownarrow} \forall u\in \Xfe\setminus\{0\} \ \exists
+   v_u\in \Yfe\setminus\{0\} \ : \ |\tilde{B}(u,v_u)| > 0 \notag \\
+ &\Updownarrow \notag \\ 
+ &\phantom{\Updownarrow} \forall \xi \in \R^n\setminus\{0\} 
+   \ : \ K\xi \not=0 \notag \\
+ &\Updownarrow \notag \\
+ &\phantom{\Updownarrow} \text{$K$ er invertibel} \notag
+\end{align}
+\end{proof}
+\begin{remark} \label{simpleremark}
+Man kan vise, at betingelsen
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  \item $\inf_{\|v\|_{\Yfe}=1} \sup_{\|u\|_{\Xfe}=1} |\tilde{B}(u,v)|>0$.
+\end{enumerate}
+er ækvivalent med betingelserne 3. fra sætning~\ref{eks-ent-dis}.
+\end{remark}
+\begin{remark}
+Som i det kontinuerte tilfælde, er betingelserne
+\begin{gather}
+  \forall u\in\X\setminus\{0\}\ \exists v_u\in\Y\setminus\{0\} \ :\  
+    |\tilde{B}(u,v_u)| \geq \|u\|_{\X} \|v_u\|_{\Y} \\
+  \forall v\in\Y\setminus\{0\}\ \exists u_v\in\X\setminus\{0\} \ :\  
+    |\tilde{B}(u_v,v)| \geq \|u_v\|_{\X} \|v\|_{\Y} 
+\end{gather}
+ækvivalente med hhv. betingelse 3. fra sætning~\ref{eks-ent-dis} og
+betingelse 4. fra bemærk\-setning~\ref{simpleremark}. 
+\end{remark}
+
+\section{Eksempel på konstruktion af variationsform}
+\begin{example}
+Som et konkret eksempel på anvendelsen af ovenstående principper skal
+vi betragte følgende homogene Dirichlet problem: Bestem
+$u\in\C\cap\Cto$ så
+\begin{align} \label{dirichlet}
+  -\Delta u+au &= f \quad \text{i $\Omega$,} \\
+             u &= 0 \quad \text{på $\p\Omega=\Gamma$,} \notag
+\end{align}
+hvor $\Omega$ er et begrænset, sammenhængende område i $\R^2$ med
+Lipschitz kontinuert rand $\Gamma$. Funktionener $a$ og $f$ antages at
+tilhøre hhv. ${\mathcal L}^\infty(\Omega)$ og $\Lto$. Desuden antages
+$a$ at være ikke-negativ næsten overalt i $\dom$. 
+
+Variationsformuleringen af \eqref{dirichlet} fremkommer ved at
+multiplicere \eqref{dirichlet} med en testfunktion og dernæst foretage
+en partiel integration over $\Omega$. Derved fås følgende formulering
+af \eqref{dirichlet}: Bestem $u\in\X$ så
+\begin{equation} \label{var-dirichlet}
+  B(u,v) = F(v) \quad \forall v\in\Y ,
+\end{equation}
+hvor 
+\begin{gather}
+  B(u,v)= \int_\Omega (\g u\g v +auv)\, dx \\
+  \intertext{og}
+  F(v) = \int_\Omega fv\, dx
+\end{gather}
+Jvf. ovenstående diskussion vil det her være naturligt at vælge 
+$\X =\Y =\H^1_0(\Omega)$. Det er oplagt, at $B$ er symmetrisk og
+bilineær, samt at $F$ er lineær. For at påvise eksistens og entydighed
+af en løsning til \eqref{var-dirichlet}, vil det derfor være tilstrækkeligt at redegøre
+for, at $B$ er begrænset og $\H^1_0(\Omega)$-elliptisk samt at $F$
+er begrænset. Da $\X =\Y =\H^1_0(\Omega)$ er et Hilbert rum vil
+eksistens og entydighed så følge af Lax-Milgrams lemma.
+
+Lad os starte med at vise, at $B$ er begrænset. For
+$u,v\in\H^1_0(\Omega)$ haves
+\begin{align}
+  |B(u,v)| &\leq \ssmnorm{\g u}{0}{2}\ssmnorm{\g v}{0}{2} + 
+    \ssmnorm{a}{0}{\infty} \ssmnorm{u}{0}{2}\ssmnorm{v}{0}{2} \\
+  &\leq \max \{ 1,\ssmnorm{a}{0}{\infty} \} 
+    \ssmnorm{u}{1}{2}\ssmnorm{v}{1}{2}\ , \notag
+\end{align} 
+her betegner $\ssmnorm{\cdot}{0}{2}$, $\ssmnorm{\cdot}{0}{\infty}$ og
+$\ssmnorm{\cdot}{1}{2}$ normerne på ${\mathcal L}^2(\Omega)$,
+${\mathcal L}^\infty(\Omega)$ og $\H^1(\Omega)$. Altså er $B$
+begrænset. At $B$ er $\H^1_0(\Omega)$-elliptisk følger at følgende
+ulighed for $v\in\H^1_0(\Omega)$
+\begin{equation}
+  B(v,v) \geq \int_\Omega (\g v)^2\, dx = \sssnorm{v}{1}{2}^2.
+\end{equation}
+Her er $\sssnorm{\cdot}{1}{2}$ $\H^1_0$'s seminorm. Vi mangler nu kun at
+vise, at $F$ er begrænset. Lad $v\in\H^1_0(\Omega)$, da vil
+\begin{equation}
+  |f(v)| \leq \ssmnorm{f}{0}{2} \ssmnorm{v}{0}{2} 
+    \leq \ssmnorm{f}{0}{2} \ssmnorm{v}{1}{2}\ , 
+\end{equation}
+som ønsket
+
+Med ovenstående har vi fået opfyldt krav 3 og 4 fra afsnit~\ref{rimeligekrav}. At
+kravene 1 og 2 er opfyldt verificeres let.
+\end{example}

@@ -1,0 +1,65 @@
+This is TeX, C Version 3.141 (format=lplain 94.1.28)  2 JUN 1995 02:00
+**ecltreesample.tex
+(ecltreesample.tex
+LaTeX Version 2.09 <14 January 1992>
+(/net/applications/tex/inputs/latex/article.sty
+Document Style `article' <16 Mar 88>.
+(/net/applications/tex/inputs/latex/art10.sty)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+)
+(/net/applications/tex/inputs/graphics/epic.sty
+Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
+\@@multicnt=\count87
+\d@lta=\count88
+\@delta=\dimen99
+\@@delta=\dimen100
+\@gridcnt=\count89
+\@joinkind=\count90
+\@dotgap=\dimen101
+\@ddotgap=\dimen102
+\@x@diff=\count91
+\@y@diff=\count92
+\x@diff=\dimen103
+\y@diff=\dimen104
+\@dotbox=\box25
+\num@segments=\count93
+\num@segmentsi=\count94
+\@datafile=\read0
+) (/net/applications/tex/inputs/graphics/eepic.sty
+Extension to Epic and LaTeX. Version 1.1b - Released Febrary 7, 1988
+\@gphlinewidth=\count95
+\@eepictcnt=\count96
+\@tempdimc=\dimen105
+\maxovaldiam=\dimen106
+\@filltype=\box26
+) (ecltree.sty
+ECL Tree graph macro by isozaki, Nov. 12, 1990
+\@BundleWidth=\dimen107
+\@BundleDepth=\dimen108
+\@BundleHeight=\dimen109
+\@NodeBox=\box27
+\GapDepth=\dimen110
+\GapWidth=\dimen111
+\EdgeLabelSep=\dimen112
+)
+No file ecltreesample.aux.
+[1
+
+] [2] [3] [4] (ecltreesample.aux) ) 
+Here is how much of TeX's memory you used:
+ 380 strings out of 11713
+ 3703 string characters out of 65132
+ 38013 words of memory out of 262141
+ 2584 multiletter control sequences out of 9500
+ 9872 words of font info for 40 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 16i,9n,33p,172b,196s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on ecltreesample.dvi (4 pages, 8984 bytes).
