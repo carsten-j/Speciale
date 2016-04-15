@@ -1,15 +1,21 @@
-\input{dkchar}
+\usepackage[danish]{babel} 
+\usepackage[latin1]{inputenc}
+
 
 \usepackage{alltt}
-\usepackage{amstex}
-\usepackage{bchap}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+%\usepackage{bchap}
 \usepackage{ecltree}
 \usepackage{epic}
 \usepackage{eepic}
 \usepackage{float}
-\usepackage{maplems}
-\usepackage{psfig}
+%\usepackage{maplems}
+%\usepackage{psfig}
 \usepackage{theorem}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
 \pagestyle{plain}
 
@@ -36,9 +42,10 @@
 \renewcommand{\listtablename}{Tabeller}
 \renewcommand{\listfigurename}{Figurer}
 
-\newenvironment{proof}{\textsc{Bevis}\hspace{2mm}}{\hfill$\Box$}
+\newenvironment{proof}{\textsc{Bevis}\hspace{2mm}}{\hfill}
 
 \newenvironment{ttitemize}{\begin{itemize} \tt}{\end{itemize}}
+
 
 \newenvironment{userenumerate}[1]{%
   \renewcommand{\labelenumi}{#1.\theenumi}%

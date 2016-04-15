@@ -132,10 +132,10 @@ $\fee$, og $\meas (\fee)$ er arealet af $\fee$.
 Lad $\cell$ være en celle. Vi vil da -- i analogi med
 summationsprincippet~\eqref{sumprincip} for fejlen -- definere en fejlestimator som
 \begin{equation}
-  \ee = \Bigl( \sum \begin{Sb} 
+  \ee = \Bigl( \sum \substack{ 
                       \fee \in \T \\
                       \fee \cap \cell \not= \emptyset
-                    \end{Sb}
+                    }
                \eta_{\fee}^q\Bigr)^{1/q}.
 \end{equation}
 Her er $\eta_{\fee}$ en element fejl indikator for elementet $\fee$

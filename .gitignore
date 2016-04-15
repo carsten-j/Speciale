@@ -1,2 +1,7 @@
 thesis.log
 thesis.sync*
+*.aux
+*.lo*
+*.toc
+*.pdf
+*.dvi
