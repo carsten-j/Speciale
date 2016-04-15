@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: forord.aux
+A level-1 auxiliary file: noter.aux
+A level-1 auxiliary file: introduktion.aux
+A level-1 auxiliary file: variations.aux
+A level-1 auxiliary file: fem.aux
+A level-1 auxiliary file: polynomium.aux
+A level-1 auxiliary file: netinddeling.aux
+A level-1 auxiliary file: fejlestimering.aux
+A level-1 auxiliary file: nocite.aux
+The style file: myplain.bst
+Database file #1: thesis.bib
+You've used 44 entries,
+            2118 wiz_defined-function locations,
+            729 strings with 11981 characters,
+and the built_in function-call counts, 11051 in all, are:
+= -- 1136
+> -- 324
+< -- 11
++ -- 153
+- -- 92
+* -- 611
+:= -- 1936
+add.period$ -- 137
+call.type$ -- 44
+change.case$ -- 169
+chr.to.int$ -- 0
+cite$ -- 44
+duplicate$ -- 467
+empty$ -- 985
+format.name$ -- 92
+if$ -- 2285
+int.to.chr$ -- 0
+int.to.str$ -- 44
+missing$ -- 34
+newline$ -- 223
+num.names$ -- 96
+pop$ -- 164
+preamble$ -- 1
+purify$ -- 132
+quote$ -- 0
+skip$ -- 289
+stack$ -- 0
+substring$ -- 694
+swap$ -- 58
+text.length$ -- 11
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 164
+warning$ -- 0
+while$ -- 130
+width$ -- 46
+write$ -- 479
