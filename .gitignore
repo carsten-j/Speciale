@@ -5,3 +5,7 @@ thesis.sync*
 *.toc
 *.pdf
 *.dvi
+*.bbl
+*.blg
+thesis.fdb*
+thesis.fls
