@@ -1,44 +1,44 @@
 \chapter{Polynomiumsinterpolation} \label{interpolation}
 
-Den endelige element løsning er som bekendt en linearkombination af en
-række polynomier fra et vist løsningsrum. Når man skal udføre
+Den endelige element lÃ¸sning er som bekendt en linearkombination af en
+rÃ¦kke polynomier fra et vist lÃ¸sningsrum. NÃ¥r man skal udfÃ¸re
 fejlestimering, er det derfor vigtigt at vide, hvor godt man kan
-approksimere funktioner med polynomier fra det valgte løsningsrum. Ofte er
+approksimere funktioner med polynomier fra det valgte lÃ¸sningsrum. Ofte er
 fejlestimatorer og dermed polynomiumsinterpolation drivkraften bag
-netinddelings algoritmer. I næste kapitel skal vi studere en
-netinddelings algoritme, der gør brug af en bestemt fejlligning, som
-vi derfor skal verificere i dette kapitel. Det skal bemærkes, at vi
+netinddelings algoritmer. I nÃ¦ste kapitel skal vi studere en
+netinddelings algoritme, der gÃ¸r brug af en bestemt fejlligning, som
+vi derfor skal verificere i dette kapitel. Det skal bemÃ¦rkes, at vi
 ikke er interesseret i den bedste polynomiums interpolant, men derimod
-mere interesseret i at opnå en fejlligning på en bestemt form.
-Interpolationsteori, hvor man forsøger at få den bedst mulige
+mere interesseret i at opnÃ¥ en fejlligning pÃ¥ en bestemt form.
+Interpolationsteori, hvor man forsÃ¸ger at fÃ¥ den bedst mulige
 approksimation, er fx behandlet i \cite{chen1,chen2}. Generel
-interpolationsteori for vilkårlige Sobolev rum kan fx findes i
+interpolationsteori for vilkÃ¥rlige Sobolev rum kan fx findes i
 \cite{ciarlet78}.
 
 \section{A priori fejlligningen}
-Som nævnt ovenfor er vi interesseret i en ganske bestemt fejlligning.
-Mere præcist ønsker vi at udtrykke interpolations fejlen på formen
+Som nÃ¦vnt ovenfor er vi interesseret i en ganske bestemt fejlligning.
+Mere prÃ¦cist Ã¸nsker vi at udtrykke interpolations fejlen pÃ¥ formen
 \begin{equation}
   \norm{e}^q = \sum_{i=1}^k \phi_i h_x^{\gamma_{1,i}}
   h_y^{\gamma_{2,i}} + \hot
 \end{equation}
-Vi skal studere tilfældet, hvor det to dimensionale fysiske domæne er
-blevet afbildet bijektivt på et passende antal kvadrater, og hvor de
-endelige elementer (i kvadraterne) består af akseparallelle rektangler
-med sidelængde $h_x$ og $h_y$. Funktionerne $\phi_i$ må gerne afhænge
-af den funktion, vi ønsker at interpolere, men ikke af de endelige
+Vi skal studere tilfÃ¦ldet, hvor det to dimensionale fysiske domÃ¦ne er
+blevet afbildet bijektivt pÃ¥ et passende antal kvadrater, og hvor de
+endelige elementer (i kvadraterne) bestÃ¥r af akseparallelle rektangler
+med sidelÃ¦ngde $h_x$ og $h_y$. Funktionerne $\phi_i$ mÃ¥ gerne afhÃ¦nge
+af den funktion, vi Ã¸nsker at interpolere, men ikke af de endelige
 elementers geometri. Konstanterne $q$, $\gamma_{j,i}$ og $k$ er
-passende norm afhængige konstanter, og $\hot$ betegner højere ordens
+passende norm afhÃ¦ngige konstanter, og $\hot$ betegner hÃ¸jere ordens
 led.
 
-Lad $\re =[a,a+h_x]\times [b,b+h_y]$ være et rektangel i $\R^2$. Vi
+Lad $\re =[a,a+h_x]\times [b,b+h_y]$ vÃ¦re et rektangel i $\R^2$. Vi
 skal da betragte approksimationer til funktioner $u:\re\subset\R^2
 \rightarrow \R^2$ med polynomier fra produktrummet $Q_{pq}$ givet ved
 \begin{equation}
   Q_{pq} = \spann \{\varphi_{ij} : (x,y)\rightarrow x^i y^j \in\R \ |\
   0\leq i\leq p, \ 0\leq j\leq q \}.
 \end{equation}
-Vi skal antage, at $u$ er tilstrækkelig differentiabel til, at vi kan
+Vi skal antage, at $u$ er tilstrÃ¦kkelig differentiabel til, at vi kan
 foretage en Taylor udvikling af $(p+2)\times(q+2)$'te orden med restled i
 ethvert punkt $(x_0,y_0)\in\re$, dvs.
 \begin{equation}
@@ -55,7 +55,7 @@ hvor
   \sum_{k=0}^{p+3} \OO_{h_x,h_y\rightarrow 0} (h_x^kh_y^{p+3}). \label{restled}
 \end{gather}
 Notationen i \eqref{restled} indikerer, at vi hovedsageligt er interesseret i
-det asymptotiske tilfælde, hvor $h_x \rightarrow 0$ og $h_y
+det asymptotiske tilfÃ¦lde, hvor $h_x \rightarrow 0$ og $h_y
 \rightarrow 0$.
 
 \section{Lokal Taylor po\-ly\-no\-mi\-ums in\-ter\-po\-la\-ti\-on i et rek\-tan\-gel i $\R^2$}
@@ -64,7 +64,7 @@ interpolanten af $u$ af grad $p$ i $x$ og af grad $q$ i $y$ som
 \begin{equation}
   T_{pq}\{u\}(x,y) = \sum_{i=0}^{p} \sum_{j=0}^{q} \phi_{ij}(x,y).
 \end{equation}
-Fejlen, vi begår ved at approksimere $u$ med $T_{pq}\{u\}$, defineres som
+Fejlen, vi begÃ¥r ved at approksimere $u$ med $T_{pq}\{u\}$, defineres som
 \begin{equation}
   e_{pq}^T = u - T_{pq}\{u\}.
 \end{equation}
@@ -108,19 +108,19 @@ $\Tayu$ og $\Taye$.
 \end{displaymath}
 \caption{Grafisk illustration af $u$ opsplittet i $\Tayu$ og $\Taye$\label{grafisk}}
 \end{figure}
-For at undgå udartede rektangler skal vi antage, at der er en
-sammenhæng mellem sidebredden og -længden. Mere formelt skal vi
-forudsætte, at der findes en global konstant $H$, så der for alle
-rektangler i netinddelingen findes et $s\in[1/H,H]$, så
+For at undgÃ¥ udartede rektangler skal vi antage, at der er en
+sammenhÃ¦ng mellem sidebredden og -lÃ¦ngden. Mere formelt skal vi
+forudsÃ¦tte, at der findes en global konstant $H$, sÃ¥ der for alle
+rektangler i netinddelingen findes et $s\in[1/H,H]$, sÃ¥
 \begin{equation}
   h_x=h, \quad h_y=sh.
 \end{equation}
-Vi skal senere udnytte, at dette krav medfører $h_x \approx h_y$ for
+Vi skal senere udnytte, at dette krav medfÃ¸rer $h_x \approx h_y$ for
 $h_x\rightarrow 0$ og $h_y\rightarrow 0$.
 
-Ved nu at bemærke, at $\phi_{ij} = \OO_{h_x,h_y\rightarrow 0}(h_x^ih_y^j)
-= \OO_{h\rightarrow 0}(h^{i+j})$ for vilkårlige ikke-negative tal $i$
-og $j$ fås følgende relation for $\Taye$
+Ved nu at bemÃ¦rke, at $\phi_{ij} = \OO_{h_x,h_y\rightarrow 0}(h_x^ih_y^j)
+= \OO_{h\rightarrow 0}(h^{i+j})$ for vilkÃ¥rlige ikke-negative tal $i$
+og $j$ fÃ¥s fÃ¸lgende relation for $\Taye$
 \begin{equation} \label{fejl1}
 e_{pq}^T =
   \begin{cases}
@@ -136,20 +136,20 @@ e_{pq}^T =
       \un{\phi_{1,q+1}} \} + \hot & \text{for $p>q+1$.}
   \end{cases}
 \end{equation}
-Vi har her brugt betegnelsen $\hot$ om højere ordens led i $h$ (eller
+Vi har her brugt betegnelsen $\hot$ om hÃ¸jere ordens led i $h$ (eller
 i $h_x$ og $h_y$). For at forklare betydningen af de understregede led
-i \eqref{fejl1} skal vi betragte følgende eksempel:
+i \eqref{fejl1} skal vi betragte fÃ¸lgende eksempel:
 
 \begin{example}
 Betragt funktionen $u(x,y)=\cos Kx \cos y$ for et passende $K\gg 1$,
 og lad $\re=[0,h_x]\times [0,h_y]$, $(x_0,y_0)=(h_x/2,h_y/2)$ samt
 $p=q+1=1$. Vi har valgt $p>q$, da $u$ varierer hurtigere i
-$x$-retningen end i $y$-retningen.  Fra \eqref{fejl1} fås
+$x$-retningen end i $y$-retningen.  Fra \eqref{fejl1} fÃ¥s
 \begin{equation}
   e_{pq}^T = \{ \un{\phi_{0,q+1}} \} + \{ \phi_{0,q+2} +
   \phi_{1,q+1} + \un{\phi_{p+1,0}} \} + \hot,
 \end{equation}
-hvor vi i dette tilfælde finder
+hvor vi i dette tilfÃ¦lde finder
 \begin{gather}
   \phi_{0,q+1} = -\cos (Kh_x/2) \sin (h_y/2) (y-h_y/2), \\
   \phi_{0,q+2} = -\frac{1}{2} \cos (Kh_x/2) \cos (h_y/2) (y-h_y/2)^2, \\
@@ -157,18 +157,18 @@ hvor vi i dette tilfælde finder
   \phi_{p+1,0} = -\frac{K^2}{2}\cos (Kh_x/2) \cos (h_y/2) (x-h_x/2)^2,
 \end{gather}
 Udnyttes nu, at $|\sin t\, |\leq 1$, $|\cos t\, |\leq 1$,
-$|x-h_x/2|\leq h_x/2$ og $|y-h_y/2|\leq h_y/2$, fås
+$|x-h_x/2|\leq h_x/2$ og $|y-h_y/2|\leq h_y/2$, fÃ¥s
 \begin{equation} \label{est-fejl1}
   |e_{pq}^T| \leq \frac{1}{2}h_y + \frac{1}{2\cdot 4}h_y^2 +
   \frac{K}{2\cdot 2}h_xh_y + \frac{K^2}{2\cdot 4}h_x^2 + \hot
 \end{equation}
-Som nævnt ovenfor er vores mål at have $h_x \approx h_y$. Ved
-at indsætte $h_x =h$ og $h_y =sh$ i \eqref{est-fejl1} ses, at
+Som nÃ¦vnt ovenfor er vores mÃ¥l at have $h_x \approx h_y$. Ved
+at indsÃ¦tte $h_x =h$ og $h_y =sh$ i \eqref{est-fejl1} ses, at
 \begin{equation}
   |e_{pq}^T| \leq \frac{1}{2}h + \frac{s^2}{2\cdot 4}h^2 +
   \frac{Ks}{2\cdot 2}h^2 + \frac{K^2}{2\cdot 4}h^2 + \hot
 \end{equation}
-I denne ligning er det klart, at leddet af størrelsesorden $h$
+I denne ligning er det klart, at leddet af stÃ¸rrelsesorden $h$
 dominerer for $h\rightarrow 0$, og idet $K\gg 1$ vil det sidste led
 dominere de andre $h^2$ led. Eller sagt med andre ord: De dominerede
 led i $\Taye$ er $\phi_{0,q+1}$ og $\phi_{p+1,0}$, dvs. de
@@ -177,20 +177,20 @@ understregede led.
 % \psdraft
 % \MaplePlotHeight = 6cm
 \includegraphics{cos}
-\caption{Illustration af $u$ i tilfældet $K = 4\pi$ og
+\caption{Illustration af $u$ i tilfÃ¦ldet $K = 4\pi$ og
 $\re=[0,1]\times [0,1]$.}
 \end{figure}
 \end{example}
-For et eksempel i tilfældet $p=q-1=1$ henvises til \cite{hugger-pol}. Disse
-eksempler giver os følgende formodning.
+For et eksempel i tilfÃ¦ldet $p=q-1=1$ henvises til \cite{hugger-pol}. Disse
+eksempler giver os fÃ¸lgende formodning.
 \begin{conjecture} \label{konjektur}
-Vælges $p$ og $q$ forskelligt på grund af en hurtigere variation i $u$
-i enten $x$-retningen eller i $y$-retningen, og har vi som overordnet mål
-at opnå $h_x = h \approx h_y = sh$, da vil de dominerende led i
-$\Taye$ for $h\rightarrow 0$, være de understregede led i ligningen \eqref{fejl1}.
+VÃ¦lges $p$ og $q$ forskelligt pÃ¥ grund af en hurtigere variation i $u$
+i enten $x$-retningen eller i $y$-retningen, og har vi som overordnet mÃ¥l
+at opnÃ¥ $h_x = h \approx h_y = sh$, da vil de dominerende led i
+$\Taye$ for $h\rightarrow 0$, vÃ¦re de understregede led i ligningen \eqref{fejl1}.
 \end{conjecture}
 
-Ved kun medtage de dominerende led fra ligning \eqref{fejl1} fås følgende
+Ved kun medtage de dominerende led fra ligning \eqref{fejl1} fÃ¥s fÃ¸lgende
 udtryk for $\Taye$.
 \begin{equation} \label{fejl2}
 e_{pq}^T =
@@ -207,20 +207,20 @@ e_{pq}^T =
       \text{for $p>q+1$.} \\
   \end{cases}
 \end{equation}
-Funktionerne $\phi_1$ og $\phi_2$ afhænger hverken
-af $h_x$ eller af $h_y$, men er ikke nødvendigvis identiske i de
-enkelte tilfælde. I overensstemmelse med konjektur~\ref{konjektur} betegner
+Funktionerne $\phi_1$ og $\phi_2$ afhÃ¦nger hverken
+af $h_x$ eller af $h_y$, men er ikke nÃ¸dvendigvis identiske i de
+enkelte tilfÃ¦lde. I overensstemmelse med konjektur~\ref{konjektur} betegner
 $\pst$ formodet mindre led.
 
 For at opskrive ${\mathcal W}^{m,r}$ Sobolev normen af fejlen
-genkalder vi os først definitionen af denne
+genkalder vi os fÃ¸rst definitionen af denne
 \begin{equation} \label{sobolevnorm}
   \snorm{v} = \sum_{\substack{ i,j\geq 0 \\ i+j \leq m}} \int_\re
   \Bigl| \frac{\p^{i+j} v(x,y)}{\p x^i \p y^j} \Bigr|^r\, dx\, dy.
 \end{equation}
-Som sædvanlig er $v$ en passende funktion, $m$ et ikke negativt tal,
-og $r$ et positivt tal. Ved at anvende denne definition på de enkelte
-tilfælde i \eqref{fejl2} fås for $m=0$
+Som sÃ¦dvanlig er $v$ en passende funktion, $m$ et ikke negativt tal,
+og $r$ et positivt tal. Ved at anvende denne definition pÃ¥ de enkelte
+tilfÃ¦lde i \eqref{fejl2} fÃ¥s for $m=0$
 \begin{equation} \label{fejl3}
   \smnorm{e_{pq}^T}{0} =
   \left\{
@@ -243,10 +243,10 @@ tilfælde i \eqref{fejl2} fås for $m=0$
   \right.
 \end{equation}
 
-For at undgå for tung notation har vi her skrevet $\phi_1$ hhv.
-$\phi_2$ istedet $\phi_1^r$ hhv. $\phi_2^r$. Når $m\geq 1$ er det ikke
+For at undgÃ¥ for tung notation har vi her skrevet $\phi_1$ hhv.
+$\phi_2$ istedet $\phi_1^r$ hhv. $\phi_2^r$. NÃ¥r $m\geq 1$ er det ikke
 nok kun at betragte de understregede led i \eqref{fejl1}. Lad os som
-eksempel betragte tilfældet $m=1$ og $p=q+1$. Her er
+eksempel betragte tilfÃ¦ldet $m=1$ og $p=q+1$. Her er
 
 \begin{align}
  \snorm{e_{pq}^T} &= ( \phi_1 h_y^{q+1} + \phi_2 h_x^{p} )^r h_x h_y \\
@@ -257,10 +257,10 @@ eksempel betragte tilfældet $m=1$ og $p=q+1$. Her er
  &= \phi_1 h_x h_y^{qr+1} + \phi_2 h_x^2 h_y^{qr+1} + \pst \notag
 \end{align}
 
-Her har vi igen ``misbrugt'' notationen forstået på den måde, at
+Her har vi igen ``misbrugt'' notationen forstÃ¥et pÃ¥ den mÃ¥de, at
 $\phi_1$ hhv. $\phi_2$ i det endelige resultat, ikke er det samme
-$\phi_1$ og $\phi_2$ som i den første ligning. De øvrige tilfælde fås
-på lignende vis.
+$\phi_1$ og $\phi_2$ som i den fÃ¸rste ligning. De Ã¸vrige tilfÃ¦lde fÃ¥s
+pÃ¥ lignende vis.
 
 \begin{equation} \label{fejl4}
 \smnorm{e_{pq}^T}{1} =
@@ -278,8 +278,8 @@ på lignende vis.
 \end{cases}
 \end{equation}
 
-For $2\leq m \leq 1 + \min \{ p,q \}$ kan man (igen på tilsvarende
-måde) få
+For $2\leq m \leq 1 + \min \{ p,q \}$ kan man (igen pÃ¥ tilsvarende
+mÃ¥de) fÃ¥
 
 \begin{equation} \label{fejl5}
 \snorm{e_{pq}^T} =
@@ -294,19 +294,19 @@ måde) få
 \end{cases}
 \end{equation}
 
-Sammenfattes ovenstående resultater fås følgende sætning.
+Sammenfattes ovenstÃ¥ende resultater fÃ¥s fÃ¸lgende sÃ¦tning.
 
 \begin{theorem} \label{errortheorem}
-Lad $p$ og $q$ være positive tal, og antag at $u:\R^2 \rightarrow
+Lad $p$ og $q$ vÃ¦re positive tal, og antag at $u:\R^2 \rightarrow
 \R^2$ er glat nok til at have en Taylor udvikling af orden
 $(p+2)\times (q+2)$ med restled i ethvert punkt i et rektangel
-$\re\subset\R^2$ med sidelængder $h_x$ og $h_y$. Vi har da følgende
+$\re\subset\R^2$ med sidelÃ¦ngder $h_x$ og $h_y$. Vi har da fÃ¸lgende
 asymptotiske fejlligning for Taylor interpolations polynomier i
-$Q_{pq}(\re)$ når $h_x \rightarrow 0$ og $h_y \rightarrow 0$:
+$Q_{pq}(\re)$ nÃ¥r $h_x \rightarrow 0$ og $h_y \rightarrow 0$:
 
 Der findes funktioner $\phi_1$ og $\phi_2$ og tal $s_1$, $s_2$, $t_1$
-og $t_2$ uafhængige af $h_x$ og $h_y$ men afhængige af $u$, $p$ og $q$
-så
+og $t_2$ uafhÃ¦ngige af $h_x$ og $h_y$ men afhÃ¦ngige af $u$, $p$ og $q$
+sÃ¥
 \begin{equation} \label{thm-1}
   e_{pq}^T = \phi_1 h_x^{s_1} h_y^{s_2} +
   \phi_2 h_x^{t_1}h_y^{t_2} + \pst ,
@@ -317,23 +317,23 @@ og
   \phi_2 h_x^{t_1}h_y^{t_2} + \pst .
 \end{equation}
 Her er $m$ og $r$ tal, som opfylder $0\leq m\leq 1+\min \{ p,q \}$.
-Funktionerne $\phi_1$ og $\phi_2$ er ikke nødvendigvis identiske i
-\eqref{thm-1} og \eqref{thm-2}, hvilket også gælder for $s_1$, $s_2$, $t_1$
-og $t_2$. Værdierne af $s_1$, $s_2$, $t_1$ og $t_2$ er givet fra
+Funktionerne $\phi_1$ og $\phi_2$ er ikke nÃ¸dvendigvis identiske i
+\eqref{thm-1} og \eqref{thm-2}, hvilket ogsÃ¥ gÃ¦lder for $s_1$, $s_2$, $t_1$
+og $t_2$. VÃ¦rdierne af $s_1$, $s_2$, $t_1$ og $t_2$ er givet fra
 ligningerne \eqref{fejl2}, \eqref{fejl3}, \eqref{fejl4} og \eqref{fejl5}.
 Er $p=q$ erstattes $\pst$ med $\hot$.
 \end{theorem}
 
-Sætning~\ref{errortheorem} giver ikke mange oplysninger om
+SÃ¦tning~\ref{errortheorem} giver ikke mange oplysninger om
 funktionerne $\phi_1$ og $\phi_2$.
-Vi kan få mere præcise oplysninger om disse fra ligning~\eqref{fejl1}. Det er
-klart, at vi kan skrive $\Taye$ på formen
+Vi kan fÃ¥ mere prÃ¦cise oplysninger om disse fra ligning~\eqref{fejl1}. Det er
+klart, at vi kan skrive $\Taye$ pÃ¥ formen
 \begin{equation} \label{kombination}
   e_{pq}^T = \sum_{k=1}^6 \alpha_k \phi_{p_k,q_k} + \hot\ ,
 \end{equation}
-hvor konstanterne $\alpha_k, \ k=1,\ldots,6$ enten har værdien $0$ eller
-$1$ afhængig af, om den tilhørende funktion $\phi_{p_k,q_k}$ indgår i
-ligning~\eqref{fejl1}. Værdierne for $p_k$, $q_k$ og $\alpha_k$ ses i
+hvor konstanterne $\alpha_k, \ k=1,\ldots,6$ enten har vÃ¦rdien $0$ eller
+$1$ afhÃ¦ngig af, om den tilhÃ¸rende funktion $\phi_{p_k,q_k}$ indgÃ¥r i
+ligning~\eqref{fejl1}. VÃ¦rdierne for $p_k$, $q_k$ og $\alpha_k$ ses i
 tabel~\ref{alphavalues}.
 \begin{table}[htb]
 \begin{displaymath}
@@ -349,10 +349,10 @@ tabel~\ref{alphavalues}.
   \hline
 \end{array}
 \end{displaymath}
-\caption{Værdierne for $p_k$, $q_k$ og $\alpha_k$ i formlen for $\Taye$\label{alphavalues}}
+\caption{VÃ¦rdierne for $p_k$, $q_k$ og $\alpha_k$ i formlen for $\Taye$\label{alphavalues}}
 \end{table}
 Ved at anvende \eqref{sobolevnorm}, \eqref{kombination}, multinomial
-formlen samt følgende relation mellem normen og seminormen i ${\mathcal W}^{m,r}$
+formlen samt fÃ¸lgende relation mellem normen og seminormen i ${\mathcal W}^{m,r}$
 \begin{equation}
   \snorm{e_{pq}^T} =  \ssnorm{e_{pq}^T} + \hot
 \end{equation}
@@ -395,7 +395,7 @@ kan vi skrive \eqref{normfejl1} som
   \sum_{\substack{ r_1,\ldots ,r_6 \geq 0\\ r_1+\cdots +r_6=r}}
   \int_\re F(x,y)\, dx\, dy + \hot .
 \end{equation}
-Integralet i ligning~\eqref{normfejl2} kan udregnes ved hjælp af
+Integralet i ligning~\eqref{normfejl2} kan udregnes ved hjÃ¦lp af
 \eqref{F} og giver
 \begin{multline} \label{kompl}
   \snorm{e_{pq}^T} \\
@@ -425,7 +425,7 @@ Integralet i ligning~\eqref{normfejl2} kan udregnes ved hjælp af
   \frac{\p^j u(y-y_0)^{q_k}}{\p y^j} \Bigr|^{r_k}\, dy + \hot \\
 \end{split}
 \end{multline}
-I det sidste led regner vi på det ene integrale og finder (for
+I det sidste led regner vi pÃ¥ det ene integrale og finder (for
 $1\leq i\leq p_k$, $1\leq j\leq q_k$ og $r_k>0$)
 \begin{multline}
   \int_{a}^{a+h_x} \prod_{k=1}^6 \Bigl|
@@ -445,7 +445,7 @@ $1\leq i\leq p_k$, $1\leq j\leq q_k$ og $r_k>0$)
 \end{split}
 \end{multline}
 
-Indføres notation
+IndfÃ¸res notation
 \begin{equation}
 \kappa_{1,k}=
 \left\{
@@ -492,29 +492,29 @@ kan \eqref{kompl} mere overskueligt skrives som
   h_x^{\gamma_1} h_y^{\gamma_2} + \hot ,
 \end{multline}
 
-Da normen af fejlen afhænger af funktionen $g$, vil det være på sin
-plads med et par bemærkninger om denne. Vi ser, at $(1/2)^{\gamma_1
+Da normen af fejlen afhÃ¦nger af funktionen $g$, vil det vÃ¦re pÃ¥ sin
+plads med et par bemÃ¦rkninger om denne. Vi ser, at $(1/2)^{\gamma_1
 +\gamma_2 -2} \leq g(\alpha ,\beta) \leq 1$ for $(\alpha ,\beta)\in
-[0,1]^2$. Funktionen $g$'s minimum antages såfremt $(x_0,y_0)$ er
+[0,1]^2$. Funktionen $g$'s minimum antages sÃ¥fremt $(x_0,y_0)$ er
 rektanglets centrum, dvs $(\alpha ,\beta)=(1/2,1/2)$, mens dens
-maksimum antages i rektanglets hjørner, dvs $\alpha ,\beta \in
+maksimum antages i rektanglets hjÃ¸rner, dvs $\alpha ,\beta \in
 \{0,1\}$.
 
-Vi vil nu betragte det mest almindelige special tilfælde, hvor
+Vi vil nu betragte det mest almindelige special tilfÃ¦lde, hvor
 polynomiumsgraden er den samme i $x$-retningen som i $y$-retningen,
 dvs $p=q$. Fra tabel~\ref{alphavalues} ses, at vi i denne situation har, $\alpha_1
 =\alpha_4 =1$, og $\alpha_2 =\alpha_3 =\alpha_5 =\alpha_6 =0$. Fra
-ligning~\eqref{normfejl2} ses, at vi kun får bidrag til fejlen såfremt $r_2
+ligning~\eqref{normfejl2} ses, at vi kun fÃ¥r bidrag til fejlen sÃ¥fremt $r_2
 =r_3 =r_5 =r_6=0$, og $r_1 +r_4 =r$. For at forenkle notationen vil
-vi for vilkårligt $k\in\{0,\ldots,r\}$ sætte $r_1=k$ og $r_4=r-k$. Før
-vi ser, hvad \eqref{normfejl2} reducerer til i dette special tilfælde, bemærker
+vi for vilkÃ¥rligt $k\in\{0,\ldots,r\}$ sÃ¦tte $r_1=k$ og $r_4=r-k$. FÃ¸r
+vi ser, hvad \eqref{normfejl2} reducerer til i dette special tilfÃ¦lde, bemÃ¦rker
 vi, at $p_1=q_4=p+1$ og $q_1=p_4=0$, hvorfor minumum af g er
 \begin{equation}
   \min_{(\alpha ,\beta)\in [0,1]^2} g(\alpha ,\beta) =
   \Bigl( \frac{1}{2} \Bigr)^{(p+1-m)r}.
 \end{equation}
-Altså er $g$'s minimum uafhængig af $k$ men afhængig af $m$. Lad os
-først betragte tilfældet $m=0$, da vil $i=j=0$, og ligningen~\eqref{normfejl2}
+AltsÃ¥ er $g$'s minimum uafhÃ¦ngig af $k$ men afhÃ¦ngig af $m$. Lad os
+fÃ¸rst betragte tilfÃ¦ldet $m=0$, da vil $i=j=0$, og ligningen~\eqref{normfejl2}
 simplificerer til
 \begin{multline} \label{mnul}
   \smnorm{e_{pp}^T}{0} \\
@@ -538,7 +538,7 @@ hvor
   {k!(r-k)!\{(p+1)!\}^r((p+1)k+1)((p+1)(r-k)+1)} \\
   \text{for $k=0,\ldots ,r$ og $p,r\in\NN$}
 \end{multline}
-I tabel~\ref{C1values} ses eksempler på værdier af $C^T_{k,0,r,p}$ for
+I tabel~\ref{C1values} ses eksempler pÃ¥ vÃ¦rdier af $C^T_{k,0,r,p}$ for
 nogle af de mest anvendte normer.
 \begin{table}[htb]
 \begin{displaymath}
@@ -557,7 +557,7 @@ nogle af de mest anvendte normer.
   \hline
 \end{array}
 \end{displaymath}
-\caption{Eksempler på værdier for $C^T_{k,0,r,p}$ for normerne
+\caption{Eksempler pÃ¥ vÃ¦rdier for $C^T_{k,0,r,p}$ for normerne
 ${\mathcal L}^1$ og ${\mathcal L}^2$.\label{C1values}}
 \end{table}
 I tabel~\ref{C1valuesgmin} vises $C^T_{k,0,r,p}\cdot g(1/2,1/2)$ for
@@ -579,10 +579,10 @@ de samme normer.
   \hline
 \end{array}
 \end{displaymath}
-\caption{Eksempler på værdier for $C^T_{k,0,r,p}\cdot g(1/2,1/2)$ for normerne
+\caption{Eksempler pÃ¥ vÃ¦rdier for $C^T_{k,0,r,p}\cdot g(1/2,1/2)$ for normerne
 ${\mathcal L}^1$ og ${\mathcal L}^2$.\label{C1valuesgmin}}
 \end{table}
-For $m>0$ er der to tilfælde, hvor vi får et bidrag til summen i
+For $m>0$ er der to tilfÃ¦lde, hvor vi fÃ¥r et bidrag til summen i
 \eqref{normfejl2}: $(i=m,j=0,r_1=r\ \text{og}\ r_4=0)$ og
 $(i=0,j=m,r_1=0\ \text{og}\ r_4=r)$. Vi finder her
 \begin{multline} \label{msnul}
@@ -615,7 +615,7 @@ Ovenfor er
   $(p\in\NN, \ m=r-1=0)$} \\
 \end{split}
 \end{equation}
-I tabel~\ref{C2values} og \ref{C2valuesgmin} ses eksempler på værdien
+I tabel~\ref{C2values} og \ref{C2valuesgmin} ses eksempler pÃ¥ vÃ¦rdien
 af $C_{m,r,p}^T$ og $C_{m,r,p}^T\cdot g(1/2,1/2)$ for
 nogle af de mest anvendte normer.
 \begin{table}[htb]
@@ -628,7 +628,7 @@ nogle af de mest anvendte normer.
          1/16848 & 1/5640192 \\ \hline
 \end{array}
 \end{displaymath}
-\caption{Eksempler på værdier for $C_{m,r,p}^T$ for normerne
+\caption{Eksempler pÃ¥ vÃ¦rdier for $C_{m,r,p}^T$ for normerne
 ${\mathcal L}^1$, ${\mathcal H}^1 = {\mathcal W}^{1,2}$ og
 ${\mathcal W}^{1,4}$\label{C2values}}
 \end{table}
@@ -642,27 +642,27 @@ ${\mathcal W}^{1,4}$\label{C2values}}
          1/69009408 & 1/369635622912 \\ \hline
 \end{array}
 \end{displaymath}
-\caption{Eksempler på værdier for $C_{m,r,p}^T\cdot g(1/2,1/2)$ for normerne
+\caption{Eksempler pÃ¥ vÃ¦rdier for $C_{m,r,p}^T\cdot g(1/2,1/2)$ for normerne
 ${\mathcal L}^1$, ${\mathcal H}^1 = {\mathcal W}^{1,2}$ og
 ${\mathcal W}^{1,4}$\label{C2valuesgmin}}
 \end{table}
 \begin{remark}
 Fra ligningerne~\ref{mnul} og \ref{msnul} ses, at normen af
-interpolations fejlen afhænger af funktionen $g$. Vi genkalder, at
+interpolations fejlen afhÃ¦nger af funktionen $g$. Vi genkalder, at
 $g$'s minimum antages i $(1/2,1/2)$. I tabellerne~\ref{C1valuesgmin}
-og \ref{C2valuesgmin} har vi derfor udregnet værdierne af
+og \ref{C2valuesgmin} har vi derfor udregnet vÃ¦rdierne af
 $C^T_{k,0,r,p}\cdot g(1/2,1/2)$ hhv.
 $C_{m,r,p}^T\cdot g(1/2,1/2)$.
 \end{remark}
 
-Ovenstående resultater kan sammenfattes i følgende sætning
+OvenstÃ¥ende resultater kan sammenfattes i fÃ¸lgende sÃ¦tning
 \begin{theorem} \label{mainpol}
-Lad $p$ og $q$ være positive tal, og antag at $u:\R^2 \rightarrow
+Lad $p$ og $q$ vÃ¦re positive tal, og antag at $u:\R^2 \rightarrow
 \R^2$ er glat nok til at have en Taylor udvikling af orden
 $(p+2)\times (q+2)$ med restled i ethvert punkt i et rektangel
-$\re\subset\R^2$ med sidelængder $h_x$ og $h_y$. Vi har da følgende
+$\re\subset\R^2$ med sidelÃ¦ngder $h_x$ og $h_y$. Vi har da fÃ¸lgende
 asymptotiske fejlligning for Taylor interpolations polynomier i
-$Q_{pq}(\re)$ når $h_x \rightarrow 0$ og $h_y \rightarrow 0$:
+$Q_{pq}(\re)$ nÃ¥r $h_x \rightarrow 0$ og $h_y \rightarrow 0$:
 \begin{multline} \label{gen1}
   \snorm{e_{pq}^T} = \sum_{\substack{ i,j\geq 0 \\ i+j=m }}
   \sum_{\substack{ r_1,\ldots ,r_6 \geq 0 \\ r_1+\cdots +r_6=r}}
@@ -672,7 +672,7 @@ $Q_{pq}(\re)$ når $h_x \rightarrow 0$ og $h_y \rightarrow 0$:
   \cdot h_x^{1-ir+\sum_{k=1}^6 p_k r_k}
   h_y^{1-jr+\sum_{k=1}^6 q_k r_k} + \hot
 \end{multline}
-for et vilkårligt punkt $(x_0,y_0)=(a+\alpha h_x, b+\beta h_y)\in\re$,
+for et vilkÃ¥rligt punkt $(x_0,y_0)=(a+\alpha h_x, b+\beta h_y)\in\re$,
 og tal $m$ og $r$ opfyldende $0\leq m\leq 1+\min \{p,q\}$ og $r>0$.
 Konstanten $C^T_{\_}$ er givet ved
 \begin{multline} \label{gen2}
@@ -689,13 +689,13 @@ m\leq p+1$ eller $m=r-1=0$.
 \end{theorem}
 \begin{remark}
 I artiklen~\cite{hugger-pol} betragtes udover Taylor interpolation
-også Lag\-range interpolation. For Lagrange interpolation vises et
-analogt resultat til sætning~\ref{mainpol}. Strukturen af
-fejlligningerne vises at være identiske blot afhænger interpolations
-fejlen i Lagrange tilfældet ikke af en funktion $g$. Det konkluderes i
+ogsÃ¥ Lag\-range interpolation. For Lagrange interpolation vises et
+analogt resultat til sÃ¦tning~\ref{mainpol}. Strukturen af
+fejlligningerne vises at vÃ¦re identiske blot afhÃ¦nger interpolations
+fejlen i Lagrange tilfÃ¦ldet ikke af en funktion $g$. Det konkluderes i
 artiklen at Lagrange interpolation er bedre end Taylor interpolation i
-det generelle tilfælde. Ved at vælge $(x_0,y_0)$ som rektanglets
-centrum (dvs. således at $g$'s minimum antages) vil Taylor
-interpolation være bedre end eller mindst lige så god som Lagrange
-interpolation for små værdier af $m$, $r$ og $p$.
+det generelle tilfÃ¦lde. Ved at vÃ¦lge $(x_0,y_0)$ som rektanglets
+centrum (dvs. sÃ¥ledes at $g$'s minimum antages) vil Taylor
+interpolation vÃ¦re bedre end eller mindst lige sÃ¥ god som Lagrange
+interpolation for smÃ¥ vÃ¦rdier af $m$, $r$ og $p$.
 \end{remark}

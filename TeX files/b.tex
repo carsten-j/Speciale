@@ -6,77 +6,77 @@
 \newcommand{\T}{{\mathcal T}}
 \newcommand{\D}{{\mathcal D}}
 \begin{document}
-Målet med dette kapitel er at præsentere en netinddelings 
+MÃ¥let med dette kapitel er at prÃ¦sentere en netinddelings 
 metode, der giver asymptotiske optimale netinddelinger 
-(indenfor klassen af netinddelinger med rektangulære 
-elementer). Metoden bygger på begrebet net tætheds funktion 
-og blev indført af Babu\v{s}ka og Gui i~\cite{}. Metoden er 
+(indenfor klassen af netinddelinger med rektangulÃ¦re 
+elementer). Metoden bygger pÃ¥ begrebet net tÃ¦theds funktion 
+og blev indfÃ¸rt af Babu\v{s}ka og Gui i~\cite{}. Metoden er 
 senere videreudviklet af Hugger i artiklerne~\cite{}, 
 \cite{}, \cite{}, \cite{}, \cite{} og \cite{}. Med net 
-tætheds funktioner kan man beskrive følger af netinddelinger
-ved hjælp af simple midler, og man undgår dermed de 
+tÃ¦theds funktioner kan man beskrive fÃ¸lger af netinddelinger
+ved hjÃ¦lp af simple midler, og man undgÃ¥r dermed de 
 komplicerede datastrukturer, der ofte karakteriserer 
-netinddelings algoritmer. Ønsket om simple metoder til at 
-beskrive netinddelinger på udspringer fra parametriserede
+netinddelings algoritmer. Ã˜nsket om simple metoder til at 
+beskrive netinddelinger pÃ¥ udspringer fra parametriserede
 problemer, hvor man med fordel ofte kan genanvende tidligere
-netinddelinger. Det vil fremgå af teorien nedenfor, at 
-metoden med fordel også kan anvendes, selvom man kun skal 
-løse et enkelt problem. Netinddelings algoritmen er ment som 
-en ``one shot'' metode, der på baggrund af informationer fra 
-net tætheds funktionen og den bruger bestemte fejltolerance 
-forsøger at konstruere en netinddeling, hvor fejlen i den
-tilhørende endelige element løsning efter første gennemløb af 
+netinddelinger. Det vil fremgÃ¥ af teorien nedenfor, at 
+metoden med fordel ogsÃ¥ kan anvendes, selvom man kun skal 
+lÃ¸se et enkelt problem. Netinddelings algoritmen er ment som 
+en ``one shot'' metode, der pÃ¥ baggrund af informationer fra 
+net tÃ¦theds funktionen og den bruger bestemte fejltolerance 
+forsÃ¸ger at konstruere en netinddeling, hvor fejlen i den
+tilhÃ¸rende endelige element lÃ¸sning efter fÃ¸rste gennemlÃ¸b af 
 algoritmen er mindre end den givne fejltolerance. Mislykkes 
 dette, vil metoden iterere.
  
 % \begin{defintion}
-Lad $\T=\{\Box_j\}_{j=1}^m$ være et endeligt element net. Vi
+Lad $\T=\{\Box_j\}_{j=1}^m$ vÃ¦re et endeligt element net. Vi
 siger da, at $\T$ er en optimal endelig element netinddeling
-indenfor en given klasse af netinddelinger, såfremt at fejlen
-i den tilhørende endelige element løsning er mindre end en 
-given fejltolerance, og såfremt de beregningsmæssige 
-omkostninger ved at finde denne løsning er minimale. Minumum er 
+indenfor en given klasse af netinddelinger, sÃ¥fremt at fejlen
+i den tilhÃ¸rende endelige element lÃ¸sning er mindre end en 
+given fejltolerance, og sÃ¥fremt de beregningsmÃ¦ssige 
+omkostninger ved at finde denne lÃ¸sning er minimale. Minumum er 
 her taget over alle netinddelinger indenfor den givne klasse.
 % \end{defintion}
 
 % \begin{remark}
-I algoritme~\ref{} udføres forgrovning og forfining kun en 
-enkelt gang. Dette er valgt for at undgå muligheder for 
-uendelige løkker. Forgrovning udføres før forfining for at sikre
-en mere effektiv udnyttelse af computer lagerplads. Ved at udføre
-forgrovning og forfining i nævnte rækkefølge kan man nemlig 
+I algoritme~\ref{} udfÃ¸res forgrovning og forfining kun en 
+enkelt gang. Dette er valgt for at undgÃ¥ muligheder for 
+uendelige lÃ¸kker. Forgrovning udfÃ¸res fÃ¸r forfining for at sikre
+en mere effektiv udnyttelse af computer lagerplads. Ved at udfÃ¸re
+forgrovning og forfining i nÃ¦vnte rÃ¦kkefÃ¸lge kan man nemlig 
 udnytte den lagerplads, der er blevet frigjort i forbindelse med
 forgrovning til at gemme informationer om forfining i. For flere 
 detaljer om algoritmen henvises til afsnit~\ref{}, hvor vi 
 konstruerer en mere generel algoritme. Den initiale netinddelingen
-$\hat{\T}$ er bruger bestemt og kan eventuelt vælges som $\T^{\ast}$.
+$\hat{\T}$ er bruger bestemt og kan eventuelt vÃ¦lges som $\T^{\ast}$.
 % \end{remark}
 
 % \begin{proof}
 Det er klart, at $A_n^{\ast}(\D)$ er en tilladt ikke-aftagende
-netinddeling af $\dom$ for enhver net tætheds funktion $\D$. Dette
-følger af den måde, hvorpå netinddelinger i $A_n^{\ast}(\D)$ er 
-sorteret samt af, at algoritmen~\ref{} er konstueret således, at 
-ethvert element på et eller andet tidspunkt bliver inddelt i mindre
-elementer når intensiteten aftager. Altså vil det samlede antal 
-elementer gå mod uendelig, når intensiteten går mod nul. For at vise 
-at det resterende udsagn i sætningen er korrekt, skal vi vise, at 
+netinddeling af $\dom$ for enhver net tÃ¦theds funktion $\D$. Dette
+fÃ¸lger af den mÃ¥de, hvorpÃ¥ netinddelinger i $A_n^{\ast}(\D)$ er 
+sorteret samt af, at algoritmen~\ref{} er konstueret sÃ¥ledes, at 
+ethvert element pÃ¥ et eller andet tidspunkt bliver inddelt i mindre
+elementer nÃ¥r intensiteten aftager. AltsÃ¥ vil det samlede antal 
+elementer gÃ¥ mod uendelig, nÃ¥r intensiteten gÃ¥r mod nul. For at vise 
+at det resterende udsagn i sÃ¦tningen er korrekt, skal vi vise, at 
 $\D$ defineret ved~\eqref{} og \eqref{} opfylder 
 $A_n^{\ast}(\D) = \{\T_m\}_{m=1}^\infty$, hvor $\T_m$ er netinddelingen
 givet ved algoritme~\ref{}. Da $\{\T_m\}_{m=1}^\infty$ antages at 
-tilhøre billedet af $A_n^{\ast}$, findes der en net tætheds funktion
-$\tilde{\D}$ så $A_n^{\ast}(\tilde{\D})=\{\T_m\}_{m=1}^\infty$. Lad
-$S_0$ betegne den mængde, hvor $\tilde{\D}$ er diskontinuert eller 
-har singulariteter. Mængden $S_0$ har mål $0$. Bemærk at mængden 
+tilhÃ¸re billedet af $A_n^{\ast}$, findes der en net tÃ¦theds funktion
+$\tilde{\D}$ sÃ¥ $A_n^{\ast}(\tilde{\D})=\{\T_m\}_{m=1}^\infty$. Lad
+$S_0$ betegne den mÃ¦ngde, hvor $\tilde{\D}$ er diskontinuert eller 
+har singulariteter. MÃ¦ngden $S_0$ har mÃ¥l $0$. BemÃ¦rk at mÃ¦ngden 
 $S\equiv S_0 \cup ( \cup_{m=1}^\infty \cup_{j=1}^{N_{a,m}} \partial
-\Box_{j,m})$ ligeledes har mål $0$. Sæt nu
-$a_m=\int_{\Box_m(x)} \tilde{\D}\, dx$ og lad $\I_m$ være et 
-vilkårligt tal. Ved at indsætte $\I_m$ for $\I$ i algoritmen~\ref{}
-fås en netinddeling $\{\T_m\}_{m=1}^\infty$. Ifølge algorimen vil en
-forfining af $\Box_m(x)$ kun ske såfremt $a_m(x)/\I_m > \alpha$
-Omvendt følger det af konstruktionen af algoritmen, at 
-$a_m(x)/\I_m \leq \alpha$. Fra defintionen af indeks delfølgen
-$\{ m_k \}_{k=1}^\infty$ følger det af $a_{m_k}/\underline{\I}_{m_k}
+\Box_{j,m})$ ligeledes har mÃ¥l $0$. SÃ¦t nu
+$a_m=\int_{\Box_m(x)} \tilde{\D}\, dx$ og lad $\I_m$ vÃ¦re et 
+vilkÃ¥rligt tal. Ved at indsÃ¦tte $\I_m$ for $\I$ i algoritmen~\ref{}
+fÃ¥s en netinddeling $\{\T_m\}_{m=1}^\infty$. IfÃ¸lge algorimen vil en
+forfining af $\Box_m(x)$ kun ske sÃ¥fremt $a_m(x)/\I_m > \alpha$
+Omvendt fÃ¸lger det af konstruktionen af algoritmen, at 
+$a_m(x)/\I_m \leq \alpha$. Fra defintionen af indeks delfÃ¸lgen
+$\{ m_k \}_{k=1}^\infty$ fÃ¸lger det af $a_{m_k}/\underline{\I}_{m_k}
 = \alpha$ for alle positive heltal $k$. Vi har nu
 \begin{equation}
   \tilde{\D}(x) = \lim_{m\rightarrow\infty}
@@ -90,9 +90,9 @@ $\{ m_k \}_{k=1}^\infty$ følger det af $a_{m_k}/\underline{\I}_{m_k}
 \begin{equation}
   = \alpha \frac{\underline{\I}_m}{V_n(\Box_{m_k}(x))}
 \end{equation}
-Da $S$ har mål $0$ følger det af~\eqref{}, at $\D$ givet ved~\eqref{} 
-er den rigtige net tætheds funktion, da den er identiske med $\tilde{\D}$
-næsten overalt.
+Da $S$ har mÃ¥l $0$ fÃ¸lger det af~\eqref{}, at $\D$ givet ved~\eqref{} 
+er den rigtige net tÃ¦theds funktion, da den er identiske med $\tilde{\D}$
+nÃ¦sten overalt.
 % \end{proof}
 \setlength{\unitlength}{1mm}
 \begin{figure}[htb]
@@ -122,7 +122,7 @@ næsten overalt.
 }
 \end{picture}
 \end{center}
-\caption{Eksempler på $\beta$-domæner}
+\caption{Eksempler pÃ¥ $\beta$-domÃ¦ner}
 \end{figure}
 \end{document}
 

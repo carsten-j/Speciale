@@ -1,46 +1,46 @@
 \chapter{Fejlestimering} 
-Når man omformer uendelig-dimensionelle poroblemer i form af
-differentialligninger til et sæt af endelig mange ligninger med
-endelig mange ubekendte vil der uundgåeligt opstå nogle fejl. En stor
-del af forskningsindsatsen indenfor den endelige element metode består
+NÃ¥r man omformer uendelig-dimensionelle poroblemer i form af
+differentialligninger til et sÃ¦t af endelig mange ligninger med
+endelig mange ubekendte vil der uundgÃ¥eligt opstÃ¥ nogle fejl. En stor
+del af forskningsindsatsen indenfor den endelige element metode bestÃ¥r
 i at udvikle og dokumentere metoder til evaluering af den fejl, der
-opstår i denne proces. I dette kapitel skal vi se nærmere på en hjørne
+opstÃ¥r i denne proces. I dette kapitel skal vi se nÃ¦rmere pÃ¥ en hjÃ¸rne
 af fejlestimering.
 
 \section{}
 
-\subsection{Beregningsmæssige- og modelleringsfejl}
-Den fejl, som man begår ved at omformulere et differentiallignings
+\subsection{BeregningsmÃ¦ssige- og modelleringsfejl}
+Den fejl, som man begÃ¥r ved at omformulere et differentiallignings
 problem til et variations problem, kan opdeles i 
 \begin{itemize}
-  \item beregningsmæssige fejl.
+  \item beregningsmÃ¦ssige fejl.
   \item modelleringsfejl.
 \end{itemize}
 For at konkretisere disse fejl typer skal vi betragte en matematiske model
 \begin{equation} \label{math-model}
   \D u=f,
 \end{equation}
-hvor $\D$ er en differentialoperator (muligvis med begyndelsesværdi-
-eller rand\-be\-tin\-gel\-ser) defineret på et vist domæne $\dom$, $f$ en 
-given funktion, og $u$ er den ukendte løsning til problemet. Den 
-matematiske model består her af $\D$ og $f$. Udgangspunktet for den
+hvor $\D$ er en differentialoperator (muligvis med begyndelsesvÃ¦rdi-
+eller rand\-be\-tin\-gel\-ser) defineret pÃ¥ et vist domÃ¦ne $\dom$, $f$ en 
+given funktion, og $u$ er den ukendte lÃ¸sning til problemet. Den 
+matematiske model bestÃ¥r her af $\D$ og $f$. Udgangspunktet for den
 matematiske model er typisk en fysisk model\footnote{Ved en fysisk
-model forstås en model, der modellere en situation hentet fra fx
-økonomi, kemi eller fysik.}
+model forstÃ¥s en model, der modellere en situation hentet fra fx
+Ã¸konomi, kemi eller fysik.}
 \begin{equation} \label{phys-model}
   \tilde{\D} \tilde{u} = \tilde{f}.
 \end{equation}
 Her har $\tilde{\D}$, $\tilde{u}$ og $\tilde{f}$ analoge betydninger.
-Den fysiske model antages at have en entydig løsning, og vi skal
-desuden antage, at den matematiske model er konstrueret på en sådan
-måde, at der ligeledes for denne findes en entydig løsning. Lad nu
-$\uex$ være løsningen til \eqref{math-model}, og lad $\ufe$ være en approksimeret 
-løsning til \eqref{math-model} beregnet ved hjælp af den endelige 
-element metode. Vi vil da definere den beregningsmæssige fejl som
+Den fysiske model antages at have en entydig lÃ¸sning, og vi skal
+desuden antage, at den matematiske model er konstrueret pÃ¥ en sÃ¥dan
+mÃ¥de, at der ligeledes for denne findes en entydig lÃ¸sning. Lad nu
+$\uex$ vÃ¦re lÃ¸sningen til \eqref{math-model}, og lad $\ufe$ vÃ¦re en approksimeret 
+lÃ¸sning til \eqref{math-model} beregnet ved hjÃ¦lp af den endelige 
+element metode. Vi vil da definere den beregningsmÃ¦ssige fejl som
 \begin{equation}
   e_c = \uex - \ufe .
 \end{equation}
-Er $\tilde{u}_{\mathsf{ph}}$ løsningen til \eqref{phys-model}, 
+Er $\tilde{u}_{\mathsf{ph}}$ lÃ¸sningen til \eqref{phys-model}, 
 defineres modelleringsfejlen som 
 \begin{equation}
   e_m = \tilde{u}_{\mathsf{ph}} - \uex .
@@ -50,23 +50,23 @@ Den samlede fejl defineres da som
   e=\tilde{u}_{\mathsf{ph}}-\ufe=\tilde{u}_{\mathsf{ph}}-\uex+\uex-\ufe
   =e_m + e_c ,
 \end{equation}
-dvs. som summen af modellerings- og beregningsmæssige fejl.
-Vi skal her  kun beskæftige os med beregningsmæssige fejl. 
+dvs. som summen af modellerings- og beregningsmÃ¦ssige fejl.
+Vi skal her  kun beskÃ¦ftige os med beregningsmÃ¦ssige fejl. 
 
 \subsection{Forskellige typer af fejlestimatorer}
-Igennem årene er der blevet foreslået et utal at forskellige 
+Igennem Ã¥rene er der blevet foreslÃ¥et et utal at forskellige 
 fejlestimatorer til brug i den endelige element metode, se fx
 \cite{babuska1} for 
 litteraturhenvisninger. Flertallet af disse fejlestimatorer kan 
-klassificeres i en af følgende to kategorier:
+klassificeres i en af fÃ¸lgende to kategorier:
 \begin{itemize}
   \item Udglatnings metoder (eng. smoothening/flux-projection).
   \item Residuum metoder.
 \end{itemize}
 Vi skal i afsnit~\ref{z2} betragte en bestemt udglatnings metode.
-Traditionelt har residuum metoder haft størst udbredelse, men den
-udglatnings metode, som vi senere skal studere, vil måske medvirke til at åbne
-vejen for en større udbredelse af fejlestimatorer af denne type.
+Traditionelt har residuum metoder haft stÃ¸rst udbredelse, men den
+udglatnings metode, som vi senere skal studere, vil mÃ¥ske medvirke til at Ã¥bne
+vejen for en stÃ¸rre udbredelse af fejlestimatorer af denne type.
  
 \subsection{Forskellige former for fejlestimering}
 Man skelner normalt mellem to former for fejlestimering
@@ -74,28 +74,28 @@ Man skelner normalt mellem to former for fejlestimering
   \item A priori fejlestimering.
   \item A posteriori fejlestimering.
 \end{itemize}
-Ved a priori fejlestimering forsøger man at vurdere fejlen mellem den
-eksakte løsning og den approksimerede løsning alene på grundlag af
-egenskaberne ved den eksakte (ukendte) løsning til problemet. I a 
-posteriori fejlestimering forsøger man derimod at vurdere fejlen vha. 
-den beregnede approksimerede løsning. De to former for fejlestimering 
+Ved a priori fejlestimering forsÃ¸ger man at vurdere fejlen mellem den
+eksakte lÃ¸sning og den approksimerede lÃ¸sning alene pÃ¥ grundlag af
+egenskaberne ved den eksakte (ukendte) lÃ¸sning til problemet. I a 
+posteriori fejlestimering forsÃ¸ger man derimod at vurdere fejlen vha. 
+den beregnede approksimerede lÃ¸sning. De to former for fejlestimering 
 ses ofte anvendt i forskellige teoretiske og praktiske situationer. A
 priori fejlestimering bruges typisk til at bestemme 
 konvergensegenskaberne for den numeriske metode, mens a posteriori
 fejlestimering ofte anvendes i adaptive algoritmer som en del af
 netinddelings algoritmen og stopkriteriet.
 
-Specifikke egenskaber ved fejlestimatorer er tæt knyttet til den 
+Specifikke egenskaber ved fejlestimatorer er tÃ¦t knyttet til den 
 type af differentialligninger, som de er konstrueret i tilknytning til. 
-Af denne grund findes kun  meget få generelle teoretiske resultater om
-fejlestimatorer. Til gengæld findes en del begreber og definitioner,
-som man benytter, når man skal vurdere og/eller sammenligne en eller
+Af denne grund findes kun  meget fÃ¥ generelle teoretiske resultater om
+fejlestimatorer. Til gengÃ¦ld findes en del begreber og definitioner,
+som man benytter, nÃ¥r man skal vurdere og/eller sammenligne en eller
 flere fejlestimatorer. 
 
 \subsection{} \label{def-beg}
 \begin{definition}
-Ved en celle forstås en mindre samling af sammenhængende elementer, 
-se figur \ref{fig-cell}. Bemærk at en celle godt kan bestå af et  
+Ved en celle forstÃ¥s en mindre samling af sammenhÃ¦ngende elementer, 
+se figur \ref{fig-cell}. BemÃ¦rk at en celle godt kan bestÃ¥ af et  
 enkelt element.
 \end{definition}
 \begin{figure}[htbp]
@@ -105,27 +105,27 @@ enkelt element.
       \put(1,1){\psfig{figure=cell.ps}}
     \end{picture}
   \end{center}
-  \caption{Eksempel på celle\label{fig-cell}}
+  \caption{Eksempel pÃ¥ celle\label{fig-cell}}
 \end{figure}
 \begin{definition}
-Lad $\dom$ betegne domænet, hvori vi ønsker at løse en given
-differentialligning, og lad $\T=\{\fee_k\}_{k=1}^N$ være en
+Lad $\dom$ betegne domÃ¦net, hvori vi Ã¸nsker at lÃ¸se en given
+differentialligning, og lad $\T=\{\fee_k\}_{k=1}^N$ vÃ¦re en
 triangulering af $\dom$. Ved en element fejl indikator for elementet
-$\fee_k\in\T$ forstås en udtryk, der afhænger af $\ufe$ men ikke
+$\fee_k\in\T$ forstÃ¥s en udtryk, der afhÃ¦nger af $\ufe$ men ikke
 af $\uex$, og som vurderer fejlen i elementet $\fee_k$.
 \end{definition}
 \begin{example}
-Betragtes model problemet \eqref{math-model} med endelig element løsning
+Betragtes model problemet \eqref{math-model} med endelig element lÃ¸sning
 $\ufe$, er 
 \begin{equation}
   \eta_{\fee} = \meas (\fee)\norm{R_{\fee}(\ufe)}
 \end{equation}
-et meget simpelt eksempel på en element fejl indikator.
+et meget simpelt eksempel pÃ¥ en element fejl indikator.
 Her er $R_{\fee}(\ufe)=(\D\ufe -f)|_{\fee}$ residualet restringeret til
 $\fee$, og $\meas (\fee)$ er arealet af $\fee$.  
 \end{example}
 \begin{definition}
-Lad $\cell$ være en celle. Vi vil da definere en fejlestimator som
+Lad $\cell$ vÃ¦re en celle. Vi vil da definere en fejlestimator som
 \begin{equation}
   \ee = \Bigl( \sum \begin{Sb} 
                       \fee \in \T \\
@@ -134,34 +134,34 @@ Lad $\cell$ være en celle. Vi vil da definere en fejlestimator som
                \eta_{\fee}^2\Bigr)^{1/2}.
 \end{equation}
 Her er $\eta_{\fee}$ en element fejl indikator for elementet $\fee$
-tilhørende trianguleringen $\T$ af det betragtede domæne.
+tilhÃ¸rende trianguleringen $\T$ af det betragtede domÃ¦ne.
 \end{definition}
 
 For at kunne vurdere hvor god en fejlestimator er, har vi brug for et
-mål, der definerer, hvad vi forstår ved en god fejlestimator. Et sådan
-mål er effektivitets indekset.
+mÃ¥l, der definerer, hvad vi forstÃ¥r ved en god fejlestimator. Et sÃ¥dan
+mÃ¥l er effektivitets indekset.
 
 \begin{definition}
-Ved effektivitets indekset for en fejlsestimator $\ee$ forstås
+Ved effektivitets indekset for en fejlsestimator $\ee$ forstÃ¥s
 \begin{equation}
   \ei = \frac{\ee}{\en{e}},
 \end{equation}
-hvor $\en{\cdot}$ er den norm, vi ønsker at vurdere forskellen på 
+hvor $\en{\cdot}$ er den norm, vi Ã¸nsker at vurdere forskellen pÃ¥ 
 $e=\uex - \ufe$ i. 
 \end{definition}
 
-Jo tættere $\ei$ er på $1$, jo bedre er fejlestimatoren $\ee$. 
+Jo tÃ¦ttere $\ei$ er pÃ¥ $1$, jo bedre er fejlestimatoren $\ee$. 
 
 Normalt forventer man ikke, at fejlen i den endelige element metode er
-specielt lille, såfremt netinddelingen er grov. Omvendt bør en god
-fejlestimator approksimere den eksakte fejl godt, såfremt
-netinddelingen er fin. På den baggrund skal vi nu definere, hvad vi
-forstår ved en asymptotisk eksakt fejlestimator.
+specielt lille, sÃ¥fremt netinddelingen er grov. Omvendt bÃ¸r en god
+fejlestimator approksimere den eksakte fejl godt, sÃ¥fremt
+netinddelingen er fin. PÃ¥ den baggrund skal vi nu definere, hvad vi
+forstÃ¥r ved en asymptotisk eksakt fejlestimator.
 \begin{definition}
-Lad $\ee$ være en fejlestimator. $\ee$ siges at være asymptotisk
-eksakt, såfremt
+Lad $\ee$ vÃ¦re en fejlestimator. $\ee$ siges at vÃ¦re asymptotisk
+eksakt, sÃ¥fremt
 \begin{equation}
   \ei \rightarrow 1 \quad \text{for $\norm[\cell]{e}\rightarrow 0$}
 \end{equation}
-for en given klasse af løsninger og en følge af netinddelinger.
+for en given klasse af lÃ¸sninger og en fÃ¸lge af netinddelinger.
 \end{definition}

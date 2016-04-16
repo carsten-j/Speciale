@@ -1,28 +1,28 @@
 \chapter{Endelige elementer og endelige element rum}
 
-Når man skal foretage en inddeling af et domæne i planen i endelige
-elementer, vælger man af beregningsmæssige hensyn ofte at opdele
-området i simple geometriske figurer såsom trekanter eller firkanter. 
-Er området ikke-polygonalt kan
-man enten vælge at benytte kurvede elementer (se fx
+NÃ¥r man skal foretage en inddeling af et domÃ¦ne i planen i endelige
+elementer, vÃ¦lger man af beregningsmÃ¦ssige hensyn ofte at opdele
+omrÃ¥det i simple geometriske figurer sÃ¥som trekanter eller firkanter. 
+Er omrÃ¥det ikke-polygonalt kan
+man enten vÃ¦lge at benytte kurvede elementer (se fx
 \cite{ciarlet78,johnson87}) eller at foretage en
-finere inddeling af området lang randen i mindre trekantet/firkanter.
-Endeligt kan man også vælge at afbilde domænet bijektivt på et
-``pænere'' domæne. Hvilken fremgangsmåde man vælger er ofte en smagssag.
+finere inddeling af omrÃ¥det lang randen i mindre trekantet/firkanter.
+Endeligt kan man ogsÃ¥ vÃ¦lge at afbilde domÃ¦net bijektivt pÃ¥ et
+``pÃ¦nere'' domÃ¦ne. Hvilken fremgangsmÃ¥de man vÃ¦lger er ofte en smagssag.
 Traditionelt har man arbejdet med inddelinger i trekanter (eller mere
 generelt $n$-simplexer), men firkanter er ved at vinde indpas. I dette
 kapitel, hvor vi formelt skal definere endelige elementer og endelige
-element rum, vil udgangspunktet være trekanter/$n$-simplexer. I et
+element rum, vil udgangspunktet vÃ¦re trekanter/$n$-simplexer. I et
 senere kapitel, hvor vi skal studere en netinddelings algoritme, vil
 rektangler blive anvendt i trianguleringen. Definitionen af nogle af
 begreberne i dette kapitel varierer fra forfatter til forfatter.
-Fremgangsmåden, vi her skal anvende, kaldes for en konformerende
+FremgangsmÃ¥den, vi her skal anvende, kaldes for en konformerende
 endelig element metode og er inspireret af \cite{ciarlet78}.
 
 \section{Notation}
-Vi skal kort redegøre for notationen vedrørende afledede af funktioner
-$v:\R^n \rightarrow \R$. Lad $e_i$, $1\leq i\leq n$ være den
-sædvanlige kanoniske basis for $\R^n$. De partielle afledede af $v$
+Vi skal kort redegÃ¸re for notationen vedrÃ¸rende afledede af funktioner
+$v:\R^n \rightarrow \R$. Lad $e_i$, $1\leq i\leq n$ vÃ¦re den
+sÃ¦dvanlige kanoniske basis for $\R^n$. De partielle afledede af $v$
 vil da blive betegnet med
 \begin{align}
   \p_i v(a) &= Dv(a)e_i, \\
@@ -31,132 +31,132 @@ vil da blive betegnet med
   \text{osv.} \notag  
 \end{align}
 Til tider skal vi benytte en multi-indeks notation. Lad
-$\alpha=(\alpha_1,\ldots,\alpha_n)\in\NN^n$ og sæt $|\alpha
-|=\sum_{i=1}^n \alpha_i$. Ved $\p^{\alpha} v(a)$ vil vi da forstå
+$\alpha=(\alpha_1,\ldots,\alpha_n)\in\NN^n$ og sÃ¦t $|\alpha
+|=\sum_{i=1}^n \alpha_i$. Ved $\p^{\alpha} v(a)$ vil vi da forstÃ¥
 resultatet af at anvende den $|\alpha |$'te afledede $D^{|\alpha
-|}v(a)$ på en vilkårlig $|\alpha |$-vektor i $(\R^n)^{|\alpha |}$,
+|}v(a)$ pÃ¥ en vilkÃ¥rlig $|\alpha |$-vektor i $(\R^n)^{|\alpha |}$,
 hvor basisvektoren $e_i$ forekommer $\alpha_i$ gange $1\leq i\leq n$.
 For eksempel for $n=3$ er $\p^{(1,0,0)} v(a)=\p_1 v(a)$,
 $\p^{(1,1,1)}v(a)=\p_{123}v(a)$ og $\p^{(3,0,0)}v(a)=\p_{111}v(a)$.
-Endelig skal vi også erstatte de kanoniske basisvektorer $e_i$ med
-vilkårlige faste vektorer $\xi_i$ for at opnå vilkårlige retningsafledede.
+Endelig skal vi ogsÃ¥ erstatte de kanoniske basisvektorer $e_i$ med
+vilkÃ¥rlige faste vektorer $\xi_i$ for at opnÃ¥ vilkÃ¥rlige retningsafledede.
  
 \section{Endelige element rum} \label{femindledning}
-En væsentlig del af den endelige element metode består af
+En vÃ¦sentlig del af den endelige element metode bestÃ¥r af
 konstruktionen af endelige dimensionale underrum $\Xfe$ og $\Yfe$ af
-løsningsrummet $\X$ hhv. testrummet $\Y$. Fremgangsmåden ved
-konstruktionen af $\Xfe$ og $\Yfe$ er selvfølgelig identisk, og vi
+lÃ¸sningsrummet $\X$ hhv. testrummet $\Y$. FremgangsmÃ¥den ved
+konstruktionen af $\Xfe$ og $\Yfe$ er selvfÃ¸lgelig identisk, og vi
 skal fremover blot betragte $\Xfe$. Denne konstruktion kan
 karakteriseres ved 3 aspekter:
 \begin{enumerate}
   \item En triangulering $\Th$ af $\domain$.
   \item For ethvert $K\in \Th$ skal rummet $P_K=\{v|_K \ |\ v\in \Xfe\}$
         indeholde polynomier.
-  \item Der skal findes en basis for $\Xfe$, bestående af funktioner
-        med så ``lille'' støtte som mulig.
+  \item Der skal findes en basis for $\Xfe$, bestÃ¥ende af funktioner
+        med sÃ¥ ``lille'' stÃ¸tte som mulig.
 \end{enumerate}
 Grunden til at vi forlanger, at rummene $P_K$ skal indeholde polynomier, 
-der kan udtrykkes i en basis bestående af funktioner med så ``lille'' støtte
-som mulig, er et ønske om dels at få simple beregninger af 
-elementerne i (\ref{des1}-\ref{des3}) dels at opnå en matrix, der er
+der kan udtrykkes i en basis bestÃ¥ende af funktioner med sÃ¥ ``lille'' stÃ¸tte
+som mulig, er et Ã¸nske om dels at fÃ¥ simple beregninger af 
+elementerne i (\ref{des1}-\ref{des3}) dels at opnÃ¥ en matrix, der er
 tyndt besat. Vi vil nu studere de tre aspekter i detaljer.
 
 \section{Triangulering af $\overline{\Omega}$} \label{triang}
-Man tillader naturligvis ikke vilkårlige inddelinger af domænet. For
-at få en sammenhængende teori har følgende definition vist sig at være
+Man tillader naturligvis ikke vilkÃ¥rlige inddelinger af domÃ¦net. For
+at fÃ¥ en sammenhÃ¦ngende teori har fÃ¸lgende definition vist sig at vÃ¦re
 fornuftig. 
 
 \begin{definition} \label{defth}
-Lad $\overline{\Omega}$ betegne det domæne, hvori en given 
-differentialligning søges løst. Ved en triangulering $\Th$ af
-$\overline{\Omega}$ forstås en inddeling af $\overline{\Omega}$ i et 
-endeligt antal delmængder $K$ på en sådan måde, at følgende betingelser
+Lad $\overline{\Omega}$ betegne det domÃ¦ne, hvori en given 
+differentialligning sÃ¸ges lÃ¸st. Ved en triangulering $\Th$ af
+$\overline{\Omega}$ forstÃ¥s en inddeling af $\overline{\Omega}$ i et 
+endeligt antal delmÃ¦ngder $K$ pÃ¥ en sÃ¥dan mÃ¥de, at fÃ¸lgende betingelser
 er opfyldt:
 \begin{Thenumerate}
   \item $\overline{\Omega} = \cup_{K\in \Th} K$.
-  \item For alle $K\in \Th$ gælder $K = \overline{K}$ og 
+  \item For alle $K\in \Th$ gÃ¦lder $K = \overline{K}$ og 
         $K^{\circ} \not=\emptyset$. 
-  \item For alle $K_1, K_2 \in \Th$ hvor $K_1 \not= K_2$ gælder
+  \item For alle $K_1, K_2 \in \Th$ hvor $K_1 \not= K_2$ gÃ¦lder
         $K_1^\circ \cap K_2^\circ =\emptyset$.
   \item For alle $K \in \Th$ er $\partial K$ Lipschitz kontinuert. 
 \end{Thenumerate}
 \end{definition}
-Vi skal senere tilføje en femte betingelse, der skal være med til at
+Vi skal senere tilfÃ¸je en femte betingelse, der skal vÃ¦re med til at
 sikre kontinuitet over randene for naboelementer.
 \begin{remark}
-Ordet ``endelig'' i den endelige element metode går på opdeling\-en af
-$\overline{\Omega}$ i et {\em endeligt} antal delmængder.
+Ordet ``endelig'' i den endelige element metode gÃ¥r pÃ¥ opdeling\-en af
+$\overline{\Omega}$ i et {\em endeligt} antal delmÃ¦ngder.
 \end{remark}
 \subsection{Lokale endelige element rum}
 For et givet endelig element rum $\Xfe$ (vi skal senere vende tilbage til en
-præcis definition) defineres det endelige dimensionale rum $P_K$ som
+prÃ¦cis definition) defineres det endelige dimensionale rum $P_K$ som
 \begin{equation}
   P_K=\{v|_K \ | \ v\in \Xfe \}.
-\end{equation} Som nævnt i kapitel~\ref{variation} vil $\X$ ofte være
-$\Het$, $\Hto$ eller lignende. Vi skal nu vise en sætning, der giver 
+\end{equation} Som nÃ¦vnt i kapitel~\ref{variation} vil $\X$ ofte vÃ¦re
+$\Het$, $\Hto$ eller lignende. Vi skal nu vise en sÃ¦tning, der giver 
 betingelser, som vil sikre at $\Xfe \subset \Het$.
 \begin{theorem} \label{xfehet}
-Lad $\dom$ være en åben og begrænset delmængde af $\R^n$. Antag at
+Lad $\dom$ vÃ¦re en Ã¥ben og begrÃ¦nset delmÃ¦ngde af $\R^n$. Antag at
 inklusionen $P_K \subset \H^1(K)$ holder for alle $K\in \Th$, og at
 $\Xfe \subset {\cal{C}}^0(\overline{\Omega})$. Da vil
 \begin{gather} 
   \Xfe \subset \H^1(\Omega), \\ 
-  {\mathcal X}_{0,{\mathsf{fe}}} = \{ v \in \Xfe \ | \ v = 0 \ \text{på $\p\dom$} \} 
+  {\mathcal X}_{0,{\mathsf{fe}}} = \{ v \in \Xfe \ | \ v = 0 \ \text{pÃ¥ $\p\dom$} \} 
   \subset \H^1_0(\Omega). 
 \end{gather}
 \end{theorem}
 \begin{proof}
-Lad $v\in \Xfe$ være givet. Da $\overline{\Omega}$ er begrænset, og da 
-$v\in {\cal{C}}^0(\overline{\Omega})$, vil $v\in \Lto$. Ifølge 
-definitionen af $\H^1(\Omega)$ vil $v\in \H^1(\Omega)$, såfremt vi for
-$i=1,\ldots,n$ kan finde en funktion $v_i \in \Lto$, så der for alle 
+Lad $v\in \Xfe$ vÃ¦re givet. Da $\overline{\Omega}$ er begrÃ¦nset, og da 
+$v\in {\cal{C}}^0(\overline{\Omega})$, vil $v\in \Lto$. IfÃ¸lge 
+definitionen af $\H^1(\Omega)$ vil $v\in \H^1(\Omega)$, sÃ¥fremt vi for
+$i=1,\ldots,n$ kan finde en funktion $v_i \in \Lto$, sÃ¥ der for alle 
 $\phi \in {\cal{D}}^{\infty}_{c}(\Omega)$
-(${\cal{D}}^{\infty}_{c}(\Omega)$ er mængden af $\infty$-gange
-differentiable funktioner med kompakt støtte i $\dom$) gælder 
+(${\cal{D}}^{\infty}_{c}(\Omega)$ er mÃ¦ngden af $\infty$-gange
+differentiable funktioner med kompakt stÃ¸tte i $\dom$) gÃ¦lder 
 \begin{equation}
   \int_{\Omega} v_i \phi\, dx = - \int_{\Omega} v\partial_i \phi\, dx .
 \end{equation}
-Sæt nu $v_i = \partial_i(v|_K)$ for ethvert $K\in \Th$, dvs. $v_i$ er 
+SÃ¦t nu $v_i = \partial_i(v|_K)$ for ethvert $K\in \Th$, dvs. $v_i$ er 
 restriktionen til ethvert endeligt element $K$ af $\partial_i v$. Da 
 ethvert endeligt element $K$ har en Lipschitz kontinuert rand $\partial K$,
-kan vi anvende Green's sætning til at få
+kan vi anvende Green's sÃ¦tning til at fÃ¥
 \begin{equation} 
   \int_K \partial_i(v|_K)\phi\, dx = 
   -\int_K v|_K \partial_i \phi\, dx +
   \int_{\partial K} v|_K \phi \nu_{i,K}\, d\gamma \ \ \text{for alle $K\in \Th$,} 
 \end{equation}
 hvor $\nu_{i,K}$ betegner den $i$'te komponent i enheds normal vektoren
-til $\partial K$. Ved nu at summere over alle endelig elementer fås
+til $\partial K$. Ved nu at summere over alle endelig elementer fÃ¥s
 \begin{equation}
    \int_{\Omega} v_i \phi\, dx = 
    -\int_{\Omega} v \partial_i \phi\, dx +
    \sum_{K\in \Th} \int_{\partial K} v|_K \phi \nu_{i,K}\, d\gamma 
 \end{equation}
-Vi bemærker nu, at sidste led på højre siden i ovenstående relation er 0, 
-thi enten vil en del af $\partial K$ være en del af $\Omega$'s rand 
-$\Gamma$, og så vil $\phi=0$, eller også vil bidraget fra to nabo elementer 
-være nul, pga. modsat omløbsretning. Altså haves den første inklusion.
-Da randen $\Gamma$ er Lipschitz kontinuert, følger den anden inklusion af
+Vi bemÃ¦rker nu, at sidste led pÃ¥ hÃ¸jre siden i ovenstÃ¥ende relation er 0, 
+thi enten vil en del af $\partial K$ vÃ¦re en del af $\Omega$'s rand 
+$\Gamma$, og sÃ¥ vil $\phi=0$, eller ogsÃ¥ vil bidraget fra to nabo elementer 
+vÃ¦re nul, pga. modsat omlÃ¸bsretning. AltsÃ¥ haves den fÃ¸rste inklusion.
+Da randen $\Gamma$ er Lipschitz kontinuert, fÃ¸lger den anden inklusion af
 \begin{equation} 
    {\mathcal X}_{0,{\mathsf{fe}}} =\{ v \in \Xfe \ |\ v = 0 
-   \ \text{på $\gamma$} \} \subset
-   \{ v \in \Het \ |\ v = 0 \ \text{på $\Gamma$} \} = \H^1_0(\Omega). 
+   \ \text{pÃ¥ $\gamma$} \} \subset
+   \{ v \in \Het \ |\ v = 0 \ \text{pÃ¥ $\Gamma$} \} = \H^1_0(\Omega). 
 \end{equation}
 \end{proof}
 
-Beviset for følgende sætning minder meget om beviset for forrige sætning. 
-Vi vil derfor nøjes med at angive sætningen.
+Beviset for fÃ¸lgende sÃ¦tning minder meget om beviset for forrige sÃ¦tning. 
+Vi vil derfor nÃ¸jes med at angive sÃ¦tningen.
 \begin{theorem} \label{xfeh2}
-Lad $\dom$ være en åben og begrænset delmængde af $\R^n$. Antag at
+Lad $\dom$ vÃ¦re en Ã¥ben og begrÃ¦nset delmÃ¦ngde af $\R^n$. Antag at
 inklusionen $P_K \subset \H^2(K)$ holder for alle $K\in \Th$, og at
 $\Xfe \subset {\cal{C}}^1(\overline{\Omega})$. Da vil
 \begin{gather}
    \Xfe \subset H^2(\Omega), \\
    {\mathcal X}_{0,{\mathsf{fe}}} = \{ v \in \Xfe\ |\ v = 0 \
-   \text{på $\p\dom$} \} 
+   \text{pÃ¥ $\p\dom$} \} 
    \subset \H^2(\Omega) \cap \H^1_0(\Omega), \\
    {\mathcal X}_{00,{\mathsf{fe}}}  = \{ v \in \Xfe \ |\ v = 
-   \partial_{\nu}v = 0 \ \text{på $\p\dom$} \} 
+   \partial_{\nu}v = 0 \ \text{pÃ¥ $\p\dom$} \} 
    \subset \H^2_0(\Omega), 
 \end{gather}
 \end{theorem}
@@ -177,7 +177,7 @@ for passende konstanter $\gamma_{\alpha_1 \cdots \alpha_n}$.
 \end{definition}
 \begin{remark}
 Vi vil som regel skrive $P_k$ istedet for $P_k^n$, idet dimensionen af
-rummet vil fremgå at sammenhængen.
+rummet vil fremgÃ¥ at sammenhÃ¦ngen.
 \end{remark}
 \begin{remark}
 Vi skal til tider benytte os af en mul\-ti-in\-deks no\-ta\-ti\-on og
@@ -195,10 +195,10 @@ Dimensionen af polynomiumsrummet $P_k^n$ er givet ved
 \begin{proof}
 Det er oplagt, at $x^{\alpha} = x_1^{\alpha_1}\cdots x_n^{\alpha_n}$,
 hvor $\alpha_1 + \cdots + \alpha_n \leq k$, $\alpha_i \geq 0$, er en
-basis for $P_k^n$. Vi skal så bestemme antallet af måder hvorpå vi kan
-vælge $\alpha$'erne så $\alpha_1 + \cdots + \alpha_n = i \leq k$ med
+basis for $P_k^n$. Vi skal sÃ¥ bestemme antallet af mÃ¥der hvorpÃ¥ vi kan
+vÃ¦lge $\alpha$'erne sÃ¥ $\alpha_1 + \cdots + \alpha_n = i \leq k$ med
 $0 \leq i \leq k$. Dette svarer til valg af $i$ elementer ud af $n$
-elementer med tilbagelægning uden hensyn til ordning. Altså er der
+elementer med tilbagelÃ¦gning uden hensyn til ordning. AltsÃ¥ er der
 \begin{equation}
   \sum_{i=0}^k \binom{n-1+i}{i} = \sum_{i=0}^k \binom{n-1+i}{n-1} = 
   \binom{n+k}{k} 
@@ -206,7 +206,7 @@ elementer med tilbagelægning uden hensyn til ordning. Altså er der
 muligheder. 
 \end{proof}
 \begin{definition}
-For en delmængde $A\subset \R^n$ sættes
+For en delmÃ¦ngde $A\subset \R^n$ sÃ¦ttes
 \begin{equation}
 P_k(A)=\{p|_A \ |\  p\in P_k\}.
 \end{equation}
@@ -217,9 +217,9 @@ Hvis $A^\circ \not=\emptyset$, er $\dim P_k = \dim P_k(A)$.
 
 \section{Lagrange endelige elementer} \label{lagee}
 \begin{definition}
-Ved et (ikke degenereret) $n$-simplex forstås det konvekse hylster $K$ af 
-$n+1$ punkter $a_j=(a_{ij})_{i=1}^n \in \R^n$, også kaldet hjørner,  der
-ligger således, at matricen
+Ved et (ikke degenereret) $n$-simplex forstÃ¥s det konvekse hylster $K$ af 
+$n+1$ punkter $a_j=(a_{ij})_{i=1}^n \in \R^n$, ogsÃ¥ kaldet hjÃ¸rner,  der
+ligger sÃ¥ledes, at matricen
 \begin{equation} 
   {\mathbf A} =
   \left( \begin{array}{cccc}
@@ -240,67 +240,67 @@ Som bekendt er $K$ givet ved
 \end{equation}
 \end{remark}
 \begin{remark}
-Vi bemærker, at et $2$-simplex er en trekant, og et $3$-simplex er en 
+Vi bemÃ¦rker, at et $2$-simplex er en trekant, og et $3$-simplex er en 
 tetraede.
 \end{remark}
 \begin{definition}
 For ethvert tal $m\in\NN_0$ med $0\leq m\leq n$ defineres en $m$-side af et
-$n$-simplex $K$ som et $m$-simplex, hvis $m+1$ hjørner også er hjørner i $K$. 
+$n$-simplex $K$ som et $m$-simplex, hvis $m+1$ hjÃ¸rner ogsÃ¥ er hjÃ¸rner i $K$. 
 Specielt kaldes en $(n-1)$-side for en side, og en $1$-side kaldes en kant.
 \end{definition}
 \begin{theorem} \label{p1}
 Et polynomium $p \in P_1$ givet ved 
 $p : x \rightarrow \sum_{|\alpha|\leq 1} \gamma_{\alpha} x^{\alpha}$ er 
-entydig bestemt af dets værdier i de $n-1$ hjørner $a_j$ i et vilkårligt
+entydig bestemt af dets vÃ¦rdier i de $n-1$ hjÃ¸rner $a_j$ i et vilkÃ¥rligt
 $n$-simplex $K$ i $\R^n$. 
 \end{theorem}
 \begin{proof}
-Polynomiet $p$ kan skrives på formen $p(x)=\gamma_0 + \gamma_1 x_1 +\cdots+ 
-\gamma_n x_n$, hvor vi af notationsmæssige årsager skal kalde $\gamma_0$
-for $\gamma_{n+1}$. Lad værdierne $p(a_j)=\mu_j$, $1\leq j\leq n+1$ være
+Polynomiet $p$ kan skrives pÃ¥ formen $p(x)=\gamma_0 + \gamma_1 x_1 +\cdots+ 
+\gamma_n x_n$, hvor vi af notationsmÃ¦ssige Ã¥rsager skal kalde $\gamma_0$
+for $\gamma_{n+1}$. Lad vÃ¦rdierne $p(a_j)=\mu_j$, $1\leq j\leq n+1$ vÃ¦re
 givet. Vi skal da vise, at koefficienterne $\gamma_j$ er entydig bestemt, 
 dvs. at ligningssystemet
 \begin{equation}
    \mu_j = \gamma_1 a_{1j} + \cdots + \gamma_n a_{nj} + \gamma_{n+1},\ \
    1 \leq j \leq n+1 
 \end{equation}
-har en entydig løsning. Sættes $\mu=(\mu_1,\ldots,\mu_{n+1})^t$ og 
+har en entydig lÃ¸sning. SÃ¦ttes $\mu=(\mu_1,\ldots,\mu_{n+1})^t$ og 
 $\gamma=(\gamma_1,\ldots,\gamma_{n+1})^t$ kan vi skrive ligningssystemet
 som
 \begin{equation} 
  \mu = {\mathbf A}^t \gamma . 
 \end{equation}
-Dette system har imidlertid en entydig løsning, da $K$ er et $n$-simplex.
+Dette system har imidlertid en entydig lÃ¸sning, da $K$ er et $n$-simplex.
 \end{proof}
 
 \begin{remark}
-Som en konsekvens af forrige sætning ses, at hvis vi sætter 
+Som en konsekvens af forrige sÃ¦tning ses, at hvis vi sÃ¦tter 
 $\lambda_i(a_j) = \delta_{ij}$, kan ethvert polynomium 
-$p\in P_1$ repræsenteres som 
+$p\in P_1$ reprÃ¦senteres som 
 \begin{equation} 
   p=\sum_{i=1}^{n+1}p(a_i)\lambda_i . 
 \end{equation} 
 \end{remark}
 Vi kan nu definere den simpleste form for et endelig element, 
-som vi skal kalde et $n$-simplex af type (1) som værende et 
-tripel $\familyfe$ bestående af $n$-simplexet $K$ med hjørner  
-$a_j$, rummet $P_K = P_1(K)$, samt mængden $\Sigma_K$ af 
-frihedsgrader som består af de parametre, der entydigt definerer 
+som vi skal kalde et $n$-simplex af type (1) som vÃ¦rende et 
+tripel $\familyfe$ bestÃ¥ende af $n$-simplexet $K$ med hjÃ¸rner  
+$a_j$, rummet $P_K = P_1(K)$, samt mÃ¦ngden $\Sigma_K$ af 
+frihedsgrader som bestÃ¥r af de parametre, der entydigt definerer 
 en funktion i rummet $P_K$, dvs. 
 $\Sigma_K = \{ p(a_j)\ |\ 1 \leq j \leq n+1 \}$.
 
 Betegnes midtpunkterne af kanterne i et $n$-simplex med 
-$a_{ij}=(a_i+a_j)/2$, kan man efter samme ide som i beviset for sætning
-\ref{p1} vise, at polynomier i $P_K=P_2(K)$ har repræsentationen
+$a_{ij}=(a_i+a_j)/2$, kan man efter samme ide som i beviset for sÃ¦tning
+\ref{p1} vise, at polynomier i $P_K=P_2(K)$ har reprÃ¦sentationen
 \begin{equation}
    p=\sum_{i=1}^{n+1}p(a_i)\lambda_i (2\lambda_i-1) + 
      \sum_{\substack{i,j=1 \\ i<j}}^{n+1} p(a_{ij}) 4\lambda_i
      \lambda_j ,  
 \end{equation}
 hvor $\lambda_k(a_{ij})=(\delta_{ki}+\delta_{kj})/2$, 
-$1 \leq i<j \leq n+1$, $1 \leq k \leq n+1$. Heraf fås definitionen
+$1 \leq i<j \leq n+1$, $1 \leq k \leq n+1$. Heraf fÃ¥s definitionen
 for endnu et endeligt element, kaldet et $n$-simplex af type (2), 
-bestående af $K$ som før, rummet $P_K=P_2(K)$ samt $\Sigma_K=\{p(a_i)\ |\ 1\leq
+bestÃ¥ende af $K$ som fÃ¸r, rummet $P_K=P_2(K)$ samt $\Sigma_K=\{p(a_i)\ |\ 1\leq
 i\leq n+1 \} \cup \{ p(a_{ij})\ |\ 1\leq i<j \leq n+1\}$.
 
 \setlength{\unitlength}{1mm}
@@ -412,10 +412,10 @@ i\leq n+1 \} \cup \{ p(a_{ij})\ |\ 1\leq i<j \leq n+1\}$.
 \caption{Trekant af type $(3)$ og tetraede af type $(3)$\label{fe3}}
 \end{figure}
 
-Lad $K$ være et $n$-simplex med hjørner $a_1,\ldots,
-a_{n+1}$. Sættes $a_{iij}=(2a_i+a_j)/3$ for $i\not= j$ og 
-$a_{ijk}=(a_i+a_j+a_k)/3$ for $i<j<k$ kan man (igen på tilsvarende måde
-som i sætning~\ref{p1}) vise, at polynomier i $P_3(K)$ har formen
+Lad $K$ vÃ¦re et $n$-simplex med hjÃ¸rner $a_1,\ldots,
+a_{n+1}$. SÃ¦ttes $a_{iij}=(2a_i+a_j)/3$ for $i\not= j$ og 
+$a_{ijk}=(a_i+a_j+a_k)/3$ for $i<j<k$ kan man (igen pÃ¥ tilsvarende mÃ¥de
+som i sÃ¦tning~\ref{p1}) vise, at polynomier i $P_3(K)$ har formen
 \begin{multline}
 \forall p\in P_3, \ 
 p = \sum_i \frac{\lambda_i(3\lambda_i -1)(3\lambda_i -2)}{2}p(a_i) \\
@@ -423,16 +423,16 @@ p = \sum_i \frac{\lambda_i(3\lambda_i -1)(3\lambda_i -2)}{2}p(a_i) \\
 + \sum_{i<j<k} 27\lambda_i \lambda_j \lambda_k p(a_{ijk}).
 \end{multline}
 Dette giver os et $n$-simplex af type (3). Figurerne~\ref{fe1},
-\ref{fe2} og \ref{fe3} viser eksempler på nogle af de mest anvendte
+\ref{fe2} og \ref{fe3} viser eksempler pÃ¥ nogle af de mest anvendte
 endelige elementer. 
-For at kunne give en generel definition har vi brug for nedenstående
-sætning. Beviset for sætningen er ret teknisk og ikke interessant i
+For at kunne give en generel definition har vi brug for nedenstÃ¥ende
+sÃ¦tning. Beviset for sÃ¦tningen er ret teknisk og ikke interessant i
 sig selv, hvorfor vi vil undlade det.
 
 \begin{theorem} \label{pk}
-Lad $K$ være et $n$-simplex med hjørner $a_j$, $1 \leq j \leq n+1$
-Da vil et vilkårlig polynomium $p \in P_k$ være entydigt bestemt af 
-dets værdier i punkterne givet 
+Lad $K$ vÃ¦re et $n$-simplex med hjÃ¸rner $a_j$, $1 \leq j \leq n+1$
+Da vil et vilkÃ¥rlig polynomium $p \in P_k$ vÃ¦re entydigt bestemt af 
+dets vÃ¦rdier i punkterne givet 
 \begin{multline}
   L_k(K) = \Bigl\{ x = \sum_{j=1}^{n+1} \gamma_j a_j \ \Big| \ 
   \sum_{j=1}^{n+1} \gamma_j = 1, \\
@@ -445,120 +445,120 @@ Se fx~\cite{nico}.
 \end{proof}
 
 \begin{remark}
-Mængden $L_k(K)$ kaldes for hovedgitteret af orden $k$ for 
+MÃ¦ngden $L_k(K)$ kaldes for hovedgitteret af orden $k$ for 
 $n$-simplexet $K$.
 \end{remark}
 Vi kan nu give en generel definition af en bestemt klasse af endelige
-elementer også kaldet $n$-simplexer af type $(k)$.
+elementer ogsÃ¥ kaldet $n$-simplexer af type $(k)$.
 \begin{definition}
-Ved et $n$-simplex af type $(k)$ forstås et tripel $\familyfe$
-be\-stå\-en\-de af et $n$-simplex $K$ med hjørner $a_j, \ 1 \leq j \leq n+1$, 
-polynomiumsrummet $P_K=P_k(K)$ samt mængden af frihedsgrader
+Ved et $n$-simplex af type $(k)$ forstÃ¥s et tripel $\familyfe$
+be\-stÃ¥\-en\-de af et $n$-simplex $K$ med hjÃ¸rner $a_j, \ 1 \leq j \leq n+1$, 
+polynomiumsrummet $P_K=P_k(K)$ samt mÃ¦ngden af frihedsgrader
 $\Sigma_K = \{ p(x)\ |\ x \in L_k(K) \}$.
 \end{definition}
 \begin{definition}
-Endelige elementer, hvor frihedsgraderne udelukkende er punkt\-værdier,
+Endelige elementer, hvor frihedsgraderne udelukkende er punkt\-vÃ¦rdier,
 kaldes for Langrange endelige elementer.
 \end{definition}
 
 \subsection{Triangulering af $\overline{\dom}$ med simplexer}
-Vi skal nu se nærmere på, hvorledes man konstruerer en 
+Vi skal nu se nÃ¦rmere pÃ¥, hvorledes man konstruerer en 
 triangulering af $\Omega$ med de endelig elementer, der er blevet defineret
-i afsnit~\ref{lagee}. Som nævnt i afsnit~\ref{triang} vil vi tilføje
+i afsnit~\ref{lagee}. Som nÃ¦vnt i afsnit~\ref{triang} vil vi tilfÃ¸je
 et femte krav til de fire fra definition~\ref{defth}.
 Da ikke-degenererede $n$-simplexer er afsluttede, har et ikke tomt indre og en 
 Lipschitz kontinuert rand, vil betingelserne $\Th 2.$ og $\Th 4.$ 
-altid være opfyldte. Vi behøver derfor kun at koncentrere os om at 
-opdele $\Omega$, så betingelserne $\Th 1.$ og $\Th 3.$ er opfyldt. Vi skal
+altid vÃ¦re opfyldte. Vi behÃ¸ver derfor kun at koncentrere os om at 
+opdele $\Omega$, sÃ¥ betingelserne $\Th 1.$ og $\Th 3.$ er opfyldt. Vi skal
 nu stille endnu et krav til en triangulering af $\Omega$. Dette krav
 skal sikre, at $\Xfe \subset {\cal{C}}^0(\overline{\Omega})$, og senere
 hen at $\Xfe \subset {\cal{C}}^1(\overline{\Omega})$.
 \begin{definition} \label{th5}
 For at sikre en fornuftig definition af endelige element rum har vi brug 
-for følgende ekstra krav til trianguleringen af $\domain$
+for fÃ¸lgende ekstra krav til trianguleringen af $\domain$
 \begin{Thenumerate}
  \setcounter{enumi}{4}
- \item En vilkårlig side i et vilkårlig $n$-simplex $K_1$ i en given
-       triangulering er enten en delmængde af randen $\p\dom$ eller en 
+ \item En vilkÃ¥rlig side i et vilkÃ¥rlig $n$-simplex $K_1$ i en given
+       triangulering er enten en delmÃ¦ngde af randen $\p\dom$ eller en 
        side i et andet $n$-simplex $K_2$.
 \end{Thenumerate}
 \end{definition}
 \begin{remark}
 Betingelsen $\Th 5$ er teoretisk ideel, idet den er med til at sikre
-kontinuitet i den endelige element løsning over randene mellem de
+kontinuitet i den endelige element lÃ¸sning over randene mellem de
 enkelte elementer. I praktiske
-situationer er den ikke nødvendig, for at den endelige element metode
-fungerer. Måske er man end ikke interesseret i en løsning, der er
+situationer er den ikke nÃ¸dvendig, for at den endelige element metode
+fungerer. MÃ¥ske er man end ikke interesseret i en lÃ¸sning, der er
 kontinuert over randene. 
-Man kan også få kontinuitet over kanterne uden denne
-betingelse, hvis blot man er mere påpasselig med at vælge
+Man kan ogsÃ¥ fÃ¥ kontinuitet over kanterne uden denne
+betingelse, hvis blot man er mere pÃ¥passelig med at vÃ¦lge
 polynomiumsrummene $P_K$ i de enkelte elementer $K$. I
 figurerne~\ref{lov} og \ref{ulov} ses eksempler
-på en tilladt triangulering og en ikke-tilladt triangulering.
+pÃ¥ en tilladt triangulering og en ikke-tilladt triangulering.
 \end{remark}
 \begin{figure}[htb]
 \noindent
 \begin{minipage}[b]{.45\linewidth}
   \centering\includegraphics[width=\linewidth]{lovnet}
-  \caption{Eksempel på tilladt triangulering\label{lov}} 
+  \caption{Eksempel pÃ¥ tilladt triangulering\label{lov}} 
 \end{minipage}\hfill
 \begin{minipage}[b]{.45\linewidth}
   \centering\includegraphics[width=\linewidth]{ulovnet}
-  \caption{Eksempel på ikke-tilladt triangulering\label{ulov}} 
+  \caption{Eksempel pÃ¥ ikke-tilladt triangulering\label{ulov}} 
 \end{minipage}
 \end{figure}
 \begin{remark}
-Har to $n$-simplexer $K_1$ og $K_2$ en fælles side, kaldes $K_1$ og
+Har to $n$-simplexer $K_1$ og $K_2$ en fÃ¦lles side, kaldes $K_1$ og
 $K_2$ naboelementer (eng. adjacent).
 \end{remark}
 
-\section{Endelige element rum hørende til $n$-sim\-plex\-er af type $(k)$}
+\section{Endelige element rum hÃ¸rende til $n$-sim\-plex\-er af type $(k)$}
 Vi er nu i stand til at give en definition af endelige element rum
-hørende til $n$-simplexer af type $(k)$.
+hÃ¸rende til $n$-simplexer af type $(k)$.
 \begin{definition}
-Lad $\Th$ være en triangulering af $\overline{\Omega}$. Ved et endeligt
-element rum $\Xfe$ hørende til $n$-simplexer af type $(k)$ forstås en
-mængde af funktioner $v: \overline{\Omega} \rightarrow \R$ opfyldende 
-følgende krav
+Lad $\Th$ vÃ¦re en triangulering af $\overline{\Omega}$. Ved et endeligt
+element rum $\Xfe$ hÃ¸rende til $n$-simplexer af type $(k)$ forstÃ¥s en
+mÃ¦ngde af funktioner $v: \overline{\Omega} \rightarrow \R$ opfyldende 
+fÃ¸lgende krav
 \begin{enumerate}
- \item restriktionen af $v$ til $K$ tilhører $P_k(K)$ for alle
+ \item restriktionen af $v$ til $K$ tilhÃ¸rer $P_k(K)$ for alle
        $K\in \Th$.
- \item funktionen $v$ er entydigt bestemt ved dens værdier i punkterne
+ \item funktionen $v$ er entydigt bestemt ved dens vÃ¦rdier i punkterne
        \begin{equation}
          \Sigma_h = \{ v(x)\ |\ x \in \cup_{K\in \Th} L_k(K) \}.
        \end{equation}
 \end{enumerate}
-Mængden $\Sigma_h$ kaldes mængden af frihedsgrader for det endelige 
+MÃ¦ngden $\Sigma_h$ kaldes mÃ¦ngden af frihedsgrader for det endelige 
 element rum $\Xfe$.
 \end{definition}
 \begin{remark}
-På grund af betingelse $\Th 5$.\ er der ingen flertydighed i definitionen
+PÃ¥ grund af betingelse $\Th 5$.\ er der ingen flertydighed i definitionen
 af frihedsgraderne.
 \end{remark}
 \begin{theorem}
-Lad $\Xfe$ være det endelige element rum hørende til $n$-sim\-plex\-er
+Lad $\Xfe$ vÃ¦re det endelige element rum hÃ¸rende til $n$-sim\-plex\-er
 af type $(k)$. Da vil
 \begin{equation} 
 \Xfe \subset {\cal{C}}^0(\overline{\Omega}) \cap \Het .
 \end{equation}
 \end{theorem}
 \begin{proof}
-Lad $K_1$ og $K_2$ være to $n$-simplexer af type $(k)$ med fælles side
+Lad $K_1$ og $K_2$ vÃ¦re to $n$-simplexer af type $(k)$ med fÃ¦lles side
 $K'$, hvor $K_1$ er bestemt af punkterne $a_1,\ldots,a_{n+1}$ og $K_2$ 
-af punkterne $b_1,\ldots,b_{n+1}$. Da $K_1$ og $K_2$ har en fælles 
-side $K'$ vil $n$ af punkterne $a_1,\ldots,a_{n+1}$ være identiske med
+af punkterne $b_1,\ldots,b_{n+1}$. Da $K_1$ og $K_2$ har en fÃ¦lles 
+side $K'$ vil $n$ af punkterne $a_1,\ldots,a_{n+1}$ vÃ¦re identiske med
 $n$ af punkterne $b_1,\ldots,b_{n+1}$. Disse $n$ sammenfaldende 
-punkter er præcis de punkter, der udspænder $(n-1)$-simplexet $K'$.
-Vi bemærker, at $L_k(K')\subset L_k(K_1)$ og $L_k(K')\subset L_k(K_2)$.
+punkter er prÃ¦cis de punkter, der udspÃ¦nder $(n-1)$-simplexet $K'$.
+Vi bemÃ¦rker, at $L_k(K')\subset L_k(K_1)$ og $L_k(K')\subset L_k(K_2)$.
 For en given funktion $v\in \Xfe$ betragtes nu funktionerne $v|_{K_1}$ 
-og $v|_{K_2}$ på den fælles side $K'$. Vi indfører koordinatsystemet
-$t=(t_1,\ldots,t_{n-1})$ på $K'$ betragtet som hyperplan. Betragtet som
+og $v|_{K_2}$ pÃ¥ den fÃ¦lles side $K'$. Vi indfÃ¸rer koordinatsystemet
+$t=(t_1,\ldots,t_{n-1})$ pÃ¥ $K'$ betragtet som hyperplan. Betragtet som
 funktion af $t$ er $v|_{K_1}$ og $v|_{K_2}$ $k$'te grads polynomier
-på $K'$, der stemmer overens i de $\binom{n+k}{k}$ 
-punkter i $L_k(K')$. Altså må $v|_{K_1}$ og $v|_{K_2}$ være identiske
-på $K'$ ifølge sætning~\ref{pk}, og dermed $\Xfe \subset {\cal
-C}^0(\domain)$. Inklusionen $\Xfe\subset\H^1(\Omega)$ følger af
-sætning~\ref{xfehet}. Figur~\ref{special} illustrerer tilfældet, hvor $n=2$ og
+pÃ¥ $K'$, der stemmer overens i de $\binom{n+k}{k}$ 
+punkter i $L_k(K')$. AltsÃ¥ mÃ¥ $v|_{K_1}$ og $v|_{K_2}$ vÃ¦re identiske
+pÃ¥ $K'$ ifÃ¸lge sÃ¦tning~\ref{pk}, og dermed $\Xfe \subset {\cal
+C}^0(\domain)$. Inklusionen $\Xfe\subset\H^1(\Omega)$ fÃ¸lger af
+sÃ¦tning~\ref{xfehet}. Figur~\ref{special} illustrerer tilfÃ¦ldet, hvor $n=2$ og
 trekanter af type $(2)$ 
 \end{proof}
 
@@ -599,9 +599,9 @@ trekanter af type $(2)$
 \section{Basisfunktioner for endelige element rum}
 I afsnit~\ref{femindledning} pointerede vi vigtigheden af, at
 basisfunktionerne for
-endelige element rum havde så ``lille'' støtte som muligt. For
-endelige element rum hørende til $n$-simplexer af type $(k)$ er
-mængden af frihedsgrader $\Sigma_h$ givet ved
+endelige element rum havde sÃ¥ ``lille'' stÃ¸tte som muligt. For
+endelige element rum hÃ¸rende til $n$-simplexer af type $(k)$ er
+mÃ¦ngden af frihedsgrader $\Sigma_h$ givet ved
 \begin{equation}
   \Sigma_h = \{ v(x_j) \ |\ 1\leq j\leq M \},
 \end{equation}
@@ -612,9 +612,9 @@ betingelserne
   \phi_i \in\Xfe \quad \text{og} \quad \phi_i(x_j)=\delta_{ij}, \
   1\leq i,j\leq M,
 \end{equation}
-udgør en basis for $\Xfe$, og at støtten for disse funktioner er
-``lille''. Figur~\ref{support} indeholder et eksempel på støtten for
-basisfunktioner hørende til $n$-simplexer af type $(2)$.
+udgÃ¸r en basis for $\Xfe$, og at stÃ¸tten for disse funktioner er
+``lille''. Figur~\ref{support} indeholder et eksempel pÃ¥ stÃ¸tten for
+basisfunktioner hÃ¸rende til $n$-simplexer af type $(2)$.
 \begin{figure}[htbp]
   \setlength{\unitlength}{1bp}
   \begin{center}
@@ -622,19 +622,19 @@ basisfunktioner hørende til $n$-simplexer af type $(2)$.
       \put(1,1){\includegraphics{support}}
     \end{picture}
   \end{center}
-  \caption{Eksempel på støtte for basisfunktioner hørende til
+  \caption{Eksempel pÃ¥ stÃ¸tte for basisfunktioner hÃ¸rende til
 $n$-simplexer af type $(2)$\label{support}}   
 \end{figure}
 
 \section{Hermite endelige elementer}
-Vi skal nu se et eksempel på et endelig element, hvor frihedsgraderne
-ikke udelukkende er punktværdier, men også retningsafledede.
+Vi skal nu se et eksempel pÃ¥ et endelig element, hvor frihedsgraderne
+ikke udelukkende er punktvÃ¦rdier, men ogsÃ¥ retningsafledede.
 
 \begin{theorem} \label{sec:arg} \label{argee}
-Lad $K$ være en trekant med hjørner $a_i, \ i=1,2,3$, hvor sidernes 
+Lad $K$ vÃ¦re en trekant med hjÃ¸rner $a_i, \ i=1,2,3$, hvor sidernes 
 midtpunkter betegnes med $a_{ij}=(a_i+a_j)/2, \ 1\leq i<j\leq 3$.
-Da vil ethvert polynomium af grad 5 være entydig bestemt ved dets 
-værdier i mængden af de 21 frihedsgrader 
+Da vil ethvert polynomium af grad 5 vÃ¦re entydig bestemt ved dets 
+vÃ¦rdier i mÃ¦ngden af de 21 frihedsgrader 
 \begin{equation} 
 \Sigma_K = \Bigl\{ \partial^{\alpha}p(a_i), \ |\alpha| \leq 2, \ 1\leq i\leq 3; \ 
 \afl{p(a_{ij})}{\n} ,\ 1\leq i<j\leq 3 \Bigr\}, 
@@ -644,37 +644,37 @@ hvor $\afl{}{\n}$ betegner den normal afledede langs randen af $K$.
 \begin{proof}
 Lad $p\in P_5(K)$
 Da dimensionen af $P_5(K)$ er lig med antallet af frihedsgrader $(=21)$, er 
-det nok at vise, at hvis værdien i alle frihedsgraderne er 0, da vil
+det nok at vise, at hvis vÃ¦rdien i alle frihedsgraderne er 0, da vil
 $p\equiv 0$. Hvis $s$ betegner retningen af siden $a_2a_3$ vil
 \begin{equation} \label{sec:arg1}
   p(a_i) = \afl{p}{s}(a_i) = \frac{\partial^2 p}{\partial s^2}(a_i)
   =0, \quad i=2,3. 
 \end{equation}
-Da $p$ er et polynomium af grad højest 5 på siden $a_2a_3$, må
-$p\equiv 0$ på
-$a_2a_3$. På $a_2a_3$ er $\afl{p}{\n}$ et polynomium af grad højest 4 og
+Da $p$ er et polynomium af grad hÃ¸jest 5 pÃ¥ siden $a_2a_3$, mÃ¥
+$p\equiv 0$ pÃ¥
+$a_2a_3$. PÃ¥ $a_2a_3$ er $\afl{p}{\n}$ et polynomium af grad hÃ¸jest 4 og
 \begin{equation} \label{sec:arg2}
   \afl{p}{\n}(a_{23})=\afl{p}{\n}(a_i)=
   \frac{\partial}{\partial s}\Bigl(\afl{p}{\n}\Bigr)(a_i)=0, \quad i=2,3 
 \end{equation}
-hvilket kun er muligt, hvis $\afl{p}{\n}=0$ på $a_2a_3$. Altså er både
-$p$ og $\afl{p}{\n}$ identisk 0 på $a_2a_3$, hvilket betyder, at vi kan
+hvilket kun er muligt, hvis $\afl{p}{\n}=0$ pÃ¥ $a_2a_3$. AltsÃ¥ er bÃ¥de
+$p$ og $\afl{p}{\n}$ identisk 0 pÃ¥ $a_2a_3$, hvilket betyder, at vi kan
 faktorisere $(\lambda_1(x))^2$ ud af $p$. Vi har derfor
 \begin{equation} 
   p(x)=(\lambda_1(x))^2 p_3(x), 
 \end{equation}
-hvor $p_3\in P_3(K)$. På tilsvarende vis ses, at vi kan faktorisere 
+hvor $p_3\in P_3(K)$. PÃ¥ tilsvarende vis ses, at vi kan faktorisere 
 $(\lambda_2(x))^2$ og $(\lambda_3(x))^2$ ud, hvorfor
 \begin{equation} 
   p=\gamma \lambda_1^2 \lambda_2^2 \lambda_3^2 , 
 \end{equation}
 hvor $\gamma$ er en passende konstant. Da $p\in P_5(K)$ er denne 
-faktorisering kun mulig såfremt $\gamma =0$, og dermed er $p\equiv 0$ på $K$. 
+faktorisering kun mulig sÃ¥fremt $\gamma =0$, og dermed er $p\equiv 0$ pÃ¥ $K$. 
 \end{proof}
 
 \begin{definition} 
 Det endelige element $(K,P_5(K),\Sigma_K)$, hvor $K$ og $\Sigma_K$ er som
-i sætning~\ref{argee}, kaldes også Argyris' trekant, se figur~\ref{argtrekant}.
+i sÃ¦tning~\ref{argee}, kaldes ogsÃ¥ Argyris' trekant, se figur~\ref{argtrekant}.
 \end{definition}
 \begin{figure}[htbp]
   \setlength{\unitlength}{1bp}
@@ -686,16 +686,16 @@ i sætning~\ref{argee}, kaldes også Argyris' trekant, se figur~\ref{argtrekant}.
   \caption{Argyris' trekant\label{argtrekant}}
 \end{figure}
 \begin{theorem}
-Lad $\Xfe$ være det endelig element rum as\-so\-ci\-e\-ret med Ar\-gy\-ris' tre\-kant. 
+Lad $\Xfe$ vÃ¦re det endelig element rum as\-so\-ci\-e\-ret med Ar\-gy\-ris' tre\-kant. 
 Da vil
 \begin{equation} 
   \Xfe \subset {\cal{C}}^1(\overline{\Omega}) \cap \Hto .
 \end{equation}
 \end{theorem}
 \begin{proof}
-Ifølge sætning~\ref{xfeh2} er det nok at vise 
-$X_h \subset {\cal{C}}^1(\overline{\Omega})$. Lad $K_1$ og $K_2$ være
-to nabo trekanter med fælles side $K'$ og lad $p_i, \ i=1,2$ være 
+IfÃ¸lge sÃ¦tning~\ref{xfeh2} er det nok at vise 
+$X_h \subset {\cal{C}}^1(\overline{\Omega})$. Lad $K_1$ og $K_2$ vÃ¦re
+to nabo trekanter med fÃ¦lles side $K'$ og lad $p_i, \ i=1,2$ vÃ¦re 
 to funktioner i $\Xfe$ med
 \begin{gather}
   \partial^{\alpha}p_1 = \partial^{\alpha}p_2 
@@ -703,33 +703,33 @@ to funktioner i $\Xfe$ med
   \afl{p_1}{\n} = \afl{p_2}{\n} \ \text{i $K'$s midtpunkt,} 
 \end{gather}
 hvor $\afl{}{\n}$ betegner differentation i normal retningen til $K'$.
-Det følger nu af \eqref{sec:arg1} og \eqref{sec:arg2} fra
-sætning~\ref{sec:arg}, at vi for differensen $p=p_1-p_2$ har
+Det fÃ¸lger nu af \eqref{sec:arg1} og \eqref{sec:arg2} fra
+sÃ¦tning~\ref{sec:arg}, at vi for differensen $p=p_1-p_2$ har
 \begin{equation} \label{afl1}
- p\equiv \afl{p}{n}\equiv 0 \ \text{på $K'$,} 
+ p\equiv \afl{p}{n}\equiv 0 \ \text{pÃ¥ $K'$,} 
 \end{equation}
-og da $p\equiv 0$ på $K'$ må 
+og da $p\equiv 0$ pÃ¥ $K'$ mÃ¥ 
 \begin{equation} \label{afl2}
 \afl{p}{s}\equiv 0 ,
 \end{equation}
 hvor $\afl{}{s}$ betegner differentation i retningen tangentielt til
-$K'$. Det følger nu af \eqref{afl1} og \eqref{afl2}, at funktionerne $p_i$
-samt deres første afledede varierer kontinuert over $K'$, så 
+$K'$. Det fÃ¸lger nu af \eqref{afl1} og \eqref{afl2}, at funktionerne $p_i$
+samt deres fÃ¸rste afledede varierer kontinuert over $K'$, sÃ¥ 
 $\Xfe \subset {\cal{C}}^1(\overline{\Omega})$.
 \end{proof}
 \begin{definition}
-Endelige elementer, hvor frihedsgraderne består af punktværdier og
+Endelige elementer, hvor frihedsgraderne bestÃ¥r af punktvÃ¦rdier og
 retningsafledede, kaldes Hermite endelige elementer.
 \end{definition}
 
 \section{Generelle endelige elementer}
 For at kunne give en generel definition af endelige elementer har vi
-brug for følgende definition, der kan ses som en generalisering af
+brug for fÃ¸lgende definition, der kan ses som en generalisering af
 begrebet frihedsgrader.
 \begin{definition}
-Lad $F$ være en mængde af funktioner med reelle værdier defineret på
-en mængde $A$, og lad $\Theta$ være en mængde af lineært uafhængige 
-lineære afbildninger $\theta_i, \ 1\leq i \leq N$ defineret på $F$. 
+Lad $F$ vÃ¦re en mÃ¦ngde af funktioner med reelle vÃ¦rdier defineret pÃ¥
+en mÃ¦ngde $A$, og lad $\Theta$ vÃ¦re en mÃ¦ngde af lineÃ¦rt uafhÃ¦ngige 
+lineÃ¦re afbildninger $\theta_i, \ 1\leq i \leq N$ defineret pÃ¥ $F$. 
 $\Theta$ kaldes da $F$-unisolvent, hvis der for givne reelle tal
 $\alpha_i, \ 1\leq i \leq N$ findes en entydig funktion $f\in F$, som
 opfylder
@@ -740,62 +740,62 @@ opfylder
 \begin{definition} \label{genee}
 Et endelig element i $\R^n$ er et tripel $(K,P,\Sigma)$, hvor
 \begin{enumerate}
-  \item $K$ er en afsluttet delmængde af $\R^n$ med et ikke tomt indre
+  \item $K$ er en afsluttet delmÃ¦ngde af $\R^n$ med et ikke tomt indre
         og en Lipschitz kontinuert rand.
-  \item P er en mængde af funktioner med reelle værdier defineret på $K$.
-  \item $\Sigma$ er en $P$-unisolvent mæng\-de af li\-ne\-ært
-        u\-af\-hæn\-gi\-ge, li\-ne\-ære af\-bild\-ning\-er 
-        $\phi_i$, \newline $1\leq i \leq N$ defineret på $P$.
+  \item P er en mÃ¦ngde af funktioner med reelle vÃ¦rdier defineret pÃ¥ $K$.
+  \item $\Sigma$ er en $P$-unisolvent mÃ¦ng\-de af li\-ne\-Ã¦rt
+        u\-af\-hÃ¦n\-gi\-ge, li\-ne\-Ã¦re af\-bild\-ning\-er 
+        $\phi_i$, \newline $1\leq i \leq N$ defineret pÃ¥ $P$.
 \end{enumerate}
 \end{definition}
 \begin{remark}
-På grund af betingelse (3) i definition~\ref{genee} findes der funktioner $p_i, \
+PÃ¥ grund af betingelse (3) i definition~\ref{genee} findes der funktioner $p_i, \
 1\leq i \leq N$, som opfylder
 \begin{equation}
   \phi_j (p_i) = \delta_{ij}, \quad 1\leq j \leq N,
 \end{equation}
-så polynomier $p\in P$ kan skrives på formen
+sÃ¥ polynomier $p\in P$ kan skrives pÃ¥ formen
 \begin{equation}
   p = \sum_{i=1}^N \phi_i(p)p_i .
 \end{equation}
-Altså er funktionsrummet $P$ endelig dimensionalt, og $\dim P=N$.
+AltsÃ¥ er funktionsrummet $P$ endelig dimensionalt, og $\dim P=N$.
 \end{remark}
 \begin{definition}
-De lineære afbildninger $\phi_i, \ 1\leq i\leq N$ kaldes
+De lineÃ¦re afbildninger $\phi_i, \ 1\leq i\leq N$ kaldes
 frihedsgraderne for det endelige element $\fe$, og funktionerne $p_i, \
 1\leq i\leq N$ kaldes basisfunktionerne for det endelige element.
 \end{definition}
 Hvis $(K,P,\Sigma)$ er et endeligt element, skal vi undertiden referere
-til $K$ som et endeligt element, hvis det af sammenhængen fremgår, hvad
+til $K$ som et endeligt element, hvis det af sammenhÃ¦ngen fremgÃ¥r, hvad
 $P$ og $\Sigma$ er, eller hvis $P$ og $\Sigma$ er uden betydning.
 \subsection{Typer af frihedsgrader}
-Indtil videre har vi betragtet eksempler på endelige elementer, hvor
-frihedsgraderne har været punktværdier eller retningsafledede af typerne
+Indtil videre har vi betragtet eksempler pÃ¥ endelige elementer, hvor
+frihedsgraderne har vÃ¦ret punktvÃ¦rdier eller retningsafledede af typerne
 \begin{gather}
   p(a_i^0), \quad 1\leq i \leq N_0, \label{frihed1} \\
   Dp(a_i^1)\xi_{ik}^1, \quad 1\leq i \leq N_1, \\
   Dp(a_i^2)^2 (\xi_{ik}^2, \xi_{il}^2), \quad  1\leq i \leq N_2, \label{frihed3}
 \end{gather}
-hvor punkterne $a_i^r, \ r=0,1,2$ tilhører det endelige element. Punkterne
+hvor punkterne $a_i^r, \ r=0,1,2$ tilhÃ¸rer det endelige element. Punkterne
 $a_i^r, \ r=0,1,2$ kaldes for knudepunkterne for det endelige element og
-betegnes også med $\Nh = \{a_i^r\}$. Man kan selvfølgelig også benytte
-partielle afledede af højere orden som frihedsgrader, men det ses sjældent
-i praksis. Endelig kan man også forestille sig frihedsgrader, der ikke er 
+betegnes ogsÃ¥ med $\Nh = \{a_i^r\}$. Man kan selvfÃ¸lgelig ogsÃ¥ benytte
+partielle afledede af hÃ¸jere orden som frihedsgrader, men det ses sjÃ¦ldent
+i praksis. Endelig kan man ogsÃ¥ forestille sig frihedsgrader, der ikke er 
 knyttet til punkter, se fx \cite[s. 211]{ciarlet78}.
 
 \section{Affine familier af endelige elementer}
-I dette afsnit skal vi præsentere en ide, der har afgørende indflydelse
+I dette afsnit skal vi prÃ¦sentere en ide, der har afgÃ¸rende indflydelse
 i praktiske situationer.
 \begin{definition}
-Lad $\fe$ og $\hatfe$ være to endelige elementer, hvor frihedsgraderne 
+Lad $\fe$ og $\hatfe$ vÃ¦re to endelige elementer, hvor frihedsgraderne 
 har formen (\ref{frihed1}-\ref{frihed3}). $\fe$ og $\hatfe$ kaldes
-da affin ækvivalente, såfremt
+da affin Ã¦kvivalente, sÃ¥fremt
 der findes en invertibel affin afbildning $F:\R^n \rightarrow \R^n$ givet
 ved
 \begin{equation}
   F(\hat{x}) = {\mathbf B}\hat{x} + b,
 \end{equation}
-hvor ${\mathbf B}\in \R_n^n$ og $b\in \R^n$, og følgende relationer er opfyldt
+hvor ${\mathbf B}\in \R_n^n$ og $b\in \R^n$, og fÃ¸lgende relationer er opfyldt
 \begin{gather}
   K = F(\hat{K}), \\
   P = \{ p:K\rightarrow \R\ |\ p = \hat{p}\cdot F^{-1},\ \hat{p}\in\hat{P}\}, \\
@@ -824,21 +824,21 @@ $\hat{\xi}_{ik}^2$, og $\hat{\xi}_{il}^2$ er som i~(\ref{frihed1}-\ref{frihed3})
 \put(60,45){\line(-4,1){3}}
 \end{picture}
 \end{center}
-\caption{Eksempel på affin afbildning, hvor et element afbildes på et
+\caption{Eksempel pÃ¥ affin afbildning, hvor et element afbildes pÃ¥ et
 typisk reference element}
 \end{figure}
 \begin{definition}
 En familie af endelige elementer $\familyfe$ kaldes en affin fami\-lie, hvis
-alle dens endelige elementer er affin ækvivalente med det samme endelige
+alle dens endelige elementer er affin Ã¦kvivalente med det samme endelige
 element $\fe$. $\fe$ kaldes da for et reference endelig element for 
 familien.
 \end{definition}
 \begin{remark}
-Definitionen af affine familier af endelige elementer kræ\-ver ikke, at
-reference endelig elementet tilhører familien.
+Definitionen af affine familier af endelige elementer krÃ¦\-ver ikke, at
+reference endelig elementet tilhÃ¸rer familien.
 \end{remark}
-Hvis man har med en affin familie af $n$-simplexer af type $(k)$ at gøre,
-vælges $K$ i reference endelig elementet oftets som enheds
+Hvis man har med en affin familie af $n$-simplexer af type $(k)$ at gÃ¸re,
+vÃ¦lges $K$ i reference endelig elementet oftets som enheds
 $n$-simplexet, se figurerne~\ref{typref} og \ref{typtosim}.
 \begin{figure}[ht]
 \noindent
@@ -851,7 +851,7 @@ $n$-simplexet, se figurerne~\ref{typref} og \ref{typtosim}.
      a_n &= (0,\ldots,0,1) \notag \\
       a_{n+1} &= (0,0,\ldots,0) \notag
   \end{align}
-  \caption{Hjørner i et typisk reference $n$-simplex\label{typref}}
+  \caption{HjÃ¸rner i et typisk reference $n$-simplex\label{typref}}
 \end{minipage}\hfill
 \begin{minipage}[b]{.45\linewidth}
   \begin{center}
@@ -867,60 +867,60 @@ $n$-simplexet, se figurerne~\ref{typref} og \ref{typtosim}.
 \end{figure}
 
 Konceptet med affine familier af endelige elementer er essentielt i 
-praktiske situationer, bl.a. af følgende årsager:
+praktiske situationer, bl.a. af fÃ¸lgende Ã¥rsager:
 \begin{enumerate}
   \item I praktiske beregningssituationer vil alle udregningerne af
-        koefficienterne til det lineære ligningssystem~\eqref{des1} blive udført
-        ved hjælp af et reference endelig element. Ofte er koefficienterne
+        koefficienterne til det lineÃ¦re ligningssystem~\eqref{des1} blive udfÃ¸rt
+        ved hjÃ¦lp af et reference endelig element. Ofte er koefficienterne
         i \eqref{des1} udtrykt ved integraler, der skal evalueres numerisk. Har man
-        med en affin familie af endelige elementer af gøre, kan man
-        afbilde de endelige elementer på reference endelige elementet og
+        med en affin familie af endelige elementer af gÃ¸re, kan man
+        afbilde de endelige elementer pÃ¥ reference endelige elementet og
         derefter bruge samme kvadraturregel.
-  \item For affine familier af endelige elementer findes en ``pæn''
+  \item For affine familier af endelige elementer findes en ``pÃ¦n''
         interpolationsteori, se fx \cite[afsnit 3.1]{ciarlet78}
 \end{enumerate}
 
 \section{Generelle endelige element rum}
-Det er meget svært at give en præcis beskrivelse af konstruktionen af 
-endelige element rum for en vilkårlig familie af endelige elementer. Dette
+Det er meget svÃ¦rt at give en prÃ¦cis beskrivelse af konstruktionen af 
+endelige element rum for en vilkÃ¥rlig familie af endelige elementer. Dette
 skyldes vanskeligheder med at
 \begin{enumerate}
-  \item give en præcis definition af ``sider'' i vilkårlige endelige
+  \item give en prÃ¦cis definition af ``sider'' i vilkÃ¥rlige endelige
         elementer.
   \item angive betingelser for frihedsgrader bestemt af retningsafledede
-        beliggende på en fælles ``side'' $K'$ for to nabo endelige 
-        elementer $K_1$ og $K_2$, således at en funktion i det endelige 
-        element rum restringeret til $K_1$ hhv. $K_2$ har samme værdi i 
-        frihedsgraderne beliggende på $K'$.
+        beliggende pÃ¥ en fÃ¦lles ``side'' $K'$ for to nabo endelige 
+        elementer $K_1$ og $K_2$, sÃ¥ledes at en funktion i det endelige 
+        element rum restringeret til $K_1$ hhv. $K_2$ har samme vÃ¦rdi i 
+        frihedsgraderne beliggende pÃ¥ $K'$.
 \end{enumerate}
-For at undgå ovennævnte vanskeligheder skal vi betragte situationen, hvor
+For at undgÃ¥ ovennÃ¦vnte vanskeligheder skal vi betragte situationen, hvor
 de endelige elementer er polygoner. Dermed bliver 
-$\overline{\Omega}= \cup_{K\in \Th} K$ også polygonal. Vi skal også antage,
+$\overline{\Omega}= \cup_{K\in \Th} K$ ogsÃ¥ polygonal. Vi skal ogsÃ¥ antage,
 at frihedsgraderne er af Lagrange typen, samt at hvert polygon i
 triangulering\-en $\Th$ har et ikke tomt indre, og at det indre af
 polygonerne $\Th$ er parvis disjunkte. Dette sikrer, at betingelserne
-$\Th 1.-\Th 4.$ er opfyldt. (Vi husker på, at et polygonalt domæne altid
+$\Th 1.-\Th 4.$ er opfyldt. (Vi husker pÃ¥, at et polygonalt domÃ¦ne altid
 har en Lipschitz kontinuert rand og er afsluttet.)
 \begin{definition}
-En delmængde $K'$ af randen af et polygonalt endelige element $K$ kaldes
-en side af $K$, såfremt $K'$ er en maksimalt sammenhængende delmængde af en
+En delmÃ¦ngde $K'$ af randen af et polygonalt endelige element $K$ kaldes
+en side af $K$, sÃ¥fremt $K'$ er en maksimalt sammenhÃ¦ngende delmÃ¦ngde af en
 affin hyperplan ${\mathcal P}$ i $\R^n$ med et ikke tomt indre (relativt til
 ${\mathcal P}$).
 \end{definition}
 \begin{definition}
-For at undgå problemer med entydigheden af elementerne i endelige element 
+For at undgÃ¥ problemer med entydigheden af elementerne i endelige element 
 rum skal vi (i analog til definition~\ref{th5}) antage at triangulering $\Th$ af 
 $\overline{\Omega}$ opfylder:
 \begin{Thenumerate}
   \setcounter{enumi}{4}
-  \item En vilkårlig side i et vilkårligt polygonalt endelige element $K_1$
+  \item En vilkÃ¥rlig side i et vilkÃ¥rligt polygonalt endelige element $K_1$
         er enten en side i et andet endeligt element $K_2$, eller en 
-        delmængde af randen.
+        delmÃ¦ngde af randen.
 \end{Thenumerate}
 \end{definition}
-Såfremt to endelige elementer har en fælles side, kaldes de nabo
+SÃ¥fremt to endelige elementer har en fÃ¦lles side, kaldes de nabo
 endelig elementer. For at sikre entydighed af elementerne i de
-endelige element rum, skal vi kræve, at
+endelige element rum, skal vi krÃ¦ve, at
 frihedsgraderne $\Sigma_{K_j}=\{p(a_i^j) | 1 \leq i \leq N_j\}$ for to
 nabo endelige elementer $(K_j,P_{K_j},\Sigma_{K_j})$, $j=1,2$ opfylder
 \begin{equation}
@@ -928,18 +928,18 @@ nabo endelige elementer $(K_j,P_{K_j},\Sigma_{K_j})$, $j=1,2$ opfylder
   \big(\bigcup_{i=1}^{N_2} \{a_i^2\}\big) \bigcap K_1 .
 \end{equation}
 \begin{definition}
-For en familie af endelige elementer $\familyfe$ sættes
+For en familie af endelige elementer $\familyfe$ sÃ¦ttes
 \begin{equation}
   \Nh = \cup_{K \in \Th} \NK
 \end{equation}
-hvor $\NK$ betegner mængden af knudepunkter for $K\in \Th$. For 
+hvor $\NK$ betegner mÃ¦ngden af knudepunkter for $K\in \Th$. For 
 $b\in \Nh$ vil vi bruge betegnelsen $K_{\lambda}, \ \lambda\in \Lambda(b)$
 om de endelige elementer, hvor $b$ er et knudepunkt.
 \end{definition}
 Vi er nu i stand til at give en definition af et endeligt element rum 
-hørende til de endelige elementer $\familyfe$.
+hÃ¸rende til de endelige elementer $\familyfe$.
 \begin{definition} \label{geneer}
-Det endelige element rum $\Xfe$ hørende til de endelige elementer 
+Det endelige element rum $\Xfe$ hÃ¸rende til de endelige elementer 
 $\familyfe$ defineres som underrummet 
 \begin{multline}
  \Xfe = \Bigl\{ v=(v_K)_{K\in \Th} \in \prod_{K\in \Th} P_K \ \Big| \
@@ -949,18 +949,18 @@ $\familyfe$ defineres som underrummet
 af produktrummet $\prod_{K\in \Th} P_K$.
 \end{definition}
 \begin{remark}
-Vi ser, at elementer $v\in\Xfe$ er entydig bestemt af værdien i punkterne
+Vi ser, at elementer $v\in\Xfe$ er entydig bestemt af vÃ¦rdien i punkterne
 \begin{equation}
   \Sigma_h = \big\{ v(b)\ \big| \ b\in \Nh \big\}
 \end{equation}
-som også kaldes mængden af frihedsgrader for det endelige element rum.
+som ogsÃ¥ kaldes mÃ¦ngden af frihedsgrader for det endelige element rum.
 \end{remark}
 \begin{remark}
-Elementerne i $\Xfe$ er generelt ikke funktioner defineret på 
-$\overline{\Omega}$, idet elementerne ikke nødvendigvis har en entydig 
-definition på en, for to nabo endelige elementer, fælles side. Det 
-følger dog at definition~\ref{geneer}, at elementer i $\Xfe$ er ``kontinuerte'' i 
-knudepunkter fælles for to nabo endelige elementer.
+Elementerne i $\Xfe$ er generelt ikke funktioner defineret pÃ¥ 
+$\overline{\Omega}$, idet elementerne ikke nÃ¸dvendigvis har en entydig 
+definition pÃ¥ en, for to nabo endelige elementer, fÃ¦lles side. Det 
+fÃ¸lger dog at definition~\ref{geneer}, at elementer i $\Xfe$ er ``kontinuerte'' i 
+knudepunkter fÃ¦lles for to nabo endelige elementer.
 \end{remark}
 
 

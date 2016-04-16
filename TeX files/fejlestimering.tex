@@ -1,50 +1,50 @@
 \chapter{Fejlestimering} \label{fejlestimering} 
 
-Når man omformer uendelig-dimensionelle problemer i form af
-differentialligninger til et sæt af endeligt mange ligninger med
-endeligt mange ubekendte, vil der uundgåeligt opstå nogle fejl. En stor
-del af forskningsindsatsen indenfor den endelige element metode består
+NÃ¥r man omformer uendelig-dimensionelle problemer i form af
+differentialligninger til et sÃ¦t af endeligt mange ligninger med
+endeligt mange ubekendte, vil der uundgÃ¥eligt opstÃ¥ nogle fejl. En stor
+del af forskningsindsatsen indenfor den endelige element metode bestÃ¥r
 i at udvikle og dokumentere metoder til evaluering af den fejl, der
-opstår i denne proces. I dette kapitel skal vi se nærmere på en hjørne
+opstÃ¥r i denne proces. I dette kapitel skal vi se nÃ¦rmere pÃ¥ en hjÃ¸rne
 af fejlestimering.
 
 \section{Generel teori om fejlestimering}
-Før vi betragter en egentlig metode til fejlestimering, vil vi ganske
-kort gøre nogle generelle betragtninger omkring fejlestimering.
+FÃ¸r vi betragter en egentlig metode til fejlestimering, vil vi ganske
+kort gÃ¸re nogle generelle betragtninger omkring fejlestimering.
 
-\subsection{Beregningsmæssige- og modelleringsfejl}
-Den fejl, som man begår ved at omformulere et differentiallignings
+\subsection{BeregningsmÃ¦ssige- og modelleringsfejl}
+Den fejl, som man begÃ¥r ved at omformulere et differentiallignings
 problem til et variations problem, kan opdeles i 
 \begin{itemize}
-  \item beregningsmæssige fejl.
+  \item beregningsmÃ¦ssige fejl.
   \item modelleringsfejl.
 \end{itemize}
 For at konkretisere disse fejl typer skal vi betragte en matematiske model
 \begin{equation} \label{math-model}
   \D u=f,
 \end{equation}
-hvor $\D$ er en differentialoperator (muligvis med begyndelsesværdi-
-eller rand\-be\-tin\-gel\-ser) defineret på et vist domæne $\dom$, $f$ en 
-given funktion, og $u$ er den ukendte løsning til problemet. Den 
-matematiske model består her af $\D$ og $f$. Udgangspunktet for den
+hvor $\D$ er en differentialoperator (muligvis med begyndelsesvÃ¦rdi-
+eller rand\-be\-tin\-gel\-ser) defineret pÃ¥ et vist domÃ¦ne $\dom$, $f$ en 
+given funktion, og $u$ er den ukendte lÃ¸sning til problemet. Den 
+matematiske model bestÃ¥r her af $\D$ og $f$. Udgangspunktet for den
 matematiske model er typisk en fysisk model\footnote{Ved en fysisk
-model forstås en model, der modellere en situation hentet fra fx
-økonomi, kemi eller fysik.}
+model forstÃ¥s en model, der modellere en situation hentet fra fx
+Ã¸konomi, kemi eller fysik.}
 \begin{equation} \label{phys-model}
   \tilde{\D} \tilde{u} = \tilde{f}.
 \end{equation}
 Her har $\tilde{\D}$, $\tilde{u}$ og $\tilde{f}$ analoge betydninger.
-Den fysiske model antages at have en entydig løsning, og vi skal
+Den fysiske model antages at have en entydig lÃ¸sning, og vi skal
 desuden antage, at den matematiske model er konstrueret udfra den
-fysiske model på en sådan måde, at der ligeledes for denne findes en
-entydig løsning. Lad nu $\uex$ være den eksakte løsning til
-\eqref{math-model}, og lad $\ufe$ være en approksimeret 
-løsning til \eqref{math-model} beregnet ved hjælp af den endelige 
-element metode. Vi vil da definere den beregningsmæssige fejl som
+fysiske model pÃ¥ en sÃ¥dan mÃ¥de, at der ligeledes for denne findes en
+entydig lÃ¸sning. Lad nu $\uex$ vÃ¦re den eksakte lÃ¸sning til
+\eqref{math-model}, og lad $\ufe$ vÃ¦re en approksimeret 
+lÃ¸sning til \eqref{math-model} beregnet ved hjÃ¦lp af den endelige 
+element metode. Vi vil da definere den beregningsmÃ¦ssige fejl som
 \begin{equation}
   e_{\mathsf{c}} = \uex - \ufe\ .
 \end{equation}
-Er $\tilde{u}_{\mathsf{ph}}$ løsningen til \eqref{phys-model}, 
+Er $\tilde{u}_{\mathsf{ph}}$ lÃ¸sningen til \eqref{phys-model}, 
 defineres modelleringsfejlen som 
 \begin{equation}
   e_{\mathsf{m}} = \tilde{u}_{\mathsf{ph}} - \uex\ .
@@ -54,23 +54,23 @@ Den samlede fejl defineres da som
   e=\tilde{u}_{\mathsf{ph}}-\ufe=\tilde{u}_{\mathsf{ph}}-\uex+\uex-\ufe
   =e_{\mathsf{m}} + e_{\mathsf{c}}\ ,
 \end{equation}
-dvs. som summen af modelleringsfejlen og den beregningsmæssige fejl.
-Vi skal her  kun beskæftige os med beregningsmæssige fejl. 
+dvs. som summen af modelleringsfejlen og den beregningsmÃ¦ssige fejl.
+Vi skal her  kun beskÃ¦ftige os med beregningsmÃ¦ssige fejl. 
 
 \subsection{Forskellige typer af fejlestimatorer}
-Igennem årene er der blevet foreslået et utal at forskellige 
+Igennem Ã¥rene er der blevet foreslÃ¥et et utal at forskellige 
 fejlestimatorer til brug i den endelige element metode, se fx
 \cite{babuska1} for 
 litteraturhenvisninger. Flertallet af disse fejlestimatorer kan 
-klassificeres i en af følgende to kategorier:
+klassificeres i en af fÃ¸lgende to kategorier:
 \begin{itemize}
   \item Udglatnings metoder (eng. smoothening/flux-projection).
   \item Residuum metoder.
 \end{itemize}
 Vi skal i afsnit~\ref{z2} betragte en bestemt udglatnings metode.
-Traditionelt set har residuum metoder haft størst udbredelse, men den
-udglatnings metode, som vi senere skal studere, vil måske medvirke til at åbne
-vejen for en større udbredelse af fejlestimatorer af denne type.
+Traditionelt set har residuum metoder haft stÃ¸rst udbredelse, men den
+udglatnings metode, som vi senere skal studere, vil mÃ¥ske medvirke til at Ã¥bne
+vejen for en stÃ¸rre udbredelse af fejlestimatorer af denne type.
  
 \subsection{Forskellige former for fejlestimering}
 Man skelner normalt mellem to former for fejlestimering
@@ -78,28 +78,28 @@ Man skelner normalt mellem to former for fejlestimering
   \item A priori fejlestimering.
   \item A posteriori fejlestimering.
 \end{itemize}
-Ved a priori fejlestimering forsøger man at vurdere fejlen mellem den
-eksakte løsning og den approksimerede løsning alene på grundlag af
-egenskaberne ved den eksakte (ukendte) løsning til problemet. I a 
-posteriori fejlestimering forsøger man derimod at vurdere fejlen vha. 
-den beregnede approksimerede løsning. De to former for fejlestimering 
+Ved a priori fejlestimering forsÃ¸ger man at vurdere fejlen mellem den
+eksakte lÃ¸sning og den approksimerede lÃ¸sning alene pÃ¥ grundlag af
+egenskaberne ved den eksakte (ukendte) lÃ¸sning til problemet. I a 
+posteriori fejlestimering forsÃ¸ger man derimod at vurdere fejlen vha. 
+den beregnede approksimerede lÃ¸sning. De to former for fejlestimering 
 ses ofte anvendt i forskellige teoretiske og praktiske situationer. A
 priori fejlestimering bruges typisk til at bestemme 
 konvergensegenskaberne for den numeriske metode, mens a posteriori
 fejlestimering ofte anvendes i adaptive algoritmer som en del af
 netinddelings algoritmen og stopkriteriet.
 
-Specifikke egenskaber ved fejlestimatorer er tæt knyttet til den 
+Specifikke egenskaber ved fejlestimatorer er tÃ¦t knyttet til den 
 type af differentialligninger, som de er konstrueret i tilknytning til. 
-Af denne grund findes kun  meget få generelle teoretiske resultater om
-fejlestimatorer. Til gengæld findes en del begreber og definitioner,
-som man benytter, når man skal vurdere og/eller sammenligner en eller
+Af denne grund findes kun  meget fÃ¥ generelle teoretiske resultater om
+fejlestimatorer. Til gengÃ¦ld findes en del begreber og definitioner,
+som man benytter, nÃ¥r man skal vurdere og/eller sammenligner en eller
 flere fejlestimatorer. 
 
 \subsection{Definitioner og begreber} \label{def-beg}
 \begin{definition}
-Ved en celle forstås en mindre samling af sammenhængende elementer, 
-se figur \ref{fig-cell}. Bemærk at en celle godt kan bestå af et  
+Ved en celle forstÃ¥s en mindre samling af sammenhÃ¦ngende elementer, 
+se figur \ref{fig-cell}. BemÃ¦rk at en celle godt kan bestÃ¥ af et  
 enkelt element.
 \end{definition}
 \begin{figure}[hbtp]
@@ -109,27 +109,27 @@ enkelt element.
       \put(1,1){\includegraphics{cell}}
     \end{picture}
   \end{center}
-  \caption{Eksempel på celle\label{fig-cell}}
+  \caption{Eksempel pÃ¥ celle\label{fig-cell}}
 \end{figure}
 \begin{definition}
-Lad $\dom$ betegne domænet, hvori vi ønsker at løse en given
-differen\-tialligning, og lad $\T=\{\fee_k\}_{k=1}^N$ være en
+Lad $\dom$ betegne domÃ¦net, hvori vi Ã¸nsker at lÃ¸se en given
+differen\-tialligning, og lad $\T=\{\fee_k\}_{k=1}^N$ vÃ¦re en
 triangulering af $\dom$. Ved en element fejl indikator for elementet
-$\fee_k\in\T$ forstås en udtryk, der afhænger af $\ufe$ men ikke
+$\fee_k\in\T$ forstÃ¥s en udtryk, der afhÃ¦nger af $\ufe$ men ikke
 af $\uex$, og som vurderer fejlen i elementet $\fee_k$.
 \end{definition}
 \begin{example}
-Betragtes model problemet \eqref{math-model} med endelig element løsning
+Betragtes model problemet \eqref{math-model} med endelig element lÃ¸sning
 $\ufe$, er 
 \begin{equation}
   \eta_{\fee} = \meas (\fee)\norm{R_{\fee}(\ufe)}
 \end{equation}
-et meget simpelt eksempel på en element fejl indikator.
+et meget simpelt eksempel pÃ¥ en element fejl indikator.
 Her er $R_{\fee}(\ufe)=(\D\ufe -f)|_{\fee}$ residualet restringeret til
 $\fee$, og $\meas (\fee)$ er arealet af $\fee$.  
 \end{example}
 \begin{definition}
-Lad $\cell$ være en celle. Vi vil da -- i analogi med
+Lad $\cell$ vÃ¦re en celle. Vi vil da -- i analogi med
 summationsprincippet~\eqref{sumprincip} for fejlen -- definere en fejlestimator som
 \begin{equation}
   \ee = \Bigl( \sum \substack{ 
@@ -139,53 +139,53 @@ summationsprincippet~\eqref{sumprincip} for fejlen -- definere en fejlestimator 
                \eta_{\fee}^q\Bigr)^{1/q}.
 \end{equation}
 Her er $\eta_{\fee}$ en element fejl indikator for elementet $\fee$
-tilhørende trianguleringen $\T$ af det betragtede domæne.
+tilhÃ¸rende trianguleringen $\T$ af det betragtede domÃ¦ne.
 \end{definition}
 
 For at kunne vurdere hvor god en fejlestimator er, har vi brug for et
-mål, der definerer, hvad vi forstår ved en god fejlestimator. Et sådan
-mål er effektivitets indekset.
+mÃ¥l, der definerer, hvad vi forstÃ¥r ved en god fejlestimator. Et sÃ¥dan
+mÃ¥l er effektivitets indekset.
 
 \begin{definition}
-Ved effektivitets indekset for en fejlsestimator $\ee$ forstås
+Ved effektivitets indekset for en fejlsestimator $\ee$ forstÃ¥s
 \begin{equation}
   \ei = \frac{\ee}{\en{e}},
 \end{equation}
-hvor $\en{\cdot}$ er den norm, vi ønsker at vurdere forskellen på 
+hvor $\en{\cdot}$ er den norm, vi Ã¸nsker at vurdere forskellen pÃ¥ 
 $e=\uex - \ufe$ i. 
 \end{definition}
 
-Jo tættere $\ei$ er på $1$, jo bedre er fejlestimatoren $\ee$. 
+Jo tÃ¦ttere $\ei$ er pÃ¥ $1$, jo bedre er fejlestimatoren $\ee$. 
 
 Normalt forventer man ikke, at fejlen i den endelig element metode er
-specielt lille, såfremt netinddelingen er grov. Omvendt bør en god
-fejlestimator approksimere den eksakte fejl godt, såfremt
-netinddelingen er fin. På den baggrund skal vi nu definere, hvad vi
-forstår ved en asymptotisk eksakt fejlestimator.
+specielt lille, sÃ¥fremt netinddelingen er grov. Omvendt bÃ¸r en god
+fejlestimator approksimere den eksakte fejl godt, sÃ¥fremt
+netinddelingen er fin. PÃ¥ den baggrund skal vi nu definere, hvad vi
+forstÃ¥r ved en asymptotisk eksakt fejlestimator.
 \begin{definition} \label{asympexact}
-Lad $\ee$ være en fejlestimator. $\ee$ siges at være asymptotisk
-eksakt, såfremt
+Lad $\ee$ vÃ¦re en fejlestimator. $\ee$ siges at vÃ¦re asymptotisk
+eksakt, sÃ¥fremt
 \begin{equation}
   \ei \rightarrow 1 \quad \text{for $\norm{e}_{\cell}\rightarrow 0$}
 \end{equation}
-for en given klasse af løsninger og en følge af netinddelinger.
+for en given klasse af lÃ¸sninger og en fÃ¸lge af netinddelinger.
 \end{definition}
 
 \section{Zienkiewicz--Zhu fejl estimatoren} \label{z2}
 Vi skal nu introducere en fejl estimator af udglatnings typen. Denne
-fejl estimator sammenkobler teori fra to områder indenfor den endelige
+fejl estimator sammenkobler teori fra to omrÃ¥der indenfor den endelige
 element metode, som man normalt ikke forbinder med hinanden. Ved at
-sammenkoble metoder til beregning af punktværdier for de
-retningsafledede i den eksakte løsning udfra den endelige element
-løsning med typiske ideer fra a posteriori fejl estimatorer,  har
-Zienkiewicz og Zhu konstrueret en fejl estimator med pæne egenskaber.
+sammenkoble metoder til beregning af punktvÃ¦rdier for de
+retningsafledede i den eksakte lÃ¸sning udfra den endelige element
+lÃ¸sning med typiske ideer fra a posteriori fejl estimatorer,  har
+Zienkiewicz og Zhu konstrueret en fejl estimator med pÃ¦ne egenskaber.
 Fejl estimatoren kaldes ofte for $Z^2$ fejl estimatoren. $Z^2$ fejl
 estimatoren har gode konvergensegenskaber og er desuden relativ nem at
 implementere i allerede eksisterende endelig element software. 
 
 \subsection{Model problem} \label{modelafs}
-Som nævnt ovenfor er fejl estimatorer ofte udviklet i forbindelse med
-en ganske bestemt differentialligning. Dette er også tilfældet for
+Som nÃ¦vnt ovenfor er fejl estimatorer ofte udviklet i forbindelse med
+en ganske bestemt differentialligning. Dette er ogsÃ¥ tilfÃ¦ldet for
 $Z^2$ fejl estimatoren. Model problemet, vi skal betragte for denne fejl
 estimator, er Lam\'{e}--Navier elasticitets ligningerne i to dimensioner,
 \begin{equation} \label{modpro}
@@ -203,11 +203,11 @@ koefficienterne givet ved
 I definitionen af Lam\'{e} koefficienter er $E$ Youngs modul, og $\nu$
 er Poissons forhold.
 
-Randbetingelser for \eqref{modpro} er på en del af randen givet ved en
-forskydning, og på den resterende del ved en gnidningskraft (eng. tractions), dvs.
+Randbetingelser for \eqref{modpro} er pÃ¥ en del af randen givet ved en
+forskydning, og pÃ¥ den resterende del ved en gnidningskraft (eng. tractions), dvs.
 \begin{align}
-  {\bf u} &= {\bf \hat{u}} \quad \text{på $\Gamma_d$}, \\
-  {\bf H}{\pmb\sigma} &= {\bf \hat{t}} \quad \text{på $\Gamma_n$}, \label{bcstress}
+  {\bf u} &= {\bf \hat{u}} \quad \text{pÃ¥ $\Gamma_d$}, \\
+  {\bf H}{\pmb\sigma} &= {\bf \hat{t}} \quad \text{pÃ¥ $\Gamma_n$}, \label{bcstress}
 \end{align}
 hvor $\Gamma_d$ og $\Gamma_n$ opfylder $\Gamma =\p\dom =
 \Gamma_d\cup\Gamma_n$. Matricen ${\bf H}$ er givet ved
@@ -244,7 +244,7 @@ Model problemet \eqref{modpro} kan nu formuleres som
   {\bf S}^t{\bf DSu} = {\bf f}. 
 \end{equation}
 Indenfor elasticitets teori er $\bf D$ den elasticitets matrix, som
-beskriver tøjning (eng. plain strain).
+beskriver tÃ¸jning (eng. plain strain).
 
 Variationsformuleringen af model problemet lyder: Bestem  
 \begin{equation}
@@ -256,9 +256,9 @@ hvor
 \begin{align}
   \H_{\bf\hat{u}} &= 
     \{ {\bf u} \in [ \H^1(\Omega) ]^2 \ | \ {\bf u} =
-    {\bf\hat{u}} \quad \text{på $\Gamma_d$} \}, \\
+    {\bf\hat{u}} \quad \text{pÃ¥ $\Gamma_d$} \}, \\
   \H_0 &= \{ {\bf u} \in [ \H^1(\Omega) ]^2 \ | \ {\bf u} =
-    0 \quad \text{på $\Gamma_d$} \}, \\  
+    0 \quad \text{pÃ¥ $\Gamma_d$} \}, \\  
   B({\bf u},{\bf v}) &= 
     \int_\Omega ({\bf Su})^t{\bf DSv}\, d{\bf x}, \\
   ({\bf f},{\bf v}) &= \int_\Omega {\bf f}^t{\bf v}\, d{\bf x}, \\
@@ -266,32 +266,32 @@ hvor
     {\bf v}^t{\bf \hat{t}}\, d{\bf s}. 
 \end{align}
 
-Ved hjælp af den endelige element metode fås en approksimeret løsning
-på formen
+Ved hjÃ¦lp af den endelige element metode fÃ¥s en approksimeret lÃ¸sning
+pÃ¥ formen
 \begin{equation}
   {\bf u}_h = \sum_{i=1}^n {\bf N}_i {\bf u}_i . 
 \end{equation}
 Her er ${\bf N}_i$ basis funktioner konstrueret udfra de lokale basis
-funktioner i de enkelte elementer. Koefficienterne ${\bf u}_i$ er på
+funktioner i de enkelte elementer. Koefficienterne ${\bf u}_i$ er pÃ¥
 standard vis bestemt fra kravet
 \begin{equation}
   B({\bf u}_h,{\bf N}_i) = ({\bf f},{\bf N}_i) + 
   \langle {\bf\hat{t}},{\bf N}_i\rangle_{\Gamma_n}, \quad 
   i=1,\ldots,n.
 \end{equation}
-Vi definerer nu fejlen i den approksimerede løsning som ${\bf e} =
-{\bf u} - {\bf u}_h$. Målet er at opnå en fejl estimator med beregnelige
-øvre og nedre grænse for energi normen af fejlen. Per definition er
+Vi definerer nu fejlen i den approksimerede lÃ¸sning som ${\bf e} =
+{\bf u} - {\bf u}_h$. MÃ¥let er at opnÃ¥ en fejl estimator med beregnelige
+Ã¸vre og nedre grÃ¦nse for energi normen af fejlen. Per definition er
 stresset/gradienten i model problemet givet ved
 \begin{equation} \label{stress}
   \pmb{\sigma} = {\bf DSu}.
 \end{equation}
-Vi vil fremover bruge betegnelsen stress eller gradient i flæng. Det
+Vi vil fremover bruge betegnelsen stress eller gradient i flÃ¦ng. Det
 beregnelige stress er givet ved
 \begin{equation} \label{cstress}
   \pmb{\sigma}_h = {\bf DSu}_h .
 \end{equation}
-Ved nu at bruge \eqref{stress} og \eqref{cstress} fås følgende udtryk
+Ved nu at bruge \eqref{stress} og \eqref{cstress} fÃ¥s fÃ¸lgende udtryk
 for energi normen for fejlen
 \begin{align} \label{errorequ}
   \| {\bf e} \|^2 &= B({\bf e,e}) \\
@@ -299,17 +299,17 @@ for energi normen for fejlen
   &= \int_\dom {\bf e}^t_\sigma {\bf D}^{-1}
      {\bf e}_\sigma\, d{\bf x}, \notag  
 \end{align}
-hvor det sidste lighedstegn følger af definitionen ${\bf e}_\sigma =
+hvor det sidste lighedstegn fÃ¸lger af definitionen ${\bf e}_\sigma =
 \pmb{\sigma} - \pmb{\sigma}_h$. Vi har desuden udnyttet, at $\bf D$ er
 symmetrisk. Ideen bag $Z^2$ fejl estimatoren er nu at angive en
 metode til at beregne en approksimation $\pmb{\sigma}^{\ast}$ til
-$\pmb{\sigma}$ og så anvende denne i \eqref{errorequ}. Altså vi
-erstatter $\pmb{\sigma}$ med en approksimation $\pmb{\sigma}^{\ast}$ og får
+$\pmb{\sigma}$ og sÃ¥ anvende denne i \eqref{errorequ}. AltsÃ¥ vi
+erstatter $\pmb{\sigma}$ med en approksimation $\pmb{\sigma}^{\ast}$ og fÃ¥r
 \begin{equation}
   {\bf e_\sigma} \approx {\bf e_\sigma^{\ast}} =
   \pmb{\sigma}^{\ast} - \pmb{\sigma}_h .
 \end{equation}
-Dermed haves følgende fejl estimator
+Dermed haves fÃ¸lgende fejl estimator
 \begin{equation}
   \| {\bf e} \| \approx \norm{\tilde{\bf e}} =
   \biggl( \int_\dom ({\bf e}^{\ast}_\sigma)^t {\bf D}^{-1}
@@ -318,29 +318,29 @@ Dermed haves følgende fejl estimator
 
 \subsection{Forskellige metoder til bestemmelse af $\pmb{\sigma}^{\ast}$}
 Vi skal studere fire forskellige metoder til bestemmelse af en
-approksimation $\pmb{\sigma}^{\ast}$ til $\pmb{\sigma}$. Den første
-metode blev foreslået af Zienkiewicz og Zhu i artiklen \cite{zz1},
-hvor også $Z^2$ fejl estimatoren første gang blev præsenteret. I
-\cite{zz2} præsenteres to andre metoder til bestemmelse af
-$\pmb{\sigma}^{\ast}$. Den første af disse er en generalisering af
-metoden fra \cite{zz1}. For de tre ovennævnte metoder findes i
+approksimation $\pmb{\sigma}^{\ast}$ til $\pmb{\sigma}$. Den fÃ¸rste
+metode blev foreslÃ¥et af Zienkiewicz og Zhu i artiklen \cite{zz1},
+hvor ogsÃ¥ $Z^2$ fejl estimatoren fÃ¸rste gang blev prÃ¦senteret. I
+\cite{zz2} prÃ¦senteres to andre metoder til bestemmelse af
+$\pmb{\sigma}^{\ast}$. Den fÃ¸rste af disse er en generalisering af
+metoden fra \cite{zz1}. For de tre ovennÃ¦vnte metoder findes i
 \cite{zz2} en teoretisk og numerisk analyse af deres egenskaber. Vi
 skal nedenfor vende tilbage til disse resultater. Den fjerde metode,
-som vi skal betragte, blev indført i \cite{zz3}, hvori man også kan
-finde en række numeriske test, der berettiger dens eksistens overfor
-de tre tidligere fremgangsmåder. Der findes endnu ingen publicerede
-tilbundsgående teoretiske analyser af den sidstnævnte metode.
+som vi skal betragte, blev indfÃ¸rt i \cite{zz3}, hvori man ogsÃ¥ kan
+finde en rÃ¦kke numeriske test, der berettiger dens eksistens overfor
+de tre tidligere fremgangsmÃ¥der. Der findes endnu ingen publicerede
+tilbundsgÃ¥ende teoretiske analyser af den sidstnÃ¦vnte metode.
 
 \subsubsection{De oprindelige metoder}
-Den første metode, som vi skal betragte, blev indført af Zienkiewicz
+Den fÃ¸rste metode, som vi skal betragte, blev indfÃ¸rt af Zienkiewicz
 og Zhu i \cite{zz1}. Fra \eqref{cstress} ser vi, at selvom den
-endelige element løsning er ${\mathcal C}^0$ kontinuert, vil den
-beregnelige stress $\pmb{\sigma}_h$ ikke nødvendigvis være kontinuert
+endelige element lÃ¸sning er ${\mathcal C}^0$ kontinuert, vil den
+beregnelige stress $\pmb{\sigma}_h$ ikke nÃ¸dvendigvis vÃ¦re kontinuert
 over randene mellem de enkelte elementer. Den intuitive ide er nu at
 approksimere $\pmb\sigma$ med en mere glat (kontinuert) stress $\pmb{\sigma}^{\ast}$.
 
-Lad $\hat{{\bf N}}_i, \ i=1,\ldots,m$ være kontinuerte, globale basisfunktioner konstrueret
-(udfra de lokale basisfunktioner i hvert element) på en sådan måde, at
+Lad $\hat{{\bf N}}_i, \ i=1,\ldots,m$ vÃ¦re kontinuerte, globale basisfunktioner konstrueret
+(udfra de lokale basisfunktioner i hvert element) pÃ¥ en sÃ¥dan mÃ¥de, at
 de opfylder randbetingelsen \eqref{bcstress} for stresset. Den
 udglattede stress $\pmb{\sigma}^{\ast}$ defineres da som
 \begin{equation}
@@ -353,17 +353,17 @@ hvor koefficienterne opfylder
   \hat{{\bf N}}_i\, d{\bf x}=0, \quad i=1,\ldots,m . 
 \end{equation}
 Da $\hat{{\bf N}}_i\in{\mathcal C}^0(\dom )$ vil $\pmb{\sigma}^{\ast}$
-være kontinuert (også over randene mellem de enkelte elementer).
+vÃ¦re kontinuert (ogsÃ¥ over randene mellem de enkelte elementer).
 Basisfunktionerne $\hat{{\bf N}}_i$ antages at have samme grad $p$
 som basisfunktionerne ${\bf N}_i$.
 
 Ved at erstatte basisfunktionerne $\hat{{\bf N}}_i$ med
 basisfunktionerne ${\bf M}_i$, hvor ${\bf M}_i$ opfylder de samme
 randbetingelser og globale kontinuitetsbetingelser som $\hat{{\bf
-N}}_i$, men hvor graden af ${\bf M}_i$ er $q\not = p$, fås en anden
+N}}_i$, men hvor graden af ${\bf M}_i$ er $q\not = p$, fÃ¥s en anden
 metode til bestemmelse af en approksimation
 til $\pmb\sigma$. Da denne metode er en generalisering af den ovenfor
-nævnte, vil vi benytte samme notation og skrive
+nÃ¦vnte, vil vi benytte samme notation og skrive
 \begin{equation}  \label{proj1}
   \pmb{\sigma}^{\ast} = \sum_{i=1}^m {\bf M}_i 
   \overline{\pmb{\sigma}}^{\ast}_i \ , 
@@ -374,14 +374,14 @@ hvor koefficienterne opfylder
   {\bf M}_i\, d{\bf x}=0, \quad i=1,\ldots,m. 
 \end{equation}
 
-Ændres kravet~\eqref{demcoe} til koefficienterne for $\pmb{\sigma}^{\ast}$, kan
-man få en tredje metode til bestemmelse af en approksimation. En sådan
+Ã†ndres kravet~\eqref{demcoe} til koefficienterne for $\pmb{\sigma}^{\ast}$, kan
+man fÃ¥ en tredje metode til bestemmelse af en approksimation. En sÃ¥dan
 approksimation er givet ved
 \begin{equation} \label{proj2}
   \pmb{\sigma}^{{\bf D}} = \sum_{i=1}^m {\bf M}_i 
   \overline{\pmb{\sigma}}^{{\bf D}}_i \ , 
 \end{equation}
-hvor koefficienterne nu er givet ved hjælp af et vægtet indre produkt
+hvor koefficienterne nu er givet ved hjÃ¦lp af et vÃ¦gtet indre produkt
 \begin{equation} 
   \int_\dom (\pmb{\sigma}^{{\bf D}} - \pmb{\sigma}_h)^t
   {\bf D}^{-1}{\bf M}_i\, d{\bf x}=0, \quad i=1,\ldots,m. 
@@ -389,28 +389,28 @@ hvor koefficienterne nu er givet ved hjælp af et vægtet indre produkt
 
 \subsubsection{Den nye metode}
 Ideen bag den nye metode er den samme, som den bag de oprindelige
-metoder. Vi ønsker at bestemme en approksimation $\pmb{\sigma}^{\ast}$
+metoder. Vi Ã¸nsker at bestemme en approksimation $\pmb{\sigma}^{\ast}$
 til $\pmb{\sigma}$, der er kontinuert over randene mellem de enkelte
-elementer. Som tidligere skal vi skrive $\pmb{\sigma}^{\ast}$ på formen
+elementer. Som tidligere skal vi skrive $\pmb{\sigma}^{\ast}$ pÃ¥ formen
 \begin{equation} \label{newform}
   \pmb{\sigma}^{\ast} = {\bf N}\overline{\pmb{\sigma}}^{\ast},
 \end{equation}
 hvor ${\bf N}$ er de samme basisfunktioner, som dem vi brugte til at
-bestemme den endelige element løsning ${\bf u}_h$ med.
+bestemme den endelige element lÃ¸sning ${\bf u}_h$ med.
  
-Vi skal nu redegøre for, hvordan koefficienterne
+Vi skal nu redegÃ¸re for, hvordan koefficienterne
 $\overline{\pmb{\sigma}}^{\ast}$ i~\eqref{newform} bestemmmes.
 Koefficienterne $\overline{\pmb{\sigma}}^{\ast}$ vil blive bestemt som
-værdien af et vist polynomium $\pmb{\sigma}^{\ast}_p$ med samme orden
+vÃ¦rdien af et vist polynomium $\pmb{\sigma}^{\ast}_p$ med samme orden
 $p$ som basisfunktionerne i ${\bf N}$. Polynomiet
-$\pmb{\sigma}^{\ast}_p$ vil blive defineret på et bælte af elementer
+$\pmb{\sigma}^{\ast}_p$ vil blive defineret pÃ¥ et bÃ¦lte af elementer
 omkring det knudepunkt, hvor vi er interesseret i at bestemme en
-approksimeret værdi af stresset i. Fremover skal vi kalde dette
+approksimeret vÃ¦rdi af stresset i. Fremover skal vi kalde dette
 knudepunkt for samlingspunkts knuden (eng. patch assembly point).
-``Bæltet'' af elementer omkring samlingspunkts knuden består af
-foreningsmængden af de elementer, der indeholder den betragtede
+``BÃ¦ltet'' af elementer omkring samlingspunkts knuden bestÃ¥r af
+foreningsmÃ¦ngden af de elementer, der indeholder den betragtede
 samlingspunkts knude. I figur~\ref{elementpatch} er vist et par
-eksempler på typiske element bælter.  
+eksempler pÃ¥ typiske element bÃ¦lter.  
 \setlength{\unitlength}{1mm}
 \begin{figure}[htbp]
 \begin{center}
@@ -441,15 +441,15 @@ eksempler på typiske element bælter.
 }
 \end{picture}
 \end{center}
-\caption{Eksempler på element bælter omkring en samlingspunkts knude
+\caption{Eksempler pÃ¥ element bÃ¦lter omkring en samlingspunkts knude
 markeret med $\bullet$\label{elementpatch}}
 \end{figure}
 
-Polynomiet $\pmb{\sigma}^{\ast}_p$ kan altså skrives som
+Polynomiet $\pmb{\sigma}^{\ast}_p$ kan altsÃ¥ skrives som
 \begin{equation} \label{Pa}
   \pmb{\sigma}^{\ast}_p = {\bf Pa},
 \end{equation}
-hvor ${\bf P}$ består af polynomielle led, og ${\bf a}$ er de (indtil
+hvor ${\bf P}$ bestÃ¥r af polynomielle led, og ${\bf a}$ er de (indtil
 videre) ubekendte koefficienter til ${\bf P}$. For endimensionelle
 elementer har vi fx
 \begin{align}
@@ -457,11 +457,11 @@ elementer har vi fx
 \intertext{og}
   {\bf a} &= [a_1,a_2,\ldots,a_{p+1}].
 \end{align}
-For lineære polynomier i to dimensioner haves
+For lineÃ¦re polynomier i to dimensioner haves
 \begin{equation}
   {\bf P} = [1,x,y],
 \end{equation}
-og for bi-lineære polynomier er
+og for bi-lineÃ¦re polynomier er
 \begin{equation}
   {\bf P} = [1,x,y,xy].
 \end{equation}
@@ -480,29 +480,29 @@ bestemt ved
 \end{equation}
 \subsubsection{Bestemmelse af koefficienterne ${\bf a}$}
 Der findes flere metoder til at bestemme koefficienterne ${\bf a}$ i
-udtrykket~\eqref{Pa}. Artiklen~\cite{zz3} foreslår, at disse bestemmes
-som det sæt af koefficienter, der minimerer funktionen $F$ givet ved
+udtrykket~\eqref{Pa}. Artiklen~\cite{zz3} foreslÃ¥r, at disse bestemmes
+som det sÃ¦t af koefficienter, der minimerer funktionen $F$ givet ved
 \begin{align}
   F(x) &= \sum_{i=1}^n \bigl( \pmb{\sigma}_h (x_i,y_i) -
     \pmb{\sigma}^{\ast}_p (x_i,y_i) \bigr)^2 \\
   &= \sum_{i=1}^n \bigl( \pmb{\sigma}_h (x_i,y_i) -
     {\bf P}(x_i,y_i){\bf a} \bigr)^2, \notag
 \end{align}
-hvor $(x_i,y_i)$ er koordinaterne til en række samplings punkter, $n=mk$
+hvor $(x_i,y_i)$ er koordinaterne til en rÃ¦kke samplings punkter, $n=mk$
 er det samlede antal samplings punkter, og $k$ er antallet af samplings
-punkter i elementet $\dom_{m_j}$, $m_j=1,\ldots,m$ i element bæltet
+punkter i elementet $\dom_{m_j}$, $m_j=1,\ldots,m$ i element bÃ¦ltet
 $\dom_s=\cup_{j=1}^m \dom_{m_j}$. Igennem numeriske test konkluderes
 i~\cite{zz3}, at approksimationen $\pmb{\sigma}^{\ast}$ til
-$\pmb\sigma$ bliver bedre, hvis man som samplings punkter vælger punkter,
+$\pmb\sigma$ bliver bedre, hvis man som samplings punkter vÃ¦lger punkter,
 der er superkonvergente. 
 
-Ved at differentiere $F$ og derefter løse ligningen $F'(x)=0$ ses, at
+Ved at differentiere $F$ og derefter lÃ¸se ligningen $F'(x)=0$ ses, at
 ${\bf a}$ er givet ved
 \begin{equation} \label{valueofa}
   \sum_{i=1}^n {\bf P}^t(x_i,y_i){\bf P}(x_i,y_i){\bf a} =
   \sum_{i=1}^n {\bf P}^t(x_i,y_i)\pmb{\sigma}_h (x_i,y_i).
 \end{equation} 
-Ligningen~\eqref{valueofa} kan udtrykkes på matrix form som
+Ligningen~\eqref{valueofa} kan udtrykkes pÃ¥ matrix form som
 \begin{equation}
   {\bf a} = {\bf A}^{-1}{\bf b},
 \end{equation}
@@ -514,15 +514,15 @@ og
 \begin{equation}
   {\bf b} = \sum_{i=1}^n {\bf P}^t(x_i,y_i)\pmb{\sigma}_h (x_i,y_i)
 \end{equation}	    
-Når koefficienterne til ${\bf a}$ er kendt, kan man bestemme
-approksimative punktværdier for stresset ved at indsætte passende
-koordinater i udtrykket for $\pmb{\sigma}^{\ast}_p$. For at opnå
-de mest præcise resultater, vil vi kun bestemme værdien af $\pmb{\sigma}^{\ast}$ i
-punkter beliggende i det indre af det betragtede element bælte.
-Nedenfor beskrives en undtagelse for punkter på randen af domænet. I
-figur~\ref{ex-rec-pro1} og \ref{ex-rec-pro2} findes eksempler på
-ovenstående proces. I artiklen~\cite{zz3} underbygger numeriske test
-en formodning om, at værdierne af $\pmb{\sigma}^{\ast}_p$ alle er
+NÃ¥r koefficienterne til ${\bf a}$ er kendt, kan man bestemme
+approksimative punktvÃ¦rdier for stresset ved at indsÃ¦tte passende
+koordinater i udtrykket for $\pmb{\sigma}^{\ast}_p$. For at opnÃ¥
+de mest prÃ¦cise resultater, vil vi kun bestemme vÃ¦rdien af $\pmb{\sigma}^{\ast}$ i
+punkter beliggende i det indre af det betragtede element bÃ¦lte.
+Nedenfor beskrives en undtagelse for punkter pÃ¥ randen af domÃ¦net. I
+figur~\ref{ex-rec-pro1} og \ref{ex-rec-pro2} findes eksempler pÃ¥
+ovenstÃ¥ende proces. I artiklen~\cite{zz3} underbygger numeriske test
+en formodning om, at vÃ¦rdierne af $\pmb{\sigma}^{\ast}_p$ alle er
 superkonvergente.  
 
 \setlength{\unitlength}{1mm}
@@ -540,14 +540,14 @@ superkonvergente.
 \put(45,45){\circle{4}}
 \end{picture}
 \end{center}
-\caption{Eksempel på kvadratiske elementer med bi-lineære
-basisfunktioner. Punktet mærket $\bigcirc$ er samlingspunkts
-knuden. De lokale basisfunktioner er bestemt ved værdien i
-punkterne mærket $\circ$/$\bullet$. Det ligeledes lineære polynomium
-$\pmb{\sigma}^{\ast}_p$ er defineret over hele element bæltet og
-bestemt ved værdien i Gauss punkterne mærket $\triangle$. I punktet
-mærket $\bullet$ har vi udregnet en approksimeret værdi af stresset
-ved at indsætte passende koordinater i udtrykket for
+\caption{Eksempel pÃ¥ kvadratiske elementer med bi-lineÃ¦re
+basisfunktioner. Punktet mÃ¦rket $\bigcirc$ er samlingspunkts
+knuden. De lokale basisfunktioner er bestemt ved vÃ¦rdien i
+punkterne mÃ¦rket $\circ$/$\bullet$. Det ligeledes lineÃ¦re polynomium
+$\pmb{\sigma}^{\ast}_p$ er defineret over hele element bÃ¦ltet og
+bestemt ved vÃ¦rdien i Gauss punkterne mÃ¦rket $\triangle$. I punktet
+mÃ¦rket $\bullet$ har vi udregnet en approksimeret vÃ¦rdi af stresset
+ved at indsÃ¦tte passende koordinater i udtrykket for
 $\pmb{\sigma}^{\ast}_p$ \label{ex-rec-pro1}}
 \end{figure}
 \setlength{\unitlength}{1mm}
@@ -582,47 +582,47 @@ $\pmb{\sigma}^{\ast}_p$ \label{ex-rec-pro1}}
 \multiput(10,10)(0,30){4}{\line(-1,0){5}}
 \end{picture}
 \end{center}
-\caption{Eksempel på kvadratiske elementer med trunkerede bi-kvadratiske
-basisfunktioner. Punktet mærket $\bigcirc$ er samlingspunkts
-knuden. De lokale basisfunktioner er bestemt ved værdien i
-punkterne mærket $\circ$/$\bullet$. Det kvadratiske polynomium
-$\pmb{\sigma}^{\ast}_p$ er defineret over hele element bæltet og
-bestemt ved værdien i Gauss punkterne mærket $\triangle$. I punkterne
-mærket $\bullet$ har vi udregnet en approksimeret værdi af stresset
-ved at indsætte passende koordinater i udtrykket for
+\caption{Eksempel pÃ¥ kvadratiske elementer med trunkerede bi-kvadratiske
+basisfunktioner. Punktet mÃ¦rket $\bigcirc$ er samlingspunkts
+knuden. De lokale basisfunktioner er bestemt ved vÃ¦rdien i
+punkterne mÃ¦rket $\circ$/$\bullet$. Det kvadratiske polynomium
+$\pmb{\sigma}^{\ast}_p$ er defineret over hele element bÃ¦ltet og
+bestemt ved vÃ¦rdien i Gauss punkterne mÃ¦rket $\triangle$. I punkterne
+mÃ¦rket $\bullet$ har vi udregnet en approksimeret vÃ¦rdi af stresset
+ved at indsÃ¦tte passende koordinater i udtrykket for
 $\pmb{\sigma}^{\ast}_p$ \label{ex-rec-pro2}}
 \end{figure}
  
 \subsubsection{Indre knudepunkter og randknudepunkter}
-For knudepunkter, der ligger i det indre af domænet, kan man risikere
-et vist overlap mellem element bælterne. For knudepunkter hvor man har
-et sådan overlap, vil der blive udregnet en approksimeret værdi for
-stresset i det pågældende punkt fra to eller flere forskellige element
-bælter. Artiklen~\cite{zz3} foreslår, at man som den endelige
-approksimative værdi for stresset i sådanne punkter benytter et
-gennemsnit af de udregnede værdier. Dette foreslås udfra motiver om,
-at den ved hjælp af polynomiet $\pmb{\sigma}^{\ast}_p$ udregnede
+For knudepunkter, der ligger i det indre af domÃ¦net, kan man risikere
+et vist overlap mellem element bÃ¦lterne. For knudepunkter hvor man har
+et sÃ¥dan overlap, vil der blive udregnet en approksimeret vÃ¦rdi for
+stresset i det pÃ¥gÃ¦ldende punkt fra to eller flere forskellige element
+bÃ¦lter. Artiklen~\cite{zz3} foreslÃ¥r, at man som den endelige
+approksimative vÃ¦rdi for stresset i sÃ¥danne punkter benytter et
+gennemsnit af de udregnede vÃ¦rdier. Dette foreslÃ¥s udfra motiver om,
+at den ved hjÃ¦lp af polynomiet $\pmb{\sigma}^{\ast}_p$ udregnede
 approksimerede stress er superkonvergent. Det er derfor hurtigere/lettere at
-anvende ovenstående metode fremfor at benytte en metode, der undgår
+anvende ovenstÃ¥ende metode fremfor at benytte en metode, der undgÃ¥r
 dette problem. 
 
 Der skal ligeledes tages specielt hensyn til randknudepunkter. For
-hjørneknuder vil det tilhørende element bælte ikke være stort nok
+hjÃ¸rneknuder vil det tilhÃ¸rende element bÃ¦lte ikke vÃ¦re stort nok
 ($p^2$ Gauss punkter) til entydigt at bestemme de $(p+1)^2$
-koefficient\-er i ${\bf a}$. I sådanne tilfælde vil den
-approksimerende værdi af stresset blive udregnet for værdierne på
+koefficient\-er i ${\bf a}$. I sÃ¥danne tilfÃ¦lde vil den
+approksimerende vÃ¦rdi af stresset blive udregnet for vÃ¦rdierne pÃ¥
 randen for polynomiet $\pmb{\sigma}^{\ast}_p$ fra et ``indre''
-element bælte med samplingspunkts knude i det indre af domænet som
-vist i figur~\ref{ex-rec-pro3}. For øvrige
-randknudepunkter og polynomier med grad større end eller lig 3 er
-situationen simplere, idet der i det tilhørende element bælte her vil
-være samplings punkter $(2p^2)$ nok til at bestemme de $(p+1)^2$
-koefficienter i ${\bf a}$. For polynomier med grad mindre end 3 går
-det galt, da man her kun har værdien i 8 Gauss punkter til at bestemme
+element bÃ¦lte med samplingspunkts knude i det indre af domÃ¦net som
+vist i figur~\ref{ex-rec-pro3}. For Ã¸vrige
+randknudepunkter og polynomier med grad stÃ¸rre end eller lig 3 er
+situationen simplere, idet der i det tilhÃ¸rende element bÃ¦lte her vil
+vÃ¦re samplings punkter $(2p^2)$ nok til at bestemme de $(p+1)^2$
+koefficienter i ${\bf a}$. For polynomier med grad mindre end 3 gÃ¥r
+det galt, da man her kun har vÃ¦rdien i 8 Gauss punkter til at bestemme
 9 koefficienter, se figur~\ref{ex-rec-pro4} for et eksempel. I stedet
-kan et fuldt indre element bælte benyttes som før hjørnepunkterne. I
-praksis vil denne udvej altid blive foretrukket også for polynomier
-med grad større end eller lig 3, da den sparer tid.
+kan et fuldt indre element bÃ¦lte benyttes som fÃ¸r hjÃ¸rnepunkterne. I
+praksis vil denne udvej altid blive foretrukket ogsÃ¥ for polynomier
+med grad stÃ¸rre end eller lig 3, da den sparer tid.
 
 \setlength{\unitlength}{1mm}
 \begin{figure}[p]
@@ -654,7 +654,7 @@ med grad større end eller lig 3, da den sparer tid.
 \end{center}
 \caption{Eksempel med kvadratiske elementer og bi-kvadratiske
 basisfunktioner. $\triangle$ Gauss punkt. $\bullet$ Approksimeret
-værdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro3}}
+vÃ¦rdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro3}}
 \end{figure}
 \setlength{\unitlength}{1mm}
 \begin{figure}[p]
@@ -679,21 +679,21 @@ værdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro3}}
 \end{center}
 \caption{Eksempel med kvadratiske elementer og bi-kvadratiske
 basisfunktioner. $\triangle$ Gauss punkt. $\bullet$ Approksimeret
-værdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro4}}
+vÃ¦rdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro4}}
 \end{figure}
   
 \subsection{Teoretisk analyse af $Z^2$ fejl estimatoren}
 \subsubsection{De oprindelige metoder}
-Som nævnt ovenfor er målet for $Z^2$ fejl estimatoren at opnå
-beregnelige øvre og nedre grænser for fejlen målt i energi normen. Den
-næste sætning giver os en øvre grænse.
+Som nÃ¦vnt ovenfor er mÃ¥let for $Z^2$ fejl estimatoren at opnÃ¥
+beregnelige Ã¸vre og nedre grÃ¦nser for fejlen mÃ¥lt i energi normen. Den
+nÃ¦ste sÃ¦tning giver os en Ã¸vre grÃ¦nse.
 \begin{theorem} \label{lub1}
 Antag at funktionen $\hat{{\pmb\sigma}} \in [\H^1(\dom)]^2$ opfylder Neumann
 rand\-be\-tin\-gel\-sen~\eqref{bcstress}, dvs.
 \begin{equation}
-  {\bf H}\hat{\pmb{\sigma}} = {\bf \hat{t}} \quad \text{på $\Gamma_n$}.
+  {\bf H}\hat{\pmb{\sigma}} = {\bf \hat{t}} \quad \text{pÃ¥ $\Gamma_n$}.
 \end{equation}
-Lad $\alpha\in ]0,2[$ og $K>0$ være reelle konstanter og definer
+Lad $\alpha\in ]0,2[$ og $K>0$ vÃ¦re reelle konstanter og definer
 funktionalen $\hat{K}$ som
 \begin{equation}
   \hat{K}(\hat{\pmb{\sigma}}) = -\frac{1}{2} \int_\dom
@@ -702,11 +702,11 @@ funktionalen $\hat{K}$ som
   \frac{1}{2} \frac{h^\alpha}{K} \int_\dom {\bf (f+S}^t 
   \hat{\pmb{\sigma}})^2\, d{\bf x}.
 \end{equation}
-Da findes et $h$ så
+Da findes et $h$ sÃ¥
 \begin{equation}
   \| {\bf e} \|_E^2 \leq -2(1+Ch^\delta ) \hat{K}(\hat{\pmb{\sigma}}),
 \end{equation}
-hvor $C$ og $\delta$ er postitive konstanter uafhængige af $h$. 
+hvor $C$ og $\delta$ er postitive konstanter uafhÃ¦ngige af $h$. 
 \end{theorem}
 \begin{proof}
 Se fx \cite{zz2}. 
@@ -715,23 +715,23 @@ Se fx \cite{zz2}.
 Da basisfunktionerne ${\bf N}_i$ er kontinuerte og opfylder
 rand\-be\-tin\-gel\-sen for stresset, vil det udglattede stress
 $\pmb{\sigma}^{\ast}$ defineret ved~\eqref{proj1} opfylde
-be\-tin\-gel\-ser\-ne i sætning~\ref{lub1}. 
+be\-tin\-gel\-ser\-ne i sÃ¦tning~\ref{lub1}. 
 \end{remark}
 \begin{remark}
-I lighed med forrige bemærkning ses, at den udglattede stress
+I lighed med forrige bemÃ¦rkning ses, at den udglattede stress
 $\pmb{\sigma}^{{\bf D}}$ defineret ved~\eqref{proj2} ligeledes
-opfylder betingelserne i sætning~\ref{lub1}. 
+opfylder betingelserne i sÃ¦tning~\ref{lub1}. 
 \end{remark}
 \begin{definition}
-Lad $\bf D$ være som i afsnit~\ref{modelafs}. For passende funktioner
+Lad $\bf D$ vÃ¦re som i afsnit~\ref{modelafs}. For passende funktioner
 ${\bf v}$ defineres $\dnorm{\cdot}^2$ som 
 \begin{equation}
   \dnorm{{\bf v}}^2 = \int_\dom {\bf v}^t{\bf D}^{-1}{\bf v}\, d{\bf x}. 
 \end{equation}
 \end{definition}
 \begin{remark}
-Det er ikke svært at vise, at $\dnorm{\cdot}$ rent faktisk er en norm,
-og at man har følgende ækvivalens mellem normerne $\dnorm{\cdot}$ og
+Det er ikke svÃ¦rt at vise, at $\dnorm{\cdot}$ rent faktisk er en norm,
+og at man har fÃ¸lgende Ã¦kvivalens mellem normerne $\dnorm{\cdot}$ og
 $\norm{\cdot}_{\Lto}$. 
 \begin{equation}
   \frac{(1+\nu)(1-2\nu)}{E}\norm{{\bf v}}_{\Lto}^2 
@@ -739,13 +739,13 @@ $\norm{\cdot}_{\Lto}$.
   \frac{2(1+\nu)}{E}\norm{{\bf v}}_{\Lto}^2 \ . 
 \end{equation} 
 \end{remark}
-De næste to sætninger giver os nedre grænser for fejlen. Denne nedre
-grænse er afhængig af , om vi benytter approksimationen
+De nÃ¦ste to sÃ¦tninger giver os nedre grÃ¦nser for fejlen. Denne nedre
+grÃ¦nse er afhÃ¦ngig af , om vi benytter approksimationen
 $\pmb{\sigma}^{\ast}$ eller $\pmb{\sigma}^{\bf D}$ til $\pmb\sigma$. 
 \begin{theorem} \label{lub2}
-Lad $\pmb{\sigma}^{\bf D}$ være stressen defineret ved projektionen \eqref{proj2}.
+Lad $\pmb{\sigma}^{\bf D}$ vÃ¦re stressen defineret ved projektionen \eqref{proj2}.
 Under antagelse af, at den eksakte stres $\pmb{\sigma}$ er tilpas glat,
-gælder
+gÃ¦lder
 \begin{equation}
   \dnorm{\pmb{\sigma}^{\bf D} -\pmb{\sigma}_h} \leq
   \bigl(1+C({\bf u})h^{q-p+1}\bigr)\norm{{\bf e}}_E \ .
@@ -755,9 +755,9 @@ gælder
 Se fx \cite{zz2}. 
 \end{proof}
 \begin{theorem} \label{lub3}
-Lad $\pmb{\sigma}^{\ast}$ være stressen defineret ved projektionen \eqref{proj1}.
+Lad $\pmb{\sigma}^{\ast}$ vÃ¦re stressen defineret ved projektionen \eqref{proj1}.
 Under antagelse af, at den eksakte stres $\pmb{\sigma}$ er tilpas glat,
-gælder
+gÃ¦lder
 \begin{equation}
   \dnorm{\pmb{\sigma}^{\ast} -\pmb{\sigma}_h} \leq
   \sqrt{\frac{2}{1-2\nu}}\bigl(1+C({\bf u})h^{q-p+1}\bigr)\norm{{\bf e}}_E \ .
@@ -767,16 +767,16 @@ gælder
 Se fx \cite{zz2}. 
 \end{proof}
 
-Sættes 
+SÃ¦ttes 
 \begin{align}
   \varepsilon^2 &= \int_\dom (\hat{\pmb{\sigma}}-\pmb{\sigma}_h)^t {\bf D}^{-1}
   (\hat{\pmb{\sigma}}-\pmb{\sigma}_h)\, d{\bf x}, \\
 \intertext{og}
   \Lambda^2 &= \int_\dom ({\bf f+S}^t\pmb{\sigma})^2\, d{\bf x},
 \end{align}
-hvor $\hat{\pmb{\sigma}}$ betegner den udglattede stress opnået ved en
+hvor $\hat{\pmb{\sigma}}$ betegner den udglattede stress opnÃ¥et ved en
 af projektionerne \eqref{proj1} eller \eqref{proj2}, kan vi sammenfatte
-resultaterne i sætningerne~\ref{lub1}, \ref{lub2} og \ref{lub3} til
+resultaterne i sÃ¦tningerne~\ref{lub1}, \ref{lub2} og \ref{lub3} til
 \begin{equation}
   \bigl( 1+C_1({\bf u})h^{q-p+1}\bigr)^{-2}\varepsilon^2 \leq
   \norm{{\bf e}}^2_E \leq
@@ -793,20 +793,20 @@ for projektionen givet ved \eqref{proj2} og til
 for projektionen givet ved \eqref{proj1}.
 
 \subsubsection{Den nye metode}
-Som nævnt ovenfor har man endnu ingen tilbundsgående teoretiske
+Som nÃ¦vnt ovenfor har man endnu ingen tilbundsgÃ¥ende teoretiske
 analyser af den nye metode til konstruktion af ${\pmb\sigma}^{\ast}$.
-Nedenstående sætning angiver en betingelse, der giver os at
+NedenstÃ¥ende sÃ¦tning angiver en betingelse, der giver os at
 $\norm{\pmb{\sigma}^{\ast}-\pmb{\sigma}_h} \approx
 \norm{\pmb{\sigma}-\pmb{\sigma}_h}$ asymptotisk, dvs. asymptotisk er
 $\pmb{\sigma}^{\ast}$ en god approksimation til $\pmb\sigma$. Igennem
-numeriske test i~\cite{zz2} konkluderes, at sætningens forudsætninger
+numeriske test i~\cite{zz2} konkluderes, at sÃ¦tningens forudsÃ¦tninger
 er opfyldt for mange test problemer. 
  
 \begin{theorem}
-Lad $\tilde{\bf e}_\sigma = \pmb{\sigma} - \pmb{\sigma}^{\ast}$ være
-fejlen, som vi begår ved at approksimere den eksakte stress
+Lad $\tilde{\bf e}_\sigma = \pmb{\sigma} - \pmb{\sigma}^{\ast}$ vÃ¦re
+fejlen, som vi begÃ¥r ved at approksimere den eksakte stress
 $\pmb\sigma$ med $\pmb{\sigma}^{\ast}$, og lad
-${\bf e}_\sigma = \pmb{\sigma} - \pmb{\sigma}_h$ være
+${\bf e}_\sigma = \pmb{\sigma} - \pmb{\sigma}_h$ vÃ¦re
 forskellen mellem den eksakte stress og den beregnelige stress. Da er
 fejl estimatoren $\norm{{\bf e}_\sigma^{\ast}}=
 \norm{\pmb{\sigma}^{\ast}-\pmb{\sigma}_h}$ asymptotisk eksakt hvis
@@ -824,7 +824,7 @@ Skrives fejl estimatoren $\norm{{\bf e}_\sigma^{\ast}}$ som
   \norm{ ( \pmb{\sigma} - \pmb{\sigma}_h ) - 
   ( \pmb{\sigma} - \pmb{\sigma}^{\ast} ) },
 \end{equation}
-fås ved brug af trekants uligheden
+fÃ¥s ved brug af trekants uligheden
 \begin{equation}
   \norm{\pmb{\sigma}-\pmb{\sigma}_h} -
   \norm{\pmb{\sigma}-\pmb{\sigma}^{\ast}} 
@@ -845,11 +845,11 @@ til
   \leq \frac{\norm{{\bf e}_\sigma^{\ast}}}{\norm{{\bf e}_\sigma}} \leq
   1 + \frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}},
 \end{equation}
-Når $\norm{{\bf e}_\sigma}\rightarrow 0$ vil 
+NÃ¥r $\norm{{\bf e}_\sigma}\rightarrow 0$ vil 
 $\frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}}\rightarrow 0$
-jvf. sætningens antagelse, og dermed vil 
+jvf. sÃ¦tningens antagelse, og dermed vil 
 $\frac{\norm{{\bf e}_\sigma^{\ast}}}{\norm{{\bf e}_\sigma}}\rightarrow 1$.
-Dette er ifølge definition~\ref{asympexact} det samme som at sige, at 
+Dette er ifÃ¸lge definition~\ref{asympexact} det samme som at sige, at 
 $\norm{{\bf e}_\sigma^{\ast}}$ er asymptotisk eksakt.
 \end{proof}
 

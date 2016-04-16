@@ -1,110 +1,110 @@
 \pagenumbering{arabic}
 \chapter{Introduktion}
 
-Der kan gives mange eksempler fra fx fysik og økonomi på problemer,
-der resulterer i et ønske om at løse differentialligninger af typen
+Der kan gives mange eksempler fra fx fysik og Ã¸konomi pÃ¥ problemer,
+der resulterer i et Ã¸nske om at lÃ¸se differentialligninger af typen
 \begin{equation} \label{sec:intro-eq}
 {\mathcal D}u = f,
 \end{equation}
 hvor $\mathcal D$ er en given differentialoperator, muligvis med rand-
-eller be\-gyn\-del\-ses\-vær\-di\-be\-tin\-gel\-ser, $f$ en given
+eller be\-gyn\-del\-ses\-vÃ¦r\-di\-be\-tin\-gel\-ser, $f$ en given
 funktion og $u$ den
-ukendte løsning til problemet. Ofte kan man ikke klare sig med
-analytiske metoder til løsning af ligningen \eqref{sec:intro-eq}, og
+ukendte lÃ¸sning til problemet. Ofte kan man ikke klare sig med
+analytiske metoder til lÃ¸sning af ligningen \eqref{sec:intro-eq}, og
 man vil derfor anvende numeriske metoder. En af disse metoder kaldes
 Galerkins metode. I dette kapitel skal vi give en overordnet
-beskrivelse af denne, men først et par historiske og bibliografiske noter.
+beskrivelse af denne, men fÃ¸rst et par historiske og bibliografiske noter.
 
 \section{Historiske og bibliografiske noter}
-I forbindelse med numerisk løs\-ning af partielle differentialligninger
-begyndte in\-gen\-iører fra flyindustrien i USA i slutningen af 50'erne at
+I forbindelse med numerisk lÃ¸s\-ning af partielle differentialligninger
+begyndte in\-gen\-iÃ¸rer fra flyindustrien i USA i slutningen af 50'erne at
 anvende en metode, der ligner den metode, vi i dag kender som den
 endelige element metode. Da man i midten af 60'erne begyndte at studere den
 matematiske teori bag metoden, blev det klart, at der var tale om en
-generel metode til numerisk løsning af differential- og
+generel metode til numerisk lÃ¸sning af differential- og
 integralligninger. Op gennem 70'erne blev den matematiske teori for
-især $h$-metoden grundlagt, og i 80'erne kom så $p$-metoden til. I
-$h$-metoden  forfines ind\-de\-ling\-en af domænet yderligere,
-såfremt en given fejltolerance ikke nås. I $p$-metoden
-fastholder man derimod netinddelingen og øger i stedet graden af de
-polynomier, som man forsøger at approksimere løsningen med.
+isÃ¦r $h$-metoden grundlagt, og i 80'erne kom sÃ¥ $p$-metoden til. I
+$h$-metoden  forfines ind\-de\-ling\-en af domÃ¦net yderligere,
+sÃ¥fremt en given fejltolerance ikke nÃ¥s. I $p$-metoden
+fastholder man derimod netinddelingen og Ã¸ger i stedet graden af de
+polynomier, som man forsÃ¸ger at approksimere lÃ¸sningen med.
 Desuden var og er fejlestimation en stadig kilde til
-forsk\-ning. I de senere år har man yderligere arbejdet med $hp$-metoden, dvs en
+forsk\-ning. I de senere Ã¥r har man yderligere arbejdet med $hp$-metoden, dvs en
 kombination af $h$- og $p$-metoden. Ved udgangen af 80'erne var
-hovedparten af teorien for endimensionelle problemer på plads, mens
-der stadigvæk er åbne spørgsmål for to- og tredimensionelle problemer.
+hovedparten af teorien for endimensionelle problemer pÃ¥ plads, mens
+der stadigvÃ¦k er Ã¥bne spÃ¸rgsmÃ¥l for to- og tredimensionelle problemer.
 
-En standard lærebog om den endelige element metode er
+En standard lÃ¦rebog om den endelige element metode er
 \cite{ciarlet78}. Kapitlet om variations former er inspireret af denne
 bog samt af \cite{babuska82}. Endelige elementer og endelige element
 rum er ligeledes godt beskrevet i \cite{ciarlet78}.
-Funktionsinterpolation er gennemgået meget generelt i
-\cite{ciarlet78}. Vi har brug for et mere specielt tilfælde, som er
+Funktionsinterpolation er gennemgÃ¥et meget generelt i
+\cite{ciarlet78}. Vi har brug for et mere specielt tilfÃ¦lde, som er
 bedre beskrevet i \cite{hugger-pol}. Netinddelings algoritmen vi skal studere
 senere er kun en enkelt algoritme blandt mange. Artiklen \cite{hugger-net}
 indeholder referencer til andre algoritmer. Fejlestimering er et
-område med en del forskningsaktivitet. I
+omrÃ¥de med en del forskningsaktivitet. I
 \cite{babuska1,babuska2,babuska3} findes omfattende
 litteraturhenvisninger til artikler om dette emne.
 
 \section{Galerkins metode}
-For at løse ligningen \eqref{sec:intro-eq} vælger vi en række lineært
-uafhængige løsnings funktioner (eng. trial functions)
-$\phi_1,\ldots,\phi_m$ og forsøger at tilnærme $u$ med en
+For at lÃ¸se ligningen \eqref{sec:intro-eq} vÃ¦lger vi en rÃ¦kke lineÃ¦rt
+uafhÃ¦ngige lÃ¸snings funktioner (eng. trial functions)
+$\phi_1,\ldots,\phi_m$ og forsÃ¸ger at tilnÃ¦rme $u$ med en
 linearkombination af disse, dvs.
 \begin{equation} \label{sec:intro-approx}
 u = \sum_{j=1}^m \xi_j \phi_j.
 \end{equation}
-Indsættes denne approksimation i differentialligningen
-\eqref{sec:intro-eq} fås et residual givet ved
+IndsÃ¦ttes denne approksimation i differentialligningen
+\eqref{sec:intro-eq} fÃ¥s et residual givet ved
 \begin{equation}
 {\mathcal D}\bigl(\sum_{j=1}^m \xi_j \phi_j\bigr) - f.
 \end{equation}
-For at få så god en approksimation til $u$ som muligt, ønsker vi, at
-dette residual skal være så lille som muligt. Vi vil derfor kræve, at
-integralet af residualet vægtet med en række af test funktioner (eng.
+For at fÃ¥ sÃ¥ god en approksimation til $u$ som muligt, Ã¸nsker vi, at
+dette residual skal vÃ¦re sÃ¥ lille som muligt. Vi vil derfor krÃ¦ve, at
+integralet af residualet vÃ¦gtet med en rÃ¦kke af test funktioner (eng.
 test functions) er $0$. Ideen bag dette krav er hentet fra indre
-produkter på funktionsvektorrum. I ${\mathcal L}^2$ har vi det indre produkt
+produkter pÃ¥ funktionsvektorrum. I ${\mathcal L}^2$ har vi det indre produkt
 $\inner{f}{g}=\int_\dom f(x)g(x)\, dx$ for to funktioner $f$ og $g$. 
 Som bekendt siger vi, at $f$ og $g$ er ortogonale, hvis $\inner{f}{g}=0$. 
 Den geometriske fortolkning er her, at vi, som approksimeret
-løsning, vælger den løsning, der ligger ``tættest'' på testrummet
-(dvs. den løsning som er ortogonal på testrummet).
+lÃ¸sning, vÃ¦lger den lÃ¸sning, der ligger ``tÃ¦ttest'' pÃ¥ testrummet
+(dvs. den lÃ¸sning som er ortogonal pÃ¥ testrummet).
 
 Approksimationen \eqref{sec:intro-approx} indeholder $m$ ubekendte
-konstanter $\xi_1,\ldots,\xi_m$. Ved at vælge $m$ lineært uafhængige
-test funktioner $w_1,\ldots,w_m$ fås et $m\!\times\!m$ lineært
+konstanter $\xi_1,\ldots,\xi_m$. Ved at vÃ¦lge $m$ lineÃ¦rt uafhÃ¦ngige
+test funktioner $w_1,\ldots,w_m$ fÃ¥s et $m\!\times\!m$ lineÃ¦rt
 ligningssystem
 \begin{equation}
 \sum_{j=1}^m \xi_j \int {\mathcal D} \phi_j w_i\, dx = 
 \int fw_i\, dx, \qquad 1\leq i\leq m,
 \end{equation}
 hvorfra $\xi_1,\ldots,\xi_m$ kan bestemmes. Denne metode er kendt som
-den vægtede re\-si\-du\-al metode. Vælges $\phi_1,\ldots,\phi_m$ som test
-funktioner kaldes den ovenfor beskrevne fremgangsmåde for Galerkins
+den vÃ¦gtede re\-si\-du\-al metode. VÃ¦lges $\phi_1,\ldots,\phi_m$ som test
+funktioner kaldes den ovenfor beskrevne fremgangsmÃ¥de for Galerkins
 metode. 
   
 \section{Et eksempel}
-Som et konkret eksempel betragter vi følgende model problem: Bestem
-$u$ således at
+Som et konkret eksempel betragter vi fÃ¸lgende model problem: Bestem
+$u$ sÃ¥ledes at
 \begin{align} \label{sec:eks-problem}
   -u'' + u &  = f, \qquad \text{for $x\in]0,1[$,}  \\ 
       u(0) &  = 0, \qquad u(1) = 0, \notag
 \end{align}
-hvor $f$ er en given funktion. Vælges test og løsnings funktionerne som
-kontinuerte stykkevise polynomier kaldes Galerkins metode også for den
+hvor $f$ er en given funktion. VÃ¦lges test og lÃ¸snings funktionerne som
+kontinuerte stykkevise polynomier kaldes Galerkins metode ogsÃ¥ for den
 endelig element metode. Vi skal i dette eksempel benytte kontinuerte
-stykkevis lineære funktioner som test og løsnings funktioner. 
+stykkevis lineÃ¦re funktioner som test og lÃ¸snings funktioner. 
 
-Lad $\T_h: 0=x_0 < x_1 < \dots < x_{m+1}=1$ være en inddeling af
-$I=]0,1[$ i elementer $I_j=]x_{j-1},x_j[$ med længde
-$h_j=x_j-x_{j-1}$, og lad ${\mathcal X}_{0,{\mathsf{fe}}}$ være 
-vektorrummet bestående af kontinuerte stykkevis lineære funktioner 
-på $\T_h$, som er 0 i punkterne $x=0$ og $x=1$. Intervallerne
+Lad $\T_h: 0=x_0 < x_1 < \dots < x_{m+1}=1$ vÃ¦re en inddeling af
+$I=]0,1[$ i elementer $I_j=]x_{j-1},x_j[$ med lÃ¦ngde
+$h_j=x_j-x_{j-1}$, og lad ${\mathcal X}_{0,{\mathsf{fe}}}$ vÃ¦re 
+vektorrummet bestÃ¥ende af kontinuerte stykkevis lineÃ¦re funktioner 
+pÃ¥ $\T_h$, som er 0 i punkterne $x=0$ og $x=1$. Intervallerne
 $I_j=]x_{j-1},x_j[$, $j=1,\ldots,m+1$ kaldes for endelige elementer.
-(Vi skal senere give en præcis definition.) Defineres 
-$\phi_j, \ j=1,\ldots,m$ som kontinuerte stykkevis lineære funktioner
-på $\T_h$ opfyldende
+(Vi skal senere give en prÃ¦cis definition.) Defineres 
+$\phi_j, \ j=1,\ldots,m$ som kontinuerte stykkevis lineÃ¦re funktioner
+pÃ¥ $\T_h$ opfyldende
 \begin{equation}
   \phi_j(x_i)=
     \begin{cases}
@@ -115,17 +115,17 @@ på $\T_h$ opfyldende
 er det oplagt, at $\phi_j \in {\mathcal X}_{0,{\mathsf{fe}}}$, og at 
 $\{\phi_j\}_{j=1}^m$ er en basis for ${\mathcal X}_{0,{\mathsf{fe}}}$,
 thi enhver funktion i ${\mathcal X}_{0,{\mathsf{fe}}}$ er entydig
-bestemt ved dens værdi i de indre punkter $x_j, \ j=1,\ldots,m$.
+bestemt ved dens vÃ¦rdi i de indre punkter $x_j, \ j=1,\ldots,m$.
 
 For at anvende Galerkins metode giver vi \eqref{sec:eks-problem}
 en variationel formulering: Find en funktion $u\in\H^1_0([0,1])$,
-således at
+sÃ¥ledes at
 \begin{equation} \label{sec:eks-variationel}
   \int_I \bigl( u'v' +uv \bigr)\, dx = \int_I fv\, dx 
 \end{equation} 
 for alle funktioner $v\in\H^1_0([0,1])$. Denne ligning er fremkommet
 ved at multiplicere \eqref{sec:eks-problem} med funktionen $v$ og
-dernæst foretage en partiel integration over $I$ for integralet
+dernÃ¦st foretage en partiel integration over $I$ for integralet
 \begin{equation}
   - \int_I u''v\, dx = \bigl[-u'v\bigr]_0^1 + \int_I u'v'\, dx = 
     \int_I u'v'\, dx
@@ -135,31 +135,31 @@ idet $v(0)=v(1)=0$.
 En (analog) endelig dimensional formulering af
 \eqref{sec:eks-variationel} giver os den endelige element metode 
 for \eqref{sec:eks-problem}: Find $\ufe \in {\mathcal X}_{0,{\mathsf{fe}}}$                 
-således at 
+sÃ¥ledes at 
 \begin{equation} \label{sec:eks-fem}
   \int_I \bigl( \ufe'v' +\ufe v\bigr)\, dx = \int_I fv\, dx , 
   \quad \text{for alle} \ v \in {\mathcal X}_{0,{\mathsf{fe}}}.
 \end{equation}
-Ved nu at bemærke, at 
+Ved nu at bemÃ¦rke, at 
 ${\mathcal X}_{0,{\mathsf{fe}}}\subset\H^1_0([0,1])$ ses,
-at~\eqref{sec:eks-variationel} gælder for $v\in{\mathcal
+at~\eqref{sec:eks-variationel} gÃ¦lder for $v\in{\mathcal
 X}_{0,{\mathsf{fe}}}$. Ved at subtrahere~\eqref{sec:eks-fem} fra
-\eqref{sec:eks-variationel} fås følgende relation for $v\in{\mathcal
+\eqref{sec:eks-variationel} fÃ¥s fÃ¸lgende relation for $v\in{\mathcal
 X}_{0,{\mathsf{fe}}}$ 
 \begin{equation} \label{defg}
   \int_I \bigl( (u'-\ufe')v' + (u-\ufe)v\bigr)\, dx = 0.
 \end{equation}    
-Ligningen~\eqref{defg} genkender vi som det indre produkt på $\H^1_0$
+Ligningen~\eqref{defg} genkender vi som det indre produkt pÃ¥ $\H^1_0$
 af $u-\ufe$ og $v$.
-Med andre ord fejlen $u-\ufe$ er ortogonal på ${\mathcal
-X}_{0,{\mathsf{fe}}}$ med hensyn til det indre produkt på $\H^1_0$.
-Dette kan vi også udtrykke som følger: Den endelige element løsning
-$\ufe$ er projektionen (med hensyn til det indre produkt på $\H^1_0$)
-af den eksakte løsning $u$ på ${\mathcal X}_{0,{\mathsf{fe}}}$, dvs.
+Med andre ord fejlen $u-\ufe$ er ortogonal pÃ¥ ${\mathcal
+X}_{0,{\mathsf{fe}}}$ med hensyn til det indre produkt pÃ¥ $\H^1_0$.
+Dette kan vi ogsÃ¥ udtrykke som fÃ¸lger: Den endelige element lÃ¸sning
+$\ufe$ er projektionen (med hensyn til det indre produkt pÃ¥ $\H^1_0$)
+af den eksakte lÃ¸sning $u$ pÃ¥ ${\mathcal X}_{0,{\mathsf{fe}}}$, dvs.
 $\ufe$ er den funktion i ${\mathcal X}_{0,{\mathsf{fe}}}$, som ligger
-tættest på $u$ målt i $\H^1_0$ normen. Symbolsk kan dette illustreres
-som vist i figur~\ref{geometrisk}, hvor $\H^1_0$ er repræsenteret som
-hele planen, og den rette linie gennen centrum repræsenterer
+tÃ¦ttest pÃ¥ $u$ mÃ¥lt i $\H^1_0$ normen. Symbolsk kan dette illustreres
+som vist i figur~\ref{geometrisk}, hvor $\H^1_0$ er reprÃ¦senteret som
+hele planen, og den rette linie gennen centrum reprÃ¦senterer
 ${\mathcal X}_{0,{\mathsf{fe}}}$. 
 \setlength{\unitlength}{1mm}
 \begin{figure}[htb]
@@ -178,16 +178,16 @@ ${\mathcal X}_{0,{\mathsf{fe}}}$.
 \put(5,5){\vector(4,2){28}}
 \end{picture}
 \end{center}
-\caption{Geometrisk fortolkning af den endelige element løsning\label{geometrisk}}
+\caption{Geometrisk fortolkning af den endelige element lÃ¸sning\label{geometrisk}}
 \end{figure}
 
-Da $\ufe \in {\mathcal X}_{0,{\mathsf{fe}}}$, kan $\ufe$ skrives på formen
+Da $\ufe \in {\mathcal X}_{0,{\mathsf{fe}}}$, kan $\ufe$ skrives pÃ¥ formen
 \begin{equation}
   \ufe = \sum_{j=1}^m \xi_j \phi_j .
 \end{equation}
 Koefficienterne $\xi_j$, $j=1,\ldots ,m$ kan bestemmes ved i 
-\eqref{sec:eks-fem} på skift at vælge $v=\phi_i$, $i=1,\ldots,m$. 
-Herved fås et $m\!\times\!m$ lineært ligningssystem
+\eqref{sec:eks-fem} pÃ¥ skift at vÃ¦lge $v=\phi_i$, $i=1,\ldots,m$. 
+Herved fÃ¥s et $m\!\times\!m$ lineÃ¦rt ligningssystem
 \begin{equation} \label{des1}
   \mathbf{A}\xi = b,
 \end{equation}
@@ -199,23 +199,23 @@ og $b$ en vektor med elementer
 \begin{equation} \label{des3}
   b_j = \int_I f\phi_j\, dx,
 \end{equation} 
-med $\xi$ som løsning. Matricen $\mathbf{A}$ kaldes en stivheds (eng.
+med $\xi$ som lÃ¸sning. Matricen $\mathbf{A}$ kaldes en stivheds (eng.
 stiffness) matrix, og $b$ kaldes en kraft (eng. load) vektor. Vi
-bemærker, at $\mathbf{A}$ i dette tilfælde er symmetrisk, positiv
+bemÃ¦rker, at $\mathbf{A}$ i dette tilfÃ¦lde er symmetrisk, positiv
 definit og tyndt besat (eng. sparse).
 
-Den grund\-læg\-gen\-de ide i den endelige element metode er alt\-så at sø\-ge
-en ap\-prok\-si\-me\-ret løsning i et løsningsrum bestående af polynomier
-defineret på en given netinddeling. Den approksimerede løsning vælges nu
-således, at den er ortogonal på basisfunktioner for et givet testrum
-af polynomier defineret på samme netinddeling. På denne måde fås et 
-lineært ligningssystem, hvor løsningen er koefficienterne i den
-linearkombination af løsningsfunktioner, der approksimerer den eksakte
-løsning.
+Den grund\-lÃ¦g\-gen\-de ide i den endelige element metode er alt\-sÃ¥ at sÃ¸\-ge
+en ap\-prok\-si\-me\-ret lÃ¸sning i et lÃ¸sningsrum bestÃ¥ende af polynomier
+defineret pÃ¥ en given netinddeling. Den approksimerede lÃ¸sning vÃ¦lges nu
+sÃ¥ledes, at den er ortogonal pÃ¥ basisfunktioner for et givet testrum
+af polynomier defineret pÃ¥ samme netinddeling. PÃ¥ denne mÃ¥de fÃ¥s et 
+lineÃ¦rt ligningssystem, hvor lÃ¸sningen er koefficienterne i den
+linearkombination af lÃ¸sningsfunktioner, der approksimerer den eksakte
+lÃ¸sning.
 
 \section{Den endelige element metode}
 Eksemplet i forrige afsnit illustrerer 3 vigtige aspekter ved den
-endelige element metode. For det første valg af løsnings- og
+endelige element metode. For det fÃ¸rste valg af lÃ¸snings- og
 testfunktioner. For det andet valg af inddeling af intervallet og for
 det tredje omformuleringen af differentialligningen til et
 variationsproblem. En mere skematisk oversigt over den endelige
@@ -223,17 +223,17 @@ element metode lyder
 \begin{enumerate}
   \item Omformulering af differentialligningen til et
         variationsproblem.
-  \item Valg af endelige elementer til brug for inddelingen af domænet.
-  \item Valg af løsnings- og testrum også kaldet endelige element rum.
-  \item Opskrivning og løsning af det tilhørende lineære ligningssystem.
+  \item Valg af endelige elementer til brug for inddelingen af domÃ¦net.
+  \item Valg af lÃ¸snings- og testrum ogsÃ¥ kaldet endelige element rum.
+  \item Opskrivning og lÃ¸sning af det tilhÃ¸rende lineÃ¦re ligningssystem.
 \end{enumerate}
-Selve løsningen, af det til den endelige element metode hørende
-lineære lignings\-sy\-stem, skal vi ikke beskæftige os nærmere med.
-Læseren formodes at være bekendt med metoder hertil fra kurser i lineær algebra
-samt kurser i numerisk analyse. Derimod skal vi i de næste 2 kapitler
+Selve lÃ¸sningen, af det til den endelige element metode hÃ¸rende
+lineÃ¦re lignings\-sy\-stem, skal vi ikke beskÃ¦ftige os nÃ¦rmere med.
+LÃ¦seren formodes at vÃ¦re bekendt med metoder hertil fra kurser i lineÃ¦r algebra
+samt kurser i numerisk analyse. Derimod skal vi i de nÃ¦ste 2 kapitler
 studere variationsformer og endelige element rum.
 
-Andre mindst lige så vigtige aspekter i den endelige element metode er
+Andre mindst lige sÃ¥ vigtige aspekter i den endelige element metode er
 funktionsinterpolation, automatisk netinddeling og fejlestimering.
 Den netinddelings algoritme, som vi skal studere i
 kapitel~\ref{netinddeling}, benytter en ganske
@@ -242,4 +242,4 @@ kapitel~\ref{interpolation} om polynomiumsinterpolation. Fejlestimerings
 metoder for den endelige element metode kan groft opdeles i to
 kategorier: residuum metoder og udglatnings metoder.
 Kapitel~\ref{fejlestimering} indeholder en gennemgang af en
-fejlestimator af sidstnævnte type.
+fejlestimator af sidstnÃ¦vnte type.

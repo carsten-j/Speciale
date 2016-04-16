@@ -1,152 +1,152 @@
 \chapter{Netgenerering} \label{netinddeling}
 
-Målet med dette kapitel er at præsentere en netinddelings 
+MÃ¥let med dette kapitel er at prÃ¦sentere en netinddelings 
 metode, der giver asymptotiske optimale netinddelinger 
-(indenfor klassen af netinddelinger med rektangulære 
-elementer). Metoden bygger på begrebet net tætheds funktion 
-og blev indført af Babu\v{s}ka og Gui i~\cite{ba-gui}. Metoden er 
+(indenfor klassen af netinddelinger med rektangulÃ¦re 
+elementer). Metoden bygger pÃ¥ begrebet net tÃ¦theds funktion 
+og blev indfÃ¸rt af Babu\v{s}ka og Gui i~\cite{ba-gui}. Metoden er 
 senere videreudviklet af Hugger i artiklerne~\cite{hugger-1}, 
 \cite{hugger-3}, \cite{hugger-2}, \cite{hugger-4}, \cite{hugger-pol}
 og senest af Babu\v{s}ka, Hugger et al i \cite{hugger-net}. Med net 
-tætheds funktioner kan man beskrive følger af netinddelinger
-ved brug af simple midler, og man undgår dermed de 
+tÃ¦theds funktioner kan man beskrive fÃ¸lger af netinddelinger
+ved brug af simple midler, og man undgÃ¥r dermed de 
 komplicerede datastrukturer, der ofte karakteriserer 
-netinddelings algoritmer. Ønsket om simple metoder til at 
-beskrive netinddelinger på udspringer fra parametriserede
+netinddelings algoritmer. Ã˜nsket om simple metoder til at 
+beskrive netinddelinger pÃ¥ udspringer fra parametriserede
 problemer, hvor man med fordel ofte kan genanvende tidligere
-netinddelinger. Det vil fremgå af teorien nedenfor, at 
-metoden med fordel også kan anvendes, selvom man kun skal 
-løse et enkelt problem. Netinddelings algoritmen er ment som 
-en ``one shot'' metode, der på baggrund af informationer fra 
-net tætheds funktionen og den bruger bestemte fejltolerance 
-forsøger at konstruere en netinddeling, hvor fejlen i den
-tilhørende endelige element løsning efter første gennemløb af 
+netinddelinger. Det vil fremgÃ¥ af teorien nedenfor, at 
+metoden med fordel ogsÃ¥ kan anvendes, selvom man kun skal 
+lÃ¸se et enkelt problem. Netinddelings algoritmen er ment som 
+en ``one shot'' metode, der pÃ¥ baggrund af informationer fra 
+net tÃ¦theds funktionen og den bruger bestemte fejltolerance 
+forsÃ¸ger at konstruere en netinddeling, hvor fejlen i den
+tilhÃ¸rende endelige element lÃ¸sning efter fÃ¸rste gennemlÃ¸b af 
 algoritmen er mindre end den givne fejltolerance. Mislykkes 
 dette, vil metoden iterere.
 
-\section{Sammenhæng mellem net tætheds funk\-ti\-on\-er og følger af net} 
-Før vi definerer net tætheds funktioner, har vi brug for følgende
+\section{SammenhÃ¦ng mellem net tÃ¦theds funk\-ti\-on\-er og fÃ¸lger af net} 
+FÃ¸r vi definerer net tÃ¦theds funktioner, har vi brug for fÃ¸lgende
 \begin{definition}
-Lad $\T=\{\Box_j\}_{j=1}^m$ være et endeligt element net. Vi
+Lad $\T=\{\Box_j\}_{j=1}^m$ vÃ¦re et endeligt element net. Vi
 siger da, at $\T$ er en optimal endelig element netinddeling
-indenfor en given klasse af netinddelinger, såfremt fejlen
-i den tilhørende endelige element løsning er mindre end en 
-given fejl\-to\-le\-ran\-ce, og såfremt de beregningsmæssige 
-omkostninger ved at finde denne løsning er minimale. Minimum er 
+indenfor en given klasse af netinddelinger, sÃ¥fremt fejlen
+i den tilhÃ¸rende endelige element lÃ¸sning er mindre end en 
+given fejl\-to\-le\-ran\-ce, og sÃ¥fremt de beregningsmÃ¦ssige 
+omkostninger ved at finde denne lÃ¸sning er minimale. Minimum er 
 her taget over alle netinddelinger indenfor den givne klasse.
 \end{definition}
 
 \begin{definition} \label{defcfin}
-Lad $\dom$ være en åben sammenhængende mængde i $\R^n$. Ved mængden af
-endeligt ikke-glatte funktioner defineret på $\dom$, vil vi forstå
-mængden af reelle funktioner defineret på $\dom$, som er uendeligt ofte
-differentiable (${\mathcal C}^\infty$) i $\dom$ undtaget på et antal
-delmængder af $\dom$. Om disse mængder (hvor funktionen ikke tilhører
-${\mathcal C}^\infty$) skal der gælde, at antallet af disse i enhver
-begrænset delmængde af $\dom$ er endeligt. Desuden antages enhver af
-disse mængder at være glat og endelig i den forstand, at en sådan
-mængde enten er et punkt eller en $k$-dimensional ${\mathcal
+Lad $\dom$ vÃ¦re en Ã¥ben sammenhÃ¦ngende mÃ¦ngde i $\R^n$. Ved mÃ¦ngden af
+endeligt ikke-glatte funktioner defineret pÃ¥ $\dom$, vil vi forstÃ¥
+mÃ¦ngden af reelle funktioner defineret pÃ¥ $\dom$, som er uendeligt ofte
+differentiable (${\mathcal C}^\infty$) i $\dom$ undtaget pÃ¥ et antal
+delmÃ¦ngder af $\dom$. Om disse mÃ¦ngder (hvor funktionen ikke tilhÃ¸rer
+${\mathcal C}^\infty$) skal der gÃ¦lde, at antallet af disse i enhver
+begrÃ¦nset delmÃ¦ngde af $\dom$ er endeligt. Desuden antages enhver af
+disse mÃ¦ngder at vÃ¦re glat og endelig i den forstand, at en sÃ¥dan
+mÃ¦ngde enten er et punkt eller en $k$-dimensional ${\mathcal
 C}^\infty$ undermangfoldighed af $\R^n$ med endeligt $k$-volumen, hvor
-$k\in\{ 1,\ldots ,n-1\}$. Vi vil betegne mængden af endeligt
-ikke-glatte funktioner defineret på $\dom$ med $\Cfin$.
+$k\in\{ 1,\ldots ,n-1\}$. Vi vil betegne mÃ¦ngden af endeligt
+ikke-glatte funktioner defineret pÃ¥ $\dom$ med $\Cfin$.
 \end{definition}
 \begin{remark}
-Er $\dom$ fra definition~\ref{defcfin} begrænset, er der kun endeligt
-mange ``singularitets'' mængder.
+Er $\dom$ fra definition~\ref{defcfin} begrÃ¦nset, er der kun endeligt
+mange ``singularitets'' mÃ¦ngder.
 \end{remark}
 \begin{remark}
-Funktionerne i $\Cfin$ er tilstrækkelige til at beskrive stort set
-alle praktiske fænomener indenfor anvendt matematik.
+Funktionerne i $\Cfin$ er tilstrÃ¦kkelige til at beskrive stort set
+alle praktiske fÃ¦nomener indenfor anvendt matematik.
 \end{remark}
-Ved brug af funktionerne i $\Cfin$ kan vi nu definere net tætheds
+Ved brug af funktionerne i $\Cfin$ kan vi nu definere net tÃ¦theds
 funktioner som
 \begin{definition}  \label{density}
-En net tætheds funktion (eng. mesh density function) defineret på
-en åben sammenhængende mængde $\dom\subset\R^n$, er en næsten overalt
-positiv (eventuelt ubegrænset) funktion $\D$ tilhørende $\Cfin$, som opfylder
+En net tÃ¦theds funktion (eng. mesh density function) defineret pÃ¥
+en Ã¥ben sammenhÃ¦ngende mÃ¦ngde $\dom\subset\R^n$, er en nÃ¦sten overalt
+positiv (eventuelt ubegrÃ¦nset) funktion $\D$ tilhÃ¸rende $\Cfin$, som opfylder
 \begin{equation}
   \int_\dom \D(x)\, dx = 1.
 \end{equation}
-Mængden af net tætheds funktioner betegnes med $D_\dom$.
+MÃ¦ngden af net tÃ¦theds funktioner betegnes med $D_\dom$.
 \end{definition}
 \begin{definition}
-Lad $\re$ være et element i en netinddeling, og lad $\D$ være en net
-tætheds funktion. Ved tætheden af $\re$ forstås værdien af 
+Lad $\re$ vÃ¦re et element i en netinddeling, og lad $\D$ vÃ¦re en net
+tÃ¦theds funktion. Ved tÃ¦theden af $\re$ forstÃ¥s vÃ¦rdien af 
 $\int_\re \D (x)\, dx$.
 \end{definition}
-Net tætheds funktioner blev indført af Babu\v{s}ka og Gui i
-\cite{ba-gui}. Deres ide var at konstruere netinddelinger på en sådan måde,
-at tætheden i ethvert element i netinddeling\-en er den samme.
-Principielt kunne man arbejde med netinddelinger, hvor tætheden varierer
+Net tÃ¦theds funktioner blev indfÃ¸rt af Babu\v{s}ka og Gui i
+\cite{ba-gui}. Deres ide var at konstruere netinddelinger pÃ¥ en sÃ¥dan mÃ¥de,
+at tÃ¦theden i ethvert element i netinddeling\-en er den samme.
+Principielt kunne man arbejde med netinddelinger, hvor tÃ¦theden varierer
 fra element til element, men kravet er praktisk set fra en
-implementations vinkel. Ved hjælp af ovenstående definition kan dette
+implementations vinkel. Ved hjÃ¦lp af ovenstÃ¥ende definition kan dette
 krav udtrykkes som
 \begin{equation} \label{ideal-con}
   \int_{\re_j} \D (x)dx = 1/N_a \quad \text{for $j=1,\ldots,N_a$,}
 \end{equation} 
 for en netinddeling $\T=\{\re_j\}_{j=1}^{N_a}$. I praksis vil man kun 
-kræve, at \eqref{ideal-con} gælder approksimativt.
+krÃ¦ve, at \eqref{ideal-con} gÃ¦lder approksimativt.
 
-Bemærk at \eqref{ideal-con} beskriver en hel følge af netinddelinger,
-en netinddeling for hvert positivt tal $N_a$. Net tætheds funktioner
-kan altså bruges til at beskrive følger af net og ikke kun et enkelt
+BemÃ¦rk at \eqref{ideal-con} beskriver en hel fÃ¸lge af netinddelinger,
+en netinddeling for hvert positivt tal $N_a$. Net tÃ¦theds funktioner
+kan altsÃ¥ bruges til at beskrive fÃ¸lger af net og ikke kun et enkelt
 net. Artiklen \cite{hugger-3} indeholder resultater, der i det
-asymptotiske tilfælde og under passende forudsætninger viser, at
-vælges net tætheds funktionen på
-fornuftig vis, da vil normen af fejlen i den endelige element løsning være
-minimal. De følger af netinddelinger vi fremover skal arbejde med
+asymptotiske tilfÃ¦lde og under passende forudsÃ¦tninger viser, at
+vÃ¦lges net tÃ¦theds funktionen pÃ¥
+fornuftig vis, da vil normen af fejlen i den endelige element lÃ¸sning vÃ¦re
+minimal. De fÃ¸lger af netinddelinger vi fremover skal arbejde med
 antages at have den egenskab, at antallet af elementer i netinddelingen
 er ikke-aftagende og divergerer mod uendelig. En mere formel
-definition, der også giver os den nødvendige notation, lyder
+definition, der ogsÃ¥ giver os den nÃ¸dvendige notation, lyder
 \begin{definition}  \label{nondec} 
-Lad $\dom$ være en åben sammenhængende mængde i $\R^n$, og lad
-$\{\T_m\}_{m=1}^{\infty}$ være en vilkårlig følge af endelige element
-net på $\dom$. For ethvert positivt tal $m$ betegner $N_{a,m}$ antallet af
-elementer i $\T_m$. Mængden af ikke-aftagende følger af endelige
-element net, betegnet med  $P_\dom$, defineres da som de følger af
-endelige element net $\{\T_m\}_{m=1}^{\infty}$, hvor den tilhørende følge
+Lad $\dom$ vÃ¦re en Ã¥ben sammenhÃ¦ngende mÃ¦ngde i $\R^n$, og lad
+$\{\T_m\}_{m=1}^{\infty}$ vÃ¦re en vilkÃ¥rlig fÃ¸lge af endelige element
+net pÃ¥ $\dom$. For ethvert positivt tal $m$ betegner $N_{a,m}$ antallet af
+elementer i $\T_m$. MÃ¦ngden af ikke-aftagende fÃ¸lger af endelige
+element net, betegnet med  $P_\dom$, defineres da som de fÃ¸lger af
+endelige element net $\{\T_m\}_{m=1}^{\infty}$, hvor den tilhÃ¸rende fÃ¸lge
 $\{N_{a,m}\}_{m=1}^{\infty}$ er ikke-aftagende og divergerer mod uendelig.   
 \end{definition}
 
-Følgende definition giver en sammenhæng mellem net tætheds
-funktioner og ikke-aftagende følger af endelige element net.
+FÃ¸lgende definition giver en sammenhÃ¦ng mellem net tÃ¦theds
+funktioner og ikke-aftagende fÃ¸lger af endelige element net.
 
 \begin{definition}
-Lad $D_\dom$ og $P_\dom$ være som i definition~\ref{density} og
-\ref{nondec}, og lad $\dom$ være en åben sammenhængende mængde i
-$\R^n$. En net tætheds operator $A$ (eng. mesh density operator) 
-defineret på $\dom$ er en invertibel afbildning
+Lad $D_\dom$ og $P_\dom$ vÃ¦re som i definition~\ref{density} og
+\ref{nondec}, og lad $\dom$ vÃ¦re en Ã¥ben sammenhÃ¦ngende mÃ¦ngde i
+$\R^n$. En net tÃ¦theds operator $A$ (eng. mesh density operator) 
+defineret pÃ¥ $\dom$ er en invertibel afbildning
 \begin{equation}
   A:\D\in D_\dom \rightarrow \{\T_m\}_{m=1}^{\infty} \in R_A \subset
   P_\dom \ ,
 \end{equation}
-som afbilder mængden $D_\dom$ af alle net tætheds funktioner på en
-delmængde $R_A$ (billedet af $A$) af mængden $P_\dom$ af alle
-ikke-aftagende følger af endelige element net.
+som afbilder mÃ¦ngden $D_\dom$ af alle net tÃ¦theds funktioner pÃ¥ en
+delmÃ¦ngde $R_A$ (billedet af $A$) af mÃ¦ngden $P_\dom$ af alle
+ikke-aftagende fÃ¸lger af endelige element net.
 \end{definition}
 
-At der rent faktisk eksisterer net tætheds operatorer er ikke
-oplagt. I det endi\-men\-sio\-na\-le tilfælde er det let at bevise, se fx
-\cite{hugger-2}. Et bevis i det $n$-dimensioneale tilfælde er mere
+At der rent faktisk eksisterer net tÃ¦theds operatorer er ikke
+oplagt. I det endi\-men\-sio\-na\-le tilfÃ¦lde er det let at bevise, se fx
+\cite{hugger-2}. Et bevis i det $n$-dimensioneale tilfÃ¦lde er mere
 kompliceret, idet \eqref{ideal-con} ikke indeholder informationer nok
-til at bestemme en netinddeling (eller en følge af netinddelinger)
-entydigt. Udfra \eqref{ideal-con} kan vi kun få oplysninger om
-elementernes tæthed og ikke om deres geometriske form. Dette
-problem kan løses på to forskellige måder. En fremgangsmåde er at tilføje
+til at bestemme en netinddeling (eller en fÃ¸lge af netinddelinger)
+entydigt. Udfra \eqref{ideal-con} kan vi kun fÃ¥ oplysninger om
+elementernes tÃ¦thed og ikke om deres geometriske form. Dette
+problem kan lÃ¸ses pÃ¥ to forskellige mÃ¥der. En fremgangsmÃ¥de er at tilfÃ¸je
 betingelser til \eqref{ideal-con}, der specificerer elementernes geometriske
-form. Alternativt kan man vælge kun at benytte en bestemt type af
+form. Alternativt kan man vÃ¦lge kun at benytte en bestemt type af
 netinddelinger med foruddefinerede geometriske former for
-elementerne. Vi skal her forfølge den sidstnævnte ide.
+elementerne. Vi skal her forfÃ¸lge den sidstnÃ¦vnte ide.
 
-Før vi definerer tilladte netinddelinger og elementer, er det
-nødvendigt at præcisere, hvilken form vi vil tillade for domænet for
-det betragtede problem. Tilladte domæner vil blive benævnt
-$\beta$-domæner. Ideen er at tillade domæner i $\R^n$, der kan
-inddeles på en sådan måde, at hver delmængde i inddelingen kan
-afbildes bijektivt på en enheds $n$-kube $\re_n=[0,1]^n$. Denne afbildning
-skal desuden bevare glatheden i den endelige element løsning i de
+FÃ¸r vi definerer tilladte netinddelinger og elementer, er det
+nÃ¸dvendigt at prÃ¦cisere, hvilken form vi vil tillade for domÃ¦net for
+det betragtede problem. Tilladte domÃ¦ner vil blive benÃ¦vnt
+$\beta$-domÃ¦ner. Ideen er at tillade domÃ¦ner i $\R^n$, der kan
+inddeles pÃ¥ en sÃ¥dan mÃ¥de, at hver delmÃ¦ngde i inddelingen kan
+afbildes bijektivt pÃ¥ en enheds $n$-kube $\re_n=[0,1]^n$. Denne afbildning
+skal desuden bevare glatheden i den endelige element lÃ¸sning i de
 enkelte elementer samt over randene mellem elementerne. Figur~\ref{exbetadomains} 
-indeholder et par eksempler på tilladte domæner. Ideerne i de følgende
+indeholder et par eksempler pÃ¥ tilladte domÃ¦ner. Ideerne i de fÃ¸lgende
 definitioner er udviklet i \cite{ba-mil} hhv. \cite{hugger-2}. 
 \setlength{\unitlength}{1mm}
 \begin{figure}[htb]
@@ -176,125 +176,125 @@ definitioner er udviklet i \cite{ba-mil} hhv. \cite{hugger-2}.
 }
 \end{picture}
 \end{center}
-\caption{Eksempler på $\beta$-domæner\label{exbetadomains}}
+\caption{Eksempler pÃ¥ $\beta$-domÃ¦ner\label{exbetadomains}}
 \end{figure}
-En definition af $\beta$-domæner kræver lidt notation vedrørende enheds $n$-kuber.
+En definition af $\beta$-domÃ¦ner krÃ¦ver lidt notation vedrÃ¸rende enheds $n$-kuber.
 \begin{definition} \label{rside}
 Ved en afsluttet $r$-side i enheds $n$-kuben $\re_n$ for
-$r=0,\ldots,n$ forstås en delmængde af $\re_n$ med $r$ frie
+$r=0,\ldots,n$ forstÃ¥s en delmÃ¦ngde af $\re_n$ med $r$ frie
 koordinater, og hvor de $n-r$ resterende koordinater enten er $0$
 eller $1$.
 \end{definition} 
-Med denne definition er $0$-siderne i $\re_n$ hjørnepunkterne, og $1$-siderne
-er kanterne. Vi kan nu give en definition af $\beta$-domæner.
+Med denne definition er $0$-siderne i $\re_n$ hjÃ¸rnepunkterne, og $1$-siderne
+er kanterne. Vi kan nu give en definition af $\beta$-domÃ¦ner.
 \begin{definition} \label{betadomain}
-En åben sammenhængende mængde $\dom\subset\R^n$ kaldes et
-$\beta$-do\-mæ\-ne, såfremt følgende betingelser er opfyldt
+En Ã¥ben sammenhÃ¦ngende mÃ¦ngde $\dom\subset\R^n$ kaldes et
+$\beta$-do\-mÃ¦\-ne, sÃ¥fremt fÃ¸lgende betingelser er opfyldt
 \begin{itemize}
   \item $\dom$ kan inddeles i et endeligt antal $l\geq 1$ af parvis
-        disjunkte, åbne, sammenhængende delmængder $\dom_d\subset\dom , \
-        d\in\{1,\ldots,l\}$ på en sådan måde, at $\overline{\dom} =
+        disjunkte, Ã¥bne, sammenhÃ¦ngende delmÃ¦ngder $\dom_d\subset\dom , \
+        d\in\{1,\ldots,l\}$ pÃ¥ en sÃ¥dan mÃ¥de, at $\overline{\dom} =
         \cup_{d=1}^{l}\overline{\dom}_d$. 
   \item Der findes $l$ invertible ${\mathcal C}^\infty$ afbildninger
         $\beta_d, \ d\in\{1,\ldots,l\}$, hvor afslutningen af
         $\beta_d(\dom_d), d\in\{1,\ldots,l\}$ er enheds $n$-kuben $\re_n$.
-  \item For to vilkårlige $r$-sider $(r\in\{ 1,\ldots ,n\})$ i to 
-        forskellige delmængder $\dom_e$ og $\dom_f$ i inddelingen af $\dom$,
-        skal der gælde, at fællesmængden for $r$-siderne enten er tom eller en
+  \item For to vilkÃ¥rlige $r$-sider $(r\in\{ 1,\ldots ,n\})$ i to 
+        forskellige delmÃ¦ngder $\dom_e$ og $\dom_f$ i inddelingen af $\dom$,
+        skal der gÃ¦lde, at fÃ¦llesmÃ¦ngden for $r$-siderne enten er tom eller en
         hel $s$-side for et passende $s\leq r$.
   \item Afbildningerne $\beta_d, \ d\in\{1,\ldots,l\}$ skal bevare en
-        eventuel glathed over randene mellem delmængder i inddelingen af $\dom$.
-  \item Lad $u_d, \ d\in\{1,\ldots,l\}$ være funktioner tilhørende
-        ${\mathcal C}^{k_{\max}}(\re_n)$ defineret på enheds $n$-kuben. Her er 
-        $k_{\max}$ det størst mulige tal som opfylder, at ${\mathcal C}^{k_{\max}}$ er
+        eventuel glathed over randene mellem delmÃ¦ngder i inddelingen af $\dom$.
+  \item Lad $u_d, \ d\in\{1,\ldots,l\}$ vÃ¦re funktioner tilhÃ¸rende
+        ${\mathcal C}^{k_{\max}}(\re_n)$ defineret pÃ¥ enheds $n$-kuben. Her er 
+        $k_{\max}$ det stÃ¸rst mulige tal som opfylder, at ${\mathcal C}^{k_{\max}}$ er
         et underrum af testrummet for den betragtede endelige element metode.
         Antag er der for to punkter $y_1$, $y_2\in\re_n$, findes $e$,
-        $f\in\{ 1, \ldots ,l\}$ med $e\not = f$, så $\beta_e (y_1)=\beta_f (y_2)$. 
+        $f\in\{ 1, \ldots ,l\}$ med $e\not = f$, sÃ¥ $\beta_e (y_1)=\beta_f (y_2)$. 
         Da skal $Du_e(y_1)=Du_f(y_2)$ for alle afledede $D$ af orden mindre end eller
         lig med $k_{\max}$. Desuden skal funktionen $U$ givet ved
-        $U|_{\dom_d}=u_d \circ \beta_d$, $d=1,\ldots,l$ være entydig
-        defineret i hele $\dom$ og tilhøre ${\mathcal C}^{k_{\max}}(\dom)$.  
+        $U|_{\dom_d}=u_d \circ \beta_d$, $d=1,\ldots,l$ vÃ¦re entydig
+        defineret i hele $\dom$ og tilhÃ¸re ${\mathcal C}^{k_{\max}}(\dom)$.  
 \end{itemize}
 \end{definition}
-For $\beta$-domæner skal vi definere en bestemt type af netinddelinger
-også kaldet $\beta$-netinddelinger.
+For $\beta$-domÃ¦ner skal vi definere en bestemt type af netinddelinger
+ogsÃ¥ kaldet $\beta$-netinddelinger.
 \begin{definition} \label{betamesh}
-Lad $\dom\subset\R^n$ være et $\beta$-domæne, og lad notationen være
+Lad $\dom\subset\R^n$ vÃ¦re et $\beta$-domÃ¦ne, og lad notationen vÃ¦re
 som i definition \ref{betadomain}. Lad $\T_d
-=\{\re_{j,d}\}_{j=1}^{N_{a,d}}$ være et endelig element net over
-$\dom_d$ for $d\in\{1,\ldots,l\}$, og lad $\T=\cup_{d=1}^l \T_d$ være
-netinddelingen af $\dom$ bestående af alle ele\-menterne i delnettene.
-Da defineres $\beta$-netinddelingen $\T_\beta$ hørende til $\T$ som
+=\{\re_{j,d}\}_{j=1}^{N_{a,d}}$ vÃ¦re et endelig element net over
+$\dom_d$ for $d\in\{1,\ldots,l\}$, og lad $\T=\cup_{d=1}^l \T_d$ vÃ¦re
+netinddelingen af $\dom$ bestÃ¥ende af alle ele\-menterne i delnettene.
+Da defineres $\beta$-netinddelingen $\T_\beta$ hÃ¸rende til $\T$ som
 $l$-tuplen $(\T_{1,\beta},\ldots ,\T_{l,\beta})$ af netinddelinger
 over enheds $n$-kuben, hvor
 $\T_{d,\beta}=\{\beta_d(\re_{j,d})\}_{j=1}^{N_{a,d}}$ for $d=1.\ldots
-,l$. Pr. definition er elementerne i $\T_\beta$ mængden bestående af
+,l$. Pr. definition er elementerne i $\T_\beta$ mÃ¦ngden bestÃ¥ende af
 $\beta_d(\re_{j,d})$ for $j=1,\ldots ,N_{a,d}$ og $d=1,\ldots ,l$.
 $\beta$-netinddelingen $\T^{\ast}=(\beta_1(\overline{\dom}_1),\ldots
 ,\beta_l(\overline{\dom}_l))$ kaldes for reference
-$\beta$-netinddelingen af $\dom$ (hørende til inddelingen
+$\beta$-netinddelingen af $\dom$ (hÃ¸rende til inddelingen
 $\{\dom_d\}_{d=1}^l$ af $\dom$ og afbildningerne $\{\beta_d\}_{d=1}^l$).  
 \end{definition}
 \begin{definition}
-En delmængde $\re$ af $\R^n$ siges at være $n$-firkantet (eng.
-$n$-quad\-ri\-la\-te\-ral), såfremt der findes en lineær afbildning $L:\R^n
-\rightarrow \R^n$ så $L(\re_n)=\re$, hvor $\re_n$ er $n$-enheds kuben.
-Hvis kanterne (se definition~\ref{rside}) i $\re$ har samme længde, og
+En delmÃ¦ngde $\re$ af $\R^n$ siges at vÃ¦re $n$-firkantet (eng.
+$n$-quad\-ri\-la\-te\-ral), sÃ¥fremt der findes en lineÃ¦r afbildning $L:\R^n
+\rightarrow \R^n$ sÃ¥ $L(\re_n)=\re$, hvor $\re_n$ er $n$-enheds kuben.
+Hvis kanterne (se definition~\ref{rside}) i $\re$ har samme lÃ¦ngde, og
 alle vinkler er rette, kaldes $\re$ for $n$-kubisk.
 \end{definition}
 \begin{definition}
-Lad $\dom\subset\R^n$ være et $\beta$-domæne, og lad notationen være
+Lad $\dom\subset\R^n$ vÃ¦re et $\beta$-domÃ¦ne, og lad notationen vÃ¦re
 som i definition~\ref{betadomain} og \ref{betamesh}.
 $\beta$-netinddelingen $\T_\beta$ siges da at have $n$-firkantede
 ele\-menter, hvis ethvert element $\re$ i $\T_\beta$ er
 $n$-firkantet. Tilsvarende siges $\T_\beta$ at have $n$-kubiske elementer,
-såfremt ethvert element er $n$-kubisk.
+sÃ¥fremt ethvert element er $n$-kubisk.
 \end{definition}
-For at påvise eksistensen af net tætheds operatorer vil vi ikke tillade
-vilkårlige $\beta$-netinddelinger. Vi vil begrænse os til følgende
+For at pÃ¥vise eksistensen af net tÃ¦theds operatorer vil vi ikke tillade
+vilkÃ¥rlige $\beta$-netinddelinger. Vi vil begrÃ¦nse os til fÃ¸lgende
 \begin{definition}
-Ved mængden af $\T^{\ast}$-tilladte $\beta$-netinddelinger med
+Ved mÃ¦ngden af $\T^{\ast}$-tilladte $\beta$-netinddelinger med
 $n$-kubiske elementer (eng. $\underline{\T}^{\ast}$-\underline{c}ompatible 
 $\beta$-meshes with $n$-\underline{c}ubic elements) forkortet $TCC$,
-forstås de netinddelinger, der kan konstrueres udfra følgende rekursive regel
+forstÃ¥s de netinddelinger, der kan konstrueres udfra fÃ¸lgende rekursive regel
 \begin{itemize}
   \item $\T^{\ast}$ er et $TCC$.
   \item Hvis $\T$ er et $TCC$, er den $\beta$-netinddeling, der
-        fremkommer ved at inddele et vilkårligt element i $\T$ i $2^n$
+        fremkommer ved at inddele et vilkÃ¥rligt element i $\T$ i $2^n$
         kongruente $n$-kuber igen et $TCC$.
   \item En $\beta$-netinddeling, der ikke kan konstrueres udfra
-        overnstående, er ikke et $TCC$.
+        overnstÃ¥ende, er ikke et $TCC$.
 \end{itemize}
 \end{definition}
 \begin{definition}
-Lad $\T^{\ast}$ være en reference $\beta$-netinddeling, $\T$ en
+Lad $\T^{\ast}$ vÃ¦re en reference $\beta$-netinddeling, $\T$ en
 $\T^{\ast}$-tilladt $\beta$-netinddeling med $n$-kubiske elementer, og
-lad $\{\re_j\}_{j\in S}$ være en mængde af elementer i $\T$. Hvis
-netinddelingen $\T^{'}$, fået udfra $\T$ ved at slå elementerne
+lad $\{\re_j\}_{j\in S}$ vÃ¦re en mÃ¦ngde af elementer i $\T$. Hvis
+netinddelingen $\T^{'}$, fÃ¥et udfra $\T$ ved at slÃ¥ elementerne
 $\{\re_j\}_{j\in S}$ sammen til et element $\re_p = \cup_{j\in S}\re_j$, er
 en $\T^{\ast}$-tilladt $\beta$-netinddeling med $n$-kubiske elementer,
-kaldes $\re_p$ et forældre element, og mængden $\{\re_j\}_{j\in S}$
-kaldes et søskende sæt.     
+kaldes $\re_p$ et forÃ¦ldre element, og mÃ¦ngden $\{\re_j\}_{j\in S}$
+kaldes et sÃ¸skende sÃ¦t.     
 \end{definition}
-Vi har nu begreber og notation på plads til at kunne vise eksistensen
-af net tætheds operatorer. 
+Vi har nu begreber og notation pÃ¥ plads til at kunne vise eksistensen
+af net tÃ¦theds operatorer. 
 
 \begin{theorem} \label{operator-net}
-Lad $\dom$ være et begrænset $\beta$-domæne i $\R^n$, og lad
-$\T^{\ast}$ være en refe\-rence $\beta$-netinddeling af $\dom$. I
+Lad $\dom$ vÃ¦re et begrÃ¦nset $\beta$-domÃ¦ne i $\R^n$, og lad
+$\T^{\ast}$ vÃ¦re en refe\-rence $\beta$-netinddeling af $\dom$. I
 algoritmen~\ref{ndoalg} er $\hat{\T}$ en $\T^{\ast}$-tilladt
 $\beta$-netinddeling med $n$-kubiske elementer, og $\alpha$ er en
-reel, positiv parameter. Endelig er $\D\in D_\dom$ en net tætheds
-funktion defineret på $\dom$. Definer nu operatoren $\ndo$ ved
+reel, positiv parameter. Endelig er $\D\in D_\dom$ en net tÃ¦theds
+funktion defineret pÃ¥ $\dom$. Definer nu operatoren $\ndo$ ved
 \begin{equation}
   \ndo (\D ) = \{ \T_m \}_{m=1}^\infty ,
 \end{equation}
-hvor $\{ \T_m \}_{m=1}^\infty$ er den følge $\beta$-netinddelinger,
-som man kan opnå ved at anvende algoritme~\ref{ndoalg} med intensiteten $\I$
-(den reciprokke af det ``ønskede'' antal elementer) varie\-rende over
-alle positive tal, og derefter sorteret så den
-tilhørende følge $\{N_{a,m}\}_{m=1}^\infty$ er ikke-aftagende. Da er
-$\ndo$ en net tætheds operator. Betegnes med $R_{\ndo} = \ndo(D_\dom)$
+hvor $\{ \T_m \}_{m=1}^\infty$ er den fÃ¸lge $\beta$-netinddelinger,
+som man kan opnÃ¥ ved at anvende algoritme~\ref{ndoalg} med intensiteten $\I$
+(den reciprokke af det ``Ã¸nskede'' antal elementer) varie\-rende over
+alle positive tal, og derefter sorteret sÃ¥ den
+tilhÃ¸rende fÃ¸lge $\{N_{a,m}\}_{m=1}^\infty$ er ikke-aftagende. Da er
+$\ndo$ en net tÃ¦theds operator. Betegnes med $R_{\ndo} = \ndo(D_\dom)$
 billedet af $\ndo$, er den inverse afbildning $(\ndo)^{-1}$ til $\ndo$
 givet ved
 \begin{equation} \label{defndo}
@@ -304,17 +304,17 @@ givet ved
 hvor
 \begin{equation} \label{defntc}
   \D (x) = \alpha \lim_{k\rightarrow\infty} 
-  \frac{\underline{\I}_{m_k}}{V_n(\re_{m_k}(x))} \quad \text{næsten overalt i $\dom$.}
+  \frac{\underline{\I}_{m_k}}{V_n(\re_{m_k}(x))} \quad \text{nÃ¦sten overalt i $\dom$.}
 \end{equation}
-I definitionen~\eqref{defntc} af net tætheds funktionen er $\re_m(x)$ det
+I definitionen~\eqref{defntc} af net tÃ¦theds funktionen er $\re_m(x)$ det
 element i $\T_m =\{\re_{j,m}\}_{m=1}^{N_{a.m}}$, der indeholder $x$.
-Bemærk at elementet $\re_m(x)$ kun er næsten
+BemÃ¦rk at elementet $\re_m(x)$ kun er nÃ¦sten
 overalt entydig. $V_n(\re )$ er $n$-volumenet af $\re$, og
 $\underline{\I}_m$ er infimum over alle de intensiteter $\I$ fra
 algoritme~\ref{ndoalg}, der
 resulterede i $\beta$-netinddelinger $\T_m$. Endelig er
-$\{m_k\}_{k=1}^\infty$ en delfølge af indices valgt således, at
-elementet $\re_{m_k}(x)$ fra netinddelingen $\T_{m_k}$ i den efterfølgende netinddeling
+$\{m_k\}_{k=1}^\infty$ en delfÃ¸lge af indices valgt sÃ¥ledes, at
+elementet $\re_{m_k}(x)$ fra netinddelingen $\T_{m_k}$ i den efterfÃ¸lgende netinddeling
 $\T_{m_{k+1}}$ er blevet inddelt i $2^n$ kongruente elementer.   
 \end{theorem}
 \newlength{\len}
@@ -324,8 +324,8 @@ $\T_{m_{k+1}}$ er blevet inddelt i $2^n$ kongruente elementer.
 \setlength{\itemsep}{0cm}
 \setlength{\parsep}{0cm}
   \item I. Forgrovning \\ 
-        \makebox[.25in][r]{} For alle relevante søskende sæt
-        $\{\re_j\}_{j\in S}$ i $\hat{\T}$ gøres følgende:
+        \makebox[.25in][r]{} For alle relevante sÃ¸skende sÃ¦t
+        $\{\re_j\}_{j\in S}$ i $\hat{\T}$ gÃ¸res fÃ¸lgende:
   \item \makebox[.5in][r]{} (1) Udregn $\kappa(\re_p)=(1/\I)\int_{\re_p}
         \D (x)\, dx$, hvor $\re_p=\cup_{j\in S}\re_j$
   \item \makebox[.5in][r]{} (2) Hvis $\kappa(\re_p)\geq\alpha$
@@ -337,61 +337,61 @@ $\T_{m_{k+1}}$ er blevet inddelt i $2^n$ kongruente elementer.
   \item II. Forfining \\
         \makebox[.25in][r]{} For alle elementerne $\re$ i
         $\beta$-netinddelingen som blev \\
-        \makebox[.25in][r]{} konstrueret i forgrovnings delen gøres følgende:    
+        \makebox[.25in][r]{} konstrueret i forgrovnings delen gÃ¸res fÃ¸lgende:    
   \item \makebox[.5in][r]{} (1) Udregn $\kappa(\re)=(1/\I)\int_{\re}
         \D (x)\, dx$, (hvis det ikke \\
         \makebox[.5in][r]{} \makebox[\len][r]{} allerede er gjort)
   \item \makebox[.5in][r]{} (2) Hvis $\kappa(\re)\leq\alpha$
-        forbliver $\re$ uændret 
+        forbliver $\re$ uÃ¦ndret 
   \item \makebox[.5in][r]{} (3) Hvis $\kappa(\re)>\alpha$ \\
         \makebox[.5in][r]{} \makebox[\len][r]{} (a) Konstruer en ny
         $\beta$-netinddeling ved at inddele $\re$ i \\
         \makebox[.5in][r]{} \makebox[\len][r]{} \makebox[\len][r]{} 
         $2^n$ kongruente $n$-kuber \\
         \makebox[.5in][r]{} \makebox[\len][r]{} (b) For alle
-        underelementerne $\re_s$ af $\re$ gå til II.(1)
+        underelementerne $\re_s$ af $\re$ gÃ¥ til II.(1)
 \end{emptylist}
-\caption{Netinddelings algoritme byggende på net tætheds funktion\label{ndoalg}}
+\caption{Netinddelings algoritme byggende pÃ¥ net tÃ¦theds funktion\label{ndoalg}}
 \end{Algoritme}
 
 \begin{remark}
-I algoritme~\ref{ndoalg} udføres forgrovning og forfining kun en 
-enkelt gang. Dette er valgt for at undgå muligheder for 
-uendelige løkker. Forgrovning udføres før forfining for at sikre
-en mere effektiv udnyttelse af computer lagerplads. Ved at udføre
-forgrovning og forfining i nævnte rækkefølge kan man nemlig 
+I algoritme~\ref{ndoalg} udfÃ¸res forgrovning og forfining kun en 
+enkelt gang. Dette er valgt for at undgÃ¥ muligheder for 
+uendelige lÃ¸kker. Forgrovning udfÃ¸res fÃ¸r forfining for at sikre
+en mere effektiv udnyttelse af computer lagerplads. Ved at udfÃ¸re
+forgrovning og forfining i nÃ¦vnte rÃ¦kkefÃ¸lge kan man nemlig 
 udnytte den lagerplads, der er blevet frigjort i forbindelse med
 forgrovning til at gemme informationer om forfining i. For flere 
 detaljer om algoritmen henvises til afsnit~\ref{netalg}, hvor vi 
 konstruerer en mere generel algoritme. Den initiale netinddeling
-$\hat{\T}$ er bruger bestemt og kan eventuelt vælges som $\T^{\ast}$.
+$\hat{\T}$ er bruger bestemt og kan eventuelt vÃ¦lges som $\T^{\ast}$.
 \end{remark}
 
 \begin{proof}
 Det er klart, at $A_n^{\ast}(\D)$ er en tilladt ikke-aftagende
-netinddeling af $\dom$ for enhver net tætheds funktion $\D$. Dette
-følger af den måde, hvorpå netinddelinger i $A_n^{\ast}(\D)$ er 
-sorteret samt af, at algoritmen~\ref{ndoalg} er konstueret således, at 
-ethvert element på et eller andet tidspunkt bliver inddelt i mindre
-elementer når intensiteten aftager. Altså vil det samlede antal 
-elementer gå mod uendelig, når intensiteten går mod nul. For at vise 
-at det resterende udsagn i sætningen er korrekt, skal vi vise, at 
+netinddeling af $\dom$ for enhver net tÃ¦theds funktion $\D$. Dette
+fÃ¸lger af den mÃ¥de, hvorpÃ¥ netinddelinger i $A_n^{\ast}(\D)$ er 
+sorteret samt af, at algoritmen~\ref{ndoalg} er konstueret sÃ¥ledes, at 
+ethvert element pÃ¥ et eller andet tidspunkt bliver inddelt i mindre
+elementer nÃ¥r intensiteten aftager. AltsÃ¥ vil det samlede antal 
+elementer gÃ¥ mod uendelig, nÃ¥r intensiteten gÃ¥r mod nul. For at vise 
+at det resterende udsagn i sÃ¦tningen er korrekt, skal vi vise, at 
 $\D$ defineret ved~\eqref{defndo} og \eqref{defntc} opfylder 
 $A_n^{\ast}(\D) = \{\T_m\}_{m=1}^\infty$, hvor $\T_m$ er netinddelingen
-fået fra algoritme~\ref{ndoalg}. Da $\{\T_m\}_{m=1}^\infty$ antages at 
-tilhøre billedet af $A_n^{\ast}$, findes der en net tætheds funktion
-$\tilde{\D}$, så $A_n^{\ast}(\tilde{\D})=\{\T_m\}_{m=1}^\infty$. Lad
-$S_0$ betegne den mængde, hvor $\tilde{\D}$ er diskontinuert eller 
-har singulariteter. Mængden $S_0$ har mål $0$. Bemærk at mængden 
+fÃ¥et fra algoritme~\ref{ndoalg}. Da $\{\T_m\}_{m=1}^\infty$ antages at 
+tilhÃ¸re billedet af $A_n^{\ast}$, findes der en net tÃ¦theds funktion
+$\tilde{\D}$, sÃ¥ $A_n^{\ast}(\tilde{\D})=\{\T_m\}_{m=1}^\infty$. Lad
+$S_0$ betegne den mÃ¦ngde, hvor $\tilde{\D}$ er diskontinuert eller 
+har singulariteter. MÃ¦ngden $S_0$ har mÃ¥l $0$. BemÃ¦rk at mÃ¦ngden 
 $S\equiv S_0 \cup ( \cup_{m=1}^\infty \cup_{j=1}^{N_{a,m}} \partial
-\Box_{j,m})$ ligeledes har mål $0$. Sæt nu
-$a_m=\int_{\Box_m(x)} \tilde{\D}\, dx$, og lad $\I_m$ være et 
-vilkårligt tal. Ved at indsætte $\I_m$ for $\I$ i algoritmen~\ref{ndoalg}
-fås en netinddeling $\{\T_m\}_{m=1}^\infty$. Ifølge algorimen vil en
-forfining af $\Box_m(x)$ kun ske såfremt $a_m(x)/\I_m > \alpha$
-Men ifølge konstruktionen af algoritmen og definitionen af $a_m$ vil 
-$a_m(x)/\I_m \leq \alpha$. Fra definitionen af indeks delfølgen
-$\{ m_k \}_{k=1}^\infty$ følger det nu, at $a_{m_k}/\underline{\I}_{m_k}
+\Box_{j,m})$ ligeledes har mÃ¥l $0$. SÃ¦t nu
+$a_m=\int_{\Box_m(x)} \tilde{\D}\, dx$, og lad $\I_m$ vÃ¦re et 
+vilkÃ¥rligt tal. Ved at indsÃ¦tte $\I_m$ for $\I$ i algoritmen~\ref{ndoalg}
+fÃ¥s en netinddeling $\{\T_m\}_{m=1}^\infty$. IfÃ¸lge algorimen vil en
+forfining af $\Box_m(x)$ kun ske sÃ¥fremt $a_m(x)/\I_m > \alpha$
+Men ifÃ¸lge konstruktionen af algoritmen og definitionen af $a_m$ vil 
+$a_m(x)/\I_m \leq \alpha$. Fra definitionen af indeks delfÃ¸lgen
+$\{ m_k \}_{k=1}^\infty$ fÃ¸lger det nu, at $a_{m_k}/\underline{\I}_{m_k}
 = \alpha$ for alle positive heltal $k$. Vi har nu
 \begin{align} \label{helpequ}
   \tilde{\D}(x) & = \lim_{m\rightarrow\infty}
@@ -402,20 +402,20 @@ $\{ m_k \}_{k=1}^\infty$ følger det nu, at $a_{m_k}/\underline{\I}_{m_k}
   & = \alpha \lim_{m\rightarrow\infty} \frac{\underline{\I}_{m_k}}{V_n(\Box_{m_k}(x))} 
     \quad \text{for $x\in\overline{\dom}\setminus S$.}\notag
 \end{align}
-Da $S$ har mål $0$ følger det af~\eqref{helpequ}, at $\D$ givet ved~\eqref{defntc} 
-er den rigtige net tætheds funktion, da den er identiske med $\tilde{\D}$
-næsten overalt.
+Da $S$ har mÃ¥l $0$ fÃ¸lger det af~\eqref{helpequ}, at $\D$ givet ved~\eqref{defntc} 
+er den rigtige net tÃ¦theds funktion, da den er identiske med $\tilde{\D}$
+nÃ¦sten overalt.
 \end{proof}
 
 \section{Netgenerering i to dimensioner}
-Vi skal fremover antage, at domænet er en delmængde af $\R^2$, samt at
-dette kan afbildes bijektivt på et passende antal enheds kvadrater
+Vi skal fremover antage, at domÃ¦net er en delmÃ¦ngde af $\R^2$, samt at
+dette kan afbildes bijektivt pÃ¥ et passende antal enheds kvadrater
 $[0,1]^2$. For at forenkle notationen skal vi som hovedregel kun betragte et enkelt
 generisk enheds kvadrat. Elementerne i de endelige element net
-$\T_N=\{\re_j\}_{j=1}^N$, som vi skal arbejde med består udelukkende af
-rektangulære elementer, se figur~\ref{meshexample} for et eksempel og
-notation. Vi tillader altså her mere generelle elementer end i
-sætning~\ref{operator-net} fra forrige afsnit.
+$\T_N=\{\re_j\}_{j=1}^N$, som vi skal arbejde med bestÃ¥r udelukkende af
+rektangulÃ¦re elementer, se figur~\ref{meshexample} for et eksempel og
+notation. Vi tillader altsÃ¥ her mere generelle elementer end i
+sÃ¦tning~\ref{operator-net} fra forrige afsnit.
 \begin{figure}[hbt]
 \begin{center}
 \setlength{\unitlength}{1cm}
@@ -434,7 +434,7 @@ sætning~\ref{operator-net} fra forrige afsnit.
 \put(4,2){\line(0,1){4}}
 \put(3,4){\line(1,0){1}}
 \put(1,1.5){Net $\T_N = \{\re_j\}_{j=1}^N$}
-\put(1,1){på $[0,1]^2$, $(N=11)$} 
+\put(1,1){pÃ¥ $[0,1]^2$, $(N=11)$} 
 \end{picture}}
 \put(6,0){\begin{picture}(6,6)(0,0)
 \put(1,3){\line(1,0){4}}
@@ -443,7 +443,7 @@ sætning~\ref{operator-net} fra forrige afsnit.
 \put(5,6){\line(0,-1){3}}
 \put(3,2.5){\makebox(0,0){$h_{1,j}$}}
 \put(5.1,4.5){\makebox(0,0)[l]{$h_{2,j}$}}
-\put(1,1.5){Forstørrelse af et}
+\put(1,1.5){ForstÃ¸rrelse af et}
 \put(1,1){element $\re_j$}
 \put(3,4.5){\makebox(0,0){$\re_j$}} 
 \end{picture}}
@@ -452,56 +452,56 @@ sætning~\ref{operator-net} fra forrige afsnit.
 \caption{Net og element notation}
 \label{meshexample}
 \end{figure}
-Netinddelings algoritmen, som vi skal betragte, kræver, at vi har
-en a priori fejlligning på formen
+Netinddelings algoritmen, som vi skal betragte, krÃ¦ver, at vi har
+en a priori fejlligning pÃ¥ formen
 \begin{equation} \label{fejlligning}
   \norm{e}^q_{\re_j} = \phi_1^q h_{1,j}^{\gamma +1} h_{2,j} +
   \phi_2^q h_{1,j} h_{2,j}^{\gamma +1} + \hot \quad 
   \text{for $j=1,\ldots,N\ $.}
 \end{equation}
-I ligningen~\eqref{fejlligning} er $\re_j$ de rektangulære elementer,
-som det endelige element net over det afbildede domæne består af.
-Sidelængderne af $\re_j$
+I ligningen~\eqref{fejlligning} er $\re_j$ de rektangulÃ¦re elementer,
+som det endelige element net over det afbildede domÃ¦ne bestÃ¥r af.
+SidelÃ¦ngderne af $\re_j$
 betegnes med $h_{1,j}$ og $h_{2,j}$ i $x$-retningen hhv.
-$y$-retningen. Vi skriver $\hot$ for højere ordens led i $h_{1,j}$ og
+$y$-retningen. Vi skriver $\hot$ for hÃ¸jere ordens led i $h_{1,j}$ og
 $h_{2,j}$. Funktionerne $\phi_1$ og $\phi_2$ er kendte men
-ikke-beregnelige funktioner, der afhænger af den funktion, vi
-approksimerer, men er uafhængige af netinddelingen. Kendes den
-funktion, som vi forsøger at approksimere, er $\phi_1$ og $\phi_2$
+ikke-beregnelige funktioner, der afhÃ¦nger af den funktion, vi
+approksimerer, men er uafhÃ¦ngige af netinddelingen. Kendes den
+funktion, som vi forsÃ¸ger at approksimere, er $\phi_1$ og $\phi_2$
 beregnelige. Endelig er $q$ et positivt heltal, og $\gamma$ er en reel
-parameter afhængig af polynomiums graden $p$ (på de polynomier som vi
+parameter afhÃ¦ngig af polynomiums graden $p$ (pÃ¥ de polynomier som vi
 approksimerer med) og normen $\norm{\cdot}$.
-Det er underforstået, at den globale fejl opfylder følgende
+Det er underforstÃ¥et, at den globale fejl opfylder fÃ¸lgende
 summations princip
 \begin{equation} \label{sumprincip}
   \norm{e}^q_\dom = \sum_{j=1}^N \norm{e}^q_{\re_j}.
 \end{equation}
-I special tilfældet hvor alle elementer er kvadratiske, reduceres
+I special tilfÃ¦ldet hvor alle elementer er kvadratiske, reduceres
 fejlligningen~\eqref{fejlligning} til $\norm{e}^q_{\re_j} = 2\phi^q
 h_j^{\gamma +2} + \hot $ for $j=1,\ldots,N$, hvor
 $2\phi^q=\phi_1^q+\phi_2^q$.
 
-Vi så i kapitel~\ref{interpolation}, at det er muligt at udlede en a priori
-fejlligning opfyldende oven\-stå\-en\-de krav. 
+Vi sÃ¥ i kapitel~\ref{interpolation}, at det er muligt at udlede en a priori
+fejlligning opfyldende oven\-stÃ¥\-en\-de krav. 
 
-\subsection{Konstruktion af næsten optimale net størrelses funktioner
-for netinddelinger med rektangulære elementer}
-Betragt nu en følge af net $\{\T_N\}_{N=1}^\infty$, og lad
-$\T_N=\{\re_j\}_{j=1}^N$ være et fast generisk net i følgen svarende
-til et fast valgt $N$. For dette net kan vi opfatte længden af siderne
-$h_{1,j}$ og $h_{2,j}$ i elementet $\re_j$ som værdien af 
-stykkevis konstante, ikke-negative (net størrelses) funktioner $h_1$ og
+\subsection{Konstruktion af nÃ¦sten optimale net stÃ¸rrelses funktioner
+for netinddelinger med rektangulÃ¦re elementer}
+Betragt nu en fÃ¸lge af net $\{\T_N\}_{N=1}^\infty$, og lad
+$\T_N=\{\re_j\}_{j=1}^N$ vÃ¦re et fast generisk net i fÃ¸lgen svarende
+til et fast valgt $N$. For dette net kan vi opfatte lÃ¦ngden af siderne
+$h_{1,j}$ og $h_{2,j}$ i elementet $\re_j$ som vÃ¦rdien af 
+stykkevis konstante, ikke-negative (net stÃ¸rrelses) funktioner $h_1$ og
 $h_2$. Det er oplagt, at disse opfylder
 \begin{equation} \label{trivial}
   \int_\dom \frac{1}{Nh_1 h_2}\, dx\, dy = 
   \frac{1}{N} \sum_{j=1}^N \int_{\re_j} \frac{1}{h_1 h_2}\, dx\, dy = 1.  
 \end{equation}
-Fjernes betingelsen ``stykkevis konstant'' fås følgende generelle
-definition af net stør\-rel\-ses funktioner.
+Fjernes betingelsen ``stykkevis konstant'' fÃ¥s fÃ¸lgende generelle
+definition af net stÃ¸r\-rel\-ses funktioner.
 \begin{definition}
 For et givet endeligt element net $\T_N=\{\re_j\}_{j=1}^N$ defineres
-net størrelse funktioner $h_1$ og $h_2$ som værende to
-ikke-negative, næsten overalt glatte funktioner
+net stÃ¸rrelse funktioner $h_1$ og $h_2$ som vÃ¦rende to
+ikke-negative, nÃ¦sten overalt glatte funktioner
 opfyldende~\eqref{trivial} og 
 \begin{equation} \label{def-mfc}
   \int_{\re_j} \frac{1}{h_1}\, dx\, dy = h_{2,j}
@@ -512,27 +512,27 @@ opfyldende~\eqref{trivial} og
 \end{definition}
 
 \begin{remark}
-Definitionen af net størrelses funktioner kan umiddelbart
-ge\-ne\-ra\-li\-se\-res til højere dimensioner.
+Definitionen af net stÃ¸rrelses funktioner kan umiddelbart
+ge\-ne\-ra\-li\-se\-res til hÃ¸jere dimensioner.
 \end{remark}
 
 \begin{remark}
-Ifølge definition~\ref{density} er den næsten overalt glatte funktion
-$\D=\frac{1}{Nh_1h_2}$ en net tætheds funktion. I tilfældet med lutter
+IfÃ¸lge definition~\ref{density} er den nÃ¦sten overalt glatte funktion
+$\D=\frac{1}{Nh_1h_2}$ en net tÃ¦theds funktion. I tilfÃ¦ldet med lutter
 kvadratiske elementer er $h_1 \equiv h_2 \equiv h$, hvorfor
 $\D=\frac{1}{Nh^2}$.  
 \end{remark}
 
 \begin{remark}
 Kravene i ligning~\eqref{def-mfc} implicerer, at $h_i(x,y)$ op til
-højere ordens led er identisk med $h_{i,j}$ for ethvert punkt
+hÃ¸jere ordens led er identisk med $h_{i,j}$ for ethvert punkt
 $(x,y)\in\re_j$ (og $i=1,2$, $j=1,\ldots,N$). 
 \end{remark}
 
 \begin{remark}
-Har vi givet to net størrelses funktioner $h_1$ og $h_2$ beskrivende
+Har vi givet to net stÃ¸rrelses funktioner $h_1$ og $h_2$ beskrivende
 en eller flere netinddelinger, kan vi ved brug af~\eqref{def-mfc}
-rekonstruere disse netfølger. 
+rekonstruere disse netfÃ¸lger. 
 \end{remark}
 
 I praktiske beregningssituationer forventer man ikke, at kunne
@@ -545,43 +545,43 @@ derfor normalt tillade approksimationer af typen
 \end{equation}
 for $j=1,\ldots,N$ og passende konstanter $k$ og $K$ med $k\leq K$.
 
-Vi er interesseret i at konstruere net størrelses funktioner
-for asymptotisk optimale net følger
+Vi er interesseret i at konstruere net stÃ¸rrelses funktioner
+for asymptotisk optimale net fÃ¸lger
 $\{\hat{\T}_N\}_{N=1}^\infty$, hvor $\hat{\T}_N$ er det net med den
 mindst mulige fejl $\norm{\hat{e}}_\dom$ blandt alle net med $N$ elementer. Fejlen
-er her beskrevet ved $\norm{\hat{e}}_\dom$ som fås fra \eqref{fejlligning} ved
-at udelade højere ordens led (bemærk at dette intet ændrer
+er her beskrevet ved $\norm{\hat{e}}_\dom$ som fÃ¥s fra \eqref{fejlligning} ved
+at udelade hÃ¸jere ordens led (bemÃ¦rk at dette intet Ã¦ndrer
 asymptotisk). Vi skal nu forklare, hvorledes man kan
-konstruere asymptotiske optimale net størrelse funktioner
-$\hat{h}_1$ og $\hat{h}_2$ (og dermed en asymptotisk optimal net tætheds
-funktion $\D$) hørende til $\hat{\T}_N$. Hertil skal vi benytte
+konstruere asymptotiske optimale net stÃ¸rrelse funktioner
+$\hat{h}_1$ og $\hat{h}_2$ (og dermed en asymptotisk optimal net tÃ¦theds
+funktion $\D$) hÃ¸rende til $\hat{\T}_N$. Hertil skal vi benytte
 ligningerne~\eqref{trivial} og \eqref{fejlligning}, hvor vi i
 ligning~\eqref{fejlligning}, skal erstatte $h_{i,j}$ med $h_i$ i hvert
-element $\re_j$. Vi skal desuden se bort fra højere ordens led.
+element $\re_j$. Vi skal desuden se bort fra hÃ¸jere ordens led.
 
 Ved som sagt at erstatte $h_{i,j}$ med $h_i$ i \eqref{fejlligning} og
-summere over $j=1,\ldots,N$ fås
+summere over $j=1,\ldots,N$ fÃ¥s
 \begin{equation}
   \norm{\hat{e}}^q_\dom = \int_\dom (\phi_1^q h_1^{\gamma} + 
   \phi_2^q h_2^{\gamma})\, dx\, dy.
 \end{equation}
-Bemærk at vi benytter skrivemåden $\hat{e}$ for at indikere, at vi ser
-bort fra højere ordens led. Arbejder vi med kvadratiske elementer fås
+BemÃ¦rk at vi benytter skrivemÃ¥den $\hat{e}$ for at indikere, at vi ser
+bort fra hÃ¸jere ordens led. Arbejder vi med kvadratiske elementer fÃ¥s
 istedet $\norm{\hat{e}}^q_\dom = \int_\dom 2\phi^q h^\gamma\, dx\, dy$.
 
 For at bestemme $\hat{h}_1$ og $\hat{h}_2$ skal vi minimere
-$\norm{\hat{e}}^q_\dom$ for fastholdt $N$, dvs vi skal løse følgende
+$\norm{\hat{e}}^q_\dom$ for fastholdt $N$, dvs vi skal lÃ¸se fÃ¸lgende
 minimeringsproblem:
 \begin{align} \label{minimum}
-  &\text{Bestem de net størrelses funktioner $\hat{h}_1$ og 
+  &\text{Bestem de net stÃ¸rrelses funktioner $\hat{h}_1$ og 
     $\hat{h}_2$} \\
   &\text{som minimerer udtrykket $\int_\dom (\phi_1^q h_1^{\gamma} + 
     \phi_2^q h_2^{\gamma})\, dx\, dy$}  \notag \\
   &\text{under bibetingelse $\int_\dom \frac{1}{Nh_1h_2}\, dx\, dy=1$,
     hvor $N$ er fast.} \notag
 \end{align}
-Dette minimeringsproblem kan løses fx ved hjælp af Lagrange optimering
-som følger: Definer Lagrange funktionen $L$ som
+Dette minimeringsproblem kan lÃ¸ses fx ved hjÃ¦lp af Lagrange optimering
+som fÃ¸lger: Definer Lagrange funktionen $L$ som
 \begin{equation}
   L(h_1,h_2,\lambda) = \int_\dom (\phi_1^q h_1^\gamma + 
   \phi_2^q h_2^\gamma )\, dx\, dy + \lambda \Bigl(
@@ -596,34 +596,34 @@ De afledede af $L$ med hensyn til $h_1$ og $h_2$ er
     \frac{1}{h_1^2 h_2} \delta h_1 + \frac{1}{h_1 h_2^2} \delta h_2
     \Bigr)\, dx\, dy . \notag  
 \end{align}
-Sættes $\delta L$ til $0$ for vilkårlige variationer $\delta h_1$ og
-$\delta h_2$ fås følgende optimalitets betingelser 
+SÃ¦ttes $\delta L$ til $0$ for vilkÃ¥rlige variationer $\delta h_1$ og
+$\delta h_2$ fÃ¥s fÃ¸lgende optimalitets betingelser 
 \begin{gather}
   \phi_1^q \hat{h}_1^{\gamma +1} \hat{h}_2 = 
     \frac{\lambda}{\gamma N} = C, \label{opc1} \\
   \phi_2^q \hat{h}_1 \hat{h}_2^{\gamma +1} = 
     \frac{\lambda}{\gamma N} = C. \label{opc2}
 \end{gather}
-Hvor det sidste lighedstegn i begge ovenstående ligninger definerer
+Hvor det sidste lighedstegn i begge ovenstÃ¥ende ligninger definerer
 den globale konstant $C$.
 
 Ved nu at anvende ligningerne~\eqref{fejlligning}, \eqref{opc1} og
-\eqref{opc2} samt det faktum, at $h_i$ og $h_{i,j}$ op til højere
+\eqref{opc2} samt det faktum, at $h_i$ og $h_{i,j}$ op til hÃ¸jere
 ordens led er identiske i
-$\re_j$ fås 
+$\re_j$ fÃ¥s 
 \begin{align} \label{error-eq-dis}
   \norm{\hat{e}}_{\re_j}^q &= \phi_1^q \hat{h}_1^{\gamma +1} \hat{h}_2
     + \phi_2^q \hat{h}_1 \hat{h}_2^{\gamma +1} + \hot \\
   &= 2C + \hot \quad \text{for $j=1,\ldots,N$.} \notag
 \end{align}
 Heraf ses, at den asymptotisk optimale fejl $\norm{\hat{e}}_\re$ er
-uafhængig af elementet $\re$, dvs. fejlen er ækvidistribueret. 
+uafhÃ¦ngig af elementet $\re$, dvs. fejlen er Ã¦kvidistribueret. 
 
-Værdien af konstanten $C$ kan bestemmes fra bibetingelsen $\int_\dom
-\frac{1}{Nh_1h_2}\, dx\, dy=1$ på følgende måde: multiplicer
-ligningerne~\eqref{opc1} og \eqref{opc2}, opløft til $1/(\gamma +2)$'te
-potens, isoler $\frac{1}{N\hat{h}_1 \hat{h}_2}$ på den ene side, integrer over
-$\dom$ og sæt resultatet lig med en dvs.
+VÃ¦rdien af konstanten $C$ kan bestemmes fra bibetingelsen $\int_\dom
+\frac{1}{Nh_1h_2}\, dx\, dy=1$ pÃ¥ fÃ¸lgende mÃ¥de: multiplicer
+ligningerne~\eqref{opc1} og \eqref{opc2}, oplÃ¸ft til $1/(\gamma +2)$'te
+potens, isoler $\frac{1}{N\hat{h}_1 \hat{h}_2}$ pÃ¥ den ene side, integrer over
+$\dom$ og sÃ¦t resultatet lig med en dvs.
 \begin{align}
   &\phantom{\Downarrow} (\phi_1 \phi_2)^q \hat{h}_1^{\gamma +2} 
     \hat{h}_2^{\gamma +2} = C^2 \notag \\    
@@ -641,9 +641,9 @@ $\dom$ og sæt resultatet lig med en dvs.
   &\phantom{\Downarrow} C = \Bigl( \frac{1}{N}\int_\dom (\phi_1\phi_2)^{q/(\gamma+2)} 
     \, dx\, dy \Bigr)^{\frac{\gamma +2}{2}}. \notag     
 \end{align}
-Da konstanten $C$ nu er kendt, kan vi ved hjælp at \eqref{opc1} og
+Da konstanten $C$ nu er kendt, kan vi ved hjÃ¦lp at \eqref{opc1} og
 \eqref{opc2} bestemme $\hat{h}_1$ og $\hat{h}_2$. Isoleres $\hat{h}_2$
-i \eqref{opc1}, og indsættes resultatet så i \eqref{opc2}, kan vi
+i \eqref{opc1}, og indsÃ¦ttes resultatet sÃ¥ i \eqref{opc2}, kan vi
 bestemme $\hat{h}_1$ til
 \begin{align} \label{opt-h1}
   \hat{h}_1 &= \bigl( C^\gamma \phi_1^{-q(\gamma +1)} \phi_2^q 
@@ -651,76 +651,76 @@ bestemme $\hat{h}_1$ til
   &= \frac{\overline{C}}{\sqrt{N}} \bigl( \phi_1^{-q(\gamma +1)} \phi_2^q 
     \bigr)^{\frac{1}{\gamma^2 +2\gamma}}. \notag
 \end{align}
-Her er konstanten $\overline{C}$ uafhængig af nettet og givet ved
+Her er konstanten $\overline{C}$ uafhÃ¦ngig af nettet og givet ved
 \begin{equation} \label{valueofC}
   \overline{C} = \Bigl( \int_\dom (\phi_1 \phi_2)^{\frac{q}
   {\gamma +2}}\, dx\, dy \Bigr)^{\frac{1}{2}}.
 \end{equation}
-På tilsvarende vis bestemmes $\hat{h}_2$
+PÃ¥ tilsvarende vis bestemmes $\hat{h}_2$
 \begin{align} \label{opt-h2}
   \hat{h}_2 &= \bigl( C^\gamma \phi_1^q \phi_2^{-q(\gamma +1)} 
     \bigr)^{\frac{1}{\gamma^2 +2\gamma}} \\
   &= \frac{\overline{C}}{\sqrt{N}} ( \phi_1^q \phi_2^{-q(\gamma +1)}
      )^{\frac{1}{\gamma^2 +2\gamma}}. \notag
 \end{align}
-Er elementerne kvadratiske fås
+Er elementerne kvadratiske fÃ¥s
 $\hat{h}=\frac{\overline{C}}{\sqrt{N}}\phi^{-q/(\gamma +2)}$ med
 $\overline{C}=\bigl( \int_\dom \phi^{2q/(\gamma +2)}\, dx\, dy
 \bigr)^{1/2}$.
 
-I begge situationer er minimums værdien for \eqref{minimum} givet ved
+I begge situationer er minimums vÃ¦rdien for \eqref{minimum} givet ved
 \begin{equation} \label{min-value}
   \int_\dom \bigl( \phi_1^q \hat{h}_1^\gamma +
   \phi_2^q \hat{h}_2^\gamma \bigr)\, dx\, dy = 
   \frac{2\overline{C}^{\gamma +2}}{N^{\frac{\gamma}{2}}}.
 \end{equation}
 
-Endelig bemærkes at $\hat{h}_1\sqrt{N}$ og $\hat{h}_2\sqrt{N}$ er
-uafhængige af netinddelingen. Det betyder, at man alene ved at gemme
-de asymptotisk optimale net størrelses funktioner kan rekonstruere hele netfølgen.
+Endelig bemÃ¦rkes at $\hat{h}_1\sqrt{N}$ og $\hat{h}_2\sqrt{N}$ er
+uafhÃ¦ngige af netinddelingen. Det betyder, at man alene ved at gemme
+de asymptotisk optimale net stÃ¸rrelses funktioner kan rekonstruere hele netfÃ¸lgen.
 
-\subsection{Bestemmelse af det næsten optimale antal af elementer for
-rektangulære netinddelinger} \label{noae}
-I forrige afsnit så vi, hvordan man kan bestemme asymptotisk optimale
-net størrelses funktioner til beskrivelse af den
+\subsection{Bestemmelse af det nÃ¦sten optimale antal af elementer for
+rektangulÃ¦re netinddelinger} \label{noae}
+I forrige afsnit sÃ¥ vi, hvordan man kan bestemme asymptotisk optimale
+net stÃ¸rrelses funktioner til beskrivelse af den
 asymptotisk optimale netinddeling. I dette afsnit skal vi se, hvordan
 vi bestemmer antallet af elementer i dette. I
-praktiske situationer er vi interesseret i tilfældet, hvor brugeren
-kræver en løsning med en fejl mindre end en vis given tolerance
-$\tau$, dvs. brugeren kræver $\norm{e}_\dom\leq\tau$. Ved hjælp af
+praktiske situationer er vi interesseret i tilfÃ¦ldet, hvor brugeren
+krÃ¦ver en lÃ¸sning med en fejl mindre end en vis given tolerance
+$\tau$, dvs. brugeren krÃ¦ver $\norm{e}_\dom\leq\tau$. Ved hjÃ¦lp af
 $\hat{h}_1$ og $\hat{h}_2$ kan vi bestemme det minimale antal
-elementer $\hat{N}$, der kræves, for at den asymptotisk optimale
-netinddeling opfylder de specificerede krav til fejlen. Det kan gøres
-ved at løse følgende minimerings problem:  
+elementer $\hat{N}$, der krÃ¦ves, for at den asymptotisk optimale
+netinddeling opfylder de specificerede krav til fejlen. Det kan gÃ¸res
+ved at lÃ¸se fÃ¸lgende minimerings problem:  
 \begin{align} \label{cononN}
   &\text{Bestem det mindste tal $\hat{N}$ som opfylder} \\
   &\int_\dom \bigl( \phi_1^q \hat{h}_1^\gamma + \phi_2^q \hat{h}_2^\gamma 
     \bigr)\, dx\, dy \leq \tau^q. \notag
 \end{align}
 Er elementerne kvadratiske lyder minimerings problemet istedet: Bestem
-det mindste $\hat{N}$ så $\int_\dom 2\phi^q\hat{h}^\gamma
+det mindste $\hat{N}$ sÃ¥ $\int_\dom 2\phi^q\hat{h}^\gamma
 \, dx\, dy \leq\tau^q$.
-Løsningen til dette problem findes let ved brug af
+LÃ¸sningen til dette problem findes let ved brug af
 formel~\eqref{min-value} og er givet ved 
 \begin{equation} \label{valueofN}
   \hat{N} = \Biggl\lceil \Bigl( \frac{2\overline{C}^{\gamma +2}}{\tau^q}
   \Bigr)^{\frac{2}{\gamma}} \Biggr\rceil .   
 \end{equation}
-For kvadratiske elementer fås samme formel, men her er 
+For kvadratiske elementer fÃ¥s samme formel, men her er 
 $\overline{C}=( \int_\dom \phi^{2q/(\gamma +2)}\, dx\, dy )^{1/2}$.
 
 \subsection{Netinddelings algoritmen} \label{netalg}
 Vi er nu i stand til at udlede algoritmen til konstruktion af den
 optimale netinddeling. Dette vil blive gjort udfra de informationer,
-som vi har til rådighed fra de asymptotisk optimale net størrelses
+som vi har til rÃ¥dighed fra de asymptotisk optimale net stÃ¸rrelses
 funktioner samt det asymptotisk optimale antal af elementer. Af
-notationsmæssige hensyn vil vi kun betragte netinddelinger af et enkelt
-generisk kvadrat i rektangulære elementer. For at få en simpel
-netinddelings algoritme vil vi ikke tillade vilkårlige rektangler.
-Dette leder til følgende definition
+notationsmÃ¦ssige hensyn vil vi kun betragte netinddelinger af et enkelt
+generisk kvadrat i rektangulÃ¦re elementer. For at fÃ¥ en simpel
+netinddelings algoritme vil vi ikke tillade vilkÃ¥rlige rektangler.
+Dette leder til fÃ¸lgende definition
 \begin{definition}
-Mængden af tilladte netinddelinger (eng. the class of admissable
-meshes) defineres som følgende:
+MÃ¦ngden af tilladte netinddelinger (eng. the class of admissable
+meshes) defineres som fÃ¸lgende:
 \begin{itemize}
   \item Enheds kvadratet er en tilladt netinddeling.
   \item Hvis $\T^{'}$ er konstrueret udfra en tilladt netinddeling
@@ -730,17 +730,17 @@ meshes) defineres som følgende:
 \end{itemize}
 \end{definition}
 \begin{remark}
-I artiklen \cite{hugger-net} er algoritmen testet på en række eksempler. I
+I artiklen \cite{hugger-net} er algoritmen testet pÃ¥ en rÃ¦kke eksempler. I
 disse numeriske test har man arbejdet med endnu en betingelse i
 definitionen af tilladte netinddelinger. Der henvises til \cite{hugger-net} for
 detaljer. Dette ekstra krav har ingen betydning for de teoretiske
 resultater, som vi skal vise i afsnit~\ref{teorires} og er udelukkende
-medtaget af implementationsmæssige årsager. 
+medtaget af implementationsmÃ¦ssige Ã¥rsager. 
 \end{remark}
-I diskussionen fremover vil det være hensigtsmæssigt at have fastlagt
+I diskussionen fremover vil det vÃ¦re hensigtsmÃ¦ssigt at have fastlagt
 en datastruktur for tilladte netinddelinger. I figur~\ref{adm-net}
-findes et eksempel på en tilladt netinddeling. Den tilhørende
-datastruktur kan repræsenteres ved et træ, se figur~\ref{datastructur}
+findes et eksempel pÃ¥ en tilladt netinddeling. Den tilhÃ¸rende
+datastruktur kan reprÃ¦senteres ved et trÃ¦, se figur~\ref{datastructur}
 \begin{figure}[p]
 \begin{center}
 \setlength{\unitlength}{1cm}
@@ -795,7 +795,7 @@ datastruktur kan repræsenteres ved et træ, se figur~\ref{datastructur}
 \put(5.5,4.5){\makebox(0,0){10}}
 \end{picture}
 \end{center}
-\caption{Eksempel på tilladt netinddeling\label{adm-net}}
+\caption{Eksempel pÃ¥ tilladt netinddeling\label{adm-net}}
 \end{figure}
 \begin{figure}[p]
 \begin{center}
@@ -862,20 +862,20 @@ datastruktur kan repræsenteres ved et træ, se figur~\ref{datastructur}
 \caption{Datastruktur for netinddelingen i figur 5.3\label{datastructur}}
 \end{figure}
 
-Et vilkårligt element kan forfines på tre forskellige måder. Disse vil
+Et vilkÃ¥rligt element kan forfines pÃ¥ tre forskellige mÃ¥der. Disse vil
 blive betegnes med $x$, $y$ og $xy$ inddeling.
 Figur~\ref{pos-subdivisions} indeholder en forklaring af notationen. I
 forbindelse med forgrovning vil vi kun betragte en bestemt type af
-søskende sæt med 2 eller 4 elementer. For disse 2 eller 4 elementer
-skal der gælde, at de udgør samtlige blade i en given gren i træet, og
+sÃ¸skende sÃ¦t med 2 eller 4 elementer. For disse 2 eller 4 elementer
+skal der gÃ¦lde, at de udgÃ¸r samtlige blade i en given gren i trÃ¦et, og
 at denne gren ikke har nogle undergrene. Der findes tre muligheder
-for søskende sæt af ovennævnte type betegnet med hhv. type $x$, $y$ og
+for sÃ¸skende sÃ¦t af ovennÃ¦vnte type betegnet med hhv. type $x$, $y$ og
 $xy$, se figur~\ref{pos-subdivisions}(a). For et konkret eksempel
-henvises til figur~\ref{adm-net}. Her udgør elementerne 4 og 5 et
-søskende sæt af type $y$, mens elementerne 8 og 9 ikke er et søskende
-sæt i ovenstående forstand. Den valgte datastruktur er
-ikke entydig, idet identiske netinddelinger kan have forskellig træ
-repræsentation afhængig af, hvordan de er opnået. Der henvises til
+henvises til figur~\ref{adm-net}. Her udgÃ¸r elementerne 4 og 5 et
+sÃ¸skende sÃ¦t af type $y$, mens elementerne 8 og 9 ikke er et sÃ¸skende
+sÃ¦t i ovenstÃ¥ende forstand. Den valgte datastruktur er
+ikke entydig, idet identiske netinddelinger kan have forskellig trÃ¦
+reprÃ¦sentation afhÃ¦ngig af, hvordan de er opnÃ¥et. Der henvises til
 \cite{hugger-net} for et eksempel. Da diskussionen her er teoretisk har det
 ingen  betydning. 
 \begin{figure}[htb]
@@ -964,23 +964,23 @@ resulterende data struktur\label{pos-subdivisions}}
 \end{figure}
 
 I overensstemmelse med ligning~\eqref{def-mfc} vil netinddelings algoritmen
-blive baseret på funktionerne
+blive baseret pÃ¥ funktionerne
 \begin{align}
   \kappa_1(\re) &= \frac{h_1}{\hat{h}_1(\overline{x},\overline{y})} =
     \frac{1}{h_2}\int_\re \frac{1}{\hat{h}_1}\, dx\, dy + \hot , \label{kappa1} \\
   \kappa_2(\re) &= \frac{h_2}{\hat{h}_2(\overline{x},\overline{y})} =
     \frac{1}{h_1}\int_\re \frac{1}{\hat{h}_2}\, dx\, dy + \hot , \label{kappa2}
 \end{align}
-hvor $\re$ er et vilkårligt element med sidelængde $h_1$ i
-$x$-retningen og sidelængde $h_2$ i $y$-retningen. De asymptotisk
-optimale net størrelses funktioner betegnes som sædvanligt
+hvor $\re$ er et vilkÃ¥rligt element med sidelÃ¦ngde $h_1$ i
+$x$-retningen og sidelÃ¦ngde $h_2$ i $y$-retningen. De asymptotisk
+optimale net stÃ¸rrelses funktioner betegnes som sÃ¦dvanligt
 med $\hat{h}_1$ og $\hat{h}_2$. Punktet $(\overline{x},\overline{y})$
-er et vilkårligt punkt i $\re$. I de numeriske test i \cite{hugger-net} er
+er et vilkÃ¥rligt punkt i $\re$. I de numeriske test i \cite{hugger-net} er
 $(\overline{x},\overline{y})$ valgt som centrum af $\re$.
 
-I netinddelings algoritmen har vi brug for nedenstående simple
-observation. For et søskende sæt af type $xy$ (med notation som i
-figur~\ref{siblingset}) gælder følgende relation
+I netinddelings algoritmen har vi brug for nedenstÃ¥ende simple
+observation. For et sÃ¸skende sÃ¦t af type $xy$ (med notation som i
+figur~\ref{siblingset}) gÃ¦lder fÃ¸lgende relation
 \begin{align}
   \kappa_1(\re_1\cup\re_3) &= \frac{1}{2h_y} \int_{\re_1\cup\re_3}
     \frac{1}{\hat{h}_1}\, dx\, dy + \hot \\
@@ -988,7 +988,7 @@ figur~\ref{siblingset}) gælder følgende relation
     \frac{1}{h_y}\int_{\re_3} \frac{1}{\hat{h}_1}\, dx\, dy \Bigr) + \hot \notag \\
   &= \frac{1}{2} \Bigl( \kappa_1(\re_1) + \kappa_1(\re_3) \Bigr) + \hot \notag
 \end{align}
-Tilsvarende ses nedenstående relationer at være opfyldt
+Tilsvarende ses nedenstÃ¥ende relationer at vÃ¦re opfyldt
 \begin{align} \label{kapparelations}
   \kappa_1(\re_1\cup\re_2) &= \kappa_1(\re_1)+\kappa_1(\re_2)+\hot \\ 
   \kappa_1(\re_3\cup\re_4) &= \kappa_1(\re_3)+\kappa_1(\re_4)+\hot \notag \\ 
@@ -1035,75 +1035,75 @@ Tilsvarende ses nedenstående relationer at være opfyldt
 \put(4.25,3){\line(1,0){0.5}}
 \end{picture}
 \end{center}
-\caption{Søskende sæt\label{siblingset}}
+\caption{SÃ¸skende sÃ¦t\label{siblingset}}
 \end{figure} 
 
-Målet med netinddelings algoritmen er at konstruere en tilladt
+MÃ¥let med netinddelings algoritmen er at konstruere en tilladt
 netinddeling, hvor $\kappa_1(\re)=\kappa_2(\re)=1$ for alle elementer
-$\re$, dvs. alle elementer har den ``rigtige'' tæthed. Fra
+$\re$, dvs. alle elementer har den ``rigtige'' tÃ¦thed. Fra
 ligningerne~\eqref{kappa1} og \eqref{kappa2} ses, at en forfining eller
-forgrovning i $x$-retningen (dvs. en forøgelse eller formindskning af $h_1$)
-forøger eller formindsker $\kappa_1$ uden af der (op til højere ordens led)
-ændres på $\kappa_2$. Tilsvarende overvejelser gør sig gældende om
+forgrovning i $x$-retningen (dvs. en forÃ¸gelse eller formindskning af $h_1$)
+forÃ¸ger eller formindsker $\kappa_1$ uden af der (op til hÃ¸jere ordens led)
+Ã¦ndres pÃ¥ $\kappa_2$. Tilsvarende overvejelser gÃ¸r sig gÃ¦ldende om
 forfining/forgrovning i $y$-retningen. 
 
 For at udlede en heuristik for netinddelings algoritmen skal vi se
-bort fra højere ordens led samt antage at net størrelse funktionerne
+bort fra hÃ¸jere ordens led samt antage at net stÃ¸rrelse funktionerne
 $\hat{h}_1$ og $\hat{h}_2$ er konstante. Dette svarer til situationen,
-hvor net størrelses funktionerne (og dermed net tætheds funktionen) er
+hvor net stÃ¸rrelses funktionerne (og dermed net tÃ¦theds funktionen) er
 glatte og uden singulariteter. 
 
 \subsubsection{Netforfining} 
 Som vist i figur~\ref{pos-subdivisions}(a) kan et element $\re$ med
-sidelængder $h_1\times h_2$ forfines på tre forskellige måder.  
+sidelÃ¦ngder $h_1\times h_2$ forfines pÃ¥ tre forskellige mÃ¥der.  
 
 Er $1<\kappa_1(\re)<2$ skal $h_1$ formindskes, og er $\kappa_1(\re)>2$, skal
-$h_1$ halveres. Lignende observation gør sig gældende for $\kappa_2$
-og $h_2$. Dette giver os følgende heuristik.
+$h_1$ halveres. Lignende observation gÃ¸r sig gÃ¦ldende for $\kappa_2$
+og $h_2$. Dette giver os fÃ¸lgende heuristik.
  \begin{ttitemize}
   \item  Hvis $\kappa_1(\re)>\beta$ halveres $h_1$
   \item  Hvis $\kappa_2(\re)>\beta$ halveres $h_2$   
 \end{ttitemize}
-hvor $1\leq\beta\leq 2$. Sættes $\beta =1$, er det muligt, at vi får
-en over-forfining af netinddelingen, idet vi så halverer $h_1$ $(h_2)$
-selvom $\kappa_1(\re)$ $(hhv. \kappa_2(\re))$ kun er en anelse større end
-1. Tilsvarende kan $\beta =2$ føre til en under--forfining, idet vi her
-kun halverer $h_1$ (hhv. $h_2$), når $\kappa_1(\re)$ (hhv. $\kappa_2(\re)$) er
-dobbelt så stor, som den burde være.
+hvor $1\leq\beta\leq 2$. SÃ¦ttes $\beta =1$, er det muligt, at vi fÃ¥r
+en over-forfining af netinddelingen, idet vi sÃ¥ halverer $h_1$ $(h_2)$
+selvom $\kappa_1(\re)$ $(hhv. \kappa_2(\re))$ kun er en anelse stÃ¸rre end
+1. Tilsvarende kan $\beta =2$ fÃ¸re til en under--forfining, idet vi her
+kun halverer $h_1$ (hhv. $h_2$), nÃ¥r $\kappa_1(\re)$ (hhv. $\kappa_2(\re)$) er
+dobbelt sÃ¥ stor, som den burde vÃ¦re.
 
 \subsubsection{Netforgrovning}
 Som vi nu skal se, er situationen med netforgrovning en anelse mere
-kompliceret. Igen er der tre tilfælde svarende til søskende sæt af
+kompliceret. Igen er der tre tilfÃ¦lde svarende til sÃ¸skende sÃ¦t af
 henholdsvis type $x$, $y$ og $xy$. Notationen er som i
 figur~\ref{pos-subdivisions}(a).  
 
-Lad os starte med type $x$. Er $\kappa_1(\re_1\cup\re_2)<1$ slås
+Lad os starte med type $x$. Er $\kappa_1(\re_1\cup\re_2)<1$ slÃ¥s
 $\re_1$ og $\re_2$ sammen til et element. Har vi derimod
-$\kappa_1(\re_1)>1$ og $\kappa_1(\re_2)>1$ eller ækvivalent
+$\kappa_1(\re_1)>1$ og $\kappa_1(\re_2)>1$ eller Ã¦kvivalent
 $\kappa_1(\re_1)+\kappa_1(\re_2)>2$ ($\hat{h}_1$ er antaget konstant)
-gør vi ingenting. Ovenstående diskussion kan gentages for søskende sæt
+gÃ¸r vi ingenting. OvenstÃ¥ende diskussion kan gentages for sÃ¸skende sÃ¦t
 af type $y$, hvor $\kappa_1$ er erstattet med $\kappa_2$. Denne
 diskussion kan sammenfattes i heuristikken
 
 \begin{ttitemize}
-  \item For søskende sæt $(\re_1,\re_2)$ af type $x$ \\
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2)$ af type $x$ \\
         \makebox[.25in][r]{} Hvis $\kappa_1(\re_1)+\kappa_1(\re_2)<\alpha$
         fordobles $h_1$
-  \item For søskende sæt $(\re_1,\re_2)$ af type $y$ \\
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2)$ af type $y$ \\
         \makebox[.25in][r]{} Hvis $\kappa_2(\re_1)+\kappa_2(\re_2)<\alpha$   
         fordobles $h_2$
 \end{ttitemize}
-Her er $1\leq\alpha\leq 2$. Vælges $\alpha =1$, er det muligt med
-over-forfining, idet vi kun forgrover netinddelingen, når det er absolut
-nødvendigt. For $\alpha =2$ kan vi risikere en under-forfining, idet
+Her er $1\leq\alpha\leq 2$. VÃ¦lges $\alpha =1$, er det muligt med
+over-forfining, idet vi kun forgrover netinddelingen, nÃ¥r det er absolut
+nÃ¸dvendigt. For $\alpha =2$ kan vi risikere en under-forfining, idet
 vi i denne situation forgrover, selvom elementerne kun er en anelse for
-små.
+smÃ¥.
 
-Vi mangler nu kun søskende sæt af type $xy$. Dette er den mest
-komplicerede situa\-tion på grund af de mange muligheder for forgrovning. I
+Vi mangler nu kun sÃ¸skende sÃ¦t af type $xy$. Dette er den mest
+komplicerede situa\-tion pÃ¥ grund af de mange muligheder for forgrovning. I
 figur~\ref{lov-forgrovninger} ses alle tilladte forgrovninger samt et
-eksempel på en ikke-tilladt netinddeling. Ved en tilladt
-forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling. 
+eksempel pÃ¥ en ikke-tilladt netinddeling. Ved en tilladt
+forgrovning forstÃ¥s en forgrovning, der resulterer i en tilladt netinddeling. 
 \begin{figure}[htb]
 \begin{center}
 \setlength{\unitlength}{1cm}
@@ -1130,7 +1130,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(0,0){\line(0,1){1.5}}
 \put(2,0){\line(0,1){1.5}}
 \put(2.25,0.75){\makebox(0,0){,}}
-\put(1,1.75){\makebox(0,0){tilfælde 1}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 1}}
 \end{picture}
 }
 \put(6.5,3){
@@ -1141,7 +1141,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(1,0){\line(0,1){1.5}}
 \put(2,0){\line(0,1){1.5}}
 \put(2.25,0.75){\makebox(0,0){,}}
-\put(1,1.75){\makebox(0,0){tilfælde 2}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 2}}
 \end{picture}
 }
 \put(9,3){
@@ -1152,7 +1152,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(0,0){\line(0,1){1.5}}
 \put(2,0){\line(0,1){1.5}}
 \put(2.25,0.75){\makebox(0,0){,}}
-\put(1,1.75){\makebox(0,0){tilfælde 3}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 3}}
 \end{picture}
 }
 \put(11.5,3){
@@ -1163,7 +1163,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(0,0){\line(0,1){1.5}}
 \put(1,0){\line(0,1){1.5}}
 \put(2,0){\line(0,1){1.5}}
-\put(1,1.75){\makebox(0,0){tilfælde 4}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 4}}
 \end{picture}
 }
 \put(4,0.5){
@@ -1175,7 +1175,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(1,0){\line(0,1){1.5}}
 \put(2,0){\line(0,1){1.5}}
 \put(2.25,0.75){\makebox(0,0){,}}
-\put(1,1.75){\makebox(0,0){tilfælde 5}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 5}}
 \end{picture}
 }
 \put(6.5,0.5){
@@ -1187,7 +1187,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(1,0.75){\line(0,1){0.75}}
 \put(2,0){\line(0,1){1.5}}
 \put(2.25,0.75){\makebox(0,0){,}}
-\put(1,1.75){\makebox(0,0){tilfælde 6}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 6}}
 \end{picture}
 }
 \put(9,0.5){
@@ -1198,7 +1198,7 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 \put(0,0){\line(0,1){1.5}}
 \put(1,0){\line(0,1){0.75}}
 \put(2,0){\line(0,1){1.5}}
-\put(1,1.75){\makebox(0,0){tilfælde 7}}
+\put(1,1.75){\makebox(0,0){tilfÃ¦lde 7}}
 \end{picture}
 }
 \put(11.5,0.5){
@@ -1214,95 +1214,95 @@ forgrovning forstås en forgrovning, der resulterer i en tilladt netinddeling.
 }
 \end{picture}
 \end{center}
-\caption{Tilladte forgrovninger samt et eksempel på en ikke-tilladt
+\caption{Tilladte forgrovninger samt et eksempel pÃ¥ en ikke-tilladt
 forgrovning\label{lov-forgrovninger}}
 \end{figure}
 
-I tilfælde 1 slås alle 4 elementer i søskende sættet sammen til et
-element. Dette gøres når
+I tilfÃ¦lde 1 slÃ¥s alle 4 elementer i sÃ¸skende sÃ¦ttet sammen til et
+element. Dette gÃ¸res nÃ¥r
 $\kappa_i(\re_1\cup\re_2\cup\re_3\cup\re_4)<1$ for $i=1,2$. Er
 $\kappa_i(\re_1)$, $\kappa_i(\re_2)$, $\kappa_i(\re_3)$, $\kappa_i(\re_4)>1$
 for $i=1,2$ foretages intet. Anvendes~\eqref{kapparelations}, samt det faktum at
-$\kappa_i(\re_j)$ er uafhængig af $j$ for konstant $\hat{h}_i$, fås
-første del af netforgrovnings heuristikken for søskende sæt af type
+$\kappa_i(\re_j)$ er uafhÃ¦ngig af $j$ for konstant $\hat{h}_i$, fÃ¥s
+fÃ¸rste del af netforgrovnings heuristikken for sÃ¸skende sÃ¦t af type
 $xy$ til 
 \begin{ttitemize}
-  \item For søskende sæt $(\re_1,\re_2,\re_3,\re_4)$ af type $xy$ \\
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2,\re_3,\re_4)$ af type $xy$ \\
         \makebox[.25in][r]{} Hvis $\sum_{j=1}^4 \kappa_i(\re_j)<2\alpha$
-        for $i=1,2$ slå \\
+        for $i=1,2$ slÃ¥ \\
         \makebox[.25in][r]{} da alle 4 elementer sammen til 1 element   
 \end{ttitemize}
 Som ovenfor er $1\leq\alpha\leq 2$.
 
-I tilfældene 2--7 skal vi være mere påpasselige for at undgå
+I tilfÃ¦ldene 2--7 skal vi vÃ¦re mere pÃ¥passelige for at undgÃ¥
 ikke-tilladte forgrovninger. Ideen er her forgrove de elementer, hvor
-det er mest nødvendigt, og derefter forsætte med at forgrove så længe
+det er mest nÃ¸dvendigt, og derefter forsÃ¦tte med at forgrove sÃ¥ lÃ¦nge
 dette ikke giver ikke-tilladte netinddelinger.  
 
 Fra figur~\ref{siblingset} ses, at eventuelle forgrovning i disse
-tilfælde kontrolleres af tallene
+tilfÃ¦lde kontrolleres af tallene
 $\kappa_1(\re_1)+\kappa_1(\re_2)$, $\kappa_1(\re_3)+\kappa_1(\re_4)$,
 $\kappa_2(\re_1)+\kappa_2(\re_3)$ og $\kappa_2(\re_2)+\kappa_2(\re_4)$.  
-Vi definerer nu $\kappa^{(1)}$ som værende det største af disse fire tal,
-og $\kappa^{(2)}$ som værende det tal med samme indeks på $\kappa$ som
-$\kappa^{(1)}$. Er $\kappa^{(1)}<\alpha$ slås de to involverede
+Vi definerer nu $\kappa^{(1)}$ som vÃ¦rende det stÃ¸rste af disse fire tal,
+og $\kappa^{(2)}$ som vÃ¦rende det tal med samme indeks pÃ¥ $\kappa$ som
+$\kappa^{(1)}$. Er $\kappa^{(1)}<\alpha$ slÃ¥s de to involverede
 elementer sammen. Dette vil altid give et tilladt net. Er derimod
-$\kappa^{(1)}>\alpha$ lader vi de to involverede elementer være
-uændrede, og forgrovnings processen stoppes. Ellers fortsættes med
+$\kappa^{(1)}>\alpha$ lader vi de to involverede elementer vÃ¦re
+uÃ¦ndrede, og forgrovnings processen stoppes. Ellers fortsÃ¦ttes med
 $\kappa^{(2)}$. Har vi $\kappa^{(2)}<\alpha$
 forgrover vi og ellers foretages intet. Dette giver ligeledes en
 tilladt netinddeling. Er $\kappa^{(1)}$ valgt som  
 $\kappa_2(\re_1)+\kappa_2(\re_3)$ eller $\kappa_2(\re_2)+\kappa_2(\re_4)$
-fås et af tilfældene 2, 4 eller 5. Er $\kappa^{(1)}$ derimod valgt som 
+fÃ¥s et af tilfÃ¦ldene 2, 4 eller 5. Er $\kappa^{(1)}$ derimod valgt som 
 $\kappa_1(\re_1)+\kappa_1(\re_2)$ eller $\kappa_1(\re_3)+\kappa_1(\re_4)$
-haves et af tilfældene 3, 6 eller 7. Dette giver den resterende del af
-heuristikken for forgrovning af søskende sæt af type $xy$. Enhver
-yderligere forgrovning vil føre til en ikke-tilladt netinddeling
-(eller til tilfælde 1, hvilket allerede er dækket).  
+haves et af tilfÃ¦ldene 3, 6 eller 7. Dette giver den resterende del af
+heuristikken for forgrovning af sÃ¸skende sÃ¦t af type $xy$. Enhver
+yderligere forgrovning vil fÃ¸re til en ikke-tilladt netinddeling
+(eller til tilfÃ¦lde 1, hvilket allerede er dÃ¦kket).  
 \begin{ttitemize}
-  \item For søskende sæt $(\re_1,\re_2,\re_3,\re_4)$ af type $xy$ \\
-        \makebox[.25in][r]{} Lad $\kappa^{(1)}$ og $\kappa^{(2)}$ være
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2,\re_3,\re_4)$ af type $xy$ \\
+        \makebox[.25in][r]{} Lad $\kappa^{(1)}$ og $\kappa^{(2)}$ vÃ¦re
           som ovenfor, og antag \\
         \makebox[.25in][r]{} at $\kappa^{(1)}=\kappa_{i_1}(\re_{j_1}) + 
           \kappa_{i_1}(\re_{j_2})$ og $\kappa^{(2)}=\kappa_{i_1}(\re_{j_3}) + 
           \kappa_{i_1}(\re_{j_4})$ \\
         \makebox[.25in][r]{} (Her er $i_1\in\{1,2\},\ \{j_1,j_2,j_3,j_4\}=
           \{1,2,3,4\}$). \\
-        \makebox[.25in][r]{} Hvis $\kappa^{(1)}<\alpha$ slå \\
+        \makebox[.25in][r]{} Hvis $\kappa^{(1)}<\alpha$ slÃ¥ \\
         \makebox[.5in][r]{} da $\re_{j_1}$ og $\re_{j_2}$ sammen til et element \\ 
-        \makebox[.5in][r]{} Hvis $\kappa^{(2)}<\alpha$ slå \\
+        \makebox[.5in][r]{} Hvis $\kappa^{(2)}<\alpha$ slÃ¥ \\
         \makebox[.75in][r]{} da $\re_{j_3}$ og $\re_{j_4}$ sammen til et element
 \end{ttitemize}
-Igen er $1\leq\alpha\leq 2$. Som ovenfor kan man også her foretage
-betragtninger om over- og under-forfining afhængig af valget af $\alpha$.
+Igen er $1\leq\alpha\leq 2$. Som ovenfor kan man ogsÃ¥ her foretage
+betragtninger om over- og under-forfining afhÃ¦ngig af valget af $\alpha$.
 
 \subsubsection{Selve algoritmen}
-Ovenfor har vi gennemgået alle tilladte netforfininger og
--forgrovninger. Lad os sammenfatte resultaterne i følgende
+Ovenfor har vi gennemgÃ¥et alle tilladte netforfininger og
+-forgrovninger. Lad os sammenfatte resultaterne i fÃ¸lgende
 netinddelings algoritme. Som input har algoritmen et tilladt net $\T$,
-to net størrelses funktioner $\hat{h}_1$ og $\hat{h}_2$ samt
+to net stÃ¸rrelses funktioner $\hat{h}_1$ og $\hat{h}_2$ samt
 $\hat{N}$, som er det optimale antal af elementer, algoritmen skal
-forsøge at inddele domænet i. Desuden skal værdien af de reelle
+forsÃ¸ge at inddele domÃ¦net i. Desuden skal vÃ¦rdien af de reelle
 parametre $\alpha$, $\beta\in[1,2]$ specificeres.
 \begin{Algoritme}[H]
 \begin{emptylist}
 \setlength{\itemsep}{0cm}
 \setlength{\parsep}{0cm}
-  \item Gentag følgende indtil det ikke er muligt \\ 
+  \item Gentag fÃ¸lgende indtil det ikke er muligt \\ 
         \makebox[.25in][r]{} at foretage flere forgrovninger:
-  \item For alle søskende sæt gøres følgende:   
-  \item For søskende sæt $(\re_1,\re_2)$ af type $x$ \\
+  \item For alle sÃ¸skende sÃ¦t gÃ¸res fÃ¸lgende:   
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2)$ af type $x$ \\
         \makebox[.25in][r]{} Hvis $\kappa_1(\re_1)+\kappa_1(\re_2)<\alpha$
-        slås $\re_1$ og $\re_2$ sammen til et element
-  \item For søskende sæt $(\re_1,\re_2)$ af type $y$ \\
+        slÃ¥s $\re_1$ og $\re_2$ sammen til et element
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2)$ af type $y$ \\
         \makebox[.25in][r]{} Hvis $\kappa_2(\re_1)+\kappa_2(\re_2)<\alpha$   
-        slås $\re_1$ og $\re_2$ sammen til et element
-  \item For søskende sæt $(\re_1,\re_2,\re_3,\re_4)$ af type $xy$ \\
+        slÃ¥s $\re_1$ og $\re_2$ sammen til et element
+  \item For sÃ¸skende sÃ¦t $(\re_1,\re_2,\re_3,\re_4)$ af type $xy$ \\
         \makebox[.25in][r]{} Hvis $\sum_{j=1}^4 \kappa_i(\re_j)<2\alpha$
         for $i=1,2$ \\
-        \makebox[.5in][r]{} slå da alle 4 elementer sammen til 1 element
+        \makebox[.5in][r]{} slÃ¥ da alle 4 elementer sammen til 1 element
   \item \makebox[.25in][r]{} Ellers \\
-        \makebox[.5in][r]{} Lad $\kappa^{(1)}$ og $\kappa^{(2)}$ være
+        \makebox[.5in][r]{} Lad $\kappa^{(1)}$ og $\kappa^{(2)}$ vÃ¦re
           som ovenfor, og antag \\
         \makebox[.5in][r]{} at $\kappa^{(1)}=\kappa_{i_1}(\re_{j_1}) + 
           \kappa_{i_1}(\re_{j_2})$ og $\kappa^{(2)}=\kappa_{i_1}(\re_{j_3}) + 
@@ -1310,9 +1310,9 @@ parametre $\alpha$, $\beta\in[1,2]$ specificeres.
         \makebox[.5in][r]{} (Her er $i_1\in\{1,2\},\ \{j_1,j_2,j_3,j_4\}=
           \{1,2,3,4\}$). \\
         \makebox[.5in][r]{} Hvis $\kappa^{(1)}<\alpha$ \\
-        \makebox[.75in][r]{} slå da $\re_{j_1}$ og $\re_{j_2}$ sammen til et element \\ 
+        \makebox[.75in][r]{} slÃ¥ da $\re_{j_1}$ og $\re_{j_2}$ sammen til et element \\ 
         \makebox[.75in][r]{} Hvis $\kappa^{(2)}<\alpha$ \\
-        \makebox[1in][r]{} slå da $\re_{j_3}$ og $\re_{j_4}$ sammen til et element
+        \makebox[1in][r]{} slÃ¥ da $\re_{j_3}$ og $\re_{j_4}$ sammen til et element
 \end{emptylist}
 \caption{Forgrovnings delen af algoritmen\label{forgrov}}
 \end{Algoritme}
@@ -1320,7 +1320,7 @@ parametre $\alpha$, $\beta\in[1,2]$ specificeres.
 \begin{emptylist}
 \setlength{\itemsep}{0cm}
 \setlength{\parsep}{0cm}
-  \item Gentag følgende indtil det ikke er muligt \\ 
+  \item Gentag fÃ¸lgende indtil det ikke er muligt \\ 
         \makebox[.25in][r]{} at foretage flere forfininger:
   \item For alle elementer $\re$ i $\T$
   \item \makebox[.25in][r]{} Hvis $\kappa_1(\re)>\beta$ halveres $h_1$
@@ -1335,49 +1335,49 @@ Benyttes kvadratiske elementer, er netinddelingen (i lighed med
   \kappa (\re ) = \frac{h}{\hat{h}(\overline{x},\overline{y})} =
   \frac{1}{h} \int_\re \frac{1}{\hat{h}}\, dx\, dy + \hot
 \end{equation}
-I analogi med tidligere er målet her at opnå $\kappa(\re )=1$ for alle
+I analogi med tidligere er mÃ¥let her at opnÃ¥ $\kappa(\re )=1$ for alle
 $\re$ i netinddelingen. Da netforfining og -forgrovning skal give
-lovlige netinddelinger, er vi i det kvadratiske tilfælde nødsaget til
+lovlige netinddelinger, er vi i det kvadratiske tilfÃ¦lde nÃ¸dsaget til
 kun at bruge forfininger og forgrovninger af type $xy$, men ellers kan
-algoritmen ovenfor anvendes uændret. 
+algoritmen ovenfor anvendes uÃ¦ndret. 
 
 \subsection{Teoretiske resultater for algortimen} \label{teorires}
 I artiklen~\cite{hugger-net} findes omfattende numeriske test af
 algoritmen. Fra et matematisk synspunkt er det dog ikke
 tilfredsstillende blot at have gode praktiske erfaringer med en given
-algoritme. Vi skal derfor i dette afsnit redegøre for nogle teoretiske
-resultater vedrørende algoritmens virkemåde. 
+algoritme. Vi skal derfor i dette afsnit redegÃ¸re for nogle teoretiske
+resultater vedrÃ¸rende algoritmens virkemÃ¥de. 
 
-Lad $\hat{N}$ være det teoretisk optimale antal elementer i
+Lad $\hat{N}$ vÃ¦re det teoretisk optimale antal elementer i
 netinddelingen, der skal til for at en given forudbestemt
-brugertolerance nås (se afsnit~\ref{noae}), og lad $N$ være det faktiske antal elementer
-opnået ved at anvende algoritmen. Hvis $N>\hat{N}$ siger vi at
+brugertolerance nÃ¥s (se afsnit~\ref{noae}), og lad $N$ vÃ¦re det faktiske antal elementer
+opnÃ¥et ved at anvende algoritmen. Hvis $N>\hat{N}$ siger vi at
 algoritmen har resulteret i en over-forfining. Har vi omvendt
 $N<\hat{N}$ taler vi om en under-forfining. Den optimale situation er
-selvfølgelig at have $N=\hat{N}$, men dette ses sjældent i praksis.
-Det er derfor vigtigt at have nedre og øvre grænser for $N/\hat{N}$,
-hvilket nedenstående sætning blandt andet giver  
+selvfÃ¸lgelig at have $N=\hat{N}$, men dette ses sjÃ¦ldent i praksis.
+Det er derfor vigtigt at have nedre og Ã¸vre grÃ¦nser for $N/\hat{N}$,
+hvilket nedenstÃ¥ende sÃ¦tning blandt andet giver  
 
 \begin{theorem}{(Over- og underforfining)} \label{theoryalg}
 Antag at a priori fejlligningen~\eqref{fejlligning} holder, og at summations
-princippet~\eqref{sumprincip} gælder. Med $\hat{h}_1$ og $\hat{h}_2$ betegnes de
-asymptotisk optimale net størrelses funktioner givet ved
+princippet~\eqref{sumprincip} gÃ¦lder. Med $\hat{h}_1$ og $\hat{h}_2$ betegnes de
+asymptotisk optimale net stÃ¸rrelses funktioner givet ved
 ligningerne~\eqref{opt-h1} og \eqref{opt-h2}. Funktionerne $\hat{h}_1$
-og $\hat{h}_2$ antages at have højest algebraisk singulariteter, at
-være kontinuerte samt at have begrænsede afledede. Lad $\hat{N}$ være
+og $\hat{h}_2$ antages at have hÃ¸jest algebraisk singulariteter, at
+vÃ¦re kontinuerte samt at have begrÃ¦nsede afledede. Lad $\hat{N}$ vÃ¦re
 det minimale antal af elementer, der skal til for at opfylde kravet
-til den på forhånd givne fejltolerance. Den optimale net tætheds
-funktion betegnes så med $\hat{D}=1/(\hat{N}\hat{h}_1\hat{h}_2)$. For
-ethvert rektangulært element $\re$ med sidelængder $h_1$ og $h_2$ i
+til den pÃ¥ forhÃ¥nd givne fejltolerance. Den optimale net tÃ¦theds
+funktion betegnes sÃ¥ med $\hat{D}=1/(\hat{N}\hat{h}_1\hat{h}_2)$. For
+ethvert rektangulÃ¦rt element $\re$ med sidelÃ¦ngder $h_1$ og $h_2$ i
 hhv. $x$ og $y$ retningen i en tilladt netinddeling defineres
 $\kappa_1(\re)=h_1/\hat{h}_1(\overline{x},\overline{y})$ og
 $\kappa_2(\re)=h_2/\hat{h}_2(\overline{x},\overline{y})$ som i
 ligningerne~\eqref{kappa1} og \eqref{kappa2}. Punktet
-$(\overline{x},\overline{y})$ er her et vilkårligt punkt i $\re$.
+$(\overline{x},\overline{y})$ er her et vilkÃ¥rligt punkt i $\re$.
 Endelig er $\alpha$, $\beta\in [1,2]$ de parametre, der anvendes i
 algoritmerne~\eqref{forgrov} hhv. \eqref{forfin}, og $N$ er det antal
-elementer algoritmene resulterer i (med ovennævnte input). Da gælder
-følgende relationer 
+elementer algoritmene resulterer i (med ovennÃ¦vnte input). Da gÃ¦lder
+fÃ¸lgende relationer 
 \begin{equation} \label{onlychange}
   \frac{\beta}{2} \leq \kappa_1(\re), \ \kappa_2(\re) \leq \beta ,
   \qquad (\text{for $h_1$, $h_2\rightarrow 0$}),
@@ -1397,42 +1397,42 @@ og
 \end{equation}
 \end{theorem}
 \begin{remark}
-Arbejdes der med kvadratiske elementer $\re$ med sidelængde $h$, har
-vi naturligvis kun en asymptotisk optimal netstørrelses funktion
+Arbejdes der med kvadratiske elementer $\re$ med sidelÃ¦ngde $h$, har
+vi naturligvis kun en asymptotisk optimal netstÃ¸rrelses funktion
 $\hat{h}$, en $\kappa$-funktion
 $\kappa(\re)=h/\hat{h}(\overline{x},\overline{y})$, og den
-asymptotiske net tætheds funktion er så givet ved
-$\hat{D}=1/(\hat{N}\hat{h}^2)$. Da gælder tilsvarende resultater til
-ovenstående sætning.
-Eneste ændring er i ulighed~\eqref{onlychange}, som skal erstattes af 
+asymptotiske net tÃ¦theds funktion er sÃ¥ givet ved
+$\hat{D}=1/(\hat{N}\hat{h}^2)$. Da gÃ¦lder tilsvarende resultater til
+ovenstÃ¥ende sÃ¦tning.
+Eneste Ã¦ndring er i ulighed~\eqref{onlychange}, som skal erstattes af 
 \begin{equation}
   \frac{\beta}{2} \leq \kappa(\re) \leq \beta ,
   \qquad (\text{for $h\rightarrow 0$}).
 \end{equation} 
 \end{remark}
 \begin{proof}
-Der henvises til artiklen~\cite{hugger-2}, hvor sætningen er vist for
+Der henvises til artiklen~\cite{hugger-2}, hvor sÃ¦tningen er vist for
 kvadratiske elementer.
 \end{proof}
 
-Sætning~\ref{theoryalg} viser, at forholdet $N/\hat{N}$ asymptotisk er
+SÃ¦tning~\ref{theoryalg} viser, at forholdet $N/\hat{N}$ asymptotisk er
 under kontrol. 
 \begin{remark} \label{smallremark}
 Ligningen~\eqref{onlychange} svarer til ligningen~\eqref{approxkK} med
 $k=\beta /2$ og $K=\beta$. 
 \end{remark}
-Sammenhængen mellem algoritmen og den globale fejl er indeholdt i
-følgende sætning.
+SammenhÃ¦ngen mellem algoritmen og den globale fejl er indeholdt i
+fÃ¸lgende sÃ¦tning.
 \begin{theorem}{(Den globale fejl)}
-Antag at forudsætningerne fra sætning~\ref{theoryalg} gæl\-der, samt at
-notationen er uændret. Da haves følgende globale grænser for fejlen
+Antag at forudsÃ¦tningerne fra sÃ¦tning~\ref{theoryalg} gÃ¦l\-der, samt at
+notationen er uÃ¦ndret. Da haves fÃ¸lgende globale grÃ¦nser for fejlen
 \begin{equation}
   (\beta/2)^{\gamma} \cdot \tau^q \leq \|e\|_{\Omega}^q 
   \leq \beta^\gamma \cdot \tau^q, 
   \qquad (\text{for $h_1$, $h_2\rightarrow 0$}).
 \end{equation}
-I denne ligning er $\tau$ den brugerbestemte fejltolerance, der også
-optræder i formel~\eqref{valueofN} for $\hat{N}$.
+I denne ligning er $\tau$ den brugerbestemte fejltolerance, der ogsÃ¥
+optrÃ¦der i formel~\eqref{valueofN} for $\hat{N}$.
 \end{theorem}
 \begin{proof}
 Fra ligningerne~\eqref{fejlligning} og \eqref{approxkK} haves
@@ -1449,28 +1449,28 @@ Fra ligningerne~\eqref{fejlligning} og \eqref{approxkK} haves
     \, dx\, dy\, K^\gamma . \notag     
 \end{align}
 Ved nu at anvende betingelse~\eqref{cononN},
-be\-mærk\-ning~\ref{smallremark} samt
-sum\-ma\-tions\-prin\-cip\-pet~\eqref{sumprincip} fås sætningens ene ulighed. Den
-anden følger på tilsvarende vis. 
+be\-mÃ¦rk\-ning~\ref{smallremark} samt
+sum\-ma\-tions\-prin\-cip\-pet~\eqref{sumprincip} fÃ¥s sÃ¦tningens ene ulighed. Den
+anden fÃ¸lger pÃ¥ tilsvarende vis. 
 \end{proof}
 
-Følgende lokale version af ovenstående sætning viser, at algoritmen
-genererer asymptotisk ækvilibrerede netinddelinger ud fra asymptotisk
-optimale net størrelses funktioner. Ved en ækvilibreret netinddeling
-forstås en netinddeling, hvor den lokale fejl er ens i alle
+FÃ¸lgende lokale version af ovenstÃ¥ende sÃ¦tning viser, at algoritmen
+genererer asymptotisk Ã¦kvilibrerede netinddelinger ud fra asymptotisk
+optimale net stÃ¸rrelses funktioner. Ved en Ã¦kvilibreret netinddeling
+forstÃ¥s en netinddeling, hvor den lokale fejl er ens i alle
 elementerne i netinddelingen. 
 \begin{theorem}{(Den lokale fejl)}
-Antag at forudsætningerne fra sætning~\ref{theoryalg} gæl\-der, samt at
-notationen er uændret. Da haves følgende lokale grænser for fejlen
+Antag at forudsÃ¦tningerne fra sÃ¦tning~\ref{theoryalg} gÃ¦l\-der, samt at
+notationen er uÃ¦ndret. Da haves fÃ¸lgende lokale grÃ¦nser for fejlen
 \begin{equation}
   (\beta/2)^{\gamma} \cdot 2C \leq \|e\|_{\re}^q 
   \leq \beta^\gamma \cdot 2C, 
   \qquad (\text{for $h\rightarrow 0$}),
 \end{equation}
-hvor værdien af konstanten $C$ er givet ved formel~\eqref{valueofC}.
+hvor vÃ¦rdien af konstanten $C$ er givet ved formel~\eqref{valueofC}.
 \end{theorem}
 \begin{proof}
-Den eneste forskel fra beviset for forrige sætning er, at man her
+Den eneste forskel fra beviset for forrige sÃ¦tning er, at man her
 anvender ligning~\eqref{error-eq-dis} istedet for \eqref{approxkK}.
 \end{proof}
 
