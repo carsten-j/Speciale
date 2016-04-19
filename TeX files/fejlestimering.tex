@@ -1,4 +1,4 @@
-\chapter{Fejlestimering} \label{fejlestimering} 
+\chapter{Fejlestimering} \label{fejlestimering}
 
 Når man omformer uendelig-dimensionelle problemer i form af
 differentialligninger til et sæt af endeligt mange ligninger med
@@ -14,7 +14,7 @@ kort gøre nogle generelle betragtninger omkring fejlestimering.
 
 \subsection{Beregningsmæssige- og modelleringsfejl}
 Den fejl, som man begår ved at omformulere et differentiallignings
-problem til et variations problem, kan opdeles i 
+problem til et variations problem, kan opdeles i
 \begin{itemize}
   \item beregningsmæssige fejl.
   \item modelleringsfejl.
@@ -24,8 +24,8 @@ For at konkretisere disse fejl typer skal vi betragte en matematiske model
   \D u=f,
 \end{equation}
 hvor $\D$ er en differentialoperator (muligvis med begyndelsesværdi-
-eller rand\-be\-tin\-gel\-ser) defineret på et vist domæne $\dom$, $f$ en 
-given funktion, og $u$ er den ukendte løsning til problemet. Den 
+eller rand\-be\-tin\-gel\-ser) defineret på et vist domæne $\dom$, $f$ en
+given funktion, og $u$ er den ukendte løsning til problemet. Den
 matematiske model består her af $\D$ og $f$. Udgangspunktet for den
 matematiske model er typisk en fysisk model\footnote{Ved en fysisk
 model forstås en model, der modellere en situation hentet fra fx
@@ -38,30 +38,30 @@ Den fysiske model antages at have en entydig løsning, og vi skal
 desuden antage, at den matematiske model er konstrueret udfra den
 fysiske model på en sådan måde, at der ligeledes for denne findes en
 entydig løsning. Lad nu $\uex$ være den eksakte løsning til
-\eqref{math-model}, og lad $\ufe$ være en approksimeret 
-løsning til \eqref{math-model} beregnet ved hjælp af den endelige 
+\eqref{math-model}, og lad $\ufe$ være en approksimeret
+løsning til \eqref{math-model} beregnet ved hjælp af den endelige
 element metode. Vi vil da definere den beregningsmæssige fejl som
 \begin{equation}
   e_{\mathsf{c}} = \uex - \ufe\ .
 \end{equation}
-Er $\tilde{u}_{\mathsf{ph}}$ løsningen til \eqref{phys-model}, 
-defineres modelleringsfejlen som 
+Er $\tilde{u}_{\mathsf{ph}}$ løsningen til \eqref{phys-model},
+defineres modelleringsfejlen som
 \begin{equation}
   e_{\mathsf{m}} = \tilde{u}_{\mathsf{ph}} - \uex\ .
 \end{equation}
-Den samlede fejl defineres da som 
+Den samlede fejl defineres da som
 \begin{equation}
   e=\tilde{u}_{\mathsf{ph}}-\ufe=\tilde{u}_{\mathsf{ph}}-\uex+\uex-\ufe
   =e_{\mathsf{m}} + e_{\mathsf{c}}\ ,
 \end{equation}
 dvs. som summen af modelleringsfejlen og den beregningsmæssige fejl.
-Vi skal her  kun beskæftige os med beregningsmæssige fejl. 
+Vi skal her  kun beskæftige os med beregningsmæssige fejl.
 
 \subsection{Forskellige typer af fejlestimatorer}
-Igennem årene er der blevet foreslået et utal at forskellige 
+Igennem årene er der blevet foreslået et utal at forskellige
 fejlestimatorer til brug i den endelige element metode, se fx
-\cite{babuska1} for 
-litteraturhenvisninger. Flertallet af disse fejlestimatorer kan 
+\cite{babuska1} for
+litteraturhenvisninger. Flertallet af disse fejlestimatorer kan
 klassificeres i en af følgende to kategorier:
 \begin{itemize}
   \item Udglatnings metoder (eng. smoothening/flux-projection).
@@ -71,7 +71,7 @@ Vi skal i afsnit~\ref{z2} betragte en bestemt udglatnings metode.
 Traditionelt set har residuum metoder haft størst udbredelse, men den
 udglatnings metode, som vi senere skal studere, vil måske medvirke til at åbne
 vejen for en større udbredelse af fejlestimatorer af denne type.
- 
+
 \subsection{Forskellige former for fejlestimering}
 Man skelner normalt mellem to former for fejlestimering
 \begin{itemize}
@@ -80,33 +80,33 @@ Man skelner normalt mellem to former for fejlestimering
 \end{itemize}
 Ved a priori fejlestimering forsøger man at vurdere fejlen mellem den
 eksakte løsning og den approksimerede løsning alene på grundlag af
-egenskaberne ved den eksakte (ukendte) løsning til problemet. I a 
-posteriori fejlestimering forsøger man derimod at vurdere fejlen vha. 
-den beregnede approksimerede løsning. De to former for fejlestimering 
+egenskaberne ved den eksakte (ukendte) løsning til problemet. I a
+posteriori fejlestimering forsøger man derimod at vurdere fejlen vha.
+den beregnede approksimerede løsning. De to former for fejlestimering
 ses ofte anvendt i forskellige teoretiske og praktiske situationer. A
-priori fejlestimering bruges typisk til at bestemme 
+priori fejlestimering bruges typisk til at bestemme
 konvergensegenskaberne for den numeriske metode, mens a posteriori
 fejlestimering ofte anvendes i adaptive algoritmer som en del af
 netinddelings algoritmen og stopkriteriet.
 
-Specifikke egenskaber ved fejlestimatorer er tæt knyttet til den 
-type af differentialligninger, som de er konstrueret i tilknytning til. 
+Specifikke egenskaber ved fejlestimatorer er tæt knyttet til den
+type af differentialligninger, som de er konstrueret i tilknytning til.
 Af denne grund findes kun  meget få generelle teoretiske resultater om
 fejlestimatorer. Til gengæld findes en del begreber og definitioner,
 som man benytter, når man skal vurdere og/eller sammenligner en eller
-flere fejlestimatorer. 
+flere fejlestimatorer.
 
 \subsection{Definitioner og begreber} \label{def-beg}
 \begin{definition}
-Ved en celle forstås en mindre samling af sammenhængende elementer, 
-se figur \ref{fig-cell}. Bemærk at en celle godt kan bestå af et  
+Ved en celle forstås en mindre samling af sammenhængende elementer,
+se figur \ref{fig-cell}. Bemærk at en celle godt kan bestå af et
 enkelt element.
 \end{definition}
 \begin{figure}[hbtp]
   \setlength{\unitlength}{1bp}
   \begin{center}
     \begin{picture}(169,155)(0,0)
-      \put(1,1){\includegraphics{cell}}
+      \put(1,1){\includegraphics{..\png\cell}}
     \end{picture}
   \end{center}
   \caption{Eksempel på celle\label{fig-cell}}
@@ -120,19 +120,19 @@ af $\uex$, og som vurderer fejlen i elementet $\fee_k$.
 \end{definition}
 \begin{example}
 Betragtes model problemet \eqref{math-model} med endelig element løsning
-$\ufe$, er 
+$\ufe$, er
 \begin{equation}
   \eta_{\fee} = \meas (\fee)\norm{R_{\fee}(\ufe)}
 \end{equation}
 et meget simpelt eksempel på en element fejl indikator.
 Her er $R_{\fee}(\ufe)=(\D\ufe -f)|_{\fee}$ residualet restringeret til
-$\fee$, og $\meas (\fee)$ er arealet af $\fee$.  
+$\fee$, og $\meas (\fee)$ er arealet af $\fee$.
 \end{example}
 \begin{definition}
 Lad $\cell$ være en celle. Vi vil da -- i analogi med
 summationsprincippet~\eqref{sumprincip} for fejlen -- definere en fejlestimator som
 \begin{equation}
-  \ee = \Bigl( \sum \substack{ 
+  \ee = \Bigl( \sum \substack{
                       \fee \in \T \\
                       \fee \cap \cell \not= \emptyset
                     }
@@ -151,11 +151,11 @@ Ved effektivitets indekset for en fejlsestimator $\ee$ forstås
 \begin{equation}
   \ei = \frac{\ee}{\en{e}},
 \end{equation}
-hvor $\en{\cdot}$ er den norm, vi ønsker at vurdere forskellen på 
-$e=\uex - \ufe$ i. 
+hvor $\en{\cdot}$ er den norm, vi ønsker at vurdere forskellen på
+$e=\uex - \ufe$ i.
 \end{definition}
 
-Jo tættere $\ei$ er på $1$, jo bedre er fejlestimatoren $\ee$. 
+Jo tættere $\ei$ er på $1$, jo bedre er fejlestimatoren $\ee$.
 
 Normalt forventer man ikke, at fejlen i den endelig element metode er
 specielt lille, såfremt netinddelingen er grov. Omvendt bør en god
@@ -181,7 +181,7 @@ løsning med typiske ideer fra a posteriori fejl estimatorer,  har
 Zienkiewicz og Zhu konstrueret en fejl estimator med pæne egenskaber.
 Fejl estimatoren kaldes ofte for $Z^2$ fejl estimatoren. $Z^2$ fejl
 estimatoren har gode konvergensegenskaber og er desuden relativ nem at
-implementere i allerede eksisterende endelig element software. 
+implementere i allerede eksisterende endelig element software.
 
 \subsection{Model problem} \label{modelafs}
 Som nævnt ovenfor er fejl estimatorer ofte udviklet i forbindelse med
@@ -189,12 +189,12 @@ en ganske bestemt differentialligning. Dette er også tilfældet for
 $Z^2$ fejl estimatoren. Model problemet, vi skal betragte for denne fejl
 estimator, er Lam\'{e}--Navier elasticitets ligningerne i to dimensioner,
 \begin{equation} \label{modpro}
-  -(\lambda +\mu)\nabla (\nabla\cdot {\bf u}) - 
+  -(\lambda +\mu)\nabla (\nabla\cdot {\bf u}) -
   \mu \Delta {\bf u} = {\bf f} \quad \text{i $\dom\subset\R^2$,}
 \end{equation}
 hvor ${\bf u}$ er forskydnings vektoren (eng. displacement vector),
 $f$ er kraften (eng. body force), og $\lambda$ og $\mu$ er Lam\'{e}
-koefficienterne givet ved 
+koefficienterne givet ved
 \begin{align}
  \lambda &= \frac{E\nu}{(1+\nu)(1-2\nu)} \\
 \intertext{og}
@@ -215,9 +215,9 @@ hvor $\Gamma_d$ og $\Gamma_n$ opfylder $\Gamma =\p\dom =
 {\bf H}=\left(
   \begin{array}{ccc}
     n_1 & 0 & n_2 \\
-    0 & n_2 & n_1 
+    0 & n_2 & n_1
   \end{array}\right),
-\end{equation}    
+\end{equation}
 hvor $(n_1,n_2)^t$ er en udad rettet normalvektor til $\Gamma_n$, og
 stresset i model problemet er $\pmb{\sigma}={\bf DSu}$, hvor
 differentialoperatoren $\bf S$ er defineret som
@@ -236,47 +236,47 @@ og matricen $\bf D$ som
 \left(\begin{array}{ccc}
   1-\nu & \nu & 0 \\
   \nu & 1-\nu & 0 \\
-  0 & 0 & \half (1-2\nu) 
+  0 & 0 & \half (1-2\nu)
 \end{array}\right).
 \end{equation}
 Model problemet \eqref{modpro} kan nu formuleres som
 \begin{equation}
-  {\bf S}^t{\bf DSu} = {\bf f}. 
+  {\bf S}^t{\bf DSu} = {\bf f}.
 \end{equation}
 Indenfor elasticitets teori er $\bf D$ den elasticitets matrix, som
 beskriver tøjning (eng. plain strain).
 
-Variationsformuleringen af model problemet lyder: Bestem  
+Variationsformuleringen af model problemet lyder: Bestem
 \begin{equation}
   {\bf u}\in\H_{\bf\hat{u}} \ : \
-  B({\bf u},{\bf v}) = ({\bf f},{\bf v}) + 
+  B({\bf u},{\bf v}) = ({\bf f},{\bf v}) +
   \ginner{\hat{t}}{v}, \quad \forall {\bf v}\in\H_0 ,
 \end{equation}
 hvor
 \begin{align}
-  \H_{\bf\hat{u}} &= 
+  \H_{\bf\hat{u}} &=
     \{ {\bf u} \in [ \H^1(\Omega) ]^2 \ | \ {\bf u} =
     {\bf\hat{u}} \quad \text{på $\Gamma_d$} \}, \\
   \H_0 &= \{ {\bf u} \in [ \H^1(\Omega) ]^2 \ | \ {\bf u} =
-    0 \quad \text{på $\Gamma_d$} \}, \\  
-  B({\bf u},{\bf v}) &= 
+    0 \quad \text{på $\Gamma_d$} \}, \\
+  B({\bf u},{\bf v}) &=
     \int_\Omega ({\bf Su})^t{\bf DSv}\, d{\bf x}, \\
   ({\bf f},{\bf v}) &= \int_\Omega {\bf f}^t{\bf v}\, d{\bf x}, \\
-  \ginner{\hat{t}}{v} &= \int_{\Gamma_n}  
-    {\bf v}^t{\bf \hat{t}}\, d{\bf s}. 
+  \ginner{\hat{t}}{v} &= \int_{\Gamma_n}
+    {\bf v}^t{\bf \hat{t}}\, d{\bf s}.
 \end{align}
 
 Ved hjælp af den endelige element metode fås en approksimeret løsning
 på formen
 \begin{equation}
-  {\bf u}_h = \sum_{i=1}^n {\bf N}_i {\bf u}_i . 
+  {\bf u}_h = \sum_{i=1}^n {\bf N}_i {\bf u}_i .
 \end{equation}
 Her er ${\bf N}_i$ basis funktioner konstrueret udfra de lokale basis
 funktioner i de enkelte elementer. Koefficienterne ${\bf u}_i$ er på
 standard vis bestemt fra kravet
 \begin{equation}
-  B({\bf u}_h,{\bf N}_i) = ({\bf f},{\bf N}_i) + 
-  \langle {\bf\hat{t}},{\bf N}_i\rangle_{\Gamma_n}, \quad 
+  B({\bf u}_h,{\bf N}_i) = ({\bf f},{\bf N}_i) +
+  \langle {\bf\hat{t}},{\bf N}_i\rangle_{\Gamma_n}, \quad
   i=1,\ldots,n.
 \end{equation}
 Vi definerer nu fejlen i den approksimerede løsning som ${\bf e} =
@@ -297,7 +297,7 @@ for energi normen for fejlen
   \| {\bf e} \|^2 &= B({\bf e,e}) \\
   &= \int_\dom ({\bf Se})^t {\bf DSe}\, d{\bf x} \notag \\
   &= \int_\dom {\bf e}^t_\sigma {\bf D}^{-1}
-     {\bf e}_\sigma\, d{\bf x}, \notag  
+     {\bf e}_\sigma\, d{\bf x}, \notag
 \end{align}
 hvor det sidste lighedstegn følger af definitionen ${\bf e}_\sigma =
 \pmb{\sigma} - \pmb{\sigma}_h$. Vi har desuden udnyttet, at $\bf D$ er
@@ -344,13 +344,13 @@ Lad $\hat{{\bf N}}_i, \ i=1,\ldots,m$ være kontinuerte, globale basisfunktioner
 de opfylder randbetingelsen \eqref{bcstress} for stresset. Den
 udglattede stress $\pmb{\sigma}^{\ast}$ defineres da som
 \begin{equation}
-  \pmb{\sigma}^{\ast} = \sum_{i=1}^m \hat{{\bf N}}_i 
-  \overline{\pmb{\sigma}}^{\ast}_i \ , 
+  \pmb{\sigma}^{\ast} = \sum_{i=1}^m \hat{{\bf N}}_i
+  \overline{\pmb{\sigma}}^{\ast}_i \ ,
 \end{equation}
 hvor koefficienterne opfylder
 \begin{equation}
   \int_\dom (\pmb{\sigma}^{\ast} - \pmb{\sigma}_h)^t
-  \hat{{\bf N}}_i\, d{\bf x}=0, \quad i=1,\ldots,m . 
+  \hat{{\bf N}}_i\, d{\bf x}=0, \quad i=1,\ldots,m .
 \end{equation}
 Da $\hat{{\bf N}}_i\in{\mathcal C}^0(\dom )$ vil $\pmb{\sigma}^{\ast}$
 være kontinuert (også over randene mellem de enkelte elementer).
@@ -365,27 +365,27 @@ metode til bestemmelse af en approksimation
 til $\pmb\sigma$. Da denne metode er en generalisering af den ovenfor
 nævnte, vil vi benytte samme notation og skrive
 \begin{equation}  \label{proj1}
-  \pmb{\sigma}^{\ast} = \sum_{i=1}^m {\bf M}_i 
-  \overline{\pmb{\sigma}}^{\ast}_i \ , 
+  \pmb{\sigma}^{\ast} = \sum_{i=1}^m {\bf M}_i
+  \overline{\pmb{\sigma}}^{\ast}_i \ ,
 \end{equation}
 hvor koefficienterne opfylder
 \begin{equation} \label{demcoe}
   \int_\dom (\pmb{\sigma}^{\ast} - \pmb{\sigma}_h)^t
-  {\bf M}_i\, d{\bf x}=0, \quad i=1,\ldots,m. 
+  {\bf M}_i\, d{\bf x}=0, \quad i=1,\ldots,m.
 \end{equation}
 
 Ændres kravet~\eqref{demcoe} til koefficienterne for $\pmb{\sigma}^{\ast}$, kan
 man få en tredje metode til bestemmelse af en approksimation. En sådan
 approksimation er givet ved
 \begin{equation} \label{proj2}
-  \pmb{\sigma}^{{\bf D}} = \sum_{i=1}^m {\bf M}_i 
-  \overline{\pmb{\sigma}}^{{\bf D}}_i \ , 
+  \pmb{\sigma}^{{\bf D}} = \sum_{i=1}^m {\bf M}_i
+  \overline{\pmb{\sigma}}^{{\bf D}}_i \ ,
 \end{equation}
 hvor koefficienterne nu er givet ved hjælp af et vægtet indre produkt
-\begin{equation} 
+\begin{equation}
   \int_\dom (\pmb{\sigma}^{{\bf D}} - \pmb{\sigma}_h)^t
-  {\bf D}^{-1}{\bf M}_i\, d{\bf x}=0, \quad i=1,\ldots,m. 
-\end{equation} 
+  {\bf D}^{-1}{\bf M}_i\, d{\bf x}=0, \quad i=1,\ldots,m.
+\end{equation}
 
 \subsubsection{Den nye metode}
 Ideen bag den nye metode er den samme, som den bag de oprindelige
@@ -397,7 +397,7 @@ elementer. Som tidligere skal vi skrive $\pmb{\sigma}^{\ast}$ på formen
 \end{equation}
 hvor ${\bf N}$ er de samme basisfunktioner, som dem vi brugte til at
 bestemme den endelige element løsning ${\bf u}_h$ med.
- 
+
 Vi skal nu redegøre for, hvordan koefficienterne
 $\overline{\pmb{\sigma}}^{\ast}$ i~\eqref{newform} bestemmmes.
 Koefficienterne $\overline{\pmb{\sigma}}^{\ast}$ vil blive bestemt som
@@ -410,7 +410,7 @@ knudepunkt for samlingspunkts knuden (eng. patch assembly point).
 ``Bæltet'' af elementer omkring samlingspunkts knuden består af
 foreningsmængden af de elementer, der indeholder den betragtede
 samlingspunkts knude. I figur~\ref{elementpatch} er vist et par
-eksempler på typiske element bælter.  
+eksempler på typiske element bælter.
 \setlength{\unitlength}{1mm}
 \begin{figure}[htbp]
 \begin{center}
@@ -494,14 +494,14 @@ punkter i elementet $\dom_{m_j}$, $m_j=1,\ldots,m$ i element bæltet
 $\dom_s=\cup_{j=1}^m \dom_{m_j}$. Igennem numeriske test konkluderes
 i~\cite{zz3}, at approksimationen $\pmb{\sigma}^{\ast}$ til
 $\pmb\sigma$ bliver bedre, hvis man som samplings punkter vælger punkter,
-der er superkonvergente. 
+der er superkonvergente.
 
 Ved at differentiere $F$ og derefter løse ligningen $F'(x)=0$ ses, at
 ${\bf a}$ er givet ved
 \begin{equation} \label{valueofa}
   \sum_{i=1}^n {\bf P}^t(x_i,y_i){\bf P}(x_i,y_i){\bf a} =
   \sum_{i=1}^n {\bf P}^t(x_i,y_i)\pmb{\sigma}_h (x_i,y_i).
-\end{equation} 
+\end{equation}
 Ligningen~\eqref{valueofa} kan udtrykkes på matrix form som
 \begin{equation}
   {\bf a} = {\bf A}^{-1}{\bf b},
@@ -513,7 +513,7 @@ hvor
 og
 \begin{equation}
   {\bf b} = \sum_{i=1}^n {\bf P}^t(x_i,y_i)\pmb{\sigma}_h (x_i,y_i)
-\end{equation}	    
+\end{equation}
 Når koefficienterne til ${\bf a}$ er kendt, kan man bestemme
 approksimative punktværdier for stresset ved at indsætte passende
 koordinater i udtrykket for $\pmb{\sigma}^{\ast}_p$. For at opnå
@@ -523,7 +523,7 @@ Nedenfor beskrives en undtagelse for punkter på randen af domænet. I
 figur~\ref{ex-rec-pro1} og \ref{ex-rec-pro2} findes eksempler på
 ovenstående proces. I artiklen~\cite{zz3} underbygger numeriske test
 en formodning om, at værdierne af $\pmb{\sigma}^{\ast}_p$ alle er
-superkonvergente.  
+superkonvergente.
 
 \setlength{\unitlength}{1mm}
 \begin{figure}[htbp]
@@ -592,7 +592,7 @@ mærket $\bullet$ har vi udregnet en approksimeret værdi af stresset
 ved at indsætte passende koordinater i udtrykket for
 $\pmb{\sigma}^{\ast}_p$ \label{ex-rec-pro2}}
 \end{figure}
- 
+
 \subsubsection{Indre knudepunkter og randknudepunkter}
 For knudepunkter, der ligger i det indre af domænet, kan man risikere
 et vist overlap mellem element bælterne. For knudepunkter hvor man har
@@ -604,7 +604,7 @@ gennemsnit af de udregnede værdier. Dette foreslås udfra motiver om,
 at den ved hjælp af polynomiet $\pmb{\sigma}^{\ast}_p$ udregnede
 approksimerede stress er superkonvergent. Det er derfor hurtigere/lettere at
 anvende ovenstående metode fremfor at benytte en metode, der undgår
-dette problem. 
+dette problem.
 
 Der skal ligeledes tages specielt hensyn til randknudepunkter. For
 hjørneknuder vil det tilhørende element bælte ikke være stort nok
@@ -681,7 +681,7 @@ værdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro3}}
 basisfunktioner. $\triangle$ Gauss punkt. $\bullet$ Approksimeret
 værdi af stresset. $\bigcirc$ Samlingspunkts knude. \label{ex-rec-pro4}}
 \end{figure}
-  
+
 \subsection{Teoretisk analyse af $Z^2$ fejl estimatoren}
 \subsubsection{De oprindelige metoder}
 Som nævnt ovenfor er målet for $Z^2$ fejl estimatoren at opnå
@@ -697,51 +697,51 @@ Lad $\alpha\in ]0,2[$ og $K>0$ være reelle konstanter og definer
 funktionalen $\hat{K}$ som
 \begin{equation}
   \hat{K}(\hat{\pmb{\sigma}}) = -\frac{1}{2} \int_\dom
-  (\hat{\pmb{\sigma}} -\pmb{\sigma}_h)^t {\bf D}^{-1} 
-  (\hat{\pmb{\sigma}} -\pmb{\sigma}_h) \, d{\bf x} - 
-  \frac{1}{2} \frac{h^\alpha}{K} \int_\dom {\bf (f+S}^t 
+  (\hat{\pmb{\sigma}} -\pmb{\sigma}_h)^t {\bf D}^{-1}
+  (\hat{\pmb{\sigma}} -\pmb{\sigma}_h) \, d{\bf x} -
+  \frac{1}{2} \frac{h^\alpha}{K} \int_\dom {\bf (f+S}^t
   \hat{\pmb{\sigma}})^2\, d{\bf x}.
 \end{equation}
 Da findes et $h$ så
 \begin{equation}
   \| {\bf e} \|_E^2 \leq -2(1+Ch^\delta ) \hat{K}(\hat{\pmb{\sigma}}),
 \end{equation}
-hvor $C$ og $\delta$ er postitive konstanter uafhængige af $h$. 
+hvor $C$ og $\delta$ er postitive konstanter uafhængige af $h$.
 \end{theorem}
 \begin{proof}
-Se fx \cite{zz2}. 
+Se fx \cite{zz2}.
 \end{proof}
 \begin{remark}
 Da basisfunktionerne ${\bf N}_i$ er kontinuerte og opfylder
 rand\-be\-tin\-gel\-sen for stresset, vil det udglattede stress
 $\pmb{\sigma}^{\ast}$ defineret ved~\eqref{proj1} opfylde
-be\-tin\-gel\-ser\-ne i sætning~\ref{lub1}. 
+be\-tin\-gel\-ser\-ne i sætning~\ref{lub1}.
 \end{remark}
 \begin{remark}
 I lighed med forrige bemærkning ses, at den udglattede stress
 $\pmb{\sigma}^{{\bf D}}$ defineret ved~\eqref{proj2} ligeledes
-opfylder betingelserne i sætning~\ref{lub1}. 
+opfylder betingelserne i sætning~\ref{lub1}.
 \end{remark}
 \begin{definition}
 Lad $\bf D$ være som i afsnit~\ref{modelafs}. For passende funktioner
-${\bf v}$ defineres $\dnorm{\cdot}^2$ som 
+${\bf v}$ defineres $\dnorm{\cdot}^2$ som
 \begin{equation}
-  \dnorm{{\bf v}}^2 = \int_\dom {\bf v}^t{\bf D}^{-1}{\bf v}\, d{\bf x}. 
+  \dnorm{{\bf v}}^2 = \int_\dom {\bf v}^t{\bf D}^{-1}{\bf v}\, d{\bf x}.
 \end{equation}
 \end{definition}
 \begin{remark}
 Det er ikke svært at vise, at $\dnorm{\cdot}$ rent faktisk er en norm,
 og at man har følgende ækvivalens mellem normerne $\dnorm{\cdot}$ og
-$\norm{\cdot}_{\Lto}$. 
+$\norm{\cdot}_{\Lto}$.
 \begin{equation}
-  \frac{(1+\nu)(1-2\nu)}{E}\norm{{\bf v}}_{\Lto}^2 
+  \frac{(1+\nu)(1-2\nu)}{E}\norm{{\bf v}}_{\Lto}^2
   \leq \dnorm{{\bf v}}^2 \leq
-  \frac{2(1+\nu)}{E}\norm{{\bf v}}_{\Lto}^2 \ . 
-\end{equation} 
+  \frac{2(1+\nu)}{E}\norm{{\bf v}}_{\Lto}^2 \ .
+\end{equation}
 \end{remark}
 De næste to sætninger giver os nedre grænser for fejlen. Denne nedre
 grænse er afhængig af , om vi benytter approksimationen
-$\pmb{\sigma}^{\ast}$ eller $\pmb{\sigma}^{\bf D}$ til $\pmb\sigma$. 
+$\pmb{\sigma}^{\ast}$ eller $\pmb{\sigma}^{\bf D}$ til $\pmb\sigma$.
 \begin{theorem} \label{lub2}
 Lad $\pmb{\sigma}^{\bf D}$ være stressen defineret ved projektionen \eqref{proj2}.
 Under antagelse af, at den eksakte stres $\pmb{\sigma}$ er tilpas glat,
@@ -752,7 +752,7 @@ gælder
 \end{equation}
 \end{theorem}
 \begin{proof}
-Se fx \cite{zz2}. 
+Se fx \cite{zz2}.
 \end{proof}
 \begin{theorem} \label{lub3}
 Lad $\pmb{\sigma}^{\ast}$ være stressen defineret ved projektionen \eqref{proj1}.
@@ -764,10 +764,10 @@ gælder
 \end{equation}
 \end{theorem}
 \begin{proof}
-Se fx \cite{zz2}. 
+Se fx \cite{zz2}.
 \end{proof}
 
-Sættes 
+Sættes
 \begin{align}
   \varepsilon^2 &= \int_\dom (\hat{\pmb{\sigma}}-\pmb{\sigma}_h)^t {\bf D}^{-1}
   (\hat{\pmb{\sigma}}-\pmb{\sigma}_h)\, d{\bf x}, \\
@@ -780,14 +780,14 @@ resultaterne i sætningerne~\ref{lub1}, \ref{lub2} og \ref{lub3} til
 \begin{equation}
   \bigl( 1+C_1({\bf u})h^{q-p+1}\bigr)^{-2}\varepsilon^2 \leq
   \norm{{\bf e}}^2_E \leq
-  \bigl( 1+C_2({\bf u})h^\delta\bigr)\biggl(\varepsilon^2 + 
+  \bigl( 1+C_2({\bf u})h^\delta\bigr)\biggl(\varepsilon^2 +
   \frac{h^\alpha}{K}\Lambda^2 \biggr)
 \end{equation}
 for projektionen givet ved \eqref{proj2} og til
 \begin{equation}
   \frac{1-2\nu}{2}\bigl( 1+C_1({\bf u})h^{q-p+1}\bigr)^{-2}\varepsilon^2 \leq
   \norm{{\bf e}}^2_E \leq
-  \bigl( 1+C_2({\bf u})h^\delta\bigr)\biggl(\varepsilon^2 + 
+  \bigl( 1+C_2({\bf u})h^\delta\bigr)\biggl(\varepsilon^2 +
   \frac{h^\alpha}{K}\Lambda^2 \biggr)
 \end{equation}
 for projektionen givet ved \eqref{proj1}.
@@ -800,8 +800,8 @@ $\norm{\pmb{\sigma}^{\ast}-\pmb{\sigma}_h} \approx
 \norm{\pmb{\sigma}-\pmb{\sigma}_h}$ asymptotisk, dvs. asymptotisk er
 $\pmb{\sigma}^{\ast}$ en god approksimation til $\pmb\sigma$. Igennem
 numeriske test i~\cite{zz2} konkluderes, at sætningens forudsætninger
-er opfyldt for mange test problemer. 
- 
+er opfyldt for mange test problemer.
+
 \begin{theorem}
 Lad $\tilde{\bf e}_\sigma = \pmb{\sigma} - \pmb{\sigma}^{\ast}$ være
 fejlen, som vi begår ved at approksimere den eksakte stress
@@ -811,7 +811,7 @@ forskellen mellem den eksakte stress og den beregnelige stress. Da er
 fejl estimatoren $\norm{{\bf e}_\sigma^{\ast}}=
 \norm{\pmb{\sigma}^{\ast}-\pmb{\sigma}_h}$ asymptotisk eksakt hvis
 \begin{equation}
-  \frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}} 
+  \frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}}
   \rightarrow 0 \quad \text{for} \quad \norm{{\bf e}_\sigma}
   \rightarrow 0.
 \end{equation}
@@ -819,15 +819,15 @@ fejl estimatoren $\norm{{\bf e}_\sigma^{\ast}}=
 \begin{proof}
 Skrives fejl estimatoren $\norm{{\bf e}_\sigma^{\ast}}$ som
 \begin{equation}
-  \norm{{\bf e}_\sigma^{\ast}} = 
+  \norm{{\bf e}_\sigma^{\ast}} =
   \norm{\pmb{\sigma}^{\ast}-\pmb{\sigma}_h} =
-  \norm{ ( \pmb{\sigma} - \pmb{\sigma}_h ) - 
+  \norm{ ( \pmb{\sigma} - \pmb{\sigma}_h ) -
   ( \pmb{\sigma} - \pmb{\sigma}^{\ast} ) },
 \end{equation}
 fås ved brug af trekants uligheden
 \begin{equation}
   \norm{\pmb{\sigma}-\pmb{\sigma}_h} -
-  \norm{\pmb{\sigma}-\pmb{\sigma}^{\ast}} 
+  \norm{\pmb{\sigma}-\pmb{\sigma}^{\ast}}
   \leq \norm{{\bf e}_\sigma^{\ast}} \leq
   \norm{\pmb{\sigma}-\pmb{\sigma}_h} +
   \norm{\pmb{\sigma}-\pmb{\sigma}^{\ast}}
@@ -839,18 +839,16 @@ eller
   \norm{{\bf e}_\sigma} + \norm{\tilde{{\bf e}}_\sigma}
 \end{equation}
 Ved at dividere igennem med $\norm{{\bf e}_\sigma}$ bliver~\eqref{abc}
-til 
+til
 \begin{equation}
   1 - \frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}}
   \leq \frac{\norm{{\bf e}_\sigma^{\ast}}}{\norm{{\bf e}_\sigma}} \leq
   1 + \frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}},
 \end{equation}
-Når $\norm{{\bf e}_\sigma}\rightarrow 0$ vil 
+Når $\norm{{\bf e}_\sigma}\rightarrow 0$ vil
 $\frac{\norm{\tilde{{\bf e}}_\sigma}}{\norm{{\bf e}_\sigma}}\rightarrow 0$
-jvf. sætningens antagelse, og dermed vil 
+jvf. sætningens antagelse, og dermed vil
 $\frac{\norm{{\bf e}_\sigma^{\ast}}}{\norm{{\bf e}_\sigma}}\rightarrow 1$.
-Dette er ifølge definition~\ref{asympexact} det samme som at sige, at 
+Dette er ifølge definition~\ref{asympexact} det samme som at sige, at
 $\norm{{\bf e}_\sigma^{\ast}}$ er asymptotisk eksakt.
 \end{proof}
-
-

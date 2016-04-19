@@ -3,7 +3,6 @@ thesis.sync*
 *.aux
 *.lo*
 *.toc
-*.pdf
 *.dvi
 *.bbl
 *.blg
