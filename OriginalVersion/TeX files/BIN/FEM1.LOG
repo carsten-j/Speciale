@@ -1,0 +1,71 @@
+This is TeX, C Version 3.141 (format=latex 94.8.5)  24 MAY 1995 14:22
+**fem1
+(fem1.tex
+LaTeX2e <1994/06/01> patch level 3
+(/net/applications/tex/inputs/latex2e/article.cls
+Document Class: article 1994/07/13 v1.2u Standard LaTeX document class
+(/net/applications/tex/inputs/latex2e/size12.clo
+File: size12.clo 1994/07/13 v1.2u Standard LaTeX file (size option)
+)
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\c@figure=\count88
+\c@table=\count89
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/net/applications/tex/inputs/graphics/epic.sty
+Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
+\@@multicnt=\count90
+\d@lta=\count91
+\@delta=\dimen103
+\@@delta=\dimen104
+\@gridcnt=\count92
+\@joinkind=\count93
+\@dotgap=\dimen105
+\@ddotgap=\dimen106
+\@x@diff=\count94
+\@y@diff=\count95
+\x@diff=\dimen107
+\y@diff=\dimen108
+\@dotbox=\box25
+\num@segments=\count96
+\num@segmentsi=\count97
+\@datafile=\read1
+) (fem1.aux)
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Info: Redefining \" on input line 3.
+LaTeX Info: Redefining \" on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 23.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 23.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 23.
+ [1] [2] (fem1.aux) ) 
+Here is how much of TeX's memory you used:
+ 327 strings out of 11045
+ 3240 string characters out of 75328
+ 65586 words of memory out of 262141
+ 3166 multiletter control sequences out of 9500
+ 6376 words of font info for 23 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 22i,8n,26p,181b,278s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on fem1.dvi (2 pages, 17504 bytes).

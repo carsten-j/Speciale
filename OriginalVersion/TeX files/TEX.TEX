@@ -1,0 +1,192 @@
+\begin{verbatim}
+\usepackage{psfig}
+\usepackage{bchap}
+\usepackage{amstex}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{ecltree}
+\usepackage{theorem}
+\theoremstyle{change}
+\input{dkchar}
+
+\hyphenation{pro-blem}
+\hyphenation{in-de-hol-der}
+\hyphenation{u-be-kend-te}
+\hyphenation{kon-stant-er}
+\hyphenation{dif-fe-ren-ti-al-o-pe-ra-tor}
+\hyphenation{gen-op-da-ge-de}
+\hyphenation{u-de-luk-ken-de}
+\hyphenation{fri-heds-gra-der-ne}
+\hyphenation{e-le-men-ter-ne}
+\hyphenation{en-ty-dig-hed-en}
+
+\newtheorem{theorem}{Sætning}[section]
+\newtheorem{conjecture}[theorem]{Konjektur}
+\newtheorem{definition}[theorem]{Definition}
+{\theorembodyfont{\normalfont\upshape}\newtheorem{remark}[theorem]{Bemærkning}}
+{\theorembodyfont{\normalfont\upshape}\newtheorem{example}[theorem]{Eksempel}}
+\newtheorem{cor}[theorem]{Korollar}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremheaderfont{\scshape}
+
+\newcommand{\inner}[2]{\langle #1,#2 \rangle}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\fem}{den endelige element metode}
+
+\renewcommand{\tablename}{Tabel}
+\renewcommand{\figurename}{Figur}
+\renewcommand{\bibname}{Litteratur}
+\renewcommand{\contentsname}{Indhold}
+
+% \newenvironment{note}{\begin{remark}}{\hfill a \end{remark}}
+\newcommand{\Th}{{\cal{T}}_h}
+\newcommand{\Het}{{\mathcal H}^1(\Omega)}
+\newcommand{\Hto}{{\mathcal H}^2(\Omega)}
+\newcommand{\Lto}{{\mathcal L}^2(\Omega)}
+\newcommand{\norm}[1]{\|#1\|}
+% \newcommand{\D}{{\cal{D}}}
+\newcommand{\afl}[2]{\frac{\partial #1}{\partial #2}}
+
+\newenvironment{nolist}{\begin{itemize} \begin{enumerate}} %
+                  {\end{enumerate} \end{itemize}}
+\newcommand{\dual}[1]{#1^{\ast}}
+
+\newcommand{\Cto}{{\mathcal{C}}^2(\Omega)}
+\newcommand{\C}{{\mathcal{C}}(\overline{\Omega})}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\normX}[1]{\|#1\|_{\X}}
+\newcommand{\normY}[1]{\|#1\|_{\Y}}
+
+\newenvironment{userenumerate}[1]{%
+  \renewcommand{\labelenumi}{#1.\theenumi}%
+  \begin{enumerate}}{\end{enumerate}}
+
+% \newenvironment{note}{\begin{remark}}{\hfill a \end{remark}}
+\newcommand{\Nh}{{\cal{N}}_h}
+\newcommand{\NK}{{\cal{N}}_K}
+
+
+\newcommand{\fe}{(K,P,\Sigma)}
+\newcommand{\hatfe}{(\hat{K},\hat{P},\hat{\Sigma})}
+\newcommand{\familyfe}{(K,P_K,\Sigma_K)}
+
+\newcommand{\domain}{\overline{\Omega}}
+
+\newcounter{ad}
+\newenvironment{adenumerate}%
+  {\begin{list}{ad \arabic{ad}).}{\usecounter{ad}%
+    \settowidth{\labelwidth}{ ad 9).}
+    \setlength{\leftmargin}{\labelwidth}
+    \addtolength{\leftmargin}{\labelsep}}%
+  }%
+  {\end{list}}
+
+
+\newcommand{\snorm}[1]{\|#1\|_{{\mathcal W}^{m,r}(\re)}^r}
+\newcommand{\smnorm}[2]{\|#1\|_{{\mathcal W}^{#2,r}(\re)}^r}
+\newcommand{\ssnorm}[1]{|#1|_{{\mathcal W}^{m,r}(\re)}^r}
+
+\newcommand{\un}{\underline}
+\newcommand{\spann}{\operatorname{span}}
+\newcommand{\pst}{\operatorname{p.s.t.}}
+\newcommand{\re}{\Box}
+\renewcommand{\O}{{\mathcal O}}
+
+\newenvironment{Thenumerate}{%
+  \renewcommand{\labelenumi}{${\cal T}_{h}$\theenumi.}%
+   \begin{enumerate}}%
+   {\end{enumerate}}
+
+
+\newcommand{\Hp}[2][]{\ensuremath{H_{#1}^{#2}(\Omega)}}
+\newcommand{\Lp}[1]{\ensuremath{L^{#1}(\Omega)}}
+\newcommand{\Cp}[1]{\ensuremath{\mathcal{C}^{#1}(\Omega)}}
+\newcommand{\Cpc}[1]{\ensuremath{\mathcal{C}^{#1}(\overline{\Omega})}}
+
+% \newcommand{\norm}[2][]{\ensuremath{\|#2\|_{#1}}}
+
+\newcommand{\nsim}{$n$-simplex}
+\newcommand{\nsimk}{$n$-simplex af type $(k)$}
+
+
+
+\newenvironment{proof}{\textsc{Bevis}\hspace{2mm}}{\hfill$\Box$}
+
+
+\newcommand{\Tayu}{\ensuremath{T_{pq}\{u\}}}
+\newcommand{\Taye}{\ensuremath{e_{pq}^T}}
+\newcommand{\jl}{\makebox[0pt][l]{\hspace{0.5pt}$|$}[}
+\newcommand{\jr}{\makebox[0pt][l]{\hspace{-0.6pt}$|$}]}
+\newcommand{\binner}[2]{\ensuremath{\Bigl\langle #1,#2\Bigr\rangle}}
+% \newcommand{\norm}[2][]{\ensuremath{\|#2\|_{#1}}}
+\newcommand{\energi}[1]{\ensuremath{|||#1|||}}
+\newcommand{\hnorm}[1]{\ensuremath{\|#1\|_{\H}}}
+\newcommand{\cell}{\ensuremath{\omega_{0}^{h}}}
+\newcommand{\en}[1]{\ensuremath{\|#1\|_{\cell}}}
+\newcommand{\ee}{\ensuremath{{\mathcal{E}}_{\cell}}}
+\newcommand{\ei}{\ensuremath{\kappa_{\cell}}}
+% \newcommand{\fe}{\ensuremath{\triangle}}
+\newcommand{\bfe}[1]{\ensuremath{\partial\fe_{#1}}}
+\newcommand{\etfe}{\ensuremath{e_{\tilde{\mathsf{fe}}}}}
+\newcommand{\mesh}{\ensuremath{\fe_{h}}}
+\newcommand{\ufe}{\ensuremath{u_{\mathsf{fe}}}}
+\newcommand{\tufe}{\ensuremath{u_{\tilde{\mathsf{fe}}}}}
+\newcommand{\tefe}{\ensuremath{e_{\tilde{\mathsf{fe}}}}}
+\newcommand{\pufe}[1]{\ensuremath{u_{\mathsf{fe,#1}}}}
+\newcommand{\ufer}[1]{\ensuremath{u_{{\mathsf{fe}},#1}}}
+\newcommand{\uex}{\ensuremath{u_{\mathsf{ex}}}}
+\newcommand{\eex}{\ensuremath{e_{\mathsf{ex}}}}
+\newcommand{\cl}{\ensuremath{C_{L}^{\cell}}}
+\newcommand{\cu}{\ensuremath{C_{U}^{\cell}}}
+\newcommand{\ri}{\ensuremath{\mathcal{R}_{\cell}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\dom}{\ensuremath{\Omega}}
+\newcommand{\Xdom}{\X(\dom)}
+\newcommand{\Ydom}{\Y(\dom)}
+\newcommand{\meas}{\operatorname{meas}}
+\newcommand{\e}{\operatorname{e}}
+\newcommand{\vspan}{\operatorname{span}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\hot}{\operatorname{h.o.t.}}
+\newcommand{\T}{\ensuremath{\mathcal T}}
+\newcommand{\N}{\ensuremath{\mathcal N}}
+\newcommand{\A}{\ensuremath{\mathcal A}}
+\renewcommand{\H}{\ensuremath{\mathcal H}}
+\renewcommand{\L}{\ensuremath{\mathcal L}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\E}{\ensuremath{\mathcal E}}
+% \newcommand{\C}{\ensuremath{{\mathcal{C}^{2}(\dom)}}}
+\newcommand{\Cc}{\ensuremath{{\mathcal{C}^{0}(\overline{\dom})}}}
+\newcommand{\bou}[1]{\ensuremath{\partial\dom_{#1}}}
+\newcommand{\nv}{\ensuremath{\mathbf{n}}}
+\newcommand{\g}{\ensuremath{\nabla}}
+\newcommand{\p}{\partial}
+\newcommand{\n}{\mathbf{n}}
+\newcommand{\jump}[2]{\ensuremath{\jl#1\jr_{\bfe{#2}}}}
+\newcommand{\pjump}[2]{\ensuremath{\jl#1\jr#2}}
+\newcommand{\D}{\ensuremath{{\mathcal{D}}}}
+\newcommand{\Vh}{\ensuremath{{\mathcal V}_h}}
+% \newcommand{\V}{\ensuremath{{\mathcal V}}}
+\newcommand{\U}{\ensuremath{{\mathcal{U}}(\dom)}}
+\newcommand{\V}{\ensuremath{{\mathcal{V}}(\dom)}}
+\newcommand{\Udom}[1]{\ensuremath{{\mathcal{U}}(\fe_{#1})}}
+\newcommand{\Vdom}[1]{\ensuremath{{\mathcal{V}}(\fe_{#1})}}
+\newcommand{\Xfe}{\ensuremath{{\mathcal{X}}_{\mathsf{fe}}}}
+\newcommand{\Yfe}{\ensuremath{{\mathcal{Y}}_{\mathsf{fe}}}}
+\newcommand{\Ufe}{\ensuremath{{\mathcal{U}}_{\mathsf{fe}}(\dom)}}
+\newcommand{\Utfe}{\ensuremath{\tilde{{\mathcal{U}}}_{\mathsf{fe}}(\dom)}}
+\newcommand{\Vfe}{\ensuremath{{\mathcal{V}}_{\mathsf{fe}}(\dom)}}
+\newcommand{\Utfedom}[1]{\ensuremath{\tilde{{\mathcal{U}}}_{\mathsf{fe}}%
+  (\fe_{#1})}}
+\newcommand{\Vtfedom}[1]{\ensuremath{\tilde{{\mathcal{V}}}_{\mathsf{fe}}%
+  (\fe_{#1})}}
+\newcommand{\Ufedom}[1]{\ensuremath{{\mathcal{U}}_{\mathsf{fe}}%
+  (\fe_{#1})}}
+\newcommand{\Vfedom}[1]{\ensuremath{{\mathcal{V}}_{\mathsf{fe}}%
+  (\fe_{#1})}}
+\end{verbatim}
+
+
