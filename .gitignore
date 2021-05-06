@@ -8,3 +8,4 @@ thesis.sync*
 *.blg
 thesis.fdb*
 thesis.fls
+.DS_Store
